@@ -1,0 +1,37 @@
+# FedRAMP's own parameter assignments for NIST SP 800-53 Rev 5.
+#
+# The only values in inputs.yml that someone other than this repository
+# decided. Everything else there is an illustrative sample.
+#
+# Committed rather than fetched, for the same reason the profile is: a
+# generator that needs the network to reproduce its own output cannot be a
+# drift gate, and CI would be one third-party outage away from red.
+#
+# Source:   FedRAMP Consolidated Rules for 2026.07.14.01, 2026-07-14
+#           https://github.com/FedRAMP/rules -> fedramp-consolidated-rules.json
+# Retrieved: 2026-08-20
+#
+# Refresh by re-reading the CTL block of that file and re-running
+# tools/nist_catalog_to_inspec/seed_sample_odps.py.
+#
+# Keys are OSCAL parameter ids, exactly as published.
+
+ac-06.01_odp.02: 'all functions not publicly accessible'
+ac-06.01_odp.05: 'all security-relevant information not publicly available'
+ac-06.02_odp: 'all security functions'
+ac-06.08_odp: 'any software except software explicitly documented'
+au-10_odp: 'at least actions including the addition, modification, deletion, approval, sending, or receiving of data'
+au-12_odp.01: 'at least all information system and network components where audit capability is deployed/available'
+ca-02.03_odp.01: 'any FedRAMP Recognized independent assessment service'
+ca-02_odp.02: 'individuals or roles to include FedRAMP and agency customers'
+cm-11_odp.03: 'Continuously (via CM-7 (5))'
+cp-02.03_odp.02: 'time period defined in service provider and organization Service Level Agreements'
+cp-10.04_odp: 'time period consistent with the restoration time-periods defined in the service provider and organization Service Level Agreements'
+ia-02.06_odp.01: 'local, network and remote'
+ia-02.06_odp.02: 'privileged accounts; non-privileged accounts'
+ia-02.08_odp: 'privileged accounts; non-privileged accounts'
+ia-04.04_odp: 'contractors; foreign nationals'
+sa-09.02_odp: 'all external systems where federal customer data is processed or stored'
+sa-09.05_odp.01: 'information processing, information or data, AND system services'
+sa-09.05_odp.02: 'U.S./U.S. Territories or geographic locations where there is U.S. jurisdiction'
+sa-09.05_odp.03: 'all federal customer data'

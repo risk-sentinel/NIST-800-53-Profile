@@ -1,0 +1,4596 @@
+# Organization-defined parameters (ODPs) for NIST SP 800-53 Rev 5.
+#
+# ############################################################################
+# #  THESE ARE ILLUSTRATIVE SAMPLES. THEY ARE NOT THIS ORGANIZATION'S ODPs.  #
+# ############################################################################
+#
+# The file exists so the profile renders as readable control language out of
+# the box, and so a reader can see the SHAPE of a real answer. Every value
+# below still has to be replaced with what the organization has actually
+# defined before this profile informs an SSP, an assessment, or an ATO
+# package. A sample that survives into an authorization package is a finding.
+#
+# Where each value came from (all 1600 of them):
+#
+#     19  FedRAMP's own published parameter assignments. The only values
+#         here that someone else decided; treat the rest as placeholders with
+#         better grammar.
+#     11  Hand-checked against the control's own sentence, where the
+#         archetype sample was grammatical but wrong enough to mislead --
+#         "report suspected incidents within 30 days" is not a sample.
+#    128  Taken from the placeholder's own selection list -- the FIRST
+#         option, always. A mechanical rule is auditable, and it always reads
+#         grammatically where a cleverer one would not.
+#    848  Archetype samples: 'annually' for a frequency, '30 days' for a
+#         time period, and so on. Typical of a FedRAMP system, and chosen for
+#         nothing else.
+#    594  Pointers rather than answers -- 'the X defined in the system
+#         security plan'. Used where inventing content would read like a
+#         decision nobody made. These are the ones to fill in first.
+#
+# Regenerate with:
+#
+#   python3 tools/nist_catalog_to_inspec/seed_sample_odps.py
+#
+# inputs.template.yml holds the pristine placeholders and is rewritten on every
+# catalog regeneration. This file is seeded from it and is never overwritten by
+# the catalog generator, so edits made here survive.
+#
+# Values interpolate into the control language, so a filled-in worksheet makes
+# each control read the way this system actually implements it.
+
+ac_1_prm_1: 'the system owner, the ISSO, and the ISSM'
+# AC-01_ODP[01]
+ac_01_odp_01: 'the system owner, the ISSO, and the ISSM'
+# AC-01_ODP[02]
+ac_01_odp_02: 'the system owner, the ISSO, and the ISSM'
+# AC-01_ODP[03]
+ac_01_odp_03: 'organization-level'
+# AC-01_ODP[04]
+ac_01_odp_04: 'Information System Security Officer (ISSO)'
+# AC-01_ODP[05]
+ac_01_odp_05: 'annually'
+# AC-01_ODP[06]
+ac_01_odp_06: 'a security incident, a significant change to the system, or an assessment finding'
+# AC-01_ODP[07]
+ac_01_odp_07: 'annually'
+# AC-01_ODP[08]
+ac_01_odp_08: 'a security incident, a significant change to the system, or an assessment finding'
+
+# AC-2 Account Management
+# AC-02_ODP[01]
+ac_02_odp_01: 'the prerequisites and criteria defined in the system security plan'
+# AC-02_ODP[02]
+ac_02_odp_02: 'the attributes defined in the system security plan'
+# AC-02_ODP[03]
+ac_02_odp_03: 'the system owner, the ISSO, and the ISSM'
+# AC-02_ODP[04]
+ac_02_odp_04: 'the policy, procedures, prerequisites, and criteria defined in the system security plan'
+# AC-02_ODP[05]
+ac_02_odp_05: 'the system owner, the ISSO, and the ISSM'
+# AC-02_ODP[06]
+ac_02_odp_06: '30 days'
+# AC-02_ODP[07]
+ac_02_odp_07: '30 days'
+# AC-02_ODP[08]
+ac_02_odp_08: '30 days'
+# AC-02_ODP[09]
+ac_02_odp_09: 'the attributes defined in the system security plan'
+# AC-02_ODP[10]
+ac_02_odp_10: 'annually'
+
+# AC-2 (1) Automated System Account Management
+# AC-02(01)_ODP
+ac_02_01_odp: 'the enterprise SIEM, configuration management, and ticketing systems'
+
+# AC-2 (2) Automated Temporary and Emergency Account Management
+# AC-02(02)_ODP[01]
+ac_02_02_odp_01: 'remove'
+# AC-02(02)_ODP[02]
+ac_02_02_odp_02: '30 days'
+
+# AC-2 (3) Disable Accounts
+# AC-02(03)_ODP[01]
+ac_02_03_odp_01: '24 hours'
+# AC-02(03)_ODP[02]
+ac_02_03_odp_02: '35 days'
+
+# AC-2 (5) Inactivity Logout
+# AC-02(05)_ODP
+ac_02_05_odp: '30 days'
+
+# AC-2 (6) Dynamic Privilege Management
+# AC-02(06)_ODP
+ac_02_06_odp: 'the dynamic privilege management capabilities defined in the system security plan'
+
+# AC-2 (7) Privileged User Accounts
+# AC-02(07)_ODP
+ac_02_07_odp: 'a role-based access scheme'
+
+# AC-2 (8) Dynamic Account Management
+# AC-02(08)_ODP
+ac_02_08_odp: 'the system accounts defined in the system security plan'
+
+# AC-2 (9) Restrictions on Use of Shared and Group Accounts
+# AC-02(09)_ODP
+ac_02_09_odp: 'a change in role, a change in employment status, or a security incident'
+
+# AC-2 (11) Usage Conditions
+# AC-02(11)_ODP[01]
+ac_02_11_odp_01: 'the circumstances and/or usage conditions defined in the system security plan'
+# AC-02(11)_ODP[02]
+ac_02_11_odp_02: 'the system accounts defined in the system security plan'
+
+# AC-2 (12) Account Monitoring for Atypical Usage
+# AC-02(12)_ODP[01]
+ac_02_12_odp_01: 'the atypical usage defined in the system security plan'
+# AC-02(12)_ODP[02]
+ac_02_12_odp_02: 'the system owner, the ISSO, and the ISSM'
+
+# AC-2 (13) Disable Accounts for High-risk Individuals
+# AC-02(13)_ODP[01]
+ac_02_13_odp_01: '30 days'
+# AC-02(13)_ODP[02]
+ac_02_13_odp_02: 'the significant risks defined in the system security plan'
+
+# AC-3 (2) Dual Authorization
+# AC-03(02)_ODP
+ac_03_02_odp: 'the privileged commands and/or other actions defined in the system security plan'
+
+# AC-3 (3) Mandatory Access Control
+# ac-3.3_prm_1
+ac_3_3_prm_1: 'the mandatory access control policy defined in the system security plan'
+# AC-03(03)_ODP[01]
+ac_03_03_odp_01: 'the mandatory access control policy defined in the system security plan'
+# AC-03(03)_ODP[02]
+ac_03_03_odp_02: 'the mandatory access control policy defined in the system security plan'
+# AC-03(03)_ODP[03]
+ac_03_03_odp_03: 'authenticated users and service accounts'
+# AC-03(03)_ODP[04]
+ac_03_03_odp_04: 'the privileges defined in the system security plan'
+
+# AC-3 (4) Discretionary Access Control
+# ac-3.4_prm_1
+ac_3_4_prm_1: 'the discretionary access control policy defined in the system security plan'
+# AC-03(04)_ODP[01]
+ac_03_04_odp_01: 'the discretionary access control policy defined in the system security plan'
+# AC-03(04)_ODP[02]
+ac_03_04_odp_02: 'the discretionary access control policy defined in the system security plan'
+
+# AC-3 (5) Security-relevant Information
+# AC-03(05)_ODP
+ac_03_05_odp: 'the security-relevant information defined in the system security plan'
+
+# AC-3 (7) Role-based Access Control
+# ac-3.7_prm_1
+ac_3_7_prm_1: 'the system owner, the ISSO, and the ISSM'
+# AC-03(07)_ODP[01]
+ac_03_07_odp_01: 'the system owner, the ISSO, and the ISSM'
+# AC-03(07)_ODP[02]
+ac_03_07_odp_02: 'the system owner, the ISSO, and the ISSM'
+
+# AC-3 (8) Revocation of Access Authorizations
+# AC-03(08)_ODP
+ac_03_08_odp: 'the rules defined in the system security plan'
+
+# AC-3 (9) Controlled Release
+# AC-03(09)_ODP[01]
+ac_03_09_odp_01: 'the system or system component defined in the system security plan'
+# AC-03(09)_ODP[02]
+ac_03_09_odp_02: 'the controls in the applicable FedRAMP baseline'
+# AC-03(09)_ODP[03]
+ac_03_09_odp_03: 'the controls in the applicable FedRAMP baseline'
+
+# AC-3 (10) Audited Override of Access Control Mechanisms
+# AC-03(10)_ODP[01]
+ac_03_10_odp_01: 'a change in role, a change in employment status, or a security incident'
+# AC-03(10)_ODP[02]
+ac_03_10_odp_02: 'the system owner, the ISSO, and the ISSM'
+
+# AC-3 (11) Restrict Access to Specific Information Types
+# AC-03(11)_ODP
+ac_03_11_odp: 'the information types defined in the system security plan'
+
+# AC-3 (12) Assert and Enforce Application Access
+# AC-03(12)_ODP
+ac_03_12_odp: 'the system applications and functions defined in the system security plan'
+
+# AC-3 (13) Attribute-based Access Control
+# AC-03(13)_ODP
+ac_03_13_odp: 'the attributes defined in the system security plan'
+
+# AC-3 (14) Individual Access
+# AC-03(14)_ODP[01]
+ac_03_14_odp_01: 'the enterprise SIEM and configuration management systems'
+# AC-03(14)_ODP[02]
+ac_03_14_odp_02: 'the elements listed in the system security plan'
+
+# AC-3 (15) Discretionary and Mandatory Access Control
+# ac-3.15_prm_1
+ac_3_15_prm_1: 'the mandatory access control policy defined in the system security plan'
+# ac-3.15_prm_2
+ac_3_15_prm_2: 'the discretionary access control policy defined in the system security plan'
+# AC-03(15)_ODP[01]
+ac_03_15_odp_01: 'the mandatory access control policy defined in the system security plan'
+# AC-03(15)_ODP[02]
+ac_03_15_odp_02: 'the mandatory access control policy defined in the system security plan'
+# AC-03(15)_ODP[03]
+ac_03_15_odp_03: 'the discretionary access control policy defined in the system security plan'
+# AC-03(15)_ODP[04]
+ac_03_15_odp_04: 'the discretionary access control policy defined in the system security plan'
+
+# AC-4 Information Flow Enforcement
+# AC-04_ODP
+ac_04_odp: 'the information flow control policies defined in the system security plan'
+
+# AC-4 (1) Object Security and Privacy Attributes
+# ac-4.1_prm_1
+ac_4_1_prm_1: 'confidentiality level, PII category, and data owner'
+# ac-4.1_prm_2
+ac_4_1_prm_2: 'the information, source, and destination objects defined in the system security plan'
+# AC-04(01)_ODP[01]
+ac_04_01_odp_01: 'confidentiality level, data owner, and handling caveat'
+# AC-04(01)_ODP[02]
+ac_04_01_odp_02: 'PII category, data subject, and retention period'
+# AC-04(01)_ODP[03]
+ac_04_01_odp_03: 'the information objects defined in the system security plan'
+# AC-04(01)_ODP[04]
+ac_04_01_odp_04: 'the information objects defined in the system security plan'
+# AC-04(01)_ODP[05]
+ac_04_01_odp_05: 'the source objects defined in the system security plan'
+# AC-04(01)_ODP[06]
+ac_04_01_odp_06: 'the source objects defined in the system security plan'
+# AC-04(01)_ODP[07]
+ac_04_01_odp_07: 'the destination objects defined in the system security plan'
+# AC-04(01)_ODP[08]
+ac_04_01_odp_08: 'the destination objects defined in the system security plan'
+# AC-04(01)_ODP[09]
+ac_04_01_odp_09: 'the information flow control policies defined in the system security plan'
+
+# AC-4 (2) Processing Domains
+# AC-04(02)_ODP
+ac_04_02_odp: 'the information flow control policies defined in the system security plan'
+
+# AC-4 (3) Dynamic Information Flow Control
+# AC-04(03)_ODP
+ac_04_03_odp: 'the information flow control policies defined in the system security plan'
+
+# AC-4 (4) Flow Control of Encrypted Information
+# AC-04(04)_ODP[01]
+ac_04_04_odp_01: 'the information flow control mechanisms defined in the system security plan'
+# AC-04(04)_ODP[02]
+ac_04_04_odp_02: 'decrypting the information'
+# AC-04(04)_ODP[03]
+ac_04_04_odp_03: 'the procedure or method defined in the system security plan'
+
+# AC-4 (5) Embedded Data Types
+# AC-04(05)_ODP
+ac_04_05_odp: 'the limitations defined in the system security plan'
+
+# AC-4 (6) Metadata
+# AC-04(06)_ODP
+ac_04_06_odp: 'the metadata defined in the system security plan'
+
+# AC-4 (8) Security and Privacy Policy Filters
+# ac-4.8_prm_1
+ac_4_8_prm_1: 'the security or privacy policy filters defined in the system security plan'
+# ac-4.8_prm_2
+ac_4_8_prm_2: 'the information flows defined in the system security plan'
+# ac-4.8_prm_4
+ac_4_8_prm_4: 'the security or privacy policy defined in the system security plan'
+# AC-04(08)_ODP[01]
+ac_04_08_odp_01: 'the security policy filter defined in the system security plan'
+# AC-04(08)_ODP[02]
+ac_04_08_odp_02: 'the privacy policy filter defined in the system security plan'
+# AC-04(08)_ODP[03]
+ac_04_08_odp_03: 'the information flows defined in the system security plan'
+# AC-04(08)_ODP[04]
+ac_04_08_odp_04: 'the information flows defined in the system security plan'
+# AC-04(08)_ODP[05]
+ac_04_08_odp_05: 'block'
+# AC-04(08)_ODP[06]
+ac_04_08_odp_06: 'the security policy defined in the system security plan'
+# AC-04(08)_ODP[07]
+ac_04_08_odp_07: 'the privacy policy defined in the system security plan'
+
+# AC-4 (9) Human Reviews
+# AC-04(09)_ODP[01]
+ac_04_09_odp_01: 'the information flows defined in the system security plan'
+# AC-04(09)_ODP[02]
+ac_04_09_odp_02: 'a change in role, a change in employment status, or a security incident'
+
+# AC-4 (10) Enable and Disable Security or Privacy Policy Filters
+# ac-4.10_prm_1
+ac_4_10_prm_1: 'the security or privacy policy filters defined in the system security plan'
+# ac-4.10_prm_2
+ac_4_10_prm_2: 'a change in role, a change in employment status, or a security incident'
+# AC-04(10)_ODP[01]
+ac_04_10_odp_01: 'the security filters defined in the system security plan'
+# AC-04(10)_ODP[02]
+ac_04_10_odp_02: 'the privacy filters defined in the system security plan'
+# AC-04(10)_ODP[03]
+ac_04_10_odp_03: 'a change in role, a change in employment status, or a security incident'
+# AC-04(10)_ODP[04]
+ac_04_10_odp_04: 'a change in role, a change in employment status, or a security incident'
+
+# AC-4 (11) Configuration of Security or Privacy Policy Filters
+# ac-4.11_prm_1
+ac_4_11_prm_1: 'the security or privacy policy filters defined in the system security plan'
+# AC-04(11)_ODP[01]
+ac_04_11_odp_01: 'the security policy filters defined in the system security plan'
+# AC-04(11)_ODP[02]
+ac_04_11_odp_02: 'the privacy policy filters defined in the system security plan'
+
+# AC-4 (12) Data Type Identifiers
+# AC-04(12)_ODP
+ac_04_12_odp: 'the data type identifiers defined in the system security plan'
+
+# AC-4 (13) Decomposition into Policy-relevant Subcomponents
+# AC-04(13)_ODP
+ac_04_13_odp: 'the policy-relevant subcomponents defined in the system security plan'
+
+# AC-4 (14) Security or Privacy Policy Filter Constraints
+# ac-4.14_prm_1
+ac_4_14_prm_1: 'the security or privacy policy filters defined in the system security plan'
+# AC-04(14)_ODP[01]
+ac_04_14_odp_01: 'the security policy filters defined in the system security plan'
+# AC-04(14)_ODP[02]
+ac_04_14_odp_02: 'the privacy policy filters defined in the system security plan'
+
+# AC-4 (15) Detection of Unsanctioned Information
+# ac-4.15_prm_2
+ac_4_15_prm_2: 'security or privacy policy defined in the system security plan'
+# AC-04(15)_ODP[01]
+ac_04_15_odp_01: 'the unsanctioned information defined in the system security plan'
+# AC-04(15)_ODP[02]
+ac_04_15_odp_02: 'security policy defined in the system security plan'
+# AC-04(15)_ODP[03]
+ac_04_15_odp_03: 'privacy policy defined in the system security plan'
+
+# AC-4 (17) Domain Authentication
+# AC-04(17)_ODP
+ac_04_17_odp: 'organization, system, application, service, individual'
+
+# AC-4 (19) Validation of Metadata
+# ac-4.19_prm_1
+ac_4_19_prm_1: 'the security or privacy policy filters defined in the system security plan'
+# AC-04(19)_ODP[01]
+ac_04_19_odp_01: 'the security policy filters defined in the system security plan'
+# AC-04(19)_ODP[02]
+ac_04_19_odp_02: 'the privacy policy filters defined in the system security plan'
+
+# AC-4 (20) Approved Solutions
+# AC-04(20)_ODP[01]
+ac_04_20_odp_01: 'the solutions in approved configurations defined in the system security plan'
+# AC-04(20)_ODP[02]
+ac_04_20_odp_02: 'federal customer data and system security documentation'
+
+# AC-4 (21) Physical or Logical Separation of Information Flows
+# ac-4.21_prm_1
+ac_4_21_prm_1: 'the mechanisms and/or techniques defined in the system security plan'
+# AC-04(21)_ODP[01]
+ac_04_21_odp_01: 'the mechanisms and/or techniques defined in the system security plan'
+# AC-04(21)_ODP[02]
+ac_04_21_odp_02: 'the mechanisms and/or techniques defined in the system security plan'
+# AC-04(21)_ODP[03]
+ac_04_21_odp_03: 'the required separations defined in the system security plan'
+
+# AC-4 (23) Modify Non-releasable Information
+# AC-04(23)_ODP
+ac_04_23_odp: 'the modification action defined in the system security plan'
+
+# AC-4 (25) Data Sanitization
+# AC-04(25)_ODP[01]
+ac_04_25_odp_01: 'delivery of malicious content, command and control of malicious code, malicious code augmentation, and steganography-encoded data'
+# AC-04(25)_ODP[02]
+ac_04_25_odp_02: 'the policy defined in the system security plan'
+
+# AC-4 (29) Filter Orchestration Engines
+# AC-04(29)_ODP
+ac_04_29_odp: 'the policy defined in the system security plan'
+
+# AC-5 Separation of Duties
+# AC-05_ODP
+ac_05_odp: 'the duties of individuals defined in the system security plan'
+
+# AC-6 (1) Authorize Access to Security Functions
+# ac-6.1_prm_2
+ac_6_1_prm_2: 'the security functions listed in the system security plan'
+# AC-06(01)_ODP[01]
+ac_06_01_odp_01: 'the system owner, the ISSO, and the ISSM'
+# AC-06(01)_ODP[02]
+ac_06_01_odp_02: 'all functions not publicly accessible'
+# AC-06(01)_ODP[03]
+ac_06_01_odp_03: 'the security functions listed in the system security plan'
+# AC-06(01)_ODP[04]
+ac_06_01_odp_04: 'the security functions listed in the system security plan'
+# AC-06(01)_ODP[05]
+ac_06_01_odp_05: 'all security-relevant information not publicly available'
+
+# AC-6 (2) Non-privileged Access for Nonsecurity Functions
+# AC-06(02)_ODP
+ac_06_02_odp: 'all security functions'
+
+# AC-6 (3) Network Access to Privileged Commands
+# AC-06(03)_ODP[01]
+ac_06_03_odp_01: 'the privileged commands defined in the system security plan'
+# AC-06(03)_ODP[02]
+ac_06_03_odp_02: 'the compelling operational needs defined in the system security plan'
+
+# AC-6 (5) Privileged Accounts
+# AC-06(05)_ODP
+ac_06_05_odp: 'the system owner, the ISSO, and the ISSM'
+
+# AC-6 (7) Review of User Privileges
+# AC-06(07)_ODP[01]
+ac_06_07_odp_01: 'annually'
+# AC-06(07)_ODP[02]
+ac_06_07_odp_02: 'the system owner, the ISSO, and the ISSM'
+
+# AC-6 (8) Privilege Levels for Code Execution
+# AC-06(08)_ODP
+ac_06_08_odp: 'any software except software explicitly documented'
+
+# AC-7 Unsuccessful Logon Attempts
+# AC-07_ODP[01]
+ac_07_odp_01: '3'
+# AC-07_ODP[02]
+ac_07_odp_02: '15-minute period'
+# AC-07_ODP[03]
+ac_07_odp_03: 'lock the account or node for 30 minutes'
+# AC-07_ODP[04]
+ac_07_odp_04: '30 minutes'
+# AC-07_ODP[05]
+ac_07_odp_05: 'the delay algorithm defined in the system security plan'
+# AC-07_ODP[06]
+ac_07_odp_06: 'the action defined in the system security plan'
+
+# AC-7 (2) Purge or Wipe Mobile Device
+# AC-07(02)_ODP[01]
+ac_07_02_odp_01: 'the mobile devices defined in the system security plan'
+# AC-07(02)_ODP[02]
+ac_07_02_odp_02: 'the purging or wiping requirements and techniques defined in the system security plan'
+# AC-07(02)_ODP[03]
+ac_07_02_odp_03: '3'
+
+# AC-7 (3) Biometric Attempt Limiting
+# AC-07(03)_ODP
+ac_07_03_odp: '3'
+
+# AC-7 (4) Use of Alternate Authentication Factor
+# AC-07(04)_ODP[01]
+ac_07_04_odp_01: 'the authentication factors defined in the system security plan'
+# AC-07(04)_ODP[02]
+ac_07_04_odp_02: '3'
+# AC-07(04)_ODP[03]
+ac_07_04_odp_03: '30 days'
+
+# AC-8 System Use Notification
+# AC-08_ODP[01]
+ac_08_odp_01: 'the system use notification defined in the system security plan'
+# AC-08_ODP[02]
+ac_08_odp_02: 'a change in role, a change in employment status, or a security incident'
+
+# AC-9 (2) Successful and Unsuccessful Logons
+# AC-09(02)_ODP[01]
+ac_09_02_odp_01: 'successful logons'
+# AC-09(02)_ODP[02]
+ac_09_02_odp_02: '30 days'
+
+# AC-9 (3) Notification of Account Changes
+# AC-09(03)_ODP[01]
+ac_09_03_odp_01: 'the security-related characteristics or parameters defined in the system security plan'
+# AC-09(03)_ODP[02]
+ac_09_03_odp_02: '30 days'
+
+# AC-9 (4) Additional Logon Information
+# AC-09(04)_ODP
+ac_09_04_odp: 'the additional information defined in the system security plan'
+
+# AC-10 Concurrent Session Control
+# AC-10_ODP[01]
+ac_10_odp_01: 'the account and/or account types defined in the system security plan'
+# AC-10_ODP[02]
+ac_10_odp_02: '3'
+
+# AC-11 Device Lock
+# AC-11_ODP[01]
+ac_11_odp_01: 'initiating a device lock after 15 minutes of inactivity'
+# AC-11_ODP[02]
+ac_11_odp_02: '30 days'
+
+# AC-12 Session Termination
+# AC-12_ODP
+ac_12_odp: '30 minutes of inactivity'
+
+# AC-12 (1) User-initiated Logouts
+# AC-12(01)_ODP
+ac_12_01_odp: 'the information resources defined in the system security plan'
+
+# AC-12 (3) Timeout Warning Message
+# AC-12(03)_ODP
+ac_12_03_odp: 'the time defined in the system security plan'
+
+# AC-14 Permitted Actions Without Identification or Authentication
+# AC-14_ODP
+ac_14_odp: 'the user actions defined in the system security plan'
+
+# AC-16 Security and Privacy Attributes
+# ac-16_prm_1
+ac_16_prm_1: 'the types of security and privacy attributes defined in the system security plan'
+# ac-16_prm_2
+ac_16_prm_2: 'the security and privacy attribute values defined in the system security plan'
+# ac-16_prm_3
+ac_16_prm_3: 'all systems within the authorization boundary'
+# ac-16_prm_4
+ac_16_prm_4: 'confidentiality level, PII category, and data owner'
+# ac-16_prm_6
+ac_16_prm_6: 'confidentiality level, PII category, and data owner'
+# ac-16_prm_7
+ac_16_prm_7: 'annually'
+# AC-16_ODP[01]
+ac_16_odp_01: 'the types of security attributes defined in the system security plan'
+# AC-16_ODP[02]
+ac_16_odp_02: 'the types of privacy attributes defined in the system security plan'
+# AC-16_ODP[03]
+ac_16_odp_03: 'the security attribute values defined in the system security plan'
+# AC-16_ODP[04]
+ac_16_odp_04: 'the privacy attribute values defined in the system security plan'
+# AC-16_ODP[05]
+ac_16_odp_05: 'all systems within the authorization boundary'
+# AC-16_ODP[06]
+ac_16_odp_06: 'all systems within the authorization boundary'
+# AC-16_ODP[07]
+ac_16_odp_07: 'confidentiality level, data owner, and handling caveat'
+# AC-16_ODP[08]
+ac_16_odp_08: 'PII category, data subject, and retention period'
+# AC-16_ODP[09]
+ac_16_odp_09: 'the attribute values or ranges defined in the system security plan'
+# AC-16_ODP[10]
+ac_16_odp_10: 'annually'
+# AC-16_ODP[11]
+ac_16_odp_11: 'annually'
+
+# AC-16 (1) Dynamic Attribute Association
+# ac-16.1_prm_1
+ac_16_1_prm_1: 'the subjects and objects defined in the system security plan'
+# ac-16.1_prm_2
+ac_16_1_prm_2: 'the security and privacy policies defined in the system security plan'
+# AC-16(01)_ODP[01]
+ac_16_01_odp_01: 'authenticated users and service accounts'
+# AC-16(01)_ODP[02]
+ac_16_01_odp_02: 'files, directories, and database records'
+# AC-16(01)_ODP[03]
+ac_16_01_odp_03: 'authenticated users and service accounts'
+# AC-16(01)_ODP[04]
+ac_16_01_odp_04: 'files, directories, and database records'
+# AC-16(01)_ODP[05]
+ac_16_01_odp_05: 'the security policies defined in the system security plan'
+# AC-16(01)_ODP[06]
+ac_16_01_odp_06: 'the privacy policies defined in the system security plan'
+
+# AC-16 (3) Maintenance of Attribute Associations by System
+# ac-16.3_prm_1
+ac_16_3_prm_1: 'confidentiality level, PII category, and data owner'
+# ac-16.3_prm_2
+ac_16_3_prm_2: 'the subjects and objects defined in the system security plan'
+# AC-16(03)_ODP[01]
+ac_16_03_odp_01: 'confidentiality level, data owner, and handling caveat'
+# AC-16(03)_ODP[02]
+ac_16_03_odp_02: 'PII category, data subject, and retention period'
+# AC-16(03)_ODP[03]
+ac_16_03_odp_03: 'authenticated users and service accounts'
+# AC-16(03)_ODP[04]
+ac_16_03_odp_04: 'files, directories, and database records'
+# AC-16(03)_ODP[05]
+ac_16_03_odp_05: 'authenticated users and service accounts'
+# AC-16(03)_ODP[06]
+ac_16_03_odp_06: 'files, directories, and database records'
+
+# AC-16 (4) Association of Attributes by Authorized Individuals
+# ac-16.4_prm_1
+ac_16_4_prm_1: 'confidentiality level, PII category, and data owner'
+# ac-16.4_prm_2
+ac_16_4_prm_2: 'the subjects and objects defined in the system security plan'
+# AC-16(04)_ODP[01]
+ac_16_04_odp_01: 'confidentiality level, data owner, and handling caveat'
+# AC-16(04)_ODP[02]
+ac_16_04_odp_02: 'confidentiality level, data owner, and handling caveat'
+# AC-16(04)_ODP[03]
+ac_16_04_odp_03: 'PII category, data subject, and retention period'
+# AC-16(04)_ODP[04]
+ac_16_04_odp_04: 'PII category, data subject, and retention period'
+# AC-16(04)_ODP[05]
+ac_16_04_odp_05: 'authenticated users and service accounts'
+# AC-16(04)_ODP[06]
+ac_16_04_odp_06: 'files, directories, and database records'
+# AC-16(04)_ODP[07]
+ac_16_04_odp_07: 'authenticated users and service accounts'
+# AC-16(04)_ODP[08]
+ac_16_04_odp_08: 'files, directories, and database records'
+
+# AC-16 (5) Attribute Displays on Objects to Be Output
+# AC-16(05)_ODP[01]
+ac_16_05_odp_01: 'the instructions defined in the system security plan'
+# AC-16(05)_ODP[02]
+ac_16_05_odp_02: 'the naming conventions defined in the system security plan'
+
+# AC-16 (6) Maintenance of Attribute Association
+# ac-16.6_prm_1
+ac_16_6_prm_1: 'confidentiality level, PII category, and data owner'
+# ac-16.6_prm_2
+ac_16_6_prm_2: 'the subjects and objects defined in the system security plan'
+# ac-16.6_prm_3
+ac_16_6_prm_3: 'the security and privacy policies defined in the system security plan'
+# AC-16(06)_ODP[01]
+ac_16_06_odp_01: 'confidentiality level, data owner, and handling caveat'
+# AC-16(06)_ODP[02]
+ac_16_06_odp_02: 'confidentiality level, data owner, and handling caveat'
+# AC-16(06)_ODP[03]
+ac_16_06_odp_03: 'PII category, data subject, and retention period'
+# AC-16(06)_ODP[04]
+ac_16_06_odp_04: 'PII category, data subject, and retention period'
+# AC-16(06)_ODP[05]
+ac_16_06_odp_05: 'authenticated users and service accounts'
+# AC-16(06)_ODP[06]
+ac_16_06_odp_06: 'files, directories, and database records'
+# AC-16(06)_ODP[07]
+ac_16_06_odp_07: 'authenticated users and service accounts'
+# AC-16(06)_ODP[08]
+ac_16_06_odp_08: 'files, directories, and database records'
+# AC-16(06)_ODP[09]
+ac_16_06_odp_09: 'the security policies defined in the system security plan'
+# AC-16(06)_ODP[10]
+ac_16_06_odp_10: 'the privacy policies defined in the system security plan'
+
+# AC-16 (8) Association Techniques and Technologies
+# ac-16.8_prm_1
+ac_16_8_prm_1: 'the techniques and technologies defined in the system security plan'
+# AC-16(08)_ODP[01]
+ac_16_08_odp_01: 'the techniques and technologies defined in the system security plan'
+# AC-16(08)_ODP[02]
+ac_16_08_odp_02: 'the techniques and technologies defined in the system security plan'
+
+# AC-16 (9) Attribute Reassignment — Regrading Mechanisms
+# ac-16.9_prm_1
+ac_16_9_prm_1: 'the techniques or procedures defined in the system security plan'
+# AC-16(09)_ODP[01]
+ac_16_09_odp_01: 'the techniques or procedures defined in the system security plan'
+# AC-16(09)_ODP[02]
+ac_16_09_odp_02: 'the techniques or procedures defined in the system security plan'
+
+# AC-17 (4) Privileged Commands and Access
+# ac-17.4_prm_1
+ac_17_4_prm_1: 'the needs defined in the system security plan'
+# AC-17(04)_ODP[01]
+ac_17_04_odp_01: 'the needs requiring remote access defined in the system security plan'
+# AC-17(04)_ODP[02]
+ac_17_04_odp_02: 'the needs requiring remote access defined in the system security plan'
+
+# AC-17 (9) Disconnect or Disable Access
+# AC-17(09)_ODP
+ac_17_09_odp: '30 days'
+
+# AC-17 (10) Authenticate Remote Commands
+# AC-17(10)_ODP[01]
+ac_17_10_odp_01: 'the enterprise SIEM and configuration management systems'
+# AC-17(10)_ODP[02]
+ac_17_10_odp_02: 'the remote commands defined in the system security plan'
+
+# AC-18 (1) Authentication and Encryption
+# AC-18(01)_ODP
+ac_18_01_odp: 'users'
+
+# AC-19 (4) Restrictions for Classified Information
+# AC-19(04)_ODP[01]
+ac_19_04_odp_01: 'the Information System Security Officer (ISSO)'
+# AC-19(04)_ODP[02]
+ac_19_04_odp_02: 'the security policies defined in the system security plan'
+
+# AC-19 (5) Full Device or Container-based Encryption
+# AC-19(05)_ODP[01]
+ac_19_05_odp_01: 'full-device encryption'
+# AC-19(05)_ODP[02]
+ac_19_05_odp_02: 'the mobile devices defined in the system security plan'
+
+# AC-20 Use of External Systems
+# AC-20_ODP[01]
+ac_20_odp_01: 'establish the terms and conditions defined in the system security plan'
+# AC-20_ODP[02]
+ac_20_odp_02: 'the terms and conditions defined in the system security plan'
+# AC-20_ODP[03]
+ac_20_odp_03: 'the controls asserted defined in the system security plan'
+# AC-20_ODP[04]
+ac_20_odp_04: 'the prohibited types of external systems defined in the system security plan'
+
+# AC-20 (2) Portable Storage Devices — Restricted Use
+# AC-20(02)_ODP
+ac_20_02_odp: 'the restrictions defined in the system security plan'
+
+# AC-20 (3) Non-organizationally Owned Systems — Restricted Use
+# AC-20(03)_ODP
+ac_20_03_odp: 'the restrictions defined in the system security plan'
+
+# AC-20 (4) Network Accessible Storage Devices — Prohibited Use
+# AC-20(04)_ODP
+ac_20_04_odp: 'the network-accessible storage devices defined in the system security plan'
+
+# AC-21 Information Sharing
+# AC-21_ODP[01]
+ac_21_odp_01: 'the information-sharing circumstances defined in the system security plan'
+# AC-21_ODP[02]
+ac_21_odp_02: 'the enterprise SIEM, configuration management, and ticketing systems'
+
+# AC-21 (1) Automated Decision Support
+# AC-21(01)_ODP
+ac_21_01_odp: 'the enterprise SIEM, configuration management, and ticketing systems'
+
+# AC-21 (2) Information Search and Retrieval
+# AC-21(02)_ODP
+ac_21_02_odp: 'the information-sharing restrictions defined in the system security plan'
+
+# AC-22 Publicly Accessible Content
+# AC-22_ODP
+ac_22_odp: 'annually'
+
+# AC-23 Data Mining Protection
+# AC-23_ODP[01]
+ac_23_odp_01: 'automated scanning, log correlation, and configuration baselines'
+# AC-23_ODP[02]
+ac_23_odp_02: 'the data storage objects defined in the system security plan'
+
+# AC-24 Access Control Decisions
+# AC-24_ODP[01]
+ac_24_odp_01: 'establish procedures'
+# AC-24_ODP[02]
+ac_24_odp_02: 'the access control decisions defined in the system security plan'
+
+# AC-24 (1) Transmit Access Authorization Information
+# AC-24(01)_ODP[01]
+ac_24_01_odp_01: 'the access authorization information defined in the system security plan'
+# AC-24(01)_ODP[02]
+ac_24_01_odp_02: 'the controls in the applicable FedRAMP baseline'
+# AC-24(01)_ODP[03]
+ac_24_01_odp_03: 'all systems within the authorization boundary'
+
+# AC-24 (2) No User or Process Identity
+# ac-24.2_prm_1
+ac_24_2_prm_1: 'the security or privacy attributes defined in the system security plan'
+# AC-24(02)_ODP[01]
+ac_24_02_odp_01: 'confidentiality level, data owner, and handling caveat'
+# AC-24(02)_ODP[02]
+ac_24_02_odp_02: 'PII category, data subject, and retention period'
+
+# AC-25 Reference Monitor
+# AC-25_ODP
+ac_25_odp: 'the access control policies defined in the system security plan'
+
+# AT-1 Policy and Procedures
+# at-1_prm_1
+at_1_prm_1: 'the system owner, the ISSO, and the ISSM'
+# AT-01_ODP[01]
+at_01_odp_01: 'the system owner, the ISSO, and the ISSM'
+# AT-01_ODP[02]
+at_01_odp_02: 'the system owner, the ISSO, and the ISSM'
+# AT-01_ODP[03]
+at_01_odp_03: 'organization-level'
+# AT-01_ODP[04]
+at_01_odp_04: 'Information System Security Officer (ISSO)'
+# AT-01_ODP[05]
+at_01_odp_05: 'annually'
+# AT-01_ODP[06]
+at_01_odp_06: 'a security incident, a significant change to the system, or an assessment finding'
+# AT-01_ODP[07]
+at_01_odp_07: 'annually'
+# AT-01_ODP[08]
+at_01_odp_08: 'a security incident, a significant change to the system, or an assessment finding'
+
+# AT-2 Literacy Training and Awareness
+# at-2_prm_1
+at_2_prm_1: 'annually'
+# at-2_prm_2
+at_2_prm_2: 'a security incident, a significant change to the system, or an assessment finding'
+# AT-02_ODP[01]
+at_02_odp_01: 'annually'
+# AT-02_ODP[02]
+at_02_odp_02: 'annually'
+# AT-02_ODP[03]
+at_02_odp_03: 'a security incident, a significant change to the system, or an assessment finding'
+# AT-02_ODP[04]
+at_02_odp_04: 'a security incident, a significant change to the system, or an assessment finding'
+# AT-02_ODP[05]
+at_02_odp_05: 'the awareness techniques defined in the system security plan'
+# AT-02_ODP[06]
+at_02_odp_06: 'annually'
+# AT-02_ODP[07]
+at_02_odp_07: 'a security incident, a significant change to the system, or an assessment finding'
+
+# AT-2 (4) Suspicious Communications and Anomalous System Behavior
+# AT-02(04)_ODP
+at_02_04_odp: 'the indicators of malicious code defined in the system security plan'
+
+# AT-3 Role-based Training
+# at-3_prm_1
+at_3_prm_1: 'system owner, ISSO, ISSM, and system administrator'
+# AT-03_ODP[01]
+at_03_odp_01: 'system owner, ISSO, ISSM, and system administrator'
+# AT-03_ODP[02]
+at_03_odp_02: 'system owner, ISSO, ISSM, and system administrator'
+# AT-03_ODP[03]
+at_03_odp_03: 'annually'
+# AT-03_ODP[04]
+at_03_odp_04: 'annually'
+# AT-03_ODP[05]
+at_03_odp_05: 'a security incident, a significant change to the system, or an assessment finding'
+
+# AT-3 (1) Environmental Controls
+# AT-03(01)_ODP[01]
+at_03_01_odp_01: 'the system owner, the ISSO, and the ISSM'
+# AT-03(01)_ODP[02]
+at_03_01_odp_02: 'annually'
+
+# AT-3 (2) Physical Security Controls
+# AT-03(02)_ODP[01]
+at_03_02_odp_01: 'the system owner, the ISSO, and the ISSM'
+# AT-03(02)_ODP[02]
+at_03_02_odp_02: 'annually'
+
+# AT-3 (5) Processing Personally Identifiable Information
+# AT-03(05)_ODP[01]
+at_03_05_odp_01: 'the system owner, the ISSO, and the ISSM'
+# AT-03(05)_ODP[02]
+at_03_05_odp_02: 'annually'
+
+# AT-4 Training Records
+# AT-04_ODP
+at_04_odp: '30 days'
+
+# AT-6 Training Feedback
+# AT-06_ODP[01]
+at_06_odp_01: 'annually'
+# AT-06_ODP[02]
+at_06_odp_02: 'the system owner and the ISSO'
+
+# AU-1 Policy and Procedures
+# au-1_prm_1
+au_1_prm_1: 'the system owner, the ISSO, and the ISSM'
+# AU-01_ODP[01]
+au_01_odp_01: 'the system owner, the ISSO, and the ISSM'
+# AU-01_ODP[02]
+au_01_odp_02: 'the system owner, the ISSO, and the ISSM'
+# AU-01_ODP[03]
+au_01_odp_03: 'organization-level'
+# AU-01_ODP[04]
+au_01_odp_04: 'Information System Security Officer (ISSO)'
+# AU-01_ODP[05]
+au_01_odp_05: 'annually'
+# AU-01_ODP[06]
+au_01_odp_06: 'a security incident, a significant change to the system, or an assessment finding'
+# AU-01_ODP[07]
+au_01_odp_07: 'annually'
+# AU-01_ODP[08]
+au_01_odp_08: 'a security incident, a significant change to the system, or an assessment finding'
+
+# AU-2 Event Logging
+# au-2_prm_2
+au_2_prm_2: 'annually'
+# AU-02_ODP[01]
+au_02_odp_01: 'the event types defined in the system security plan'
+# AU-02_ODP[02]
+au_02_odp_02: 'the event types defined in the system security plan'
+# AU-02_ODP[03]
+au_02_odp_03: 'annually'
+# AU-02_ODP[04]
+au_02_odp_04: 'annually'
+
+# AU-3 (1) Additional Audit Information
+# AU-03(01)_ODP
+au_03_01_odp: 'the additional information defined in the system security plan'
+
+# AU-3 (3) Limit Personally Identifiable Information Elements
+# AU-03(03)_ODP
+au_03_03_odp: 'the elements listed in the system security plan'
+
+# AU-4 Audit Log Storage Capacity
+# AU-04_ODP
+au_04_odp: 'the audit log retention requirements defined in the system security plan'
+
+# AU-4 (1) Transfer to Alternate Storage
+# AU-04(01)_ODP
+au_04_01_odp: 'annually'
+
+# AU-5 Response to Audit Logging Process Failures
+# AU-05_ODP[01]
+au_05_odp_01: 'the system owner, the ISSO, and the ISSM'
+# AU-05_ODP[02]
+au_05_odp_02: '30 days'
+# AU-05_ODP[03]
+au_05_odp_03: 'the additional actions defined in the system security plan'
+
+# AU-5 (1) Storage Capacity Warning
+# AU-05(01)_ODP[01]
+au_05_01_odp_01: 'the system owner and the ISSO'
+# AU-05(01)_ODP[02]
+au_05_01_odp_02: '30 days'
+# AU-05(01)_ODP[03]
+au_05_01_odp_03: 'the percentage defined in the system security plan'
+
+# AU-5 (2) Real-time Alerts
+# AU-05(02)_ODP[01]
+au_05_02_odp_01: '30 days'
+# AU-05(02)_ODP[02]
+au_05_02_odp_02: 'the system owner and the ISSO'
+# AU-05(02)_ODP[03]
+au_05_02_odp_03: 'the audit logging failure events requiring real-time alerts defined in the system security plan'
+
+# AU-5 (3) Configurable Traffic Volume Thresholds
+# AU-05(03)_ODP
+au_05_03_odp: 'reject'
+
+# AU-5 (4) Shutdown on Failure
+# AU-05(04)_ODP[01]
+au_05_04_odp_01: 'full system shutdown'
+# AU-05(04)_ODP[02]
+au_05_04_odp_02: 'the audit logging failures defined in the system security plan'
+
+# AU-5 (5) Alternate Audit Logging Capability
+# AU-05(05)_ODP
+au_05_05_odp: 'the alternate audit logging functionality defined in the system security plan'
+
+# AU-6 Audit Record Review, Analysis, and Reporting
+# AU-06_ODP[01]
+au_06_odp_01: 'annually'
+# AU-06_ODP[02]
+au_06_odp_02: 'the inappropriate or unusual activity defined in the system security plan'
+# AU-06_ODP[03]
+au_06_odp_03: 'the system owner, the ISSO, and the ISSM'
+
+# AU-6 (1) Automated Process Integration
+# AU-06(01)_ODP
+au_06_01_odp: 'the enterprise SIEM, configuration management, and ticketing systems'
+
+# AU-6 (5) Integrated Analysis of Audit Records
+# AU-06(05)_ODP[01]
+au_06_05_odp_01: 'vulnerability scanning information'
+# AU-06(05)_ODP[02]
+au_06_05_odp_02: 'the data/information collected from other sources defined in the system security plan'
+
+# AU-6 (7) Permitted Actions
+# AU-06(07)_ODP
+au_06_07_odp: 'system process'
+
+# AU-7 (1) Automatic Processing
+# AU-07(01)_ODP
+au_07_01_odp: 'audit records generated by systems in the boundary'
+
+# AU-8 Time Stamps
+# AU-08_ODP
+au_08_odp: 'the granularity of time measurement defined in the system security plan'
+
+# AU-9 Protection of Audit Information
+# AU-09_ODP
+au_09_odp: 'the system owner, the ISSO, and the ISSM'
+
+# AU-9 (2) Store on Separate Physical Systems or Components
+# AU-09(02)_ODP
+au_09_02_odp: 'annually'
+
+# AU-9 (4) Access by Subset of Privileged Users
+# AU-09(04)_ODP
+au_09_04_odp: 'the system owner, the ISSO, and the ISSM'
+
+# AU-9 (5) Dual Authorization
+# AU-09(05)_ODP[01]
+au_09_05_odp_01: 'movement'
+# AU-09(05)_ODP[02]
+au_09_05_odp_02: 'the audit information defined in the system security plan'
+
+# AU-9 (6) Read-only Access
+# AU-09(06)_ODP
+au_09_06_odp: 'the system owner, the ISSO, and the ISSM'
+
+# AU-10 Non-repudiation
+# AU-10_ODP
+au_10_odp: 'at least actions including the addition, modification, deletion, approval, sending, or receiving of data'
+
+# AU-10 (1) Association of Identities
+# AU-10(01)_ODP
+au_10_01_odp: 'the strength of binding defined in the system security plan'
+
+# AU-10 (2) Validate Binding of Information Producer Identity
+# AU-10(02)_ODP[01]
+au_10_02_odp_01: 'annually'
+# AU-10(02)_ODP[02]
+au_10_02_odp_02: 'notify the ISSO and record the event in the ticketing system'
+
+# AU-10 (4) Validate Binding of Information Reviewer Identity
+# AU-10(04)_ODP[01]
+au_10_04_odp_01: 'the security domains defined in the system security plan'
+# AU-10(04)_ODP[02]
+au_10_04_odp_02: 'notify the ISSO and record the event in the ticketing system'
+
+# AU-11 Audit Record Retention
+# AU-11_ODP
+au_11_odp: 'one year, with at least 90 days immediately available'
+
+# AU-11 (1) Long-term Retrieval Capability
+# AU-11(01)_ODP
+au_11_01_odp: 'encryption in transit and at rest, and least-privilege access control'
+
+# AU-12 Audit Record Generation
+# AU-12_ODP[01]
+au_12_odp_01: 'at least all information system and network components where audit capability is deployed/available'
+# AU-12_ODP[02]
+au_12_odp_02: 'the system owner, the ISSO, and the ISSM'
+
+# AU-12 (1) System-wide and Time-correlated Audit Trail
+# AU-12(01)_ODP[01]
+au_12_01_odp_01: 'all components within the authorization boundary'
+# AU-12(01)_ODP[02]
+au_12_01_odp_02: 'the level of tolerance defined in the system security plan'
+
+# AU-12 (3) Changes by Authorized Individuals
+# AU-12(03)_ODP[01]
+au_12_03_odp_01: 'the system owner, the ISSO, and the ISSM'
+# AU-12(03)_ODP[02]
+au_12_03_odp_02: 'all components within the authorization boundary'
+# AU-12(03)_ODP[03]
+au_12_03_odp_03: 'the selectable event criteria defined in the system security plan'
+# AU-12(03)_ODP[04]
+au_12_03_odp_04: 'the time thresholds defined in the system security plan'
+
+# AU-13 Monitoring for Information Disclosure
+# AU-13_ODP[01]
+au_13_odp_01: 'the open-source information and/or information sites defined in the system security plan'
+# AU-13_ODP[02]
+au_13_odp_02: 'annually'
+# AU-13_ODP[03]
+au_13_odp_03: 'the system owner, the ISSO, and the ISSM'
+# AU-13_ODP[04]
+au_13_odp_04: 'the additional actions defined in the system security plan'
+
+# AU-13 (1) Use of Automated Tools
+# AU-13(01)_ODP
+au_13_01_odp: 'the enterprise SIEM, configuration management, and ticketing systems'
+
+# AU-13 (2) Review of Monitored Sites
+# AU-13(02)_ODP
+au_13_02_odp: 'annually'
+
+# AU-14 Session Audit
+# AU-14_ODP[01]
+au_14_odp_01: 'the system owner, the ISSO, and the ISSM'
+# AU-14_ODP[02]
+au_14_odp_02: 'record'
+# AU-14_ODP[03]
+au_14_odp_03: 'a confirmed security incident or a legal hold'
+
+# AU-16 Cross-organizational Audit Logging
+# AU-16_ODP[01]
+au_16_odp_01: 'the methods defined in the system security plan'
+# AU-16_ODP[02]
+au_16_odp_02: 'the audit information defined in the system security plan'
+
+# AU-16 (2) Sharing of Audit Information
+# AU-16(02)_ODP[01]
+au_16_02_odp_01: 'the organizations defined in the system security plan'
+# AU-16(02)_ODP[02]
+au_16_02_odp_02: 'the cross-organizational sharing agreements defined in the system security plan'
+
+# AU-16 (3) Disassociability
+# AU-16(03)_ODP
+au_16_03_odp: 'encryption in transit and at rest, and least-privilege access control'
+
+# CA-1 Policy and Procedures
+# ca-1_prm_1
+ca_1_prm_1: 'the system owner, the ISSO, and the ISSM'
+# CA-01_ODP[01]
+ca_01_odp_01: 'the system owner, the ISSO, and the ISSM'
+# CA-01_ODP[02]
+ca_01_odp_02: 'the system owner, the ISSO, and the ISSM'
+# CA-01_ODP[03]
+ca_01_odp_03: 'organization-level'
+# CA-01_ODP[04]
+ca_01_odp_04: 'Information System Security Officer (ISSO)'
+# CA-01_ODP[05]
+ca_01_odp_05: 'annually'
+# CA-01_ODP[06]
+ca_01_odp_06: 'a security incident, a significant change to the system, or an assessment finding'
+# CA-01_ODP[07]
+ca_01_odp_07: 'annually'
+# CA-01_ODP[08]
+ca_01_odp_08: 'a security incident, a significant change to the system, or an assessment finding'
+
+# CA-2 Control Assessments
+# CA-02_ODP[01]
+ca_02_odp_01: 'annually'
+# CA-02_ODP[02]
+ca_02_odp_02: 'individuals or roles to include FedRAMP and agency customers'
+
+# CA-2 (2) Specialized Assessments
+# CA-02(02)_ODP[01]
+ca_02_02_odp_01: 'annually'
+# CA-02(02)_ODP[02]
+ca_02_02_odp_02: 'announced'
+# CA-02(02)_ODP[03]
+ca_02_02_odp_03: 'in-depth monitoring'
+# CA-02(02)_ODP[04]
+ca_02_02_odp_04: 'the other forms of assessment defined in the system security plan'
+
+# CA-2 (3) Leveraging Results from External Organizations
+# CA-02(03)_ODP[01]
+ca_02_03_odp_01: 'any FedRAMP Recognized independent assessment service'
+# CA-02(03)_ODP[02]
+ca_02_03_odp_02: 'the system defined in the system security plan'
+# CA-02(03)_ODP[03]
+ca_02_03_odp_03: 'the requirements defined in the system security plan'
+
+# CA-3 Information Exchange
+# CA-03_ODP[01]
+ca_03_odp_01: 'interconnection security agreements'
+# CA-03_ODP[02]
+ca_03_odp_02: 'the type of agreement defined in the system security plan'
+# CA-03_ODP[03]
+ca_03_odp_03: 'annually'
+
+# CA-5 Plan of Action and Milestones
+# CA-05_ODP
+ca_05_odp: 'annually'
+
+# CA-5 (1) Automation Support for Accuracy and Currency
+# CA-05(01)_ODP
+ca_05_01_odp: 'the enterprise SIEM, configuration management, and ticketing systems'
+
+# CA-6 Authorization
+# CA-06_ODP
+ca_06_odp: 'annually'
+
+# CA-7 Continuous Monitoring
+# ca-7_prm_4
+ca_7_prm_4: 'the system owner, the ISSO, and the ISSM'
+# ca-7_prm_5
+ca_7_prm_5: 'annually'
+# CA-07_ODP[01]
+ca_07_odp_01: 'the system-level metrics defined in the system security plan'
+# CA-07_ODP[02]
+ca_07_odp_02: 'annually'
+# CA-07_ODP[03]
+ca_07_odp_03: 'annually'
+# CA-07_ODP[04]
+ca_07_odp_04: 'the system owner, the ISSO, and the ISSM'
+# CA-07_ODP[05]
+ca_07_odp_05: 'annually'
+# CA-07_ODP[06]
+ca_07_odp_06: 'the system owner, the ISSO, and the ISSM'
+# CA-07_ODP[07]
+ca_07_odp_07: 'annually'
+
+# CA-7 (5) Consistency Analysis
+# ca-7.5_prm_1
+ca_7_5_prm_1: 'notify the ISSO and record the event in the ticketing system'
+# CA-07(05)_ODP[01]
+ca_07_05_odp_01: 'notify the ISSO and record the event in the ticketing system'
+# CA-07(05)_ODP[02]
+ca_07_05_odp_02: 'notify the ISSO and record the event in the ticketing system'
+
+# CA-7 (6) Automation Support for Monitoring
+# CA-07(06)_ODP
+ca_07_06_odp: 'the enterprise SIEM, configuration management, and ticketing systems'
+
+# CA-8 Penetration Testing
+# CA-08_ODP[01]
+ca_08_odp_01: 'annually'
+# CA-08_ODP[02]
+ca_08_odp_02: 'the system(s) or system components defined in the system security plan'
+
+# CA-8 (2) Red Team Exercises
+# CA-08(02)_ODP
+ca_08_02_odp: 'the red team exercises defined in the system security plan'
+
+# CA-8 (3) Facility Penetration Testing
+# CA-08(03)_ODP[01]
+ca_08_03_odp_01: 'annually'
+# CA-08(03)_ODP[02]
+ca_08_03_odp_02: 'announced'
+
+# CA-9 Internal System Connections
+# CA-09_ODP[01]
+ca_09_odp_01: 'all components within the authorization boundary'
+# CA-09_ODP[02]
+ca_09_odp_02: 'a change in role, a change in employment status, or a security incident'
+# CA-09_ODP[03]
+ca_09_odp_03: 'annually'
+
+# CM-1 Policy and Procedures
+# cm-1_prm_1
+cm_1_prm_1: 'the system owner, the ISSO, and the ISSM'
+# CM-01_ODP[01]
+cm_01_odp_01: 'the system owner, the ISSO, and the ISSM'
+# CM-01_ODP[02]
+cm_01_odp_02: 'the system owner, the ISSO, and the ISSM'
+# CM-01_ODP[03]
+cm_01_odp_03: 'organization-level'
+# CM-01_ODP[04]
+cm_01_odp_04: 'Information System Security Officer (ISSO)'
+# CM-01_ODP[05]
+cm_01_odp_05: 'annually'
+# CM-01_ODP[06]
+cm_01_odp_06: 'a security incident, a significant change to the system, or an assessment finding'
+# CM-01_ODP[07]
+cm_01_odp_07: 'annually'
+# CM-01_ODP[08]
+cm_01_odp_08: 'a security incident, a significant change to the system, or an assessment finding'
+
+# CM-2 Baseline Configuration
+# CM-02_ODP[01]
+cm_02_odp_01: 'annually'
+# CM-02_ODP[02]
+cm_02_odp_02: 'a confirmed security incident or a legal hold'
+
+# CM-2 (2) Automation Support for Accuracy and Currency
+# CM-02(02)_ODP
+cm_02_02_odp: 'the enterprise SIEM, configuration management, and ticketing systems'
+
+# CM-2 (3) Retention of Previous Configurations
+# CM-02(03)_ODP
+cm_02_03_odp: '3'
+
+# CM-2 (7) Configure Systems and Components for High-risk Areas
+# CM-02(07)_ODP[01]
+cm_02_07_odp_01: 'all systems and components within the authorization boundary'
+# CM-02(07)_ODP[02]
+cm_02_07_odp_02: 'the configurations defined in the system security plan'
+# CM-02(07)_ODP[03]
+cm_02_07_odp_03: 'the controls in the applicable FedRAMP baseline'
+
+# CM-3 Configuration Change Control
+# CM-03_ODP[01]
+cm_03_odp_01: '30 days'
+# CM-03_ODP[02]
+cm_03_odp_02: 'the configuration change control element defined in the system security plan'
+# CM-03_ODP[03]
+cm_03_odp_03: 'annually'
+# CM-03_ODP[04]
+cm_03_odp_04: 'annually'
+# CM-03_ODP[05]
+cm_03_odp_05: 'the configuration change conditions defined in the system security plan'
+
+# CM-3 (1) Automated Documentation, Notification, and Prohibition of Changes
+# CM-03(01)_ODP[01]
+cm_03_01_odp_01: 'the enterprise SIEM, configuration management, and ticketing systems'
+# CM-03(01)_ODP[02]
+cm_03_01_odp_02: 'the approval authorities defined in the system security plan'
+# CM-03(01)_ODP[03]
+cm_03_01_odp_03: '30 days'
+# CM-03(01)_ODP[04]
+cm_03_01_odp_04: 'the system owner and the ISSO'
+
+# CM-3 (3) Automated Change Implementation
+# CM-03(03)_ODP
+cm_03_03_odp: 'the enterprise SIEM, configuration management, and ticketing systems'
+
+# CM-3 (4) Security and Privacy Representatives
+# cm-3.4_prm_1
+cm_3_4_prm_1: 'the security and privacy representatives defined in the system security plan'
+# CM-03(04)_ODP[01]
+cm_03_04_odp_01: 'the security representatives defined in the system security plan'
+# CM-03(04)_ODP[02]
+cm_03_04_odp_02: 'the privacy representatives defined in the system security plan'
+# CM-03(04)_ODP[03]
+cm_03_04_odp_03: 'configuration change control element defined in the system security plan'
+
+# CM-3 (5) Automated Security Response
+# CM-03(05)_ODP
+cm_03_05_odp: 'the security responses defined in the system security plan'
+
+# CM-3 (6) Cryptography Management
+# CM-03(06)_ODP
+cm_03_06_odp: 'the controls in the applicable FedRAMP baseline'
+
+# CM-3 (7) Review System Changes
+# CM-03(07)_ODP[01]
+cm_03_07_odp_01: 'annually'
+# CM-03(07)_ODP[02]
+cm_03_07_odp_02: 'a confirmed security incident or a legal hold'
+
+# CM-3 (8) Prevent or Restrict Configuration Changes
+# CM-03(08)_ODP
+cm_03_08_odp: 'a confirmed security incident or a legal hold'
+
+# CM-5 (1) Automated Access Enforcement and Audit Records
+# CM-05(01)_ODP
+cm_05_01_odp: 'the enterprise SIEM, configuration management, and ticketing systems'
+
+# CM-5 (4) Dual Authorization
+# cm-5.4_prm_1
+cm_5_4_prm_1: 'the system components and system-level information defined in the system security plan'
+# CM-05(04)_ODP[01]
+cm_05_04_odp_01: 'all components within the authorization boundary'
+# CM-05(04)_ODP[02]
+cm_05_04_odp_02: 'the system-level information defined in the system security plan'
+
+# CM-5 (5) Privilege Limitation for Production and Operation
+# cm-5.5_prm_1
+cm_5_5_prm_1: 'annually'
+# CM-05(05)_ODP[01]
+cm_05_05_odp_01: 'annually'
+# CM-05(05)_ODP[02]
+cm_05_05_odp_02: 'annually'
+
+# CM-6 Configuration Settings
+# CM-06_ODP[01]
+cm_06_odp_01: 'the common secure configurations defined in the system security plan'
+# CM-06_ODP[02]
+cm_06_odp_02: 'all components within the authorization boundary'
+# CM-06_ODP[03]
+cm_06_odp_03: 'the operational requirements defined in the system security plan'
+
+# CM-6 (1) Automated Management, Application, and Verification
+# cm-6.1_prm_2
+cm_6_1_prm_2: 'the enterprise SIEM, configuration management, and ticketing systems'
+# CM-06(01)_ODP[01]
+cm_06_01_odp_01: 'all components within the authorization boundary'
+# CM-06(01)_ODP[02]
+cm_06_01_odp_02: 'the enterprise SIEM, configuration management, and ticketing systems'
+# CM-06(01)_ODP[03]
+cm_06_01_odp_03: 'the enterprise SIEM, configuration management, and ticketing systems'
+# CM-06(01)_ODP[04]
+cm_06_01_odp_04: 'the enterprise SIEM, configuration management, and ticketing systems'
+
+# CM-6 (2) Respond to Unauthorized Changes
+# CM-06(02)_ODP[01]
+cm_06_02_odp_01: 'notify the ISSO and record the event in the ticketing system'
+# CM-06(02)_ODP[02]
+cm_06_02_odp_02: 'the configuration settings defined in the system security plan'
+
+# CM-7 Least Functionality
+# cm-7_prm_2
+cm_7_prm_2: 'the prohibited or restricted functions, system ports, protocols, software, and/or services defined in the system security plan'
+# CM-07_ODP[01]
+cm_07_odp_01: 'the mission-essential capabilities defined in the system security plan'
+# CM-07_ODP[02]
+cm_07_odp_02: 'the functions defined in the system security plan'
+# CM-07_ODP[03]
+cm_07_odp_03: 'the ports defined in the system security plan'
+# CM-07_ODP[04]
+cm_07_odp_04: 'the protocols defined in the system security plan'
+# CM-07_ODP[05]
+cm_07_odp_05: 'software on the organization-approved software list'
+# CM-07_ODP[06]
+cm_07_odp_06: 'the services defined in the system security plan'
+
+# CM-7 (1) Periodic Review
+# cm-7.1_prm_2
+cm_7_1_prm_2: 'the functions, ports, protocols, software, and services within the system deemed to be unnecessary and/or nonsecure defined in the system security plan'
+# CM-07(01)_ODP[01]
+cm_07_01_odp_01: 'annually'
+# CM-07(01)_ODP[02]
+cm_07_01_odp_02: 'the functions defined in the system security plan'
+# CM-07(01)_ODP[03]
+cm_07_01_odp_03: 'the ports defined in the system security plan'
+# CM-07(01)_ODP[04]
+cm_07_01_odp_04: 'the protocols defined in the system security plan'
+# CM-07(01)_ODP[05]
+cm_07_01_odp_05: 'software on the organization-approved software list'
+# CM-07(01)_ODP[06]
+cm_07_01_odp_06: 'the services defined in the system security plan'
+
+# CM-7 (2) Prevent Program Execution
+# CM-07(02)_ODP[01]
+cm_07_02_odp_01: 'the policies, rules of behavior, and/or access agreements regarding software program usage and restrictions defined in the system security plan'
+# CM-07(02)_ODP[02]
+cm_07_02_odp_02: 'the policies, rules of behavior, and/or access agreements regarding software program usage and restrictions defined in the system security plan'
+
+# CM-7 (3) Registration Compliance
+# CM-07(03)_ODP
+cm_07_03_odp: 'the registration requirements defined in the system security plan'
+
+# CM-7 (4) Unauthorized Software — Deny-by-exception
+# CM-07(04)_ODP[01]
+cm_07_04_odp_01: 'the software programs defined in the system security plan'
+# CM-07(04)_ODP[02]
+cm_07_04_odp_02: 'annually'
+
+# CM-7 (5) Authorized Software — Allow-by-exception
+# CM-07(05)_ODP[01]
+cm_07_05_odp_01: 'the software programs defined in the system security plan'
+# CM-07(05)_ODP[02]
+cm_07_05_odp_02: 'annually'
+
+# CM-7 (6) Confined Environments with Limited Privileges
+# CM-07(06)_ODP
+cm_07_06_odp: 'the user-installed software defined in the system security plan'
+
+# CM-7 (7) Code Execution in Protected Environments
+# CM-07(07)_ODP
+cm_07_07_odp: 'the system owner, the ISSO, and the ISSM'
+
+# CM-7 (9) Prohibiting The Use of Unauthorized Hardware
+# CM-07(09)_ODP[01]
+cm_07_09_odp_01: 'the hardware components defined in the system security plan'
+# CM-07(09)_ODP[02]
+cm_07_09_odp_02: 'annually'
+
+# CM-8 System Component Inventory
+# CM-08_ODP[01]
+cm_08_odp_01: 'federal customer data and system security documentation'
+# CM-08_ODP[02]
+cm_08_odp_02: 'annually'
+
+# CM-8 (2) Automated Maintenance
+# cm-8.2_prm_1
+cm_8_2_prm_1: 'the enterprise SIEM, configuration management, and ticketing systems'
+# CM-08(02)_ODP[01]
+cm_08_02_odp_01: 'the enterprise SIEM, configuration management, and ticketing systems'
+# CM-08(02)_ODP[02]
+cm_08_02_odp_02: 'the enterprise SIEM, configuration management, and ticketing systems'
+# CM-08(02)_ODP[03]
+cm_08_02_odp_03: 'the enterprise SIEM, configuration management, and ticketing systems'
+# CM-08(02)_ODP[04]
+cm_08_02_odp_04: 'the enterprise SIEM, configuration management, and ticketing systems'
+
+# CM-8 (3) Automated Unauthorized Component Detection
+# cm-8.3_prm_1
+cm_8_3_prm_1: 'the enterprise SIEM, configuration management, and ticketing systems'
+# CM-08(03)_ODP[01]
+cm_08_03_odp_01: 'the enterprise SIEM, configuration management, and ticketing systems'
+# CM-08(03)_ODP[02]
+cm_08_03_odp_02: 'the enterprise SIEM, configuration management, and ticketing systems'
+# CM-08(03)_ODP[03]
+cm_08_03_odp_03: 'the enterprise SIEM, configuration management, and ticketing systems'
+# CM-08(03)_ODP[04]
+cm_08_03_odp_04: 'annually'
+# CM-08(03)_ODP[05]
+cm_08_03_odp_05: 'disable network access by unauthorized components'
+# CM-08(03)_ODP[06]
+cm_08_03_odp_06: 'the system owner, the ISSO, and the ISSM'
+
+# CM-8 (4) Accountability Information
+# CM-08(04)_ODP
+cm_08_04_odp: 'name'
+
+# CM-8 (8) Automated Location Tracking
+# CM-08(08)_ODP
+cm_08_08_odp: 'the enterprise SIEM, configuration management, and ticketing systems'
+
+# CM-8 (9) Assignment of Components to Systems
+# CM-08(09)_ODP
+cm_08_09_odp: 'the system owner, the ISSO, and the ISSM'
+
+# CM-9 Configuration Management Plan
+# CM-09_ODP
+cm_09_odp: 'the system owner, the ISSO, and the ISSM'
+
+# CM-10 (1) Open-source Software
+# CM-10(01)_ODP
+cm_10_01_odp: 'the restrictions defined in the system security plan'
+
+# CM-11 User-installed Software
+# CM-11_ODP[01]
+cm_11_odp_01: 'the policies defined in the system security plan'
+# CM-11_ODP[02]
+cm_11_odp_02: 'the methods defined in the system security plan'
+# CM-11_ODP[03]
+cm_11_odp_03: 'Continuously (via CM-7 (5))'
+
+# CM-11 (3) Automated Enforcement and Monitoring
+# cm-11.3_prm_1
+cm_11_3_prm_1: 'the enterprise SIEM, configuration management, and ticketing systems'
+# CM-11(03)_ODP[01]
+cm_11_03_odp_01: 'the enterprise SIEM, configuration management, and ticketing systems'
+# CM-11(03)_ODP[02]
+cm_11_03_odp_02: 'the enterprise SIEM, configuration management, and ticketing systems'
+
+# CM-12 Information Location
+# CM-12_ODP
+cm_12_odp: 'federal customer data and system security documentation'
+
+# CM-12 (1) Automated Tools to Support Information Location
+# CM-12(01)_ODP[01]
+cm_12_01_odp_01: 'the information by information type defined in the system security plan'
+# CM-12(01)_ODP[02]
+cm_12_01_odp_02: 'all components within the authorization boundary'
+
+# CM-14 Signed Components
+# cm-14_prm_1
+cm_14_prm_1: 'the software and firmware components defined in the system security plan'
+# CM-14_ODP[01]
+cm_14_odp_01: 'the software components defined in the system security plan'
+# CM-14_ODP[02]
+cm_14_odp_02: 'the firmware components defined in the system security plan'
+
+# CP-1 Policy and Procedures
+# cp-1_prm_1
+cp_1_prm_1: 'the system owner, the ISSO, and the ISSM'
+# CP-01_ODP[01]
+cp_01_odp_01: 'the system owner, the ISSO, and the ISSM'
+# CP-01_ODP[02]
+cp_01_odp_02: 'the system owner, the ISSO, and the ISSM'
+# CP-01_ODP[03]
+cp_01_odp_03: 'organization-level'
+# CP-01_ODP[04]
+cp_01_odp_04: 'Information System Security Officer (ISSO)'
+# CP-01_ODP[05]
+cp_01_odp_05: 'annually'
+# CP-01_ODP[06]
+cp_01_odp_06: 'a security incident, a significant change to the system, or an assessment finding'
+# CP-01_ODP[07]
+cp_01_odp_07: 'annually'
+# CP-01_ODP[08]
+cp_01_odp_08: 'a security incident, a significant change to the system, or an assessment finding'
+
+# CP-2 Contingency Plan
+# cp-2_prm_1
+cp_2_prm_1: 'the system owner, the ISSO, and the ISSM'
+# cp-2_prm_2
+cp_2_prm_2: 'the system owner and the ISSO'
+# cp-2_prm_4
+cp_2_prm_4: 'the system owner and the ISSO'
+# CP-02_ODP[01]
+cp_02_odp_01: 'the system owner, the ISSO, and the ISSM'
+# CP-02_ODP[02]
+cp_02_odp_02: 'the system owner, the ISSO, and the ISSM'
+# CP-02_ODP[03]
+cp_02_odp_03: 'the system owner and the ISSO'
+# CP-02_ODP[04]
+cp_02_odp_04: 'the organizational elements defined in the system security plan'
+# CP-02_ODP[05]
+cp_02_odp_05: 'annually'
+# CP-02_ODP[06]
+cp_02_odp_06: 'the system owner and the ISSO'
+# CP-02_ODP[07]
+cp_02_odp_07: 'the organizational elements defined in the system security plan'
+
+# CP-2 (3) Resume Mission and Business Functions
+# CP-02(03)_ODP[01]
+cp_02_03_odp_01: 'all'
+# CP-02(03)_ODP[02]
+cp_02_03_odp_02: 'time period defined in service provider and organization Service Level Agreements'
+
+# CP-2 (5) Continue Mission and Business Functions
+# CP-02(05)_ODP
+cp_02_05_odp: 'all'
+
+# CP-2 (6) Alternate Processing and Storage Sites
+# CP-02(06)_ODP
+cp_02_06_odp: 'all'
+
+# CP-2 (8) Identify Critical Assets
+# CP-02(08)_ODP
+cp_02_08_odp: 'all'
+
+# CP-3 Contingency Training
+# CP-03_ODP[01]
+cp_03_odp_01: '30 days'
+# CP-03_ODP[02]
+cp_03_odp_02: 'annually'
+# CP-03_ODP[03]
+cp_03_odp_03: 'annually'
+# CP-03_ODP[04]
+cp_03_odp_04: 'a security incident, a significant change to the system, or an assessment finding'
+
+# CP-4 Contingency Plan Testing
+# cp-4_prm_2
+cp_4_prm_2: 'the assessment procedures in NIST SP 800-53A'
+# CP-04_ODP[01]
+cp_04_odp_01: 'annually'
+# CP-04_ODP[02]
+cp_04_odp_02: 'the assessment procedures in NIST SP 800-53A'
+# CP-04_ODP[03]
+cp_04_odp_03: 'the assessment procedures in NIST SP 800-53A'
+
+# CP-4 (3) Automated Testing
+# CP-04(03)_ODP
+cp_04_03_odp: 'the enterprise SIEM, configuration management, and ticketing systems'
+
+# CP-4 (5) Self-challenge
+# CP-04(05)_ODP[01]
+cp_04_05_odp_01: 'the enterprise SIEM and configuration management systems'
+# CP-04(05)_ODP[02]
+cp_04_05_odp_02: 'system or system component defined in the system security plan'
+
+# CP-7 Alternate Processing Site
+# CP-07_ODP[01]
+cp_07_odp_01: 'the system operations defined in the system security plan'
+# CP-07_ODP[02]
+cp_07_odp_02: '30 days'
+
+# CP-8 Telecommunications Services
+# CP-08_ODP[01]
+cp_08_odp_01: 'the system operations defined in the system security plan'
+# CP-08_ODP[02]
+cp_08_odp_02: '30 days'
+
+# CP-8 (4) Provider Contingency Plan
+# cp-8.4_prm_1
+cp_8_4_prm_1: 'annually'
+# CP-08(04)_ODP[01]
+cp_08_04_odp_01: 'annually'
+# CP-08(04)_ODP[02]
+cp_08_04_odp_02: 'annually'
+
+# CP-8 (5) Alternate Telecommunication Service Testing
+# CP-08(05)_ODP
+cp_08_05_odp: 'annually'
+
+# CP-9 System Backup
+# CP-09_ODP[01]
+cp_09_odp_01: 'all components within the authorization boundary'
+# CP-09_ODP[02]
+cp_09_odp_02: 'annually'
+# CP-09_ODP[03]
+cp_09_odp_03: 'annually'
+# CP-09_ODP[04]
+cp_09_odp_04: 'annually'
+
+# CP-9 (1) Testing for Reliability and Integrity
+# cp-9.1_prm_1
+cp_9_1_prm_1: 'annually'
+# CP-09(01)_ODP[01]
+cp_09_01_odp_01: 'annually'
+# CP-09(01)_ODP[02]
+cp_09_01_odp_02: 'annually'
+
+# CP-9 (3) Separate Storage for Critical Information
+# CP-09(03)_ODP
+cp_09_03_odp: 'the critical system software and other security-related information defined in the system security plan'
+
+# CP-9 (5) Transfer to Alternate Storage Site
+# cp-9.5_prm_1
+cp_9_5_prm_1: '30 days'
+# CP-09(05)_ODP[01]
+cp_09_05_odp_01: '30 days'
+# CP-09(05)_ODP[02]
+cp_09_05_odp_02: 'the transfer rate defined in the system security plan'
+
+# CP-9 (7) Dual Authorization for Deletion or Destruction
+# CP-09(07)_ODP
+cp_09_07_odp: 'the backup information defined in the system security plan'
+
+# CP-9 (8) Cryptographic Protection
+# CP-09(08)_ODP
+cp_09_08_odp: 'the backup information defined in the system security plan'
+
+# CP-10 System Recovery and Reconstitution
+# cp-10_prm_1
+cp_10_prm_1: '30 days'
+# CP-10_ODP[01]
+cp_10_odp_01: '30 days'
+# CP-10_ODP[02]
+cp_10_odp_02: '30 days'
+
+# CP-10 (4) Restore Within Time Period
+# CP-10(04)_ODP
+cp_10_04_odp: 'time period consistent with the restoration time-periods defined in the service provider and organization Service Level Agreements'
+
+# CP-11 Alternate Communications Protocols
+# CP-11_ODP
+cp_11_odp: 'the alternative communications protocols defined in the system security plan'
+
+# CP-12 Safe Mode
+# CP-12_ODP[01]
+cp_12_odp_01: 'the restrictions defined in the system security plan'
+# CP-12_ODP[02]
+cp_12_odp_02: 'a change in role, a change in employment status, or a security incident'
+
+# CP-13 Alternative Security Mechanisms
+# CP-13_ODP[01]
+cp_13_odp_01: 'the alternative or supplemental security mechanisms defined in the system security plan'
+# CP-13_ODP[02]
+cp_13_odp_02: 'the security functions listed in the system security plan'
+
+# IA-1 Policy and Procedures
+# ia-1_prm_1
+ia_1_prm_1: 'the system owner, the ISSO, and the ISSM'
+# IA-01_ODP[01]
+ia_01_odp_01: 'the system owner, the ISSO, and the ISSM'
+# IA-01_ODP[02]
+ia_01_odp_02: 'the system owner, the ISSO, and the ISSM'
+# IA-01_ODP[03]
+ia_01_odp_03: 'organization-level'
+# IA-01_ODP[04]
+ia_01_odp_04: 'Information System Security Officer (ISSO)'
+# IA-01_ODP[05]
+ia_01_odp_05: 'annually'
+# IA-01_ODP[06]
+ia_01_odp_06: 'a security incident, a significant change to the system, or an assessment finding'
+# IA-01_ODP[07]
+ia_01_odp_07: 'annually'
+# IA-01_ODP[08]
+ia_01_odp_08: 'a security incident, a significant change to the system, or an assessment finding'
+
+# IA-2 (6) Access to Accounts —separate Device
+# IA-02(06)_ODP[01]
+ia_02_06_odp_01: 'local, network and remote'
+# IA-02(06)_ODP[02]
+ia_02_06_odp_02: 'privileged accounts; non-privileged accounts'
+# IA-02(06)_ODP[03]
+ia_02_06_odp_03: 'the strength of mechanism requirements defined in the system security plan'
+
+# IA-2 (8) Access to Accounts — Replay Resistant
+# IA-02(08)_ODP
+ia_02_08_odp: 'privileged accounts; non-privileged accounts'
+
+# IA-2 (10) Single Sign-on
+# IA-02(10)_ODP
+ia_02_10_odp: 'the system accounts and services defined in the system security plan'
+
+# IA-2 (13) Out-of-band Authentication
+# IA-02(13)_ODP[01]
+ia_02_13_odp_01: 'the out-of-band authentication defined in the system security plan'
+# IA-02(13)_ODP[02]
+ia_02_13_odp_02: 'a change in role, a change in employment status, or a security incident'
+
+# IA-3 Device Identification and Authentication
+# IA-03_ODP[01]
+ia_03_odp_01: 'the devices and/or types of devices defined in the system security plan'
+# IA-03_ODP[02]
+ia_03_odp_02: 'local'
+
+# IA-3 (1) Cryptographic Bidirectional Authentication
+# IA-03(01)_ODP[01]
+ia_03_01_odp_01: 'the devices and/or types of devices defined in the system security plan'
+# IA-03(01)_ODP[02]
+ia_03_01_odp_02: 'local'
+
+# IA-3 (3) Dynamic Address Allocation
+# ia-3.3_prm_1
+ia_3_3_prm_1: 'the lease information and lease duration defined in the system security plan'
+# IA-03(03)_ODP[01]
+ia_03_03_odp_01: 'the lease information defined in the system security plan'
+# IA-03(03)_ODP[02]
+ia_03_03_odp_02: 'the lease duration defined in the system security plan'
+
+# IA-3 (4) Device Attestation
+# IA-03(04)_ODP
+ia_03_04_odp: 'the configuration management process defined in the system security plan'
+
+# IA-4 Identifier Management
+# IA-04_ODP[01]
+ia_04_odp_01: 'the system owner, the ISSO, and the ISSM'
+# IA-04_ODP[02]
+ia_04_odp_02: '30 days'
+
+# IA-4 (4) Identify User Status
+# IA-04(04)_ODP
+ia_04_04_odp: 'contractors; foreign nationals'
+
+# IA-4 (5) Dynamic Management
+# IA-04(05)_ODP
+ia_04_05_odp: 'the dynamic identifier policy defined in the system security plan'
+
+# IA-4 (6) Cross-organization Management
+# IA-04(06)_ODP
+ia_04_06_odp: 'partner organizations with a signed interconnection agreement'
+
+# IA-4 (9) Attribute Maintenance and Protection
+# IA-04(09)_ODP
+ia_04_09_odp: 'the protected central storage defined in the system security plan'
+
+# IA-5 Authenticator Management
+# IA-05_ODP[01]
+ia_05_odp_01: '30 days'
+# IA-05_ODP[02]
+ia_05_odp_02: 'a security incident, a significant change to the system, or an assessment finding'
+
+# IA-5 (1) Password-based Authentication
+# IA-05(01)_ODP[01]
+ia_05_01_odp_01: 'annually'
+# IA-05(01)_ODP[02]
+ia_05_01_odp_02: '60 days'
+
+# IA-5 (8) Multiple System Accounts
+# IA-05(08)_ODP
+ia_05_08_odp: 'the security controls defined in the system security plan'
+
+# IA-5 (9) Federated Credential Management
+# IA-05(09)_ODP
+ia_05_09_odp: 'partner organizations with a signed interconnection agreement'
+
+# IA-5 (10) Dynamic Credential Binding
+# IA-05(10)_ODP
+ia_05_10_odp: 'the binding rules defined in the system security plan'
+
+# IA-5 (12) Biometric Authentication Performance
+# IA-05(12)_ODP
+ia_05_12_odp: 'the biometric quality requirements defined in the system security plan'
+
+# IA-5 (13) Expiration of Cached Authenticators
+# IA-05(13)_ODP
+ia_05_13_odp: '30 days'
+
+# IA-5 (16) In-person or Trusted External Party Authenticator Issuance
+# IA-05(16)_ODP[01]
+ia_05_16_odp_01: 'the types of and/or specific authenticators defined in the system security plan'
+# IA-05(16)_ODP[02]
+ia_05_16_odp_02: 'in person'
+# IA-05(16)_ODP[03]
+ia_05_16_odp_03: 'the registration authority defined in the system security plan'
+# IA-05(16)_ODP[04]
+ia_05_16_odp_04: 'the system owner, the ISSO, and the ISSM'
+
+# IA-5 (18) Password Managers
+# IA-05(18)_ODP[01]
+ia_05_18_odp_01: 'the password managers defined in the system security plan'
+# IA-05(18)_ODP[02]
+ia_05_18_odp_02: 'the controls in the applicable FedRAMP baseline'
+
+# IA-8 (4) Use of Defined Profiles
+# IA-08(04)_ODP
+ia_08_04_odp: 'the identity management profiles defined in the system security plan'
+
+# IA-8 (5) Acceptance of PIV-I Credentials
+# IA-08(05)_ODP
+ia_08_05_odp: 'the policy defined in the system security plan'
+
+# IA-8 (6) Disassociability
+# IA-08(06)_ODP
+ia_08_06_odp: 'encryption in transit and at rest, and least-privilege access control'
+
+# IA-9 Service Identification and Authentication
+# IA-09_ODP
+ia_09_odp: 'the system services and applications defined in the system security plan'
+
+# IA-10 Adaptive Authentication
+# IA-10_ODP[01]
+ia_10_odp_01: 'the supplemental authentication techniques or mechanisms defined in the system security plan'
+# IA-10_ODP[02]
+ia_10_odp_02: 'the circumstances or situations defined in the system security plan'
+
+# IA-11 Re-authentication
+# IA-11_ODP
+ia_11_odp: 'the circumstances or situations defined in the system security plan'
+
+# IA-12 (3) Identity Evidence Validation and Verification
+# IA-12(03)_ODP
+ia_12_03_odp: 'the methods of validation and verification defined in the system security plan'
+
+# IA-12 (5) Address Confirmation
+# IA-12(05)_ODP
+ia_12_05_odp: 'registration code'
+
+# IA-12 (6) Accept Externally-proofed Identities
+# IA-12(06)_ODP
+ia_12_06_odp: 'the identity assurance level defined in the system security plan'
+
+# IA-13 Identity Providers and Authorization Servers
+# IA-13_ODP[01]
+ia_13_odp_01: 'the policy defined in the system security plan'
+# IA-13_ODP[02]
+ia_13_odp_02: 'the enterprise SIEM and configuration management systems'
+
+# IR-1 Policy and Procedures
+# ir-1_prm_1
+ir_1_prm_1: 'the system owner, the ISSO, and the ISSM'
+# IR-01_ODP[01]
+ir_01_odp_01: 'the system owner, the ISSO, and the ISSM'
+# IR-01_ODP[02]
+ir_01_odp_02: 'the system owner, the ISSO, and the ISSM'
+# IR-01_ODP[03]
+ir_01_odp_03: 'organization-level'
+# IR-01_ODP[04]
+ir_01_odp_04: 'Information System Security Officer (ISSO)'
+# IR-01_ODP[05]
+ir_01_odp_05: 'annually'
+# IR-01_ODP[06]
+ir_01_odp_06: 'a security incident, a significant change to the system, or an assessment finding'
+# IR-01_ODP[07]
+ir_01_odp_07: 'annually'
+# IR-01_ODP[08]
+ir_01_odp_08: 'a security incident, a significant change to the system, or an assessment finding'
+
+# IR-2 Incident Response Training
+# IR-02_ODP[01]
+ir_02_odp_01: '30 days'
+# IR-02_ODP[02]
+ir_02_odp_02: 'annually'
+# IR-02_ODP[03]
+ir_02_odp_03: 'annually'
+# IR-02_ODP[04]
+ir_02_odp_04: 'a security incident, a significant change to the system, or an assessment finding'
+
+# IR-2 (2) Automated Training Environments
+# IR-02(02)_ODP
+ir_02_02_odp: 'the enterprise SIEM, configuration management, and ticketing systems'
+
+# IR-3 Incident Response Testing
+# IR-03_ODP[01]
+ir_03_odp_01: 'annually'
+# IR-03_ODP[02]
+ir_03_odp_02: 'the assessment procedures in NIST SP 800-53A'
+
+# IR-3 (1) Automated Testing
+# IR-03(01)_ODP
+ir_03_01_odp: 'the enterprise SIEM, configuration management, and ticketing systems'
+
+# IR-4 (1) Automated Incident Handling Processes
+# IR-04(01)_ODP
+ir_04_01_odp: 'the enterprise SIEM, configuration management, and ticketing systems'
+
+# IR-4 (2) Dynamic Reconfiguration
+# IR-04(02)_ODP[01]
+ir_04_02_odp_01: 'the types of dynamic reconfiguration defined in the system security plan'
+# IR-04(02)_ODP[02]
+ir_04_02_odp_02: 'all components within the authorization boundary'
+
+# IR-4 (3) Continuity of Operations
+# IR-04(03)_ODP[01]
+ir_04_03_odp_01: 'the classes of incidents defined in the system security plan'
+# IR-04(03)_ODP[02]
+ir_04_03_odp_02: 'notify the ISSO and record the event in the ticketing system'
+
+# IR-4 (5) Automatic Disabling of System
+# IR-04(05)_ODP
+ir_04_05_odp: 'the security violations defined in the system security plan'
+
+# IR-4 (7) Insider Threats — Intra-organization Coordination
+# IR-04(07)_ODP
+ir_04_07_odp: 'the entities defined in the system security plan'
+
+# IR-4 (8) Correlation with External Organizations
+# IR-04(08)_ODP[01]
+ir_04_08_odp_01: 'partner organizations with a signed interconnection agreement'
+# IR-04(08)_ODP[02]
+ir_04_08_odp_02: 'the incident information defined in the system security plan'
+
+# IR-4 (9) Dynamic Response Capability
+# IR-04(09)_ODP
+ir_04_09_odp: 'the dynamic response capabilities defined in the system security plan'
+
+# IR-4 (11) Integrated Incident Response Team
+# IR-04(11)_ODP
+ir_04_11_odp: '30 days'
+
+# IR-4 (13) Behavior Analysis
+# IR-04(13)_ODP
+ir_04_13_odp: 'the environments or resources defined in the system security plan'
+
+# IR-5 (1) Automated Tracking, Data Collection, and Analysis
+# ir-5.1_prm_1
+ir_5_1_prm_1: 'the enterprise SIEM, configuration management, and ticketing systems'
+# IR-05(01)_ODP[01]
+ir_05_01_odp_01: 'the enterprise SIEM, configuration management, and ticketing systems'
+# IR-05(01)_ODP[02]
+ir_05_01_odp_02: 'the enterprise SIEM, configuration management, and ticketing systems'
+# IR-05(01)_ODP[03]
+ir_05_01_odp_03: 'the enterprise SIEM, configuration management, and ticketing systems'
+
+# IR-6 Incident Reporting
+# IR-06_ODP[01]
+ir_06_odp_01: 'one hour'
+# IR-06_ODP[02]
+ir_06_odp_02: 'the authorities defined in the system security plan'
+
+# IR-6 (1) Automated Reporting
+# IR-06(01)_ODP
+ir_06_01_odp: 'the enterprise SIEM, configuration management, and ticketing systems'
+
+# IR-6 (2) Vulnerabilities Related to Incidents
+# IR-06(02)_ODP
+ir_06_02_odp: 'the system owner, the ISSO, and the ISSM'
+
+# IR-7 (1) Automation Support for Availability of Information and Support
+# IR-07(01)_ODP
+ir_07_01_odp: 'the enterprise SIEM, configuration management, and ticketing systems'
+
+# IR-8 Incident Response Plan
+# ir-8_prm_5
+ir_8_prm_5: 'the incident response team and the ISSO'
+# IR-08_ODP[01]
+ir_08_odp_01: 'the system owner, the ISSO, and the ISSM'
+# IR-08_ODP[02]
+ir_08_odp_02: 'annually'
+# IR-08_ODP[03]
+ir_08_odp_03: 'the system owner and the ISSO'
+# IR-08_ODP[04]
+ir_08_odp_04: 'the incident response team and the ISSO'
+# IR-08_ODP[05]
+ir_08_odp_05: 'the organizational elements defined in the system security plan'
+# IR-08_ODP[06]
+ir_08_odp_06: 'the incident response team and the ISSO'
+# IR-08_ODP[07]
+ir_08_odp_07: 'the organizational elements defined in the system security plan'
+
+# IR-9 Information Spillage Response
+# IR-09_ODP[01]
+ir_09_odp_01: 'the system owner, the ISSO, and the ISSM'
+# IR-09_ODP[02]
+ir_09_odp_02: 'the system owner, the ISSO, and the ISSM'
+# IR-09_ODP[03]
+ir_09_odp_03: 'notify the ISSO and record the event in the ticketing system'
+
+# IR-9 (2) Training
+# IR-09(02)_ODP
+ir_09_02_odp: 'annually'
+
+# IR-9 (3) Post-spill Operations
+# IR-09(03)_ODP
+ir_09_03_odp: 'the procedures defined in the system security plan'
+
+# IR-9 (4) Exposure to Unauthorized Personnel
+# IR-09(04)_ODP
+ir_09_04_odp: 'the controls in the applicable FedRAMP baseline'
+
+# MA-1 Policy and Procedures
+# ma-1_prm_1
+ma_1_prm_1: 'the system owner, the ISSO, and the ISSM'
+# MA-01_ODP[01]
+ma_01_odp_01: 'the system owner, the ISSO, and the ISSM'
+# MA-01_ODP[02]
+ma_01_odp_02: 'the system owner, the ISSO, and the ISSM'
+# MA-01_ODP[03]
+ma_01_odp_03: 'organization-level'
+# MA-01_ODP[04]
+ma_01_odp_04: 'Information System Security Officer (ISSO)'
+# MA-01_ODP[05]
+ma_01_odp_05: 'annually'
+# MA-01_ODP[06]
+ma_01_odp_06: 'a security incident, a significant change to the system, or an assessment finding'
+# MA-01_ODP[07]
+ma_01_odp_07: 'annually'
+# MA-01_ODP[08]
+ma_01_odp_08: 'a security incident, a significant change to the system, or an assessment finding'
+
+# MA-2 Controlled Maintenance
+# MA-02_ODP[01]
+ma_02_odp_01: 'the system owner, the ISSO, and the ISSM'
+# MA-02_ODP[02]
+ma_02_odp_02: 'federal customer data and system security documentation'
+# MA-02_ODP[03]
+ma_02_odp_03: 'federal customer data and system security documentation'
+
+# MA-2 (2) Automated Maintenance Activities
+# ma-2.2_prm_1
+ma_2_2_prm_1: 'the enterprise SIEM, configuration management, and ticketing systems'
+# MA-02(02)_ODP[01]
+ma_02_02_odp_01: 'the enterprise SIEM, configuration management, and ticketing systems'
+# MA-02(02)_ODP[02]
+ma_02_02_odp_02: 'the enterprise SIEM, configuration management, and ticketing systems'
+# MA-02(02)_ODP[03]
+ma_02_02_odp_03: 'the enterprise SIEM, configuration management, and ticketing systems'
+
+# MA-3 Maintenance Tools
+# MA-03_ODP
+ma_03_odp: 'annually'
+
+# MA-3 (3) Prevent Unauthorized Removal
+# MA-03(03)_ODP
+ma_03_03_odp: 'the system owner, the ISSO, and the ISSM'
+
+# MA-4 (1) Logging and Review
+# ma-4.1_prm_1
+ma_4_1_prm_1: 'authentication attempts, privilege escalation, and configuration changes'
+# MA-04(01)_ODP[01]
+ma_04_01_odp_01: 'authentication attempts, privilege escalation, and configuration changes'
+# MA-04(01)_ODP[02]
+ma_04_01_odp_02: 'authentication attempts, privilege escalation, and configuration changes'
+
+# MA-4 (4) Authentication and Separation of Maintenance Sessions
+# MA-04(04)_ODP
+ma_04_04_odp: 'the authenticators that are replay resistant defined in the system security plan'
+
+# MA-4 (5) Approvals and Notifications
+# MA-04(05)_ODP[01]
+ma_04_05_odp_01: 'the system owner, the ISSO, and the ISSM'
+# MA-04(05)_ODP[02]
+ma_04_05_odp_02: 'the system owner and the ISSO'
+
+# MA-4 (6) Cryptographic Protection
+# MA-04(06)_ODP
+ma_04_06_odp: 'the cryptographic mechanisms defined in the system security plan'
+
+# MA-5 (1) Individuals Without Appropriate Access
+# MA-05(01)_ODP
+ma_05_01_odp: 'the alternate controls defined in the system security plan'
+
+# MA-6 Timely Maintenance
+# MA-06_ODP[01]
+ma_06_odp_01: 'all components within the authorization boundary'
+# MA-06_ODP[02]
+ma_06_odp_02: '30 days'
+
+# MA-6 (1) Preventive Maintenance
+# MA-06(01)_ODP[01]
+ma_06_01_odp_01: 'all components within the authorization boundary'
+# MA-06(01)_ODP[02]
+ma_06_01_odp_02: 'the time intervals defined in the system security plan'
+
+# MA-6 (2) Predictive Maintenance
+# MA-06(02)_ODP[01]
+ma_06_02_odp_01: 'all components within the authorization boundary'
+# MA-06(02)_ODP[02]
+ma_06_02_odp_02: 'the time intervals defined in the system security plan'
+
+# MA-6 (3) Automated Support for Predictive Maintenance
+# MA-06(03)_ODP
+ma_06_03_odp: 'the enterprise SIEM, configuration management, and ticketing systems'
+
+# MA-7 Field Maintenance
+# MA-07_ODP[01]
+ma_07_odp_01: 'all systems and components within the authorization boundary'
+# MA-07_ODP[02]
+ma_07_odp_02: 'the trusted maintenance facilities defined in the system security plan'
+
+# MP-1 Policy and Procedures
+# mp-1_prm_1
+mp_1_prm_1: 'the system owner, the ISSO, and the ISSM'
+# MP-01_ODP[01]
+mp_01_odp_01: 'the system owner, the ISSO, and the ISSM'
+# MP-01_ODP[02]
+mp_01_odp_02: 'the system owner, the ISSO, and the ISSM'
+# MP-01_ODP[03]
+mp_01_odp_03: 'organization-level'
+# MP-01_ODP[04]
+mp_01_odp_04: 'Information System Security Officer (ISSO)'
+# MP-01_ODP[05]
+mp_01_odp_05: 'annually'
+# MP-01_ODP[06]
+mp_01_odp_06: 'a security incident, a significant change to the system, or an assessment finding'
+# MP-01_ODP[07]
+mp_01_odp_07: 'annually'
+# MP-01_ODP[08]
+mp_01_odp_08: 'a security incident, a significant change to the system, or an assessment finding'
+
+# MP-2 Media Access
+# mp-2_prm_1
+mp_2_prm_1: 'removable USB media, external drives, and backup tapes'
+# mp-2_prm_2
+mp_2_prm_2: 'the system owner, the ISSO, and the ISSM'
+# MP-02_ODP[01]
+mp_02_odp_01: 'removable USB media, external drives, and backup tapes'
+# MP-02_ODP[02]
+mp_02_odp_02: 'the system owner, the ISSO, and the ISSM'
+# MP-02_ODP[03]
+mp_02_odp_03: 'removable USB media, external drives, and backup tapes'
+# MP-02_ODP[04]
+mp_02_odp_04: 'the system owner, the ISSO, and the ISSM'
+
+# MP-3 Media Marking
+# MP-03_ODP[01]
+mp_03_odp_01: 'the types of media exempted from marking defined in the system security plan'
+# MP-03_ODP[02]
+mp_03_odp_02: 'areas within the facility that require badge access'
+
+# MP-4 Media Storage
+# mp-4_prm_1
+mp_4_prm_1: 'removable USB media, external drives, and backup tapes'
+# mp-4_prm_2
+mp_4_prm_2: 'areas within the facility that require badge access'
+# MP-04_ODP[01]
+mp_04_odp_01: 'removable USB media, external drives, and backup tapes'
+# MP-04_ODP[02]
+mp_04_odp_02: 'removable USB media, external drives, and backup tapes'
+# MP-04_ODP[03]
+mp_04_odp_03: 'removable USB media, external drives, and backup tapes'
+# MP-04_ODP[04]
+mp_04_odp_04: 'removable USB media, external drives, and backup tapes'
+# MP-04_ODP[05]
+mp_04_odp_05: 'areas within the facility that require badge access'
+# MP-04_ODP[06]
+mp_04_odp_06: 'areas within the facility that require badge access'
+
+# MP-4 (2) Automated Restricted Access
+# mp-4.2_prm_1
+mp_4_2_prm_1: 'the enterprise SIEM, configuration management, and ticketing systems'
+# MP-04(02)_ODP[01]
+mp_04_02_odp_01: 'the enterprise SIEM, configuration management, and ticketing systems'
+# MP-04(02)_ODP[02]
+mp_04_02_odp_02: 'the enterprise SIEM, configuration management, and ticketing systems'
+# MP-04(02)_ODP[03]
+mp_04_02_odp_03: 'the enterprise SIEM, configuration management, and ticketing systems'
+
+# MP-5 Media Transport
+# mp-5_prm_2
+mp_5_prm_2: 'the controls in the applicable FedRAMP baseline'
+# MP-05_ODP[01]
+mp_05_odp_01: 'removable media and backup media holding federal data'
+# MP-05_ODP[02]
+mp_05_odp_02: 'the controls in the applicable FedRAMP baseline'
+# MP-05_ODP[03]
+mp_05_odp_03: 'the controls in the applicable FedRAMP baseline'
+
+# MP-6 Media Sanitization
+# mp-6_prm_1
+mp_6_prm_1: 'removable media and backup media holding federal data'
+# mp-6_prm_2
+mp_6_prm_2: 'NIST SP 800-88 clear, purge, or destroy, matched to the media type'
+# MP-06_ODP[01]
+mp_06_odp_01: 'removable media and backup media holding federal data'
+# MP-06_ODP[02]
+mp_06_odp_02: 'removable media and backup media holding federal data'
+# MP-06_ODP[03]
+mp_06_odp_03: 'removable media and backup media holding federal data'
+# MP-06_ODP[04]
+mp_06_odp_04: 'NIST SP 800-88 clear, purge, or destroy, matched to the media type'
+# MP-06_ODP[05]
+mp_06_odp_05: 'NIST SP 800-88 clear, purge, or destroy, matched to the media type'
+# MP-06_ODP[06]
+mp_06_odp_06: 'NIST SP 800-88 clear, purge, or destroy, matched to the media type'
+
+# MP-6 (2) Equipment Testing
+# mp-6.2_prm_1
+mp_6_2_prm_1: 'annually'
+# MP-06(02)_ODP[01]
+mp_06_02_odp_01: 'annually'
+# MP-06(02)_ODP[02]
+mp_06_02_odp_02: 'annually'
+
+# MP-6 (3) Nondestructive Techniques
+# MP-06(03)_ODP
+mp_06_03_odp: 'a confirmed security incident or a legal hold'
+
+# MP-6 (7) Dual Authorization
+# MP-06(07)_ODP
+mp_06_07_odp: 'removable media and backup media holding federal data'
+
+# MP-6 (8) Remote Purging or Wiping of Information
+# MP-06(08)_ODP[01]
+mp_06_08_odp_01: 'all systems and components within the authorization boundary'
+# MP-06(08)_ODP[02]
+mp_06_08_odp_02: 'remotely'
+# MP-06(08)_ODP[03]
+mp_06_08_odp_03: 'a change in role, a change in employment status, or a security incident'
+
+# MP-7 Media Use
+# MP-07_ODP[01]
+mp_07_odp_01: 'removable media and backup media holding federal data'
+# MP-07_ODP[02]
+mp_07_odp_02: 'restrict'
+# MP-07_ODP[03]
+mp_07_odp_03: 'all systems and components within the authorization boundary'
+# MP-07_ODP[04]
+mp_07_odp_04: 'the controls in the applicable FedRAMP baseline'
+
+# MP-8 Media Downgrading
+# MP-08_ODP[01]
+mp_08_odp_01: 'removable media and backup media holding federal data'
+# MP-08_ODP[02]
+mp_08_odp_02: 'removable media and backup media holding federal data'
+
+# MP-8 (2) Equipment Testing
+# mp-8.2_prm_1
+mp_8_2_prm_1: 'annually'
+# MP-08(02)_ODP[01]
+mp_08_02_odp_01: 'annually'
+# MP-08(02)_ODP[02]
+mp_08_02_odp_02: 'annually'
+
+# PE-1 Policy and Procedures
+# pe-1_prm_1
+pe_1_prm_1: 'the system owner, the ISSO, and the ISSM'
+# PE-01_ODP[01]
+pe_01_odp_01: 'the system owner, the ISSO, and the ISSM'
+# PE-01_ODP[02]
+pe_01_odp_02: 'the system owner, the ISSO, and the ISSM'
+# PE-01_ODP[03]
+pe_01_odp_03: 'organization-level'
+# PE-01_ODP[04]
+pe_01_odp_04: 'Information System Security Officer (ISSO)'
+# PE-01_ODP[05]
+pe_01_odp_05: 'annually'
+# PE-01_ODP[06]
+pe_01_odp_06: 'a security incident, a significant change to the system, or an assessment finding'
+# PE-01_ODP[07]
+pe_01_odp_07: 'annually'
+# PE-01_ODP[08]
+pe_01_odp_08: 'a security incident, a significant change to the system, or an assessment finding'
+
+# PE-2 Physical Access Authorizations
+# PE-02_ODP
+pe_02_odp: 'annually'
+
+# PE-2 (2) Two Forms of Identification
+# PE-02(02)_ODP
+pe_02_02_odp: 'the list of acceptable forms of identification defined in the system security plan'
+
+# PE-2 (3) Restrict Unescorted Access
+# PE-02(03)_ODP[01]
+pe_02_03_odp_01: 'security clearances for all information contained within the system'
+# PE-02(03)_ODP[02]
+pe_02_03_odp_02: 'the physical access authorizations defined in the system security plan'
+
+# PE-3 Physical Access Control
+# pe-3_prm_9
+pe_3_prm_9: 'annually'
+# PE-03_ODP[01]
+pe_03_odp_01: 'the entry and exit points defined in the system security plan'
+# PE-03_ODP[02]
+pe_03_odp_02: 'the systems or devices defined in the system security plan'
+# PE-03_ODP[03]
+pe_03_odp_03: 'the systems or devices defined in the system security plan'
+# PE-03_ODP[04]
+pe_03_odp_04: 'the entry or exit points defined in the system security plan'
+# PE-03_ODP[05]
+pe_03_odp_05: 'the physical access controls defined in the system security plan'
+# PE-03_ODP[06]
+pe_03_odp_06: 'a confirmed security incident or a legal hold'
+# PE-03_ODP[07]
+pe_03_odp_07: 'the physical access devices defined in the system security plan'
+# PE-03_ODP[08]
+pe_03_odp_08: 'annually'
+# PE-03_ODP[09]
+pe_03_odp_09: 'annually'
+# PE-03_ODP[10]
+pe_03_odp_10: 'annually'
+
+# PE-3 (1) System Access
+# PE-03(01)_ODP
+pe_03_01_odp: 'the physical spaces defined in the system security plan'
+
+# PE-3 (2) Facility and Systems
+# PE-03(02)_ODP
+pe_03_02_odp: 'annually'
+
+# PE-3 (3) Continuous Guards
+# PE-03(03)_ODP
+pe_03_03_odp: 'the physical access points defined in the system security plan'
+
+# PE-3 (4) Lockable Casings
+# PE-03(04)_ODP
+pe_03_04_odp: 'all components within the authorization boundary'
+
+# PE-3 (5) Tamper Protection
+# PE-03(05)_ODP[01]
+pe_03_05_odp_01: 'the anti-tamper technologies defined in the system security plan'
+# PE-03(05)_ODP[02]
+pe_03_05_odp_02: 'detect'
+# PE-03(05)_ODP[03]
+pe_03_05_odp_03: 'the hardware components defined in the system security plan'
+
+# PE-3 (8) Access Control Vestibules
+# PE-03(08)_ODP
+pe_03_08_odp: 'the primary data centre region and the failover region'
+
+# PE-4 Access Control for Transmission
+# PE-04_ODP[01]
+pe_04_odp_01: 'the system distribution and transmission lines defined in the system security plan'
+# PE-04_ODP[02]
+pe_04_odp_02: 'the security controls defined in the system security plan'
+
+# PE-5 Access Control for Output Devices
+# PE-05_ODP
+pe_05_odp: 'the output devices defined in the system security plan'
+
+# PE-6 Monitoring Physical Access
+# PE-06_ODP[01]
+pe_06_odp_01: 'annually'
+# PE-06_ODP[02]
+pe_06_odp_02: 'a security incident, a significant change to the system, or an assessment finding'
+
+# PE-6 (2) Automated Intrusion Recognition and Responses
+# PE-06(02)_ODP[01]
+pe_06_02_odp_01: 'the classes or types of intrusions defined in the system security plan'
+# PE-06(02)_ODP[02]
+pe_06_02_odp_02: 'the response actions defined in the system security plan'
+# PE-06(02)_ODP[03]
+pe_06_02_odp_03: 'the enterprise SIEM, configuration management, and ticketing systems'
+
+# PE-6 (3) Video Surveillance
+# PE-06(03)_ODP[01]
+pe_06_03_odp_01: 'the operational areas defined in the system security plan'
+# PE-06(03)_ODP[02]
+pe_06_03_odp_02: 'annually'
+# PE-06(03)_ODP[03]
+pe_06_03_odp_03: '30 days'
+
+# PE-6 (4) Monitoring Physical Access to Systems
+# PE-06(04)_ODP
+pe_06_04_odp: 'the physical spaces defined in the system security plan'
+
+# PE-8 Visitor Access Records
+# PE-08_ODP[01]
+pe_08_odp_01: '30 days'
+# PE-08_ODP[02]
+pe_08_odp_02: 'annually'
+# PE-08_ODP[03]
+pe_08_odp_03: 'the system owner and the ISSO'
+
+# PE-8 (1) Automated Records Maintenance and Review
+# pe-8.1_prm_1
+pe_8_1_prm_1: 'the enterprise SIEM, configuration management, and ticketing systems'
+# PE-08(01)_ODP[01]
+pe_08_01_odp_01: 'the enterprise SIEM, configuration management, and ticketing systems'
+# PE-08(01)_ODP[02]
+pe_08_01_odp_02: 'the enterprise SIEM, configuration management, and ticketing systems'
+
+# PE-8 (3) Limit Personally Identifiable Information Elements
+# PE-08(03)_ODP
+pe_08_03_odp: 'the elements listed in the system security plan'
+
+# PE-9 (1) Redundant Cabling
+# PE-09(01)_ODP
+pe_09_01_odp: 'the distance defined in the system security plan'
+
+# PE-9 (2) Automatic Voltage Controls
+# PE-09(02)_ODP
+pe_09_02_odp: 'the critical system components defined in the system security plan'
+
+# PE-10 Emergency Shutoff
+# PE-10_ODP[01]
+pe_10_odp_01: 'the system or individual system components defined in the system security plan'
+# PE-10_ODP[02]
+pe_10_odp_02: 'the primary data centre region and the failover region'
+
+# PE-11 Emergency Power
+# PE-11_ODP
+pe_11_odp: 'an orderly shutdown of the system'
+
+# PE-11 (1) Alternate Power Supply — Minimal Operational Capability
+# PE-11(01)_ODP
+pe_11_01_odp: 'manually'
+
+# PE-11 (2) Alternate Power Supply — Self-contained
+# PE-11(02)_ODP[01]
+pe_11_02_odp_01: 'manually'
+# PE-11(02)_ODP[02]
+pe_11_02_odp_02: 'minimally required operational capability'
+
+# PE-13 (1) Detection Systems — Automatic Activation and Notification
+# PE-13(01)_ODP[01]
+pe_13_01_odp_01: 'the system owner, the ISSO, and the ISSM'
+# PE-13(01)_ODP[02]
+pe_13_01_odp_02: 'the emergency responders defined in the system security plan'
+
+# PE-13 (2) Suppression Systems — Automatic Activation and Notification
+# PE-13(02)_ODP[01]
+pe_13_02_odp_01: 'the system owner, the ISSO, and the ISSM'
+# PE-13(02)_ODP[02]
+pe_13_02_odp_02: 'the emergency responders defined in the system security plan'
+
+# PE-13 (4) Inspections
+# PE-13(04)_ODP[01]
+pe_13_04_odp_01: 'annually'
+# PE-13(04)_ODP[02]
+pe_13_04_odp_02: '30 days'
+
+# PE-14 Environmental Controls
+# PE-14_ODP[01]
+pe_14_odp_01: 'temperature'
+# PE-14_ODP[02]
+pe_14_odp_02: 'the environmental control defined in the system security plan'
+# PE-14_ODP[03]
+pe_14_odp_03: 'the acceptable levels defined in the system security plan'
+# PE-14_ODP[04]
+pe_14_odp_04: 'annually'
+
+# PE-14 (1) Automatic Controls
+# PE-14(01)_ODP
+pe_14_01_odp: 'the automatic environmental controls defined in the system security plan'
+
+# PE-14 (2) Monitoring with Alarms and Notifications
+# PE-14(02)_ODP
+pe_14_02_odp: 'the system owner, the ISSO, and the ISSM'
+
+# PE-15 (1) Automation Support
+# PE-15(01)_ODP[01]
+pe_15_01_odp_01: 'the system owner, the ISSO, and the ISSM'
+# PE-15(01)_ODP[02]
+pe_15_01_odp_02: 'the enterprise SIEM, configuration management, and ticketing systems'
+
+# PE-16 Delivery and Removal
+# pe-16_prm_1
+pe_16_prm_1: 'the types of system components defined in the system security plan'
+# PE-16_ODP[01]
+pe_16_odp_01: 'the types of system components defined in the system security plan'
+# PE-16_ODP[02]
+pe_16_odp_02: 'the types of system components defined in the system security plan'
+
+# PE-17 Alternate Work Site
+# PE-17_ODP[01]
+pe_17_odp_01: 'alternate work sites defined in the system security plan'
+# PE-17_ODP[02]
+pe_17_odp_02: 'the controls in the applicable FedRAMP baseline'
+
+# PE-18 Location of System Components
+# PE-18_ODP
+pe_18_odp: 'the physical and environmental hazards defined in the system security plan'
+
+# PE-20 Asset Monitoring and Tracking
+# PE-20_ODP[01]
+pe_20_odp_01: 'the primary data centre region and the failover region'
+# PE-20_ODP[02]
+pe_20_odp_02: 'the assets defined in the system security plan'
+# PE-20_ODP[03]
+pe_20_odp_03: 'areas within the facility that require badge access'
+
+# PE-21 Electromagnetic Pulse Protection
+# PE-21_ODP[01]
+pe_21_odp_01: 'the protective measures defined in the system security plan'
+# PE-21_ODP[02]
+pe_21_odp_02: 'the system and system components defined in the system security plan'
+
+# PE-22 Component Marking
+# PE-22_ODP
+pe_22_odp: 'the system hardware components defined in the system security plan'
+
+# PL-1 Policy and Procedures
+# pl-1_prm_1
+pl_1_prm_1: 'the system owner, the ISSO, and the ISSM'
+# PL-01_ODP[01]
+pl_01_odp_01: 'the system owner, the ISSO, and the ISSM'
+# PL-01_ODP[02]
+pl_01_odp_02: 'the system owner, the ISSO, and the ISSM'
+# PL-01_ODP[03]
+pl_01_odp_03: 'organization-level'
+# PL-01_ODP[04]
+pl_01_odp_04: 'Information System Security Officer (ISSO)'
+# PL-01_ODP[05]
+pl_01_odp_05: 'annually'
+# PL-01_ODP[06]
+pl_01_odp_06: 'a security incident, a significant change to the system, or an assessment finding'
+# PL-01_ODP[07]
+pl_01_odp_07: 'annually'
+# PL-01_ODP[08]
+pl_01_odp_08: 'a security incident, a significant change to the system, or an assessment finding'
+
+# PL-2 System Security and Privacy Plans
+# PL-02_ODP[01]
+pl_02_odp_01: 'the individuals or groups defined in the system security plan'
+# PL-02_ODP[02]
+pl_02_odp_02: 'the system owner, the ISSO, and the ISSM'
+# PL-02_ODP[03]
+pl_02_odp_03: 'annually'
+
+# PL-4 Rules of Behavior
+# PL-04_ODP[01]
+pl_04_odp_01: 'annually'
+# PL-04_ODP[02]
+pl_04_odp_02: 'annually'
+# PL-04_ODP[03]
+pl_04_odp_03: 'annually'
+
+# PL-7 Concept of Operations
+# PL-07_ODP
+pl_07_odp: 'annually'
+
+# PL-8 Security and Privacy Architectures
+# PL-08_ODP
+pl_08_odp: 'annually'
+
+# PL-8 (1) Defense in Depth
+# PL-08(01)_ODP[01]
+pl_08_01_odp_01: 'the controls in the applicable FedRAMP baseline'
+# PL-08(01)_ODP[02]
+pl_08_01_odp_02: 'the primary data centre region and the failover region'
+
+# PL-8 (2) Supplier Diversity
+# PL-08(02)_ODP[01]
+pl_08_02_odp_01: 'the controls in the applicable FedRAMP baseline'
+# PL-08(02)_ODP[02]
+pl_08_02_odp_02: 'the primary data centre region and the failover region'
+
+# PL-9 Central Management
+# PL-09_ODP
+pl_09_odp: 'the controls and related processes defined in the system security plan'
+
+# PM-1 Information Security Program Plan
+# PM-01_ODP[01]
+pm_01_odp_01: 'annually'
+# PM-01_ODP[02]
+pm_01_odp_02: 'a security incident, a significant change to the system, or an assessment finding'
+
+# PM-5 System Inventory
+# PM-05_ODP
+pm_05_odp: 'annually'
+
+# PM-5 (1) Inventory of Personally Identifiable Information
+# PM-05(01)_ODP
+pm_05_01_odp: 'annually'
+
+# PM-7 (1) Offloading
+# PM-07(01)_ODP
+pm_07_01_odp: 'the non-essential functions or services defined in the system security plan'
+
+# PM-9 Risk Management Strategy
+# PM-09_ODP
+pm_09_odp: 'annually'
+
+# PM-11 Mission and Business Process Definition
+# PM-11_ODP
+pm_11_odp: 'annually'
+
+# PM-17 Protecting Controlled Unclassified Information on External Systems
+# pm-17_prm_1
+pm_17_prm_1: 'annually'
+# PM-17_ODP[01]
+pm_17_odp_01: 'annually'
+# PM-17_ODP[02]
+pm_17_odp_02: 'annually'
+
+# PM-18 Privacy Program Plan
+# PM-18_ODP
+pm_18_odp: 'annually'
+
+# PM-23 Data Governance Body
+# PM-23_ODP[01]
+pm_23_odp_01: 'the system owner, the ISSO, and the ISSM'
+# PM-23_ODP[02]
+pm_23_odp_02: 'the responsibilities defined in the system security plan'
+
+# PM-25 Minimization of Personally Identifiable Information Used in Testing, Training, and Research
+# pm-25_prm_1
+pm_25_prm_1: 'annually'
+# PM-25_ODP[01]
+pm_25_odp_01: 'annually'
+# PM-25_ODP[02]
+pm_25_odp_02: 'annually'
+# PM-25_ODP[03]
+pm_25_odp_03: 'annually'
+# PM-25_ODP[04]
+pm_25_odp_04: 'annually'
+
+# PM-26 Complaint Management
+# pm-26_prm_1
+pm_26_prm_1: '30 days'
+# PM-26_ODP[01]
+pm_26_odp_01: '30 days'
+# PM-26_ODP[02]
+pm_26_odp_02: '30 days'
+# PM-26_ODP[03]
+pm_26_odp_03: '30 days'
+# PM-26_ODP[04]
+pm_26_odp_04: '30 days'
+
+# PM-27 Privacy Reporting
+# PM-27_ODP[01]
+pm_27_odp_01: 'the privacy reports defined in the system security plan'
+# PM-27_ODP[02]
+pm_27_odp_02: 'the oversight bodies defined in the system security plan'
+# PM-27_ODP[03]
+pm_27_odp_03: 'the Information System Security Officer (ISSO)'
+# PM-27_ODP[04]
+pm_27_odp_04: 'annually'
+
+# PM-28 Risk Framing
+# PM-28_ODP[01]
+pm_28_odp_01: 'the system owner and the ISSO'
+# PM-28_ODP[02]
+pm_28_odp_02: 'annually'
+
+# PM-30 Supply Chain Risk Management Strategy
+# PM-30_ODP
+pm_30_odp: 'annually'
+
+# PM-31 Continuous Monitoring Strategy
+# pm-31_prm_4
+pm_31_prm_4: 'the system owner, the ISSO, and the ISSM'
+# pm-31_prm_5
+pm_31_prm_5: 'annually'
+# PM-31_ODP[01]
+pm_31_odp_01: 'the metrics defined in the system security plan'
+# PM-31_ODP[02]
+pm_31_odp_02: 'annually'
+# PM-31_ODP[03]
+pm_31_odp_03: 'annually'
+# PM-31_ODP[04]
+pm_31_odp_04: 'the system owner, the ISSO, and the ISSM'
+# PM-31_ODP[05]
+pm_31_odp_05: 'the system owner, the ISSO, and the ISSM'
+# PM-31_ODP[06]
+pm_31_odp_06: 'annually'
+# PM-31_ODP[07]
+pm_31_odp_07: 'annually'
+
+# PM-32 Purposing
+# PM-32_ODP
+pm_32_odp: 'all systems and components within the authorization boundary'
+
+# PS-1 Policy and Procedures
+# ps-1_prm_1
+ps_1_prm_1: 'the system owner, the ISSO, and the ISSM'
+# PS-01_ODP[01]
+ps_01_odp_01: 'the system owner, the ISSO, and the ISSM'
+# PS-01_ODP[02]
+ps_01_odp_02: 'the system owner, the ISSO, and the ISSM'
+# PS-01_ODP[03]
+ps_01_odp_03: 'organization-level'
+# PS-01_ODP[04]
+ps_01_odp_04: 'Information System Security Officer (ISSO)'
+# PS-01_ODP[05]
+ps_01_odp_05: 'annually'
+# PS-01_ODP[06]
+ps_01_odp_06: 'a security incident, a significant change to the system, or an assessment finding'
+# PS-01_ODP[07]
+ps_01_odp_07: 'annually'
+# PS-01_ODP[08]
+ps_01_odp_08: 'a security incident, a significant change to the system, or an assessment finding'
+
+# PS-2 Position Risk Designation
+# PS-02_ODP
+ps_02_odp: 'annually'
+
+# PS-3 Personnel Screening
+# ps-3_prm_1
+ps_3_prm_1: 'annually'
+# PS-03_ODP[01]
+ps_03_odp_01: 'the conditions requiring rescreening defined in the system security plan'
+# PS-03_ODP[02]
+ps_03_odp_02: 'annually'
+
+# PS-3 (3) Information Requiring Special Protective Measures
+# PS-03(03)_ODP
+ps_03_03_odp: 'the system owner and the ISSO'
+
+# PS-3 (4) Citizenship Requirements
+# PS-03(04)_ODP[01]
+ps_03_04_odp_01: 'the information types defined in the system security plan'
+# PS-03(04)_ODP[02]
+ps_03_04_odp_02: 'the citizenship requirements defined in the system security plan'
+
+# PS-4 Personnel Termination
+# PS-04_ODP[01]
+ps_04_odp_01: '30 days'
+# PS-04_ODP[02]
+ps_04_odp_02: 'the information security topics defined in the system security plan'
+
+# PS-4 (2) Automated Actions
+# PS-04(02)_ODP[01]
+ps_04_02_odp_01: 'the enterprise SIEM, configuration management, and ticketing systems'
+# PS-04(02)_ODP[02]
+ps_04_02_odp_02: 'notify the system owner, the ISSO, and the ISSM of individual termination actions'
+# PS-04(02)_ODP[03]
+ps_04_02_odp_03: 'the system owner, the ISSO, and the ISSM'
+
+# PS-5 Personnel Transfer
+# PS-05_ODP[01]
+ps_05_odp_01: 'the transfer or reassignment actions defined in the system security plan'
+# PS-05_ODP[02]
+ps_05_odp_02: '30 days'
+# PS-05_ODP[03]
+ps_05_odp_03: 'the system owner, the ISSO, and the ISSM'
+# PS-05_ODP[04]
+ps_05_odp_04: '30 days'
+
+# PS-6 Access Agreements
+# PS-06_ODP[01]
+ps_06_odp_01: 'annually'
+# PS-06_ODP[02]
+ps_06_odp_02: 'annually'
+
+# PS-7 External Personnel Security
+# PS-07_ODP[01]
+ps_07_odp_01: 'the system owner, the ISSO, and the ISSM'
+# PS-07_ODP[02]
+ps_07_odp_02: '30 days'
+
+# PS-8 Personnel Sanctions
+# PS-08_ODP[01]
+ps_08_odp_01: 'the system owner, the ISSO, and the ISSM'
+# PS-08_ODP[02]
+ps_08_odp_02: '30 days'
+
+# PT-1 Policy and Procedures
+# pt-1_prm_1
+pt_1_prm_1: 'the system owner, the ISSO, and the ISSM'
+# PT-01_ODP[01]
+pt_01_odp_01: 'the system owner, the ISSO, and the ISSM'
+# PT-01_ODP[02]
+pt_01_odp_02: 'the system owner, the ISSO, and the ISSM'
+# PT-01_ODP[03]
+pt_01_odp_03: 'organization-level'
+# PT-01_ODP[04]
+pt_01_odp_04: 'Information System Security Officer (ISSO)'
+# PT-01_ODP[05]
+pt_01_odp_05: 'annually'
+# PT-01_ODP[06]
+pt_01_odp_06: 'a security incident, a significant change to the system, or an assessment finding'
+# PT-01_ODP[07]
+pt_01_odp_07: 'annually'
+# PT-01_ODP[08]
+pt_01_odp_08: 'a security incident, a significant change to the system, or an assessment finding'
+
+# PT-2 Authority to Process Personally Identifiable Information
+# PT-02_ODP[01]
+pt_02_odp_01: 'authority defined in the system security plan'
+# PT-02_ODP[02]
+pt_02_odp_02: 'processing defined in the system security plan'
+# PT-02_ODP[03]
+pt_02_odp_03: 'processing defined in the system security plan'
+
+# PT-2 (1) Data Tagging
+# PT-02(01)_ODP[01]
+pt_02_01_odp_01: 'the authorized processing defined in the system security plan'
+# PT-02(01)_ODP[02]
+pt_02_01_odp_02: 'the elements of personally identifiable information defined in the system security plan'
+
+# PT-2 (2) Automation
+# PT-02(02)_ODP
+pt_02_02_odp: 'the enterprise SIEM, configuration management, and ticketing systems'
+
+# PT-3 Personally Identifiable Information Processing Purposes
+# PT-03_ODP[01]
+pt_03_odp_01: 'purpose defined in the system security plan'
+# PT-03_ODP[02]
+pt_03_odp_02: 'processing defined in the system security plan'
+# PT-03_ODP[03]
+pt_03_odp_03: 'the enterprise SIEM and configuration management systems'
+# PT-03_ODP[04]
+pt_03_odp_04: 'the requirements defined in the system security plan'
+
+# PT-3 (1) Data Tagging
+# PT-03(01)_ODP[01]
+pt_03_01_odp_01: 'the processing purposes defined in the system security plan'
+# PT-03(01)_ODP[02]
+pt_03_01_odp_02: 'the elements of personally identifiable information defined in the system security plan'
+
+# PT-3 (2) Automation
+# PT-03(02)_ODP
+pt_03_02_odp: 'the enterprise SIEM, configuration management, and ticketing systems'
+
+# PT-4 Consent
+# PT-04_ODP
+pt_04_odp: 'tools or mechanisms defined in the system security plan'
+
+# PT-4 (1) Tailored Consent
+# PT-04(01)_ODP
+pt_04_01_odp: 'the enterprise SIEM and configuration management systems'
+
+# PT-4 (2) Just-in-time Consent
+# PT-04(02)_ODP[01]
+pt_04_02_odp_01: 'the consent mechanisms defined in the system security plan'
+# PT-04(02)_ODP[02]
+pt_04_02_odp_02: 'annually'
+# PT-04(02)_ODP[03]
+pt_04_02_odp_03: 'the personally identifiable information processing defined in the system security plan'
+
+# PT-4 (3) Revocation
+# PT-04(03)_ODP
+pt_04_03_odp: 'tools or mechanisms defined in the system security plan'
+
+# PT-5 Privacy Notice
+# PT-05_ODP[01]
+pt_05_odp_01: 'annually'
+# PT-05_ODP[02]
+pt_05_odp_02: 'federal customer data and system security documentation'
+
+# PT-5 (1) Just-in-time Notice
+# PT-05(01)_ODP
+pt_05_01_odp: 'annually'
+
+# PT-6 (1) Routine Uses
+# PT-06(01)_ODP
+pt_06_01_odp: 'annually'
+
+# PT-6 (2) Exemption Rules
+# PT-06(02)_ODP
+pt_06_02_odp: 'annually'
+
+# PT-7 Specific Categories of Personally Identifiable Information
+# PT-07_ODP
+pt_07_odp: 'the processing conditions defined in the system security plan'
+
+# RA-1 Policy and Procedures
+# ra-1_prm_1
+ra_1_prm_1: 'the system owner, the ISSO, and the ISSM'
+# RA-01_ODP[01]
+ra_01_odp_01: 'the system owner, the ISSO, and the ISSM'
+# RA-01_ODP[02]
+ra_01_odp_02: 'the system owner, the ISSO, and the ISSM'
+# RA-01_ODP[03]
+ra_01_odp_03: 'organization-level'
+# RA-01_ODP[04]
+ra_01_odp_04: 'Information System Security Officer (ISSO)'
+# RA-01_ODP[05]
+ra_01_odp_05: 'annually'
+# RA-01_ODP[06]
+ra_01_odp_06: 'a security incident, a significant change to the system, or an assessment finding'
+# RA-01_ODP[07]
+ra_01_odp_07: 'annually'
+# RA-01_ODP[08]
+ra_01_odp_08: 'a security incident, a significant change to the system, or an assessment finding'
+
+# RA-3 Risk Assessment
+# RA-03_ODP[01]
+ra_03_odp_01: 'security and privacy plans'
+# RA-03_ODP[02]
+ra_03_odp_02: 'the document defined in the system security plan'
+# RA-03_ODP[03]
+ra_03_odp_03: 'annually'
+# RA-03_ODP[04]
+ra_03_odp_04: 'the system owner, the ISSO, and the ISSM'
+# RA-03_ODP[05]
+ra_03_odp_05: 'annually'
+
+# RA-3 (1) Supply Chain Risk Assessment
+# RA-03(01)_ODP[01]
+ra_03_01_odp_01: 'the systems, system components, and system services defined in the system security plan'
+# RA-03(01)_ODP[02]
+ra_03_01_odp_02: 'annually'
+
+# RA-3 (3) Dynamic Threat Awareness
+# RA-03(03)_ODP
+ra_03_03_odp: 'the means defined in the system security plan'
+
+# RA-3 (4) Predictive Cyber Analytics
+# ra-3.4_prm_2
+ra_3_4_prm_2: 'the advanced automation and analytics capabilities defined in the system security plan'
+# RA-03(04)_ODP[01]
+ra_03_04_odp_01: 'the advanced automation capabilities defined in the system security plan'
+# RA-03(04)_ODP[02]
+ra_03_04_odp_02: 'all systems and components within the authorization boundary'
+# RA-03(04)_ODP[03]
+ra_03_04_odp_03: 'the advanced analytics capabilities defined in the system security plan'
+
+# RA-5 Vulnerability Monitoring and Scanning
+# ra-5_prm_1
+ra_5_prm_1: 'annually'
+# RA-05_ODP[01]
+ra_05_odp_01: 'monthly for infrastructure and weekly for web applications'
+# RA-05_ODP[02]
+ra_05_odp_02: 'annually'
+# RA-05_ODP[03]
+ra_05_odp_03: 'the response times defined in the system security plan'
+# RA-05_ODP[04]
+ra_05_odp_04: 'the system owner, the ISSO, and the ISSM'
+
+# RA-5 (2) Update Vulnerabilities to Be Scanned
+# RA-05(02)_ODP[01]
+ra_05_02_odp_01: 'annually'
+# RA-05(02)_ODP[02]
+ra_05_02_odp_02: 'annually'
+
+# RA-5 (4) Discoverable Information
+# RA-05(04)_ODP
+ra_05_04_odp: 'the corrective actions defined in the system security plan'
+
+# RA-5 (5) Privileged Access
+# RA-05(05)_ODP[01]
+ra_05_05_odp_01: 'all components within the authorization boundary'
+# RA-05(05)_ODP[02]
+ra_05_05_odp_02: 'the vulnerability scanning activities defined in the system security plan'
+
+# RA-5 (6) Automated Trend Analyses
+# RA-05(06)_ODP
+ra_05_06_odp: 'the enterprise SIEM, configuration management, and ticketing systems'
+
+# RA-5 (8) Review Historic Audit Logs
+# RA-05(08)_ODP[01]
+ra_05_08_odp_01: 'system defined in the system security plan'
+# RA-05(08)_ODP[02]
+ra_05_08_odp_02: '30 days'
+
+# RA-6 Technical Surveillance Countermeasures Survey
+# RA-06_ODP[01]
+ra_06_odp_01: 'the primary data centre region and the failover region'
+# RA-06_ODP[02]
+ra_06_odp_02: 'annually'
+# RA-06_ODP[03]
+ra_06_odp_03: 'annually'
+# RA-06_ODP[04]
+ra_06_odp_04: 'the events or indicators defined in the system security plan'
+
+# RA-9 Criticality Analysis
+# RA-09_ODP[01]
+ra_09_odp_01: 'the systems, system components, or system services defined in the system security plan'
+# RA-09_ODP[02]
+ra_09_odp_02: 'the decision points in the system development life cycle defined in the system security plan'
+
+# RA-10 Threat Hunting
+# RA-10_ODP
+ra_10_odp: 'annually'
+
+# SA-1 Policy and Procedures
+# sa-1_prm_1
+sa_1_prm_1: 'the system owner, the ISSO, and the ISSM'
+# SA-01_ODP[01]
+sa_01_odp_01: 'the system owner, the ISSO, and the ISSM'
+# SA-01_ODP[02]
+sa_01_odp_02: 'the system owner, the ISSO, and the ISSM'
+# SA-01_ODP[03]
+sa_01_odp_03: 'organization-level'
+# SA-01_ODP[04]
+sa_01_odp_04: 'Information System Security Officer (ISSO)'
+# SA-01_ODP[05]
+sa_01_odp_05: 'annually'
+# SA-01_ODP[06]
+sa_01_odp_06: 'a security incident, a significant change to the system, or an assessment finding'
+# SA-01_ODP[07]
+sa_01_odp_07: 'annually'
+# SA-01_ODP[08]
+sa_01_odp_08: 'a security incident, a significant change to the system, or an assessment finding'
+
+# SA-3 System Development Life Cycle
+# SA-03_ODP
+sa_03_odp: 'the system-development life cycle defined in the system security plan'
+
+# SA-4 Acquisition Process
+# SA-04_ODP[01]
+sa_04_odp_01: 'standardized contract language'
+# SA-04_ODP[02]
+sa_04_odp_02: 'the contract language defined in the system security plan'
+
+# SA-4 (2) Design and Implementation Information for Controls
+# SA-04(02)_ODP[01]
+sa_04_02_odp_01: 'security-relevant external system interfaces'
+# SA-04(02)_ODP[02]
+sa_04_02_odp_02: 'the design and implementation information defined in the system security plan'
+# SA-04(02)_ODP[03]
+sa_04_02_odp_03: 'the level of detail defined in the system security plan'
+
+# SA-4 (3) Development Methods, Techniques, and Practices
+# SA-04(03)_ODP[01]
+sa_04_03_odp_01: 'the systems engineering methods defined in the system security plan'
+# SA-04(03)_ODP[02]
+sa_04_03_odp_02: 'the system security engineering methods defined in the system security plan'
+# SA-04(03)_ODP[03]
+sa_04_03_odp_03: 'the system security engineering methods defined in the system security plan'
+# SA-04(03)_ODP[04]
+sa_04_03_odp_04: 'the privacy engineering methods defined in the system security plan'
+# SA-04(03)_ODP[05]
+sa_04_03_odp_05: 'the software development methods defined in the system security plan'
+# SA-04(03)_ODP[06]
+sa_04_03_odp_06: 'the software development methods defined in the system security plan'
+# SA-04(03)_ODP[07]
+sa_04_03_odp_07: 'the assessment procedures in NIST SP 800-53A'
+# SA-04(03)_ODP[08]
+sa_04_03_odp_08: 'the quality control processes defined in the system security plan'
+
+# SA-4 (5) System, Component, and Service Configurations
+# SA-04(05)_ODP
+sa_04_05_odp: 'the security configurations defined in the system security plan'
+
+# SA-4 (11) System of Records
+# SA-04(11)_ODP
+sa_04_11_odp: 'the Privacy Act requirements defined in the system security plan'
+
+# SA-4 (12) Data Ownership
+# SA-04(12)_ODP
+sa_04_12_odp: 'the time frame defined in the system security plan'
+
+# SA-5 System Documentation
+# SA-05_ODP[01]
+sa_05_odp_01: 'notify the ISSO and record the event in the ticketing system'
+# SA-05_ODP[02]
+sa_05_odp_02: 'the system owner, the ISSO, and the ISSM'
+
+# SA-8 Security and Privacy Engineering Principles
+# sa-8_prm_1
+sa_8_prm_1: 'the systems security and privacy engineering principles defined in the system security plan'
+# SA-08_ODP[01]
+sa_08_odp_01: 'the systems security engineering principles defined in the system security plan'
+# SA-08_ODP[02]
+sa_08_odp_02: 'the privacy engineering principles defined in the system security plan'
+
+# SA-8 (2) Least Common Mechanism
+# SA-08(02)_ODP
+sa_08_02_odp: 'all systems and components within the authorization boundary'
+
+# SA-8 (3) Modularity and Layering
+# sa-8.3_prm_1
+sa_8_3_prm_1: 'all systems and components within the authorization boundary'
+# SA-08(03)_ODP[01]
+sa_08_03_odp_01: 'all systems and components within the authorization boundary'
+# SA-08(03)_ODP[02]
+sa_08_03_odp_02: 'all systems and components within the authorization boundary'
+
+# SA-8 (4) Partially Ordered Dependencies
+# SA-08(04)_ODP
+sa_08_04_odp: 'all systems and components within the authorization boundary'
+
+# SA-8 (5) Efficiently Mediated Access
+# SA-08(05)_ODP
+sa_08_05_odp: 'all systems and components within the authorization boundary'
+
+# SA-8 (6) Minimized Sharing
+# SA-08(06)_ODP
+sa_08_06_odp: 'all systems and components within the authorization boundary'
+
+# SA-8 (7) Reduced Complexity
+# SA-08(07)_ODP
+sa_08_07_odp: 'all systems and components within the authorization boundary'
+
+# SA-8 (8) Secure Evolvability
+# SA-08(08)_ODP
+sa_08_08_odp: 'all systems and components within the authorization boundary'
+
+# SA-8 (9) Trusted Components
+# SA-08(09)_ODP
+sa_08_09_odp: 'all systems and components within the authorization boundary'
+
+# SA-8 (10) Hierarchical Trust
+# SA-08(10)_ODP
+sa_08_10_odp: 'all systems and components within the authorization boundary'
+
+# SA-8 (11) Inverse Modification Threshold
+# SA-08(11)_ODP
+sa_08_11_odp: 'all systems and components within the authorization boundary'
+
+# SA-8 (12) Hierarchical Protection
+# SA-08(12)_ODP
+sa_08_12_odp: 'all systems and components within the authorization boundary'
+
+# SA-8 (13) Minimized Security Elements
+# SA-08(13)_ODP
+sa_08_13_odp: 'all systems and components within the authorization boundary'
+
+# SA-8 (14) Least Privilege
+# SA-08(14)_ODP
+sa_08_14_odp: 'all systems and components within the authorization boundary'
+
+# SA-8 (15) Predicate Permission
+# SA-08(15)_ODP
+sa_08_15_odp: 'all systems and components within the authorization boundary'
+
+# SA-8 (16) Self-reliant Trustworthiness
+# SA-08(16)_ODP
+sa_08_16_odp: 'all systems and components within the authorization boundary'
+
+# SA-8 (17) Secure Distributed Composition
+# SA-08(17)_ODP
+sa_08_17_odp: 'all systems and components within the authorization boundary'
+
+# SA-8 (18) Trusted Communications Channels
+# SA-08(18)_ODP
+sa_08_18_odp: 'all systems and components within the authorization boundary'
+
+# SA-8 (19) Continuous Protection
+# SA-08(19)_ODP
+sa_08_19_odp: 'all systems and components within the authorization boundary'
+
+# SA-8 (20) Secure Metadata Management
+# SA-08(20)_ODP
+sa_08_20_odp: 'all systems and components within the authorization boundary'
+
+# SA-8 (21) Self-analysis
+# SA-08(21)_ODP
+sa_08_21_odp: 'all systems and components within the authorization boundary'
+
+# SA-8 (22) Accountability and Traceability
+# sa-8.22_prm_1
+sa_8_22_prm_1: 'all systems and components within the authorization boundary'
+# SA-08(22)_ODP[01]
+sa_08_22_odp_01: 'all systems and components within the authorization boundary'
+# SA-08(22)_ODP[02]
+sa_08_22_odp_02: 'all systems and components within the authorization boundary'
+
+# SA-8 (23) Secure Defaults
+# SA-08(23)_ODP
+sa_08_23_odp: 'all systems and components within the authorization boundary'
+
+# SA-8 (24) Secure Failure and Recovery
+# sa-8.24_prm_1
+sa_8_24_prm_1: 'all systems and components within the authorization boundary'
+# SA-08(24)_ODP[01]
+sa_08_24_odp_01: 'all systems and components within the authorization boundary'
+# SA-08(24)_ODP[02]
+sa_08_24_odp_02: 'all systems and components within the authorization boundary'
+
+# SA-8 (25) Economic Security
+# SA-08(25)_ODP
+sa_08_25_odp: 'all systems and components within the authorization boundary'
+
+# SA-8 (26) Performance Security
+# SA-08(26)_ODP
+sa_08_26_odp: 'all systems and components within the authorization boundary'
+
+# SA-8 (27) Human Factored Security
+# SA-08(27)_ODP
+sa_08_27_odp: 'all systems and components within the authorization boundary'
+
+# SA-8 (28) Acceptable Security
+# SA-08(28)_ODP
+sa_08_28_odp: 'all systems and components within the authorization boundary'
+
+# SA-8 (29) Repeatable and Documented Procedures
+# SA-08(29)_ODP
+sa_08_29_odp: 'all systems and components within the authorization boundary'
+
+# SA-8 (30) Procedural Rigor
+# SA-08(30)_ODP
+sa_08_30_odp: 'all systems and components within the authorization boundary'
+
+# SA-8 (31) Secure System Modification
+# SA-08(31)_ODP
+sa_08_31_odp: 'all systems and components within the authorization boundary'
+
+# SA-8 (32) Sufficient Documentation
+# SA-08(32)_ODP
+sa_08_32_odp: 'all systems and components within the authorization boundary'
+
+# SA-8 (33) Minimization
+# SA-08(33)_ODP
+sa_08_33_odp: 'the processes defined in the system security plan'
+
+# SA-9 External System Services
+# SA-09_ODP[01]
+sa_09_odp_01: 'the controls in the applicable FedRAMP baseline'
+# SA-09_ODP[02]
+sa_09_odp_02: 'the processes, methods, and techniques defined in the system security plan'
+
+# SA-9 (1) Risk Assessments and Organizational Approvals
+# SA-09(01)_ODP
+sa_09_01_odp: 'the system owner, the ISSO, and the ISSM'
+
+# SA-9 (2) Identification of Functions, Ports, Protocols, and Services
+# SA-09(02)_ODP
+sa_09_02_odp: 'all external systems where federal customer data is processed or stored'
+
+# SA-9 (3) Establish and Maintain Trust Relationship with Providers
+# sa-9.3_prm_1
+sa_9_3_prm_1: 'the security and privacy requirements, properties, factors, or conditions defining acceptable trust relationships defined in the system security plan'
+# SA-09(03)_ODP[01]
+sa_09_03_odp_01: 'the security requirements, properties, factors, or conditions defined in the system security plan'
+# SA-09(03)_ODP[02]
+sa_09_03_odp_02: 'the privacy requirements, properties, factors, or conditions defined in the system security plan'
+
+# SA-9 (4) Consistent Interests of Consumers and Providers
+# SA-09(04)_ODP[01]
+sa_09_04_odp_01: 'the external service providers defined in the system security plan'
+# SA-09(04)_ODP[02]
+sa_09_04_odp_02: 'notify the ISSO and record the event in the ticketing system'
+
+# SA-9 (5) Processing, Storage, and Service Location
+# SA-09(05)_ODP[01]
+sa_09_05_odp_01: 'information processing, information or data, AND system services'
+# SA-09(05)_ODP[02]
+sa_09_05_odp_02: 'U.S./U.S. Territories or geographic locations where there is U.S. jurisdiction'
+# SA-09(05)_ODP[03]
+sa_09_05_odp_03: 'all federal customer data'
+
+# SA-10 Developer Configuration Management
+# SA-10_ODP[01]
+sa_10_odp_01: 'design'
+# SA-10_ODP[02]
+sa_10_odp_02: 'the configuration items defined in the system security plan'
+# SA-10_ODP[03]
+sa_10_odp_03: 'the system owner and the ISSO'
+
+# SA-10 (7) Security and Privacy Representatives
+# sa-10.7_prm_1
+sa_10_7_prm_1: 'the security and privacy representatives defined in the system security plan'
+# sa-10.7_prm_2
+sa_10_7_prm_2: 'configuration change management and control process defined in the system security plan'
+# SA-10(07)_ODP[01]
+sa_10_07_odp_01: 'the security representatives defined in the system security plan'
+# SA-10(07)_ODP[02]
+sa_10_07_odp_02: 'the privacy representatives defined in the system security plan'
+# SA-10(07)_ODP[03]
+sa_10_07_odp_03: 'configuration change management and control processes defined in the system security plan'
+# SA-10(07)_ODP[04]
+sa_10_07_odp_04: 'configuration change management and control processes defined in the system security plan'
+
+# SA-11 Developer Testing and Evaluation
+# SA-11_ODP[01]
+sa_11_odp_01: 'unit'
+# SA-11_ODP[02]
+sa_11_odp_02: 'annually'
+# SA-11_ODP[03]
+sa_11_odp_03: 'the depth and coverage defined in the system security plan'
+
+# SA-11 (2) Threat Modeling and Vulnerability Analyses
+# sa-11.2_prm_3
+sa_11_2_prm_3: 'the breadth and depth of modeling and analyses defined in the system security plan'
+# sa-11.2_prm_4
+sa_11_2_prm_4: 'the acceptance criteria defined in the system security plan'
+# SA-11(02)_ODP[01]
+sa_11_02_odp_01: 'federal customer data and system security documentation'
+# SA-11(02)_ODP[02]
+sa_11_02_odp_02: 'the tools and methods defined in the system security plan'
+# SA-11(02)_ODP[03]
+sa_11_02_odp_03: 'the breadth and depth defined in the system security plan'
+# SA-11(02)_ODP[04]
+sa_11_02_odp_04: 'the breadth and depth defined in the system security plan'
+# SA-11(02)_ODP[05]
+sa_11_02_odp_05: 'the acceptance criteria defined in the system security plan'
+# SA-11(02)_ODP[06]
+sa_11_02_odp_06: 'the acceptance criteria defined in the system security plan'
+
+# SA-11 (3) Independent Verification of Assessment Plans and Evidence
+# SA-11(03)_ODP
+sa_11_03_odp: 'the independence criteria defined in the system security plan'
+
+# SA-11 (4) Manual Code Reviews
+# SA-11(04)_ODP[01]
+sa_11_04_odp_01: 'the specific code defined in the system security plan'
+# SA-11(04)_ODP[02]
+sa_11_04_odp_02: 'the processes, procedures, and/or techniques defined in the system security plan'
+
+# SA-11 (5) Penetration Testing
+# sa-11.5_prm_1
+sa_11_5_prm_1: 'the assessment procedures in NIST SP 800-53A'
+# SA-11(05)_ODP[01]
+sa_11_05_odp_01: 'the breadth defined in the system security plan'
+# SA-11(05)_ODP[02]
+sa_11_05_odp_02: 'the depth defined in the system security plan'
+# SA-11(05)_ODP[03]
+sa_11_05_odp_03: 'the constraints defined in the system security plan'
+
+# SA-11 (7) Verify Scope of Testing and Evaluation
+# sa-11.7_prm_1
+sa_11_7_prm_1: 'the assessment procedures in NIST SP 800-53A'
+# SA-11(07)_ODP[01]
+sa_11_07_odp_01: 'the breadth defined in the system security plan'
+# SA-11(07)_ODP[02]
+sa_11_07_odp_02: 'the depth defined in the system security plan'
+
+# SA-15 Development Process, Standards, and Tools
+# sa-15_prm_2
+sa_15_prm_2: 'the security and privacy requirements defined in the system security plan'
+# SA-15_ODP[01]
+sa_15_odp_01: 'annually'
+# SA-15_ODP[02]
+sa_15_odp_02: 'the security requirements defined in the system security plan'
+# SA-15_ODP[03]
+sa_15_odp_03: 'the privacy requirements defined in the system security plan'
+
+# SA-15 (1) Quality Metrics
+# SA-15(01)_ODP[01]
+sa_15_01_odp_01: 'annually'
+# SA-15(01)_ODP[02]
+sa_15_01_odp_02: 'annually'
+# SA-15(01)_ODP[03]
+sa_15_01_odp_03: 'the program review defined in the system security plan'
+
+# SA-15 (3) Criticality Analysis
+# sa-15.3_prm_2
+sa_15_3_prm_2: 'the breadth and depth of criticality analysis defined in the system security plan'
+# SA-15(03)_ODP[01]
+sa_15_03_odp_01: 'the decision points defined in the system security plan'
+# SA-15(03)_ODP[02]
+sa_15_03_odp_02: 'the breadth defined in the system security plan'
+# SA-15(03)_ODP[03]
+sa_15_03_odp_03: 'the depth defined in the system security plan'
+
+# SA-15 (5) Attack Surface Reduction
+# SA-15(05)_ODP
+sa_15_05_odp: 'the thresholds defined in the system security plan'
+
+# SA-15 (7) Automated Vulnerability Analysis
+# SA-15(07)_ODP[01]
+sa_15_07_odp_01: 'annually'
+# SA-15(07)_ODP[02]
+sa_15_07_odp_02: 'the tools defined in the system security plan'
+# SA-15(07)_ODP[03]
+sa_15_07_odp_03: 'the system owner, the ISSO, and the ISSM'
+
+# SA-15 (13) Logging Syntax
+# SA-15.13_ODP[01]
+sa_15_13_odp_01: 'the secure logging format defined in the system security plan'
+# SA-15.13_ODP[02]
+sa_15_13_odp_02: 'the events types to log defined in the system security plan'
+# SA-15.13_ODP[03]
+sa_15_13_odp_03: 'the level of detail to log defined in the system security plan'
+
+# SA-16 Developer-provided Training
+# SA-16_ODP
+sa_16_odp: 'the training defined in the system security plan'
+
+# SA-17 (1) Formal Policy Model
+# sa-17.1_prm_1
+sa_17_1_prm_1: 'elements of organizational security and privacy policy defined in the system security plan'
+# SA-17(01)_ODP[01]
+sa_17_01_odp_01: 'organizational security policy defined in the system security plan'
+# SA-17(01)_ODP[02]
+sa_17_01_odp_02: 'organizational privacy policy defined in the system security plan'
+
+# SA-17 (4) Informal Correspondence
+# SA-17(04)_ODP
+sa_17_04_odp: 'informal demonstration, convincing argument with formal methods as feasible'
+
+# SA-17 (8) Orchestration
+# SA-17(08)_ODP[01]
+sa_17_08_odp_01: 'the critical systems defined in the system security plan'
+# SA-17(08)_ODP[02]
+sa_17_08_odp_02: 'the capabilities defined in the system security plan'
+
+# SA-17 (9) Design Diversity
+# SA-17(09)_ODP
+sa_17_09_odp: 'the critical systems defined in the system security plan'
+
+# SA-20 Customized Development of Critical Components
+# SA-20_ODP
+sa_20_odp: 'the critical system defined in the system security plan'
+
+# SA-21 Developer Screening
+# SA-21_ODP[01]
+sa_21_odp_01: 'the system, systems component, or system service defined in the system security plan'
+# SA-21_ODP[02]
+sa_21_odp_02: 'the Information System Security Officer (ISSO)'
+# SA-21_ODP[03]
+sa_21_odp_03: 'the system owner and the ISSO'
+
+# SA-22 Unsupported System Components
+# SA-22_ODP[01]
+sa_22_odp_01: 'in-house support'
+# SA-22_ODP[02]
+sa_22_odp_02: 'the support from external providers defined in the system security plan'
+
+# SA-23 Specialization
+# SA-23_ODP[01]
+sa_23_odp_01: 'design modification'
+# SA-23_ODP[02]
+sa_23_odp_02: 'all systems and components within the authorization boundary'
+
+# SA-24 Design For Cyber Resiliency
+# SA-24_ODP[01]
+sa_24_odp_01: 'the cyber resiliency goals defined in the system security plan'
+# SA-24_ODP[02]
+sa_24_odp_02: 'the cyber resiliency objectives defined in the system security plan'
+# SA-24_ODP[03]
+sa_24_odp_03: 'the cyber resiliency techniques defined in the system security plan'
+# SA-24_ODP[04]
+sa_24_odp_04: 'the cyber resiliency implementation approaches defined in the system security plan'
+# SA-24_ODP[05]
+sa_24_odp_05: 'the cyber resiliency design principles defined in the system security plan'
+
+# SC-1 Policy and Procedures
+# sc-1_prm_1
+sc_1_prm_1: 'the system owner, the ISSO, and the ISSM'
+# SC-01_ODP[01]
+sc_01_odp_01: 'the system owner, the ISSO, and the ISSM'
+# SC-01_ODP[02]
+sc_01_odp_02: 'the system owner, the ISSO, and the ISSM'
+# SC-01_ODP[03]
+sc_01_odp_03: 'organization-level'
+# SC-01_ODP[04]
+sc_01_odp_04: 'Information System Security Officer (ISSO)'
+# SC-01_ODP[05]
+sc_01_odp_05: 'annually'
+# SC-01_ODP[06]
+sc_01_odp_06: 'a security incident, a significant change to the system, or an assessment finding'
+# SC-01_ODP[07]
+sc_01_odp_07: 'annually'
+# SC-01_ODP[08]
+sc_01_odp_08: 'a security incident, a significant change to the system, or an assessment finding'
+
+# SC-4 (2) Multilevel or Periods Processing
+# SC-04(02)_ODP
+sc_04_02_odp: 'the procedures defined in the system security plan'
+
+# SC-5 Denial-of-service Protection
+# SC-05_ODP[01]
+sc_05_odp_01: 'the types of denial-of-service events defined in the system security plan'
+# SC-05_ODP[02]
+sc_05_odp_02: 'protect against'
+# SC-05_ODP[03]
+sc_05_odp_03: 'the controls by type of denial-of-service event defined in the system security plan'
+
+# SC-5 (1) Restrict Ability to Attack Other Systems
+# SC-05(01)_ODP
+sc_05_01_odp: 'the denial-of-service attacks defined in the system security plan'
+
+# SC-5 (3) Detection and Monitoring
+# SC-05(03)_ODP[01]
+sc_05_03_odp_01: 'the monitoring tools defined in the system security plan'
+# SC-05(03)_ODP[02]
+sc_05_03_odp_02: 'the system resources defined in the system security plan'
+
+# SC-6 Resource Availability
+# SC-06_ODP[01]
+sc_06_odp_01: 'the resources defined in the system security plan'
+# SC-06_ODP[02]
+sc_06_odp_02: 'priority'
+# SC-06_ODP[03]
+sc_06_odp_03: 'the controls in the applicable FedRAMP baseline'
+
+# SC-7 Boundary Protection
+# SC-07_ODP
+sc_07_odp: 'physically'
+
+# SC-7 (4) External Telecommunications Services
+# SC-07(04)_ODP
+sc_07_04_odp: 'annually'
+
+# SC-7 (5) Deny by Default — Allow by Exception
+# SC-07(05)_ODP[01]
+sc_07_05_odp_01: 'at managed interfaces'
+# SC-07(05)_ODP[02]
+sc_07_05_odp_02: 'all systems within the authorization boundary'
+
+# SC-7 (7) Split Tunneling for Remote Devices
+# SC-07(07)_ODP
+sc_07_07_odp: 'the safeguards defined in the system security plan'
+
+# SC-7 (8) Route Traffic to Authenticated Proxy Servers
+# SC-07(08)_ODP[01]
+sc_07_08_odp_01: 'the internal communications traffic defined in the system security plan'
+# SC-07(08)_ODP[02]
+sc_07_08_odp_02: 'the external networks defined in the system security plan'
+
+# SC-7 (10) Prevent Exfiltration
+# SC-07(10)_ODP
+sc_07_10_odp: 'annually'
+
+# SC-7 (11) Restrict Incoming Communications Traffic
+# SC-07(11)_ODP[01]
+sc_07_11_odp_01: 'the authorized sources defined in the system security plan'
+# SC-07(11)_ODP[02]
+sc_07_11_odp_02: 'the authorized destinations defined in the system security plan'
+
+# SC-7 (12) Host-based Protection
+# SC-07(12)_ODP[01]
+sc_07_12_odp_01: 'the host-based boundary protection mechanisms defined in the system security plan'
+# SC-07(12)_ODP[02]
+sc_07_12_odp_02: 'all components within the authorization boundary'
+
+# SC-7 (13) Isolation of Security Tools, Mechanisms, and Support Components
+# SC-07(13)_ODP
+sc_07_13_odp: 'the information security tools, mechanisms, and support components defined in the system security plan'
+
+# SC-7 (14) Protect Against Unauthorized Physical Connections
+# SC-07(14)_ODP
+sc_07_14_odp: 'the managed interfaces defined in the system security plan'
+
+# SC-7 (19) Block Communication from Non-organizationally Configured Hosts
+# SC-07(19)_ODP
+sc_07_19_odp: 'the communication clients defined in the system security plan'
+
+# SC-7 (20) Dynamic Isolation and Segregation
+# SC-07(20)_ODP
+sc_07_20_odp: 'all components within the authorization boundary'
+
+# SC-7 (21) Isolation of System Components
+# SC-07(21)_ODP[01]
+sc_07_21_odp_01: 'all components within the authorization boundary'
+# SC-07(21)_ODP[02]
+sc_07_21_odp_02: 'the missions and/or business functions defined in the system security plan'
+
+# SC-7 (24) Personally Identifiable Information
+# SC-07(24)_ODP
+sc_07_24_odp: 'the processing rules defined in the system security plan'
+
+# SC-7 (25) Unclassified National Security System Connections
+# SC-07(25)_ODP[01]
+sc_07_25_odp_01: 'the unclassified national security system defined in the system security plan'
+# SC-07(25)_ODP[02]
+sc_07_25_odp_02: 'the boundary protection device defined in the system security plan'
+
+# SC-7 (26) Classified National Security System Connections
+# SC-07(26)_ODP
+sc_07_26_odp: 'boundary protection device defined in the system security plan'
+
+# SC-7 (27) Unclassified Non-national Security System Connections
+# SC-07(27)_ODP[01]
+sc_07_27_odp_01: 'the unclassified, non-national security system defined in the system security plan'
+# SC-07(27)_ODP[02]
+sc_07_27_odp_02: 'boundary protection device defined in the system security plan'
+
+# SC-7 (28) Connections to Public Networks
+# SC-07(28)_ODP
+sc_07_28_odp: 'system defined in the system security plan'
+
+# SC-7 (29) Separate Subnets to Isolate Functions
+# SC-07(29)_ODP[01]
+sc_07_29_odp_01: 'physically'
+# SC-07(29)_ODP[02]
+sc_07_29_odp_02: 'the critical system components and functions defined in the system security plan'
+
+# SC-8 Transmission Confidentiality and Integrity
+# SC-08_ODP
+sc_08_odp: 'confidentiality'
+
+# SC-8 (1) Cryptographic Protection
+# SC-08(01)_ODP
+sc_08_01_odp: 'prevent unauthorized disclosure of information'
+
+# SC-8 (2) Pre- and Post-transmission Handling
+# SC-08(02)_ODP
+sc_08_02_odp: 'confidentiality'
+
+# SC-8 (3) Cryptographic Protection for Message Externals
+# SC-08(03)_ODP
+sc_08_03_odp: 'the alternative physical controls defined in the system security plan'
+
+# SC-8 (4) Conceal or Randomize Communications
+# SC-08(04)_ODP
+sc_08_04_odp: 'the alternative physical controls defined in the system security plan'
+
+# SC-8 (5) Protected Distribution System
+# SC-08(05)_ODP[01]
+sc_08_05_odp_01: 'protected distribution system defined in the system security plan'
+# SC-08(05)_ODP[02]
+sc_08_05_odp_02: 'prevent unauthorized disclosure of information'
+
+# SC-10 Network Disconnect
+# SC-10_ODP
+sc_10_odp: '30 days'
+
+# SC-11 Trusted Path
+# SC-11_ODP[01]
+sc_11_odp_01: 'physically'
+# SC-11_ODP[02]
+sc_11_odp_02: 'security functions listed in the system security plan'
+
+# SC-11 (1) Irrefutable Communications Path
+# SC-11(01)_ODP
+sc_11_01_odp: 'security functions listed in the system security plan'
+
+# SC-12 Cryptographic Key Establishment and Management
+# SC-12_ODP
+sc_12_odp: 'the requirements defined in the system security plan'
+
+# SC-12 (2) Symmetric Keys
+# SC-12(02)_ODP
+sc_12_02_odp: 'NIST FIPS-validated'
+
+# SC-12 (3) Asymmetric Keys
+# SC-12(03)_ODP
+sc_12_03_odp: 'NSA-approved key management technology and processes'
+
+# SC-13 Cryptographic Protection
+# SC-13_ODP[01]
+sc_13_odp_01: 'cryptographic uses defined in the system security plan'
+# SC-13_ODP[02]
+sc_13_odp_02: 'the types of cryptography defined in the system security plan'
+
+# SC-15 Collaborative Computing Devices and Applications
+# SC-15_ODP
+sc_15_odp: 'the exceptions where remote activation is to be allowed defined in the system security plan'
+
+# SC-15 (1) Physical or Logical Disconnect
+# SC-15(01)_ODP
+sc_15_01_odp: 'physical'
+
+# SC-15 (3) Disabling and Removal in Secure Work Areas
+# SC-15(03)_ODP[01]
+sc_15_03_odp_01: 'all systems and components within the authorization boundary'
+# SC-15(03)_ODP[02]
+sc_15_03_odp_02: 'the secure work areas defined in the system security plan'
+
+# SC-15 (4) Explicitly Indicate Current Participants
+# SC-15(04)_ODP
+sc_15_04_odp: 'the online meetings and teleconferences defined in the system security plan'
+
+# SC-16 Transmission of Security and Privacy Attributes
+# sc-16_prm_1
+sc_16_prm_1: 'confidentiality level, PII category, and data owner'
+# SC-16_ODP[01]
+sc_16_odp_01: 'confidentiality level, data owner, and handling caveat'
+# SC-16_ODP[02]
+sc_16_odp_02: 'PII category, data subject, and retention period'
+
+# SC-16 (3) Cryptographic Binding
+# SC-16(03)_ODP
+sc_16_03_odp: 'the mechanisms or techniques defined in the system security plan'
+
+# SC-17 Public Key Infrastructure Certificates
+# SC-17_ODP
+sc_17_odp: 'certificate policy defined in the system security plan'
+
+# SC-18 (1) Identify Unacceptable Code and Take Corrective Actions
+# SC-18(01)_ODP[01]
+sc_18_01_odp_01: 'the unacceptable mobile code defined in the system security plan'
+# SC-18(01)_ODP[02]
+sc_18_01_odp_02: 'the corrective actions defined in the system security plan'
+
+# SC-18 (2) Acquisition, Development, and Use
+# SC-18(02)_ODP
+sc_18_02_odp: 'the mobile code requirements defined in the system security plan'
+
+# SC-18 (3) Prevent Downloading and Execution
+# SC-18(03)_ODP
+sc_18_03_odp: 'the unacceptable mobile code defined in the system security plan'
+
+# SC-18 (4) Prevent Automatic Execution
+# SC-18(04)_ODP[01]
+sc_18_04_odp_01: 'the software applications defined in the system security plan'
+# SC-18(04)_ODP[02]
+sc_18_04_odp_02: 'notify the ISSO and record the event in the ticketing system'
+
+# SC-23 (3) Unique System-generated Session Identifiers
+# SC-23(03)_ODP
+sc_23_03_odp: 'the randomness requirements defined in the system security plan'
+
+# SC-23 (5) Allowed Certificate Authorities
+# SC-23(05)_ODP
+sc_23_05_odp: 'the certificated authorities defined in the system security plan'
+
+# SC-24 Fail in Known State
+# SC-24_ODP[01]
+sc_24_odp_01: 'the types of system failures on system components defined in the system security plan'
+# SC-24_ODP[02]
+sc_24_odp_02: 'known system state defined in the system security plan'
+# SC-24_ODP[03]
+sc_24_odp_03: 'the system state information defined in the system security plan'
+
+# SC-25 Thin Nodes
+# SC-25_ODP
+sc_25_odp: 'all components within the authorization boundary'
+
+# SC-27 Platform-independent Applications
+# SC-27_ODP
+sc_27_odp: 'the platform-independent applications defined in the system security plan'
+
+# SC-28 Protection of Information at Rest
+# SC-28_ODP[01]
+sc_28_odp_01: 'confidentiality'
+# SC-28_ODP[02]
+sc_28_odp_02: 'the information at rest defined in the system security plan'
+
+# SC-28 (1) Cryptographic Protection
+# SC-28(01)_ODP[01]
+sc_28_01_odp_01: 'federal customer data and system security documentation'
+# SC-28(01)_ODP[02]
+sc_28_01_odp_02: 'the system components or media defined in the system security plan'
+
+# SC-28 (2) Offline Storage
+# SC-28(02)_ODP
+sc_28_02_odp: 'federal customer data and system security documentation'
+
+# SC-28 (3) Cryptographic Keys
+# SC-28(03)_ODP[01]
+sc_28_03_odp_01: 'the safeguards defined in the system security plan'
+# SC-28(03)_ODP[02]
+sc_28_03_odp_02: 'the safeguards defined in the system security plan'
+
+# SC-29 Heterogeneity
+# SC-29_ODP
+sc_29_odp: 'all components within the authorization boundary'
+
+# SC-29 (1) Virtualization Techniques
+# SC-29(01)_ODP
+sc_29_01_odp: 'annually'
+
+# SC-30 Concealment and Misdirection
+# SC-30_ODP[01]
+sc_30_odp_01: 'the concealment and misdirection techniques defined in the system security plan'
+# SC-30_ODP[02]
+sc_30_odp_02: 'all systems within the authorization boundary'
+# SC-30_ODP[03]
+sc_30_odp_03: '30 days'
+
+# SC-30 (2) Randomness
+# SC-30(02)_ODP
+sc_30_02_odp: 'automated scanning, log correlation, and configuration baselines'
+
+# SC-30 (3) Change Processing and Storage Locations
+# SC-30(03)_ODP[01]
+sc_30_03_odp_01: 'the processing and/or storage defined in the system security plan'
+# SC-30(03)_ODP[02]
+sc_30_03_odp_02: 'annually'
+# SC-30(03)_ODP[03]
+sc_30_03_odp_03: 'annually'
+
+# SC-30 (4) Misleading Information
+# SC-30(04)_ODP
+sc_30_04_odp: 'all components within the authorization boundary'
+
+# SC-30 (5) Concealment of System Components
+# SC-30(05)_ODP[01]
+sc_30_05_odp_01: 'automated scanning, log correlation, and configuration baselines'
+# SC-30(05)_ODP[02]
+sc_30_05_odp_02: 'all components within the authorization boundary'
+
+# SC-31 Covert Channel Analysis
+# SC-31_ODP
+sc_31_odp: 'storage'
+
+# SC-31 (2) Maximum Bandwidth
+# SC-31(02)_ODP[01]
+sc_31_02_odp_01: 'storage'
+# SC-31(02)_ODP[02]
+sc_31_02_odp_02: 'the values defined in the system security plan'
+
+# SC-31 (3) Measure Bandwidth in Operational Environments
+# SC-31(03)_ODP
+sc_31_03_odp: 'the subset of identified covert channels defined in the system security plan'
+
+# SC-32 System Partitioning
+# SC-32_ODP[01]
+sc_32_odp_01: 'all components within the authorization boundary'
+# SC-32_ODP[02]
+sc_32_odp_02: 'physical'
+# SC-32_ODP[03]
+sc_32_odp_03: 'the circumstances for the physical or logical separation of components defined in the system security plan'
+
+# SC-34 Non-modifiable Executable Programs
+# SC-34_ODP[01]
+sc_34_odp_01: 'all components within the authorization boundary'
+# SC-34_ODP[02]
+sc_34_odp_02: 'the applications defined in the system security plan'
+
+# SC-34 (1) No Writable Storage
+# SC-34(01)_ODP
+sc_34_01_odp: 'all components within the authorization boundary'
+
+# SC-36 Distributed Processing and Storage
+# sc-36_prm_1
+sc_36_prm_1: 'physical locations'
+# sc-36_prm_2
+sc_36_prm_2: 'the processing and storage components defined in the system security plan'
+# SC-36_ODP[01]
+sc_36_odp_01: 'the processing components defined in the system security plan'
+# SC-36_ODP[02]
+sc_36_odp_02: 'physical locations'
+# SC-36_ODP[03]
+sc_36_odp_03: 'the storage components defined in the system security plan'
+# SC-36_ODP[04]
+sc_36_odp_04: 'physical locations'
+
+# SC-36 (1) Polling Techniques
+# SC-36(01)_ODP[01]
+sc_36_01_odp_01: 'the distributed processing and storage components defined in the system security plan'
+# SC-36(01)_ODP[02]
+sc_36_01_odp_02: 'notify the ISSO and record the event in the ticketing system'
+
+# SC-36 (2) Synchronization
+# SC-36(02)_ODP
+sc_36_02_odp: 'the duplicate systems or system components defined in the system security plan'
+
+# SC-37 Out-of-band Channels
+# SC-37_ODP[01]
+sc_37_odp_01: 'the out-of-band channels defined in the system security plan'
+# SC-37_ODP[02]
+sc_37_odp_02: 'the information, system components, or devices defined in the system security plan'
+# SC-37_ODP[03]
+sc_37_odp_03: 'the individuals or systems defined in the system security plan'
+
+# SC-37 (1) Ensure Delivery and Transmission
+# SC-37(01)_ODP[01]
+sc_37_01_odp_01: 'the controls in the applicable FedRAMP baseline'
+# SC-37(01)_ODP[02]
+sc_37_01_odp_02: 'the individuals or systems defined in the system security plan'
+# SC-37(01)_ODP[03]
+sc_37_01_odp_03: 'the information, system components, or devices defined in the system security plan'
+
+# SC-38 Operations Security
+# SC-38_ODP
+sc_38_odp: 'the operations security controls defined in the system security plan'
+
+# SC-39 (2) Separate Execution Domain Per Thread
+# SC-39(02)_ODP
+sc_39_02_odp: 'the multi-threaded processing defined in the system security plan'
+
+# SC-40 Wireless Link Protection
+# sc-40_prm_1
+sc_40_prm_1: 'the wireless links defined in the system security plan'
+# sc-40_prm_2
+sc_40_prm_2: 'the types of signal parameter attacks or references to sources for such attacks defined in the system security plan'
+# SC-40_ODP[01]
+sc_40_odp_01: 'the wireless links defined in the system security plan'
+# SC-40_ODP[02]
+sc_40_odp_02: 'the types of signal parameter attacks or references to sources for such attacks defined in the system security plan'
+# SC-40_ODP[03]
+sc_40_odp_03: 'the wireless links defined in the system security plan'
+# SC-40_ODP[04]
+sc_40_odp_04: 'the types of signal parameter attacks or references to sources for such attacks defined in the system security plan'
+
+# SC-40 (1) Electromagnetic Interference
+# SC-40(01)_ODP
+sc_40_01_odp: 'the level of protection defined in the system security plan'
+
+# SC-40 (2) Reduce Detection Potential
+# SC-40(02)_ODP
+sc_40_02_odp: 'the level of reduction defined in the system security plan'
+
+# SC-40 (4) Signal Parameter Identification
+# SC-40(04)_ODP
+sc_40_04_odp: 'the wireless transmitters defined in the system security plan'
+
+# SC-41 Port and I/O Device Access
+# SC-41_ODP[01]
+sc_41_odp_01: 'the connection ports or input/output devices defined in the system security plan'
+# SC-41_ODP[02]
+sc_41_odp_02: 'physically'
+# SC-41_ODP[03]
+sc_41_odp_03: 'all systems and components within the authorization boundary'
+
+# SC-42 Sensor Capability and Data
+# SC-42_ODP[01]
+sc_42_odp_01: 'the use of devices possessing the environmental sensing capabilities defined in the system security plan in the facilities, areas, or systems defined in the system security plan'
+# SC-42_ODP[02]
+sc_42_odp_02: 'the environmental sensing capabilities defined in the system security plan'
+# SC-42_ODP[03]
+sc_42_odp_03: 'the facilities, areas, or systems defined in the system security plan'
+# SC-42_ODP[04]
+sc_42_odp_04: 'the exceptions where remote activation of sensors is allowed defined in the system security plan'
+# SC-42_ODP[05]
+sc_42_odp_05: 'the group of users defined in the system security plan'
+
+# SC-42 (1) Reporting to Authorized Individuals or Roles
+# SC-42(01)_ODP
+sc_42_01_odp: 'sensors defined in the system security plan'
+
+# SC-42 (2) Authorized Use
+# SC-42(02)_ODP
+sc_42_02_odp: 'encryption in transit and at rest, and least-privilege access control'
+
+# SC-42 (4) Notice of Collection
+# SC-42(04)_ODP[01]
+sc_42_04_odp_01: 'encryption in transit and at rest, and least-privilege access control'
+# SC-42(04)_ODP[02]
+sc_42_04_odp_02: 'the sensors defined in the system security plan'
+
+# SC-42 (5) Collection Minimization
+# SC-42(05)_ODP
+sc_42_05_odp: 'sensors defined in the system security plan'
+
+# SC-43 Usage Restrictions
+# SC-43_ODP
+sc_43_odp: 'the components defined in the system security plan'
+
+# SC-44 Detonation Chambers
+# SC-44_ODP
+sc_44_odp: 'primary data centre region and the failover region'
+
+# SC-45 (1) Synchronization with Authoritative Time Source
+# SC-45(01)_ODP[01]
+sc_45_01_odp_01: 'annually'
+# SC-45(01)_ODP[02]
+sc_45_01_odp_02: 'the authoritative time source defined in the system security plan'
+# SC-45(01)_ODP[03]
+sc_45_01_odp_03: '30 days'
+
+# SC-46 Cross Domain Policy Enforcement
+# SC-46_ODP
+sc_46_odp: 'physically'
+
+# SC-47 Alternate Communications Paths
+# SC-47_ODP
+sc_47_odp: 'the alternate communication paths defined in the system security plan'
+
+# SC-48 Sensor Relocation
+# SC-48_ODP[01]
+sc_48_odp_01: 'the sensors and monitoring capabilities defined in the system security plan'
+# SC-48_ODP[02]
+sc_48_odp_02: 'the primary data centre region and the failover region'
+# SC-48_ODP[03]
+sc_48_odp_03: 'the conditions or circumstances defined in the system security plan'
+
+# SC-48 (1) Dynamic Relocation of Sensors or Monitoring Capabilities
+# SC-48(01)_ODP[01]
+sc_48_01_odp_01: 'the sensors and monitoring capabilities defined in the system security plan'
+# SC-48(01)_ODP[02]
+sc_48_01_odp_02: 'the primary data centre region and the failover region'
+# SC-48(01)_ODP[03]
+sc_48_01_odp_03: 'the conditions or circumstances defined in the system security plan'
+
+# SC-49 Hardware-enforced Separation and Policy Enforcement
+# SC-49_ODP
+sc_49_odp: 'the security domains defined in the system security plan'
+
+# SC-50 Software-enforced Separation and Policy Enforcement
+# SC-50_ODP
+sc_50_odp: 'the security domains defined in the system security plan'
+
+# SC-51 Hardware-based Protection
+# SC-51_ODP[01]
+sc_51_odp_01: 'the system firmware components defined in the system security plan'
+# SC-51_ODP[02]
+sc_51_odp_02: 'the authorized individuals defined in the system security plan'
+
+# SI-1 Policy and Procedures
+# si-1_prm_1
+si_1_prm_1: 'the system owner, the ISSO, and the ISSM'
+# SI-01_ODP[01]
+si_01_odp_01: 'the system owner, the ISSO, and the ISSM'
+# SI-01_ODP[02]
+si_01_odp_02: 'the system owner, the ISSO, and the ISSM'
+# SI-01_ODP[03]
+si_01_odp_03: 'organization-level'
+# SI-01_ODP[04]
+si_01_odp_04: 'Information System Security Officer (ISSO)'
+# SI-01_ODP[05]
+si_01_odp_05: 'annually'
+# SI-01_ODP[06]
+si_01_odp_06: 'a security incident, a significant change to the system, or an assessment finding'
+# SI-01_ODP[07]
+si_01_odp_07: 'annually'
+# SI-01_ODP[08]
+si_01_odp_08: 'a security incident, a significant change to the system, or an assessment finding'
+
+# SI-2 Flaw Remediation
+# SI-02_ODP
+si_02_odp: '30 days'
+
+# SI-2 (2) Automated Flaw Remediation Status
+# SI-02(02)_ODP[01]
+si_02_02_odp_01: 'the enterprise SIEM, configuration management, and ticketing systems'
+# SI-02(02)_ODP[02]
+si_02_02_odp_02: 'annually'
+
+# SI-2 (3) Time to Remediate Flaws and Benchmarks for Corrective Actions
+# SI-02(03)_ODP
+si_02_03_odp: 'the benchmarks defined in the system security plan'
+
+# SI-2 (4) Automated Patch Management Tools
+# SI-02(04)_ODP
+si_02_04_odp: 'the components defined in the system security plan'
+
+# SI-2 (5) Automatic Software and Firmware Updates
+# SI-02(05)_ODP[01]
+si_02_05_odp_01: 'the security-relevant software and firmware updates defined in the system security plan'
+# SI-02(05)_ODP[02]
+si_02_05_odp_02: 'all components within the authorization boundary'
+
+# SI-2 (6) Removal of Previous Versions of Software and Firmware
+# SI-02(06)_ODP
+si_02_06_odp: 'the software and firmware components defined in the system security plan'
+
+# SI-3 Malicious Code Protection
+# SI-03_ODP[01]
+si_03_odp_01: 'signature-based'
+# SI-03_ODP[02]
+si_03_odp_02: 'annually'
+# SI-03_ODP[03]
+si_03_odp_03: 'endpoint'
+# SI-03_ODP[04]
+si_03_odp_04: 'block malicious code'
+# SI-03_ODP[05]
+si_03_odp_05: 'the action defined in the system security plan'
+# SI-03_ODP[06]
+si_03_odp_06: 'the system owner, the ISSO, and the ISSM'
+
+# SI-3 (6) Testing and Verification
+# SI-03(06)_ODP
+si_03_06_odp: 'annually'
+
+# SI-3 (8) Detect Unauthorized Commands
+# SI-03(08)_ODP[01]
+si_03_08_odp_01: 'the unauthorized operating system commands defined in the system security plan'
+# SI-03(08)_ODP[02]
+si_03_08_odp_02: 'the system hardware components defined in the system security plan'
+# SI-03(08)_ODP[03]
+si_03_08_odp_03: 'issue a warning'
+
+# SI-3 (10) Malicious Code Analysis
+# SI-03(10)_ODP
+si_03_10_odp: 'the tools and techniques defined in the system security plan'
+
+# SI-4 System Monitoring
+# SI-04_ODP[01]
+si_04_odp_01: 'the monitoring objectives defined in the system security plan'
+# SI-04_ODP[02]
+si_04_odp_02: 'the techniques and methods defined in the system security plan'
+# SI-04_ODP[03]
+si_04_odp_03: 'the system monitoring information defined in the system security plan'
+# SI-04_ODP[04]
+si_04_odp_04: 'the system owner, the ISSO, and the ISSM'
+# SI-04_ODP[05]
+si_04_odp_05: 'as needed'
+# SI-04_ODP[06]
+si_04_odp_06: 'annually'
+
+# SI-4 (4) Inbound and Outbound Communications Traffic
+# si-4.4_prm_1
+si_4_4_prm_1: 'annually'
+# si-4.4_prm_2
+si_4_4_prm_2: 'the unusual or unauthorized activities or conditions defined in the system security plan'
+# SI-04(04)_ODP[01]
+si_04_04_odp_01: 'annually'
+# SI-04(04)_ODP[02]
+si_04_04_odp_02: 'the unusual or unauthorized activities or conditions defined in the system security plan'
+# SI-04(04)_ODP[03]
+si_04_04_odp_03: 'annually'
+# SI-04(04)_ODP[04]
+si_04_04_odp_04: 'the unusual or unauthorized activities or conditions defined in the system security plan'
+
+# SI-4 (5) System-generated Alerts
+# SI-04(05)_ODP[01]
+si_04_05_odp_01: 'the system owner, the ISSO, and the ISSM'
+# SI-04(05)_ODP[02]
+si_04_05_odp_02: 'the compromise indicators defined in the system security plan'
+
+# SI-4 (7) Automated Response to Suspicious Events
+# SI-04(07)_ODP[01]
+si_04_07_odp_01: 'the incident response team and the ISSO'
+# SI-04(07)_ODP[02]
+si_04_07_odp_02: 'the least-disruptive actions defined in the system security plan'
+
+# SI-4 (9) Testing of Monitoring Tools and Mechanisms
+# SI-04(09)_ODP
+si_04_09_odp: 'annually'
+
+# SI-4 (10) Visibility of Encrypted Communications
+# SI-04(10)_ODP[01]
+si_04_10_odp_01: 'the encrypted communications traffic defined in the system security plan'
+# SI-04(10)_ODP[02]
+si_04_10_odp_02: 'the system monitoring tools and mechanisms defined in the system security plan'
+
+# SI-4 (11) Analyze Communications Traffic Anomalies
+# SI-04(11)_ODP
+si_04_11_odp: 'the interior points defined in the system security plan'
+
+# SI-4 (12) Automated Organization-generated Alerts
+# SI-04(12)_ODP[01]
+si_04_12_odp_01: 'the system owner, the ISSO, and the ISSM'
+# SI-04(12)_ODP[02]
+si_04_12_odp_02: 'the enterprise SIEM, configuration management, and ticketing systems'
+# SI-04(12)_ODP[03]
+si_04_12_odp_03: 'the activities that trigger alerts defined in the system security plan'
+
+# SI-4 (18) Analyze Traffic and Covert Exfiltration
+# SI-04(18)_ODP
+si_04_18_odp: 'the interior points defined in the system security plan'
+
+# SI-4 (19) Risk for Individuals
+# SI-04(19)_ODP[01]
+si_04_19_odp_01: 'the additional monitoring defined in the system security plan'
+# SI-04(19)_ODP[02]
+si_04_19_odp_02: 'the sources defined in the system security plan'
+
+# SI-4 (20) Privileged Users
+# SI-04(20)_ODP
+si_04_20_odp: 'the additional monitoring defined in the system security plan'
+
+# SI-4 (21) Probationary Periods
+# SI-04(21)_ODP[01]
+si_04_21_odp_01: 'the additional monitoring defined in the system security plan'
+# SI-04(21)_ODP[02]
+si_04_21_odp_02: 'the probationary period defined in the system security plan'
+
+# SI-4 (22) Unauthorized Network Services
+# SI-04(22)_ODP[01]
+si_04_22_odp_01: 'the authorization or approval processes defined in the system security plan'
+# SI-04(22)_ODP[02]
+si_04_22_odp_02: 'audit'
+# SI-04(22)_ODP[03]
+si_04_22_odp_03: 'the system owner, the ISSO, and the ISSM'
+
+# SI-4 (23) Host-based Devices
+# SI-04(23)_ODP[01]
+si_04_23_odp_01: 'the host-based monitoring mechanisms defined in the system security plan'
+# SI-04(23)_ODP[02]
+si_04_23_odp_02: 'all components within the authorization boundary'
+
+# SI-4 (24) Indicators of Compromise
+# SI-04(24)_ODP[01]
+si_04_24_odp_01: 'the sources defined in the system security plan'
+# SI-04(24)_ODP[02]
+si_04_24_odp_02: 'the system owner, the ISSO, and the ISSM'
+
+# SI-5 Security Alerts, Advisories, and Directives
+# SI-05_ODP[01]
+si_05_odp_01: 'partner organizations with a signed interconnection agreement'
+# SI-05_ODP[02]
+si_05_odp_02: 'the system owner, the ISSO, and the ISSM'
+# SI-05_ODP[03]
+si_05_odp_03: 'the system owner, the ISSO, and the ISSM'
+# SI-05_ODP[04]
+si_05_odp_04: 'the elements listed in the system security plan'
+# SI-05_ODP[05]
+si_05_odp_05: 'partner organizations with a signed interconnection agreement'
+
+# SI-5 (1) Automated Alerts and Advisories
+# SI-05(01)_ODP
+si_05_01_odp: 'the enterprise SIEM, configuration management, and ticketing systems'
+
+# SI-6 Security and Privacy Function Verification
+# si-6_prm_1
+si_6_prm_1: 'the security and privacy functions defined in the system security plan'
+# SI-06_ODP[01]
+si_06_odp_01: 'the security functions listed in the system security plan'
+# SI-06_ODP[02]
+si_06_odp_02: 'the privacy functions defined in the system security plan'
+# SI-06_ODP[03]
+si_06_odp_03: 'the system transitional states defined in the system security plan'
+# SI-06_ODP[04]
+si_06_odp_04: 'the system transitional states defined in the system security plan'
+# SI-06_ODP[05]
+si_06_odp_05: 'annually'
+# SI-06_ODP[06]
+si_06_odp_06: 'the system owner, the ISSO, and the ISSM'
+# SI-06_ODP[07]
+si_06_odp_07: 'shut the system down'
+# SI-06_ODP[08]
+si_06_odp_08: 'the alternative action defined in the system security plan'
+
+# SI-6 (3) Report Verification Results
+# SI-06(03)_ODP
+si_06_03_odp: 'the system owner, the ISSO, and the ISSM'
+
+# SI-7 Software, Firmware, and Information Integrity
+# si-7_prm_1
+si_7_prm_1: 'the software, firmware, and information defined in the system security plan'
+# si-7_prm_2
+si_7_prm_2: 'notify the ISSO and record the event in the ticketing system'
+# SI-07_ODP[01]
+si_07_odp_01: 'software on the organization-approved software list'
+# SI-07_ODP[02]
+si_07_odp_02: 'the firmware defined in the system security plan'
+# SI-07_ODP[03]
+si_07_odp_03: 'federal customer data and system security documentation'
+# SI-07_ODP[04]
+si_07_odp_04: 'notify the ISSO and record the event in the ticketing system'
+# SI-07_ODP[05]
+si_07_odp_05: 'notify the ISSO and record the event in the ticketing system'
+# SI-07_ODP[06]
+si_07_odp_06: 'notify the ISSO and record the event in the ticketing system'
+
+# SI-7 (1) Integrity Checks
+# si-7.1_prm_1
+si_7_1_prm_1: 'the software, firmware, and information defined in the system security plan'
+# si-7.1_prm_2
+si_7_1_prm_2: 'at startup'
+# si-7.1_prm_3
+si_7_1_prm_3: 'the transitional states or security-relevant events defined in the system security plan'
+# si-7.1_prm_4
+si_7_1_prm_4: 'annually'
+# SI-07(01)_ODP[01]
+si_07_01_odp_01: 'software on the organization-approved software list'
+# SI-07(01)_ODP[02]
+si_07_01_odp_02: 'at startup'
+# SI-07(01)_ODP[03]
+si_07_01_odp_03: 'the transitional states or security-relevant events defined in the system security plan'
+# SI-07(01)_ODP[04]
+si_07_01_odp_04: 'annually'
+# SI-07(01)_ODP[05]
+si_07_01_odp_05: 'the firmware defined in the system security plan'
+# SI-07(01)_ODP[06]
+si_07_01_odp_06: 'at startup'
+# SI-07(01)_ODP[07]
+si_07_01_odp_07: 'the transitional states or security-relevant events defined in the system security plan'
+# SI-07(01)_ODP[08]
+si_07_01_odp_08: 'annually'
+# SI-07(01)_ODP[09]
+si_07_01_odp_09: 'federal customer data and system security documentation'
+# SI-07(01)_ODP[10]
+si_07_01_odp_10: 'at startup'
+# SI-07(01)_ODP[11]
+si_07_01_odp_11: 'the transitional states or security-relevant events defined in the system security plan'
+# SI-07(01)_ODP[12]
+si_07_01_odp_12: 'annually'
+
+# SI-7 (2) Automated Notifications of Integrity Violations
+# SI-07(02)_ODP
+si_07_02_odp: 'the system owner, the ISSO, and the ISSM'
+
+# SI-7 (5) Automated Response to Integrity Violations
+# SI-07(05)_ODP[01]
+si_07_05_odp_01: 'shut down the system'
+# SI-07(05)_ODP[02]
+si_07_05_odp_02: 'the controls in the applicable FedRAMP baseline'
+
+# SI-7 (7) Integration of Detection and Response
+# SI-07(07)_ODP
+si_07_07_odp: 'the changes defined in the system security plan'
+
+# SI-7 (8) Auditing Capability for Significant Events
+# SI-07(08)_ODP[01]
+si_07_08_odp_01: 'generate an audit record'
+# SI-07(08)_ODP[02]
+si_07_08_odp_02: 'the system owner, the ISSO, and the ISSM'
+# SI-07(08)_ODP[03]
+si_07_08_odp_03: 'the other actions defined in the system security plan'
+
+# SI-7 (9) Verify Boot Process
+# SI-07(09)_ODP
+si_07_09_odp: 'all components within the authorization boundary'
+
+# SI-7 (10) Protection of Boot Firmware
+# SI-07(10)_ODP[01]
+si_07_10_odp_01: 'the enterprise SIEM and configuration management systems'
+# SI-07(10)_ODP[02]
+si_07_10_odp_02: 'all components within the authorization boundary'
+
+# SI-7 (12) Integrity Verification
+# SI-07(12)_ODP
+si_07_12_odp: 'the user-installed software defined in the system security plan'
+
+# SI-7 (15) Code Authentication
+# SI-07(15)_ODP
+si_07_15_odp: 'the software or firmware components defined in the system security plan'
+
+# SI-7 (16) Time Limit on Process Execution Without Supervision
+# SI-07(16)_ODP
+si_07_16_odp: '30 days'
+
+# SI-7 (17) Runtime Application Self-protection
+# SI-07(17)_ODP
+si_07_17_odp: 'the controls in the applicable FedRAMP baseline'
+
+# SI-8 (2) Automatic Updates
+# SI-08(02)_ODP
+si_08_02_odp: 'annually'
+
+# SI-10 Information Input Validation
+# SI-10_ODP
+si_10_odp: 'information inputs defined in the system security plan'
+
+# SI-10 (1) Manual Override Capability
+# SI-10(01)_ODP
+si_10_01_odp: 'the authorized individuals defined in the system security plan'
+
+# SI-10 (2) Review and Resolve Errors
+# si-10.2_prm_1
+si_10_2_prm_1: '30 days'
+# SI-10(02)_ODP[01]
+si_10_02_odp_01: '30 days'
+# SI-10(02)_ODP[02]
+si_10_02_odp_02: '30 days'
+
+# SI-10 (5) Restrict Inputs to Trusted Sources and Approved Formats
+# SI-10(05)_ODP[01]
+si_10_05_odp_01: 'the trusted sources defined in the system security plan'
+# SI-10(05)_ODP[02]
+si_10_05_odp_02: 'the formats defined in the system security plan'
+
+# SI-11 Error Handling
+# SI-11_ODP
+si_11_odp: 'the system owner, the ISSO, and the ISSM'
+
+# SI-12 (1) Limit Personally Identifiable Information Elements
+# SI-12(01)_ODP
+si_12_01_odp: 'the elements of personally identifiable information defined in the system security plan'
+
+# SI-12 (2) Minimize Personally Identifiable Information in Testing, Training, and Research
+# si-12.2_prm_1
+si_12_2_prm_1: 'automated scanning, log correlation, and configuration baselines'
+# SI-12(02)_ODP[01]
+si_12_02_odp_01: 'automated scanning, log correlation, and configuration baselines'
+# SI-12(02)_ODP[02]
+si_12_02_odp_02: 'automated scanning, log correlation, and configuration baselines'
+# SI-12(02)_ODP[03]
+si_12_02_odp_03: 'automated scanning, log correlation, and configuration baselines'
+
+# SI-12 (3) Information Disposal
+# si-12.3_prm_1
+si_12_3_prm_1: 'automated scanning, log correlation, and configuration baselines'
+# SI-12(03)_ODP[01]
+si_12_03_odp_01: 'automated scanning, log correlation, and configuration baselines'
+# SI-12(03)_ODP[02]
+si_12_03_odp_02: 'automated scanning, log correlation, and configuration baselines'
+# SI-12(03)_ODP[03]
+si_12_03_odp_03: 'automated scanning, log correlation, and configuration baselines'
+
+# SI-13 Predictable Failure Prevention
+# SI-13_ODP[01]
+si_13_odp_01: 'all components within the authorization boundary'
+# SI-13_ODP[02]
+si_13_odp_02: 'the mean time to failure (MTTF) substitution criteria defined in the system security plan'
+
+# SI-13 (1) Transferring Component Responsibilities
+# SI-13(01)_ODP
+si_13_01_odp: 'the fraction or percentage defined in the system security plan'
+
+# SI-13 (3) Manual Transfer Between Components
+# SI-13(03)_ODP
+si_13_03_odp: 'the percentage defined in the system security plan'
+
+# SI-13 (4) Standby Component Installation and Notification
+# SI-13(04)_ODP[01]
+si_13_04_odp_01: '30 days'
+# SI-13(04)_ODP[02]
+si_13_04_odp_02: 'activate the alarm defined in the system security plan'
+# SI-13(04)_ODP[03]
+si_13_04_odp_03: 'the alarm defined in the system security plan'
+# SI-13(04)_ODP[04]
+si_13_04_odp_04: 'the action defined in the system security plan'
+
+# SI-13 (5) Failover Capability
+# SI-13(05)_ODP[01]
+si_13_05_odp_01: 'real-time'
+# SI-13(05)_ODP[02]
+si_13_05_odp_02: 'the failover capability defined in the system security plan'
+
+# SI-14 Non-persistence
+# SI-14_ODP[01]
+si_14_odp_01: 'the system components and services defined in the system security plan'
+# SI-14_ODP[02]
+si_14_odp_02: 'upon end of session of use'
+# SI-14_ODP[03]
+si_14_odp_03: 'annually'
+
+# SI-14 (1) Refresh from Trusted Sources
+# SI-14(01)_ODP
+si_14_01_odp: 'the trusted sources defined in the system security plan'
+
+# SI-14 (2) Non-persistent Information
+# SI-14(02)_ODP[01]
+si_14_02_odp_01: 'refresh federal customer data and system security documentation annually'
+# SI-14(02)_ODP[02]
+si_14_02_odp_02: 'federal customer data and system security documentation'
+# SI-14(02)_ODP[03]
+si_14_02_odp_03: 'annually'
+# SI-14(02)_ODP[04]
+si_14_02_odp_04: 'federal customer data and system security documentation'
+
+# SI-14 (3) Non-persistent Connectivity
+# SI-14(03)_ODP
+si_14_03_odp: 'completion of a request'
+
+# SI-15 Information Output Filtering
+# SI-15_ODP
+si_15_odp: 'the software programs and/or applications defined in the system security plan'
+
+# SI-16 Memory Protection
+# SI-16_ODP
+si_16_odp: 'the controls in the applicable FedRAMP baseline'
+
+# SI-17 Fail-safe Procedures
+# si-17_prm_1
+si_17_prm_1: 'the list of failure conditions and associated fail-safe procedures defined in the system security plan'
+# SI-17_ODP[01]
+si_17_odp_01: 'the fail-safe procedures defined in the system security plan'
+# SI-17_ODP[02]
+si_17_odp_02: 'the list of failure conditions defined in the system security plan'
+
+# SI-18 Personally Identifiable Information Quality Operations
+# si-18_prm_1
+si_18_prm_1: 'annually'
+# SI-18_ODP[01]
+si_18_odp_01: 'annually'
+# SI-18_ODP[02]
+si_18_odp_02: 'annually'
+# SI-18_ODP[03]
+si_18_odp_03: 'annually'
+# SI-18_ODP[04]
+si_18_odp_04: 'annually'
+
+# SI-18 (1) Automation Support
+# SI-18(01)_ODP
+si_18_01_odp: 'the enterprise SIEM, configuration management, and ticketing systems'
+
+# SI-18 (5) Notice of Correction or Deletion
+# SI-18(05)_ODP
+si_18_05_odp: 'the recipients defined in the system security plan'
+
+# SI-19 De-identification
+# SI-19_ODP[01]
+si_19_odp_01: 'the elements listed in the system security plan'
+# SI-19_ODP[02]
+si_19_odp_02: 'annually'
+
+# SI-20 Tainting
+# SI-20_ODP
+si_20_odp: 'all systems and components within the authorization boundary'
+
+# SI-21 Information Refresh
+# SI-21_ODP[01]
+si_21_odp_01: 'federal customer data and system security documentation'
+# SI-21_ODP[02]
+si_21_odp_02: 'annually'
+
+# SI-22 Information Diversity
+# SI-22_ODP[01]
+si_22_odp_01: 'the alternative information sources defined in the system security plan'
+# SI-22_ODP[02]
+si_22_odp_02: 'the essential functions and services defined in the system security plan'
+# SI-22_ODP[03]
+si_22_odp_03: 'all systems and components within the authorization boundary'
+
+# SI-23 Information Fragmentation
+# SI-23_ODP[01]
+si_23_odp_01: 'a confirmed security incident or a legal hold'
+# SI-23_ODP[02]
+si_23_odp_02: 'federal customer data and system security documentation'
+# SI-23_ODP[03]
+si_23_odp_03: 'all systems and components within the authorization boundary'
+
+# SR-1 Policy and Procedures
+# sr-1_prm_1
+sr_1_prm_1: 'the system owner, the ISSO, and the ISSM'
+# SR-01_ODP[01]
+sr_01_odp_01: 'the system owner, the ISSO, and the ISSM'
+# SR-01_ODP[02]
+sr_01_odp_02: 'the system owner, the ISSO, and the ISSM'
+# SR-01_ODP[03]
+sr_01_odp_03: 'organization-level'
+# SR-01_ODP[04]
+sr_01_odp_04: 'Information System Security Officer (ISSO)'
+# SR-01_ODP[05]
+sr_01_odp_05: 'annually'
+# SR-01_ODP[06]
+sr_01_odp_06: 'a security incident, a significant change to the system, or an assessment finding'
+# SR-01_ODP[07]
+sr_01_odp_07: 'annually'
+# SR-01_ODP[08]
+sr_01_odp_08: 'a security incident, a significant change to the system, or an assessment finding'
+
+# SR-2 Supply Chain Risk Management Plan
+# SR-02_ODP[01]
+sr_02_odp_01: 'the systems, system components, or system services defined in the system security plan'
+# SR-02_ODP[02]
+sr_02_odp_02: 'annually'
+
+# SR-2 (1) Establish SCRM Team
+# SR-02(01)_ODP[01]
+sr_02_01_odp_01: 'the system owner and the ISSO'
+# SR-02(01)_ODP[02]
+sr_02_01_odp_02: 'the supply chain risk management activities defined in the system security plan'
+
+# SR-3 Supply Chain Controls and Processes
+# SR-03_ODP[01]
+sr_03_odp_01: 'the system or system component defined in the system security plan'
+# SR-03_ODP[02]
+sr_03_odp_02: 'the system owner and the ISSO'
+# SR-03_ODP[03]
+sr_03_odp_03: 'the supply chain controls defined in the system security plan'
+# SR-03_ODP[04]
+sr_03_odp_04: 'security and privacy plans'
+# SR-03_ODP[05]
+sr_03_odp_05: 'the document defined in the system security plan'
+
+# SR-3 (1) Diverse Supply Base
+# sr-3.1_prm_1
+sr_3_1_prm_1: 'the system components and services defined in the system security plan'
+# SR-03(01)_ODP[01]
+sr_03_01_odp_01: 'all components within the authorization boundary'
+# SR-03(01)_ODP[02]
+sr_03_01_odp_02: 'the services defined in the system security plan'
+
+# SR-3 (2) Limitation of Harm
+# SR-03(02)_ODP
+sr_03_02_odp: 'the controls in the applicable FedRAMP baseline'
+
+# SR-4 Provenance
+# SR-04_ODP
+sr_04_odp: 'the systems, system components, and associated data defined in the system security plan'
+
+# SR-4 (1) Identity
+# SR-04(01)_ODP
+sr_04_01_odp: 'the system owner and the ISSO'
+
+# SR-4 (2) Track and Trace
+# SR-04(02)_ODP
+sr_04_02_odp: 'the systems and critical system components defined in the system security plan'
+
+# SR-4 (3) Validate as Genuine and Not Altered
+# sr-4.3_prm_1
+sr_4_3_prm_1: 'the controls in the applicable FedRAMP baseline'
+# SR-04(03)_ODP[01]
+sr_04_03_odp_01: 'the controls in the applicable FedRAMP baseline'
+# SR-04(03)_ODP[02]
+sr_04_03_odp_02: 'the controls in the applicable FedRAMP baseline'
+
+# SR-4 (4) Supply Chain Integrity — Pedigree
+# SR-04(04)_ODP[01]
+sr_04_04_odp_01: 'the controls in the applicable FedRAMP baseline'
+# SR-04(04)_ODP[02]
+sr_04_04_odp_02: 'the analysis method defined in the system security plan'
+
+# SR-5 Acquisition Strategies, Tools, and Methods
+# SR-05_ODP
+sr_05_odp: 'the strategies, tools, and methods defined in the system security plan'
+
+# SR-5 (1) Adequate Supply
+# SR-05(01)_ODP[01]
+sr_05_01_odp_01: 'the controls in the applicable FedRAMP baseline'
+# SR-05(01)_ODP[02]
+sr_05_01_odp_02: 'the critical system components defined in the system security plan'
+
+# SR-6 Supplier Assessments and Reviews
+# SR-06_ODP
+sr_06_odp: 'annually'
+
+# SR-6 (1) Testing and Analysis
+# SR-06(01)_ODP[01]
+sr_06_01_odp_01: 'organizational analysis'
+# SR-06(01)_ODP[02]
+sr_06_01_odp_02: 'the supply chain elements, processes, and actors defined in the system security plan'
+
+# SR-7 Supply Chain Operations Security
+# SR-07_ODP
+sr_07_odp: 'the OPSEC controls defined in the system security plan'
+
+# SR-8 Notification Agreements
+# SR-08_ODP[01]
+sr_08_odp_01: 'notification of supply chain compromises'
+# SR-08_ODP[02]
+sr_08_odp_02: 'the results of assessments or audits defined in the system security plan'
+
+# SR-10 Inspection of Systems or Components
+# SR-10_ODP[01]
+sr_10_odp_01: 'all systems and components within the authorization boundary'
+# SR-10_ODP[02]
+sr_10_odp_02: 'at random'
+# SR-10_ODP[03]
+sr_10_odp_03: 'annually'
+# SR-10_ODP[04]
+sr_10_odp_04: 'the indications of need for inspection defined in the system security plan'
+
+# SR-11 Component Authenticity
+# SR-11_ODP[01]
+sr_11_odp_01: 'source of counterfeit component'
+# SR-11_ODP[02]
+sr_11_odp_02: 'the external reporting organizations defined in the system security plan'
+# SR-11_ODP[03]
+sr_11_odp_03: 'the system owner, the ISSO, and the ISSM'
+
+# SR-11 (1) Anti-counterfeit Training
+# SR-11(01)_ODP
+sr_11_01_odp: 'the system owner, the ISSO, and the ISSM'
+
+# SR-11 (2) Configuration Control for Component Service and Repair
+# SR-11(02)_ODP
+sr_11_02_odp: 'all components within the authorization boundary'
+
+# SR-11 (3) Anti-counterfeit Scanning
+# SR-11(03)_ODP
+sr_11_03_odp: 'annually'
+
+# SR-12 Component Disposal
+# SR-12_ODP[01]
+sr_12_odp_01: 'the data, documentation, tools, or system components defined in the system security plan'
+# SR-12_ODP[02]
+sr_12_odp_02: 'the techniques and methods defined in the system security plan'

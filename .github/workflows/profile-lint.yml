@@ -1,0 +1,137 @@
+name: Profile lint
+
+# Adapted from the profile-lint that every risk-sentinel profile repository
+# carries, and deliberately NOT a straight copy: this profile has no
+# `libraries/` and no InSpec resources at all, so two of the standard steps
+# would check nothing and pass. Steps that assess nothing while reporting green
+# are the failure mode this estate keeps rediscovering, so they are replaced
+# rather than left in.
+#
+# What this repository needs guarded instead is that the committed artifacts
+# still match their generators:
+#
+#   - controls/ + inspec.yml come from tools/nist_catalog_to_inspec/generate.py
+#   - inputs.yml comes from tools/nist_catalog_to_inspec/seed_sample_odps.py
+#
+# Full catalog regeneration needs ~16MB of NIST OSCAL per run, so it is a
+# documented manual step rather than a PR gate — a gate that flakes on a
+# third-party download trains people to re-run it until it passes. The seeder
+# is pure and offline, so its drift IS gated here.
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+env:
+  AUDITOR_IMAGE: risksentinel/sparc-auditor:v0.5.0
+
+jobs:
+  lint:
+    name: InSpec validate + Ruby syntax
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+
+      - name: Docker Hub login (auditor image pull)
+        env:
+          DOCKERHUB_TOKEN: ${{ secrets.DOCKERHUB_TOKEN }}
+          DOCKERHUB_USERNAME: ${{ secrets.DOCKERHUB_USERNAME }}
+        run: echo "$DOCKERHUB_TOKEN" | docker login -u "$DOCKERHUB_USERNAME" --password-stdin
+
+      - name: Ruby syntax (every control)
+        run: |
+          set -uo pipefail
+          fail=0
+          for f in $(find controls -name '*.rb' | sort); do
+            docker run --rm -v "$PWD:/work" -w /work --entrypoint sh "${AUDITOR_IMAGE}" \
+              -c "/opt/cinc-workstation/embedded/bin/ruby -c '$f' >/dev/null" \
+              || { echo "::error file=$f::ruby syntax error"; fail=1; }
+          done
+          [ "$fail" = 0 ] || exit 1
+          echo "All control files parse."
+
+      - name: cinc-auditor check
+        run: |
+          set -uo pipefail
+          # Capture the exit code rather than letting `bash -e` abort: a failing
+          # check must still print its own diagnostic.
+          out=$(docker run --rm -v "$PWD:/work" -w /work "${AUDITOR_IMAGE}" check . 2>&1) && rc=0 || rc=$?
+          echo "$out"
+          if [ "$rc" -ne 0 ]; then
+            echo "::error::cinc-auditor check exited ${rc} — see output above."
+            exit 1
+          fi
+          echo "$out" | grep -q "Valid : *true" || { echo "::error::profile did not validate"; exit 1; }
+          # A profile that loads ZERO controls validates happily, so assert the
+          # count matches the files on disk rather than merely being non-zero.
+          n=$(echo "$out" | sed -n 's/^Controls *: *\([0-9]*\).*/\1/p')
+          files=$(find controls -name '*.rb' | wc -l | tr -d ' ')
+          [ "${n:-0}" = "$files" ] || {
+            echo "::error::check loaded ${n:-0} controls but controls/ holds ${files} files"
+            exit 1
+          }
+          echo "Controls: $n (matches ${files} files)"
+
+      - name: cinc-auditor json (catches load-time errors check misses)
+        run: |
+          set -uo pipefail
+          out=$(docker run --rm -v "$PWD:/work" -w /work "${AUDITOR_IMAGE}" json . 2>/tmp/json.err) && rc=0 || rc=$?
+          if [ "$rc" -ne 0 ]; then
+            echo "::error::cinc-auditor json exited ${rc}"; cat /tmp/json.err; exit 1
+          fi
+          echo "$out" > /tmp/profile.json
+          jq -e '.controls | length > 0' /tmp/profile.json > /dev/null \
+            || { echo "::error::json produced no controls"; exit 1; }
+          # Every ODP must be declared, or `input()` in the control prose
+          # resolves to nothing at exec time and the sentence renders truncated.
+          jq -e '.inputs | length > 0' /tmp/profile.json > /dev/null \
+            || { echo "::error::json declared no inputs — ODP interpolation would render empty"; exit 1; }
+          echo "json loaded $(jq '.controls | length' /tmp/profile.json) controls, $(jq '.inputs | length' /tmp/profile.json) inputs"
+
+  generators:
+    name: Generators still produce what is committed
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+
+      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065 # v5.6.0
+        with:
+          python-version: '3.12'
+
+      - name: Generator unit tests
+        run: |
+          python3 -m pip install --quiet pytest pyyaml
+          python3 -m pytest tools/nist_catalog_to_inspec/tests/ -q
+
+      - name: inputs.yml matches the seeder (drift gate)
+        # Pure and offline: it reads inputs.template.yml and controls/. If this
+        # drifts, the shipped sample ODPs are no longer what the tool produces
+        # and nobody can reproduce them.
+        run: |
+          set -uo pipefail
+          cp inputs.yml /tmp/inputs.committed.yml
+          python3 tools/nist_catalog_to_inspec/seed_sample_odps.py
+          if ! diff -q /tmp/inputs.committed.yml inputs.yml >/dev/null; then
+            echo "::error file=inputs.yml::inputs.yml does not match seed_sample_odps.py — re-run it and commit the result"
+            diff /tmp/inputs.committed.yml inputs.yml | head -40
+            exit 1
+          fi
+          echo "inputs.yml is in sync with the seeder."
+
+      - name: No unresolved OSCAL directives
+        # NIST's OSCAL nests `{{ insert: param, ... }}` inside parameter text.
+        # Left unresolved it renders raw into SSP-facing control prose, which
+        # looks like a template someone forgot to fill in — because it is.
+        run: |
+          set -uo pipefail
+          if grep -rnE '\{\{ *insert:' controls/ inputs.yml inputs.template.yml 2>/dev/null | grep -v '^inputs.template.yml' ; then
+            echo "::error::unresolved OSCAL insert directive reached a shipped artifact"
+            exit 1
+          fi
+          echo "No unresolved OSCAL directives in controls/ or inputs.yml."
+          echo "(inputs.template.yml is exempt: it carries NIST's raw placeholder text by design.)"
