@@ -42,11 +42,16 @@ permissions:
   id-token: write           # AWS OIDC for the S3 emit; harmless when not emitting
 
 env:
-  # ---- CONFIGURATION — the only lines that change between repositories ------
-  # The Sonar project key is NOT derivable from the repository name. Several of
-  # these carry a benchmark version or a pre-rename name, so it is written out
-  # rather than constructed.
-  SONAR_PROJECT_KEY: 'risk-sentinel_NIST-800-53-Profile'
+  # ---- CONFIGURATION -------------------------------------------------------
+  # The project key is DERIVED from the repository: <org>_<repo>. That is the
+  # key SonarCloud's GitHub App assigns at onboarding, so it is correct by
+  # construction for any repo that has not been renamed since.
+  #
+  # It does NOT survive a rename: SonarCloud freezes the key and does not follow
+  # GitHub. A stale key is not an error either -- the API returns nothing for an
+  # unknown project and that converts into a valid, EMPTY, clean-looking report.
+  # So the key is verified to exist before anything is fetched. See the
+  # "Resolve and verify" step.
   SONAR_ORGANIZATION: 'risk-sentinel'
   SONAR_HOST_URL: 'https://sonarcloud.io'
   REPO_SLUG: 'NIST-800-53-Profile'
@@ -70,6 +75,35 @@ jobs:
       # step's environment.
       HAS_EMIT_ROLE: ${{ secrets.NIST_800_53_PROFILE_EMIT_ARN != '' }}
     steps:
+      # Derived from GITHUB_REPOSITORY rather than github.event.repository.name,
+      # which is not populated on `schedule` runs.
+      - name: Resolve and verify the SonarQube project key
+        env:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+        run: |
+          set -euo pipefail
+          if [ -z "${SONAR_TOKEN:-}" ]; then
+            echo "::error::SONAR_TOKEN is not set. Without it there is nothing to fetch, and an empty result converts into a clean-looking report."
+            exit 1
+          fi
+          KEY="${GITHUB_REPOSITORY/\//_}"
+          code=$(curl -sS -o /tmp/sonar-project.json -w '%{http_code}' \
+            --proto '=https' --proto-redir '=https' --tlsv1.2 \
+            -u "${SONAR_TOKEN}:" \
+            "${SONAR_HOST_URL}/api/components/show?component=${KEY}")
+          if [ "$code" = "404" ]; then
+            echo "::error::No SonarCloud project with key '${KEY}'."
+            echo "::error::SonarCloud does not rename a project key when the GitHub repo is renamed, so a repo renamed after onboarding keeps its OLD key. Rename the project key in SonarCloud (Project Settings -> Update Key) to '${KEY}', or this job will fetch nothing and emit an empty, clean-looking report."
+            exit 1
+          fi
+          if [ "$code" != "200" ]; then
+            echo "::error::Could not verify the SonarCloud project (HTTP ${code}). Refusing to fetch: an unverified key can return an empty result that looks clean."
+            cat /tmp/sonar-project.json || true
+            exit 1
+          fi
+          echo "SONAR_PROJECT_KEY=${KEY}" >> "$GITHUB_ENV"
+          echo "Verified SonarCloud project: ${KEY}"
+
       - name: Select producer
         id: prod
         env:
@@ -93,8 +127,12 @@ jobs:
           set -euo pipefail
           base="https://github.com/mitre/hdf-libs/releases/download/${VER}"
           tar="hdf_${VER#v}_linux_amd64.tar.gz"
-          curl -sSfL "$base/${tar}" -o "${tar}"
-          curl -sSfL "$base/checksums.txt" -o checksums.txt
+          # --proto pins the initial request to https; --proto-redir pins every
+          # REDIRECT too. -L without the second one will happily follow a 302
+          # into plain http, which is the actual finding -- release downloads
+          # redirect to a CDN, so the redirect is the part that matters.
+          curl -sSfL --proto '=https' --proto-redir '=https' --tlsv1.2 "$base/${tar}" -o "${tar}"
+          curl -sSfL --proto '=https' --proto-redir '=https' --tlsv1.2 "$base/checksums.txt" -o checksums.txt
           grep " ${tar}$" checksums.txt | sha256sum -c -
           tar -xzf "${tar}" hdf
           install -m 0755 hdf /usr/local/bin/hdf
@@ -107,17 +145,20 @@ jobs:
           TOOL: ${{ steps.prod.outputs.tool }}
         run: |
           set -euo pipefail
-          if [ -z "${SONAR_TOKEN:-}" ]; then
-            echo "::error::SONAR_TOKEN is not set. Without it there is nothing to fetch, and an empty result would convert to a clean-looking report."
-            exit 1
-          fi
+          # Token presence and project existence were both checked above.
           if [ "$TOOL" = "hdf-cli" ]; then
             args=(fetch sonarqube "$HDF_FILE" --url "$SONAR_HOST_URL" --project-key "$SONAR_PROJECT_KEY" --format hdf)
             [ -n "${SONAR_ORGANIZATION:-}" ] && args+=(--organization "$SONAR_ORGANIZATION")
             hdf "${args[@]}"
           else
+            # Installed with --ignore-scripts rather than run through `npx`.
+            # npx resolves and executes a package on demand, running its install
+            # lifecycle scripts -- arbitrary code from the registry, before the
+            # tool does anything. This pins the version, refuses lifecycle
+            # scripts, and then calls the binary directly.
+            npm install --global --no-fund --no-audit --ignore-scripts "@mitre/saf@${SAF_VERSION}"
             # saf's sonarqube2hdf takes no --organization; the token scopes the org.
-            npx --yes "@mitre/saf@${SAF_VERSION}" convert sonarqube2hdf \
+            saf convert sonarqube2hdf \
               -n "$SONAR_PROJECT_KEY" -u "$SONAR_HOST_URL" --auth "$SONAR_TOKEN" -o "$HDF_FILE"
           fi
 
