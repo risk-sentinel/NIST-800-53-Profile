@@ -169,7 +169,7 @@ tags and the release tag. The repository name never churns.
 | | |
 | --- | --- |
 | Catalog | [usnistgov/oscal-content](https://github.com/usnistgov/oscal-content) — SP 800-53 Rev 5 catalog and the LOW/MODERATE/HIGH/PRIVACY resolved baselines |
-| FedRAMP ODP values | [FedRAMP/rules](https://github.com/FedRAMP/rules) — Consolidated Rules for 2026, `2026.07.14.01` |
+| FedRAMP ODP values | [FedRAMP/rules](https://github.com/FedRAMP/rules) — Consolidated Rules `2026.07.14.01`, released 2026-07-14, retrieved 2026-08-20 |
 | Assessment procedures | SP 800-53A Rev 5, from the same OSCAL content |
 
 Baseline membership is a tag (`baseline_low`, `baseline_moderate`,
