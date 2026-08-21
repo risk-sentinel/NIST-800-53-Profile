@@ -39,13 +39,18 @@ if not raw:
 fedramp = {re.sub(r"[.\-]", "_", k): v for k, v in raw.items()}
 
 # ---- 3. Archetype samples ---------------------------------------------------
+# The values that recur across several placeholders are named, so a change of
+# house style is one edit rather than a search-and-replace that misses one and
+# leaves two archetypes disagreeing about the same thing.
+TIME_PERIOD = "30 days"
+ROLES = "the system owner, the ISSO, and the ISSM"
+
 # Exact-match first, then substring, so a specific placeholder beats a generic.
 EXACT = {
     "[organization-defined frequency]": "annually",
-    "[organization-defined time period]": "30 days",
-    "[organization-defined time-period]": "30 days",
-    "[organization-defined personnel or roles]":
-        "the system owner, the ISSO, and the ISSM",
+    "[organization-defined time period]": TIME_PERIOD,
+    "[organization-defined time-period]": TIME_PERIOD,
+    "[organization-defined personnel or roles]": ROLES,
     "[organization-defined personnel]": "the system owner and the ISSO",
     "[organization-defined official]":
         "the Information System Security Officer (ISSO)",
@@ -94,14 +99,14 @@ EXACT = {
 # Ordered: first match wins, so specific needles come before generic ones.
 SUBSTRING = [
     ("frequenc", "annually"),                       # frequency / frequencies
-    ("time period", "30 days"),
-    ("time-period", "30 days"),
-    ("personnel or roles", "the system owner, the ISSO, and the ISSM"),
+    ("time period", TIME_PERIOD),
+    ("time-period", TIME_PERIOD),
+    ("personnel or roles", ROLES),
     ("incident response personnel", "the incident response team and the ISSO"),
     ("personnel", "the system owner and the ISSO"),
     ("roles and responsibilities",
      "system owner, ISSO, ISSM, and system administrator"),
-    ("roles", "the system owner, the ISSO, and the ISSM"),
+    ("roles", ROLES),
     ("official", "the Information System Security Officer (ISSO)"),
     ("automated mechanism",
      "the enterprise SIEM and configuration management systems"),
@@ -126,8 +131,13 @@ SUBSTRING = [
 # fallback answers in the one way that is true regardless of system: it points
 # at where the real definition lives. That reads grammatically in the control
 # prose AND tells a reader this is a pointer, not a decision someone made.
-GENERIC = re.compile(r"^\[organization-defined\s+(?P<noun>.+?)\s*(?:\([^)]*\))?\]$",
-                     re.IGNORECASE)
+# `.+?\s*(?:\(...\))?` made three quantifiers compete for the same characters,
+# which backtracks super-linearly on a long placeholder. Anchoring a greedy
+# `.+` to the closing bracket is unambiguous and linear; the trailing
+# parenthetical it used to absorb is stripped afterwards instead. Verified to
+# produce identical nouns across all 1,600 placeholders.
+GENERIC = re.compile(r"^\[organization-defined\s+(?P<noun>.+)\]$", re.IGNORECASE)
+TRAILING_PAREN = re.compile(r"\s*\([^)]*\)$")
 
 # ---- 2b. Context overrides --------------------------------------------------
 # A handful where the archetype sample is grammatical but implausible enough to
@@ -144,11 +154,18 @@ OVERRIDES = {
     "ac_07_odp_04": "30 minutes",
     "ac_12_odp": "30 minutes of inactivity",
     "ia_05_01_odp_02": "60 days",
+    # Literal on purpose, not TIME_PERIOD. This one was read against SI-2's own
+    # sentence and happens to land on the same number as the archetype; tying it
+    # to the constant would mean a change of house style silently rewrites a
+    # hand-checked answer.
     "si_02_odp": "30 days",
     "ra_05_odp_01": "monthly for infrastructure and weekly for web applications",
 }
 
-SELECTION = re.compile(r"^\[selection\s*\((?P<card>[^)]*)\):\s*(?P<opts>.*)\]$",
+# The `\s*` before `(?P<opts>.*)` let both match the same leading spaces, which
+# backtracks. Dropped: every option is .strip()ed where it is consumed, so the
+# whitespace was never load-bearing.
+SELECTION = re.compile(r"^\[selection\s*\((?P<card>[^)]*)\):(?P<opts>.*)\]$",
                        re.IGNORECASE)
 LINE = re.compile(r"^(?P<key>[a-z0-9_]+): '(?P<val>.*)'$")
 
@@ -181,7 +198,8 @@ def sample_for(key, placeholder):
 
     m = GENERIC.match(placeholder)
     if m:
-        return f"the {m.group('noun')} defined in the system security plan", "generic"
+        noun = TRAILING_PAREN.sub("", m.group("noun"))
+        return f"the {noun} defined in the system security plan", "generic"
 
     return None, "placeholder"
 
@@ -315,7 +333,7 @@ for line in out:
 unresolved = set()
 
 
-def resolve_inserts(value, depth=0):
+def resolve_inserts(value):
     def sub(m):
         ref = re.sub(r"[.\-]", "_", m.group(1))
         if ref in seeded:

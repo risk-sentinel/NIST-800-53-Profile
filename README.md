@@ -1,6 +1,7 @@
 # NIST-800-53-Profile
 
 [![Quality gate](https://sonarcloud.io/api/project_badges/quality_gate?project=risk-sentinel_NIST-800-53-Profile)](https://sonarcloud.io/summary/new_code?id=risk-sentinel_NIST-800-53-Profile)
+[![SonarQube Cloud](https://sonarcloud.io/images/project_badges/sonarcloud-light.svg)](https://sonarcloud.io/summary/new_code?id=risk-sentinel_NIST-800-53-Profile)
 
 Every NIST SP 800-53 Revision 5 assessment objective as an InSpec
 (cinc-auditor) control.
