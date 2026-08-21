@@ -1,0 +1,66 @@
+name: SonarQube HDF emit
+
+# This repo's caller for container-build-sign's reusable sonarqube-hdf.yml (#87)
+# — fetch this project's SonarCloud findings, convert to OASIS Heimdall Data
+# Format (OHDF), and bake the HDF into the org security-artifacts bucket so SAST
+# joins the same unified compliance-evidence stream Heimdall aggregates
+# (alongside InSpec/cinc, checkov, SCA).
+#
+# SonarCloud analysis itself runs via the SonarCloud GitHub App (automatic
+# analysis). This workflow only FETCHES the results post-analysis, so it is
+# inert until the App is enabled for this repository — see sonar-project.properties.
+#
+# Consumes the SHARED reusable directly rather than a vendored copy, matching
+# sparc-validate and advancing the single container-build-sign-owned converter.
+# Pinned to a commit SHA: the sonar reusable (#87) predates a reusables release
+# tag — container-build-sign's tags cover the vulcan and sparc-auditor images
+# only — so there is no `# vX.Y.Z` to pin yet. Repin to the tag once one is cut.
+# Kept on the same SHA sparc-validate uses, so every caller moves together.
+#
+# Producer selection (cross-repo parity): the org Actions variable
+# SONARQUBE_HDF_USE_SAF flips all repos to the SAF CLI bridge in lockstep.
+# Unset / anything-but-"true" (current state: false) -> the strategic Go hdf-cli
+# (`hdf fetch sonarqube`), the default and preferred long-term producer.
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+    inputs:
+      use_saf:
+        description: 'Override: use the SAF CLI bridge instead of hdf-cli for this run.'
+        type: boolean
+        default: false
+
+permissions:
+  contents: read
+  id-token: write          # AWS OIDC for the S3 emit (passed through to the reusable)
+
+jobs:
+  emit:
+    uses: risk-sentinel/container-build-sign/.github/workflows/sonarqube-hdf.yml@9c5ceeae30909c120166f9f5a9f28a1b3f06652d  # main @ 2026-07-27 (no reusables tag covers the sonar reusable yet — #87)
+    with:
+      sonar_project_key: risk-sentinel_NIST-800-53-Profile
+      sonar_organization: risk-sentinel
+      repo_slug: NIST-800-53-Profile
+      # Authorization boundary — top segment of the canonical evidence path
+      # (sparc-iac#537 / #151). EVIDENCE_BOUNDARY is not yet defined at org
+      # level, so this resolves to the same `sparc` default the reusable would
+      # have applied; wiring it here means the org variable takes effect
+      # without touching this file.
+      boundary: ${{ vars.EVIDENCE_BOUNDARY || 'sparc' }}
+      # Default = hdf-cli. The org variable flips every repo to the SAF bridge
+      # together (parity); the workflow_dispatch input overrides for a one-off run.
+      use_saf: ${{ inputs.use_saf || vars.SONARQUBE_HDF_USE_SAF == 'true' }}
+    secrets:
+      # Read-scoped SonarCloud token (org secret, visibility ALL; hdf-cli reads
+      # it as SONARQUBE_TOKEN, saf via --auth — the reusable wires both).
+      SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+      # Dedicated per-repo evidence-emit role, following the *_SONAR_EMIT_ARN
+      # convention (cf. SPARC_SONAR_EMIT_ARN, VALIDATE_SONAR_EMIT_ARN).
+      # NOT YET PROVISIONED: sparc-iac needs to create it, OIDC-assumable by
+      # this repo with s3:PutObject scoped to <boundary>/*/NIST-800-53-Profile/*.
+      # Until then it resolves empty and the reusable converts + validates but
+      # skips the upload — gated, not a failure.
+      S3_EMIT_ROLE_ARN: ${{ secrets.NIST_800_53_SONAR_EMIT_ARN }}
+      AWS_REGION: ${{ secrets.AWS_REGION }}
