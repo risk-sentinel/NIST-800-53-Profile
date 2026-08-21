@@ -44,16 +44,22 @@ jobs:
         run: echo "$DOCKERHUB_TOKEN" | docker login -u "$DOCKERHUB_USERNAME" --password-stdin
 
       - name: Ruby syntax (every control)
+        # ONE container for all 1,014 files, not one per file. The profile-lint
+        # this is adapted from starts a container per control, which is fine at
+        # ~50 controls and is twenty times that here -- roughly 1,014 container
+        # starts and a quarter-hour job to run a syntax check that takes
+        # seconds. The loop moved inside.
         run: |
           set -uo pipefail
-          fail=0
-          for f in $(find controls -name '*.rb' | sort); do
-            docker run --rm -v "$PWD:/work" -w /work --entrypoint sh "${AUDITOR_IMAGE}" \
-              -c "/opt/cinc-workstation/embedded/bin/ruby -c '$f' >/dev/null" \
-              || { echo "::error file=$f::ruby syntax error"; fail=1; }
-          done
-          [ "$fail" = 0 ] || exit 1
-          echo "All control files parse."
+          docker run --rm -v "$PWD:/work" -w /work --entrypoint sh "${AUDITOR_IMAGE}" -c '
+            fail=0
+            for f in $(find controls -name "*.rb" | sort); do
+              /opt/cinc-workstation/embedded/bin/ruby -c "$f" >/dev/null \
+                || { echo "::error file=$f::ruby syntax error"; fail=1; }
+            done
+            [ "$fail" = 0 ] || exit 1
+            echo "All $(find controls -name "*.rb" | wc -l) control files parse."
+          '
 
       - name: cinc-auditor check
         run: |
