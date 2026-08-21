@@ -1,39 +1,35 @@
 name: SonarQube HDF emit
 
-# This repo's caller for container-build-sign's reusable sonarqube-hdf.yml (#87)
-# — fetch this project's SonarCloud findings, convert to OASIS Heimdall Data
-# Format (OHDF), and bake the HDF into the org security-artifacts bucket so SAST
-# joins the same unified compliance-evidence stream Heimdall aggregates
-# (alongside InSpec/cinc, checkov, SCA).
+# Self-contained. This workflow calls NO other repository.
 #
-# SonarCloud analysis itself runs via the SonarCloud GitHub App (automatic
-# analysis). This workflow only FETCHES the results post-analysis.
+# It used to be a thin caller of a shared reusable in another repo. That cannot
+# work here and should not anywhere: GitHub does not let a PUBLIC repository use
+# a workflow from a PRIVATE or INTERNAL one, so every public consumer failed at
+# validation -- a 0-second, 0-job run with no logs and nothing to read. It also
+# made the pattern unadoptable by anyone outside this org.
 #
-# KNOWN STATE, until the App is enabled for this repository: the project exists
-# but has never been analysed, and SonarCloud's issues API cannot distinguish
-# that from a clean project — it answers 200 with {"total": 0, "issues": []}
-# either way. So these runs SUCCEED and produce a schema-valid but EMPTY HDF,
-# which the reusable accepts by design ("a clean project is valid evidence").
-# A green run here is therefore not yet evidence of a clean scan; it is evidence
-# of no scan. Enabling automatic analysis in the SonarCloud console is what
-# makes the output mean what it appears to mean. See sonar-project.properties
-# for what the analysis is scoped to once it runs.
+# So the logic lives here, in full, in every repo that needs it. That is not DRY
+# and is not meant to be: a team cloning this repository gets a working evidence
+# pipeline with no dependency they cannot satisfy. Copy this file, change the
+# CONFIGURATION block below, done.
 #
-# Consumes the SHARED reusable directly rather than a vendored copy, matching
-# sparc-validate and advancing the single container-build-sign-owned converter.
-# Pinned to a commit SHA: the sonar reusable (#87) predates a reusables release
-# tag — container-build-sign's tags cover the vulcan and sparc-auditor images
-# only — so there is no `# vX.Y.Z` to pin yet. Repin to the tag once one is cut.
-# Kept on the same SHA sparc-validate uses, so every caller moves together.
+# What it does: SonarCloud's GitHub App runs the analysis; this FETCHES the
+# results afterwards, converts them to OASIS Heimdall Data Format, stamps scan
+# provenance onto them, validates against the HDF schema, and (optionally) puts
+# them in an evidence bucket so they join the same stream as InSpec, SCA and
+# secret-scanning results.
 #
-# Producer selection (cross-repo parity): the org Actions variable
-# SONARQUBE_HDF_USE_SAF flips all repos to the SAF CLI bridge in lockstep.
-# Unset / anything-but-"true" (current state: false) -> the strategic Go hdf-cli
-# (`hdf fetch sonarqube`), the default and preferred long-term producer.
+# ---- Adopting this outside risk-sentinel ------------------------------------
+#
+# You need SONAR_TOKEN and a SonarCloud project. Everything AWS is optional: with
+# no emit role the workflow still converts and validates, and the HDF is uploaded
+# as a build artifact instead. Nothing fails.
 
 on:
   push:
     branches: [main]
+  schedule:
+    - cron: '0 13 * * 1'    # weekly, so evidence does not go stale between merges
   workflow_dispatch:
     inputs:
       use_saf:
@@ -43,37 +39,156 @@ on:
 
 permissions:
   contents: read
-  id-token: write          # AWS OIDC for the S3 emit (passed through to the reusable)
+  id-token: write           # AWS OIDC for the S3 emit; harmless when not emitting
+
+env:
+  # ---- CONFIGURATION — the only lines that change between repositories ------
+  # The Sonar project key is NOT derivable from the repository name. Several of
+  # these carry a benchmark version or a pre-rename name, so it is written out
+  # rather than constructed.
+  SONAR_PROJECT_KEY: 'risk-sentinel_NIST-800-53-Profile'
+  SONAR_ORGANIZATION: 'risk-sentinel'
+  SONAR_HOST_URL: 'https://sonarcloud.io'
+  REPO_SLUG: 'NIST-800-53-Profile'
+  BOUNDARY: ${{ vars.EVIDENCE_BOUNDARY || 'sparc' }}
+  BUCKET: sparc-prod-security-artifacts
+  # ---- Pinned producers — bump deliberately --------------------------------
+  HDF_CLI_VERSION: v3.4.1
+  SAF_VERSION: '1.6.0'
 
 jobs:
   emit:
-    uses: risk-sentinel/container-build-sign/.github/workflows/sonarqube-hdf.yml@9c5ceeae30909c120166f9f5a9f28a1b3f06652d  # main @ 2026-07-27 (no reusables tag covers the sonar reusable yet — #87)
-    with:
-      sonar_project_key: risk-sentinel_NIST-800-53-Profile
-      sonar_organization: risk-sentinel
-      repo_slug: NIST-800-53-Profile
-      # Authorization boundary — top segment of the canonical evidence path
-      # (sparc-iac#537 / #151). EVIDENCE_BOUNDARY is not yet defined at org
-      # level, so this resolves to the same `sparc` default the reusable would
-      # have applied; wiring it here means the org variable takes effect
-      # without touching this file.
-      boundary: ${{ vars.EVIDENCE_BOUNDARY || 'sparc' }}
-      # Default = hdf-cli. The org variable flips every repo to the SAF bridge
-      # together (parity); the workflow_dispatch input overrides for a one-off run.
-      use_saf: ${{ inputs.use_saf || vars.SONARQUBE_HDF_USE_SAF == 'true' }}
-    secrets:
-      # Read-scoped SonarCloud token (org secret, visibility ALL; hdf-cli reads
-      # it as SONARQUBE_TOKEN, saf via --auth — the reusable wires both).
-      SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-      # This repository's single evidence-emit role. The profile-emit fleet is
-      # ONE role per repository covering ALL of that repository's emissions, not
-      # one per source (AWS/IAM/profile_emit.tf) — so the same ARN carries the
-      # secret-scan and InSpec emissions when those land, and there is no
-      # sonar-specific role to wait for.
-      #
-      # NOT YET PROVISIONED: tracked at sparc-iac#684, which adds this repo to
-      # var.profile_emit_repos and sets the secret under exactly this name.
-      # Until then it resolves empty and the reusable converts + validates but
-      # skips the upload — gated, not a failure.
-      S3_EMIT_ROLE_ARN: ${{ secrets.NIST_800_53_PROFILE_EMIT_ARN }}
-      AWS_REGION: ${{ secrets.AWS_REGION }}
+    name: SonarQube -> HDF
+    runs-on: ubuntu-latest
+    env:
+      # Self-identifying artifact name, so a downloaded artifact traces back to
+      # the repo it came from. The S3 object drops it: the repo is in the path.
+      HDF_FILE: 'NIST-800-53-Profile-sonarqube-hdf.json'
+      # Presence of the emit role, as a boolean. Job-level because `secrets` is
+      # not an available context in a step `if:` -- and neither is a step's OWN
+      # `env:`. A boolean rather than the ARN, so it is not exported into every
+      # step's environment.
+      HAS_EMIT_ROLE: ${{ secrets.NIST_800_53_PROFILE_EMIT_ARN != '' }}
+    steps:
+      - name: Select producer
+        id: prod
+        env:
+          USE_SAF: ${{ inputs.use_saf || vars.SONARQUBE_HDF_USE_SAF == 'true' }}
+        run: |
+          set -euo pipefail
+          if [ "$USE_SAF" = "true" ]; then
+            echo "tool=saf" >> "$GITHUB_OUTPUT"
+            echo "Producer: SAF CLI bridge (saf convert sonarqube2hdf)."
+          else
+            echo "tool=hdf-cli" >> "$GITHUB_OUTPUT"
+            echo "Producer: Go hdf-cli (hdf fetch sonarqube)."
+          fi
+
+      # Always installed: the producer on the hdf-cli path, AND the schema
+      # validator for BOTH producers' output.
+      - name: Install hdf-cli (pinned, checksum-verified)
+        env:
+          VER: ${{ env.HDF_CLI_VERSION }}
+        run: |
+          set -euo pipefail
+          base="https://github.com/mitre/hdf-libs/releases/download/${VER}"
+          tar="hdf_${VER#v}_linux_amd64.tar.gz"
+          curl -sSfL "$base/${tar}" -o "${tar}"
+          curl -sSfL "$base/checksums.txt" -o checksums.txt
+          grep " ${tar}$" checksums.txt | sha256sum -c -
+          tar -xzf "${tar}" hdf
+          install -m 0755 hdf /usr/local/bin/hdf
+          hdf version
+
+      - name: Convert SonarQube results -> OHDF
+        env:
+          SONARQUBE_TOKEN: ${{ secrets.SONAR_TOKEN }}   # hdf-cli reads this name
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}       # saf reads --auth
+          TOOL: ${{ steps.prod.outputs.tool }}
+        run: |
+          set -euo pipefail
+          if [ -z "${SONAR_TOKEN:-}" ]; then
+            echo "::error::SONAR_TOKEN is not set. Without it there is nothing to fetch, and an empty result would convert to a clean-looking report."
+            exit 1
+          fi
+          if [ "$TOOL" = "hdf-cli" ]; then
+            args=(fetch sonarqube "$HDF_FILE" --url "$SONAR_HOST_URL" --project-key "$SONAR_PROJECT_KEY" --format hdf)
+            [ -n "${SONAR_ORGANIZATION:-}" ] && args+=(--organization "$SONAR_ORGANIZATION")
+            hdf "${args[@]}"
+          else
+            # saf's sonarqube2hdf takes no --organization; the token scopes the org.
+            npx --yes "@mitre/saf@${SAF_VERSION}" convert sonarqube2hdf \
+              -n "$SONAR_PROJECT_KEY" -u "$SONAR_HOST_URL" --auth "$SONAR_TOKEN" -o "$HDF_FILE"
+          fi
+
+      # Stamp scan provenance so each finding traces to the exact repo + commit,
+      # and cross-repo aggregation groups on the same keys. LOCKED vocabulary --
+      # keep these key names identical across repos and scanners.
+      - name: Label HDF target (scan provenance)
+        env:
+          REPO: ${{ github.repository }}
+          COMMIT: ${{ github.sha }}
+          REF: ${{ github.ref }}
+          RUN_ID: ${{ github.run_id }}
+        run: |
+          set -euo pipefail
+          hdf label set "$HDF_FILE" \
+            repo="$REPO" \
+            commit="$COMMIT" \
+            ref="$REF" \
+            scanner=sonarqube \
+            run_id="$RUN_ID" \
+            sonar_project_key="$SONAR_PROJECT_KEY" \
+            -o "$HDF_FILE.labeled"
+          mv "$HDF_FILE.labeled" "$HDF_FILE"
+          hdf label show "$HDF_FILE"
+
+      - name: Validate OHDF output
+        run: |
+          set -euo pipefail
+          test -s "$HDF_FILE"
+          # A clean project (zero open issues) is valid evidence, and schema
+          # validation correctly accepts it. That is the point: "we looked and
+          # found nothing" must be recordable, or a clean repo and a broken
+          # pipeline leave identical traces.
+          hdf validate "$HDF_FILE" -q
+          echo "OHDF schema-valid."
+
+      - name: Upload HDF artifact
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+        with:
+          name: sonarqube-hdf-NIST-800-53-Profile
+          path: ${{ env.HDF_FILE }}
+          if-no-files-found: error
+
+      # ---- S3 emit, gated on the role being present and assumable ------------
+      # continue-on-error so an adopter with no AWS still gets a green convert +
+      # validate. The trade-off is real and is called out in the notice below: a
+      # MISNAMED role skips silently too. If you wire an emit role, check the
+      # first run actually says "Emitted to s3://".
+      - name: Configure AWS credentials (OIDC)
+        id: aws
+        if: env.HAS_EMIT_ROLE == 'true'
+        continue-on-error: true
+        uses: aws-actions/configure-aws-credentials@517a711dbcd0e402f90c77e7e2f81e849156e31d # v6.2.2
+        with:
+          role-to-assume: ${{ secrets.NIST_800_53_PROFILE_EMIT_ARN }}
+          aws-region: ${{ secrets.AWS_REGION || 'us-east-1' }}
+
+      - name: Emit OHDF to the evidence bucket
+        if: steps.aws.outcome == 'success'
+        run: |
+          set -euo pipefail
+          DATE="$(date -u +%Y-%m-%d)"
+          # Canonical layout: <boundary>/<date|latest>/<repo>/sonarqube/sonarqube-hdf.json
+          for slot in "${DATE}" latest; do
+            aws s3 cp "$HDF_FILE" \
+              "s3://${BUCKET}/${BOUNDARY}/${slot}/${REPO_SLUG}/sonarqube/sonarqube-hdf.json" \
+              --no-progress
+          done
+          echo "Emitted to s3://${BUCKET}/${BOUNDARY}/{${DATE},latest}/${REPO_SLUG}/sonarqube/sonarqube-hdf.json"
+
+      - name: Note when the S3 emit was skipped
+        if: env.HAS_EMIT_ROLE != 'true' || steps.aws.outcome != 'success'
+        run: |
+          echo "::notice::OHDF converted, labelled and validated; S3 emit skipped (aws=${{ steps.aws.outcome }}). Either no emit role is wired -- expected outside this org, the artifact is the deliverable -- or the configured role could not be assumed. If you expect this repo to emit, that is a bug: check the secret name matches a role that exists."
