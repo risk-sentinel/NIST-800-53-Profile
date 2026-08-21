@@ -110,8 +110,14 @@ jobs:
           python-version: '3.12'
 
       - name: Generator unit tests
+        # Versions pinned, like every other dependency this estate installs:
+        # actions are pinned by SHA and hdf-cli by version plus checksum, so an
+        # unpinned pip install was the one place a third party could change what
+        # runs here between two runs of the same commit. These two are the only
+        # dependencies the generator's tests have -- generate.py itself is
+        # stdlib-only, and PyYAML is importorskip-ed in the suite.
         run: |
-          python3 -m pip install --quiet pytest pyyaml
+          python3 -m pip install --quiet 'pytest==9.0.3' 'pyyaml==6.0.3'
           python3 -m pytest tools/nist_catalog_to_inspec/tests/ -q
 
       - name: inputs.yml matches the seeder (drift gate)

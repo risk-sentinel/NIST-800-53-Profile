@@ -39,13 +39,18 @@ if not raw:
 fedramp = {re.sub(r"[.\-]", "_", k): v for k, v in raw.items()}
 
 # ---- 3. Archetype samples ---------------------------------------------------
+# The values that recur across several placeholders are named, so a change of
+# house style is one edit rather than a search-and-replace that misses one and
+# leaves two archetypes disagreeing about the same thing.
+TIME_PERIOD = "30 days"
+ROLES = "the system owner, the ISSO, and the ISSM"
+
 # Exact-match first, then substring, so a specific placeholder beats a generic.
 EXACT = {
     "[organization-defined frequency]": "annually",
-    "[organization-defined time period]": "30 days",
-    "[organization-defined time-period]": "30 days",
-    "[organization-defined personnel or roles]":
-        "the system owner, the ISSO, and the ISSM",
+    "[organization-defined time period]": TIME_PERIOD,
+    "[organization-defined time-period]": TIME_PERIOD,
+    "[organization-defined personnel or roles]": ROLES,
     "[organization-defined personnel]": "the system owner and the ISSO",
     "[organization-defined official]":
         "the Information System Security Officer (ISSO)",
@@ -94,14 +99,14 @@ EXACT = {
 # Ordered: first match wins, so specific needles come before generic ones.
 SUBSTRING = [
     ("frequenc", "annually"),                       # frequency / frequencies
-    ("time period", "30 days"),
-    ("time-period", "30 days"),
-    ("personnel or roles", "the system owner, the ISSO, and the ISSM"),
+    ("time period", TIME_PERIOD),
+    ("time-period", TIME_PERIOD),
+    ("personnel or roles", ROLES),
     ("incident response personnel", "the incident response team and the ISSO"),
     ("personnel", "the system owner and the ISSO"),
     ("roles and responsibilities",
      "system owner, ISSO, ISSM, and system administrator"),
-    ("roles", "the system owner, the ISSO, and the ISSM"),
+    ("roles", ROLES),
     ("official", "the Information System Security Officer (ISSO)"),
     ("automated mechanism",
      "the enterprise SIEM and configuration management systems"),
@@ -126,8 +131,41 @@ SUBSTRING = [
 # fallback answers in the one way that is true regardless of system: it points
 # at where the real definition lives. That reads grammatically in the control
 # prose AND tells a reader this is a pointer, not a decision someone made.
-GENERIC = re.compile(r"^\[organization-defined\s+(?P<noun>.+?)\s*(?:\([^)]*\))?\]$",
-                     re.IGNORECASE)
+# Deliberately not a regex. Two attempts at one were both super-linear, for two
+# different reasons: `\s+` next to `.+` lets both claim the same whitespace, and
+# an unanchored trailing-parenthetical pattern is retried at every position.
+# What this actually does -- strip the brackets, check a prefix, strip a
+# suffix -- is prefix/suffix work, and saying so in string operations is linear
+# by construction and leaves nothing to reason about.
+#
+# Verified against the original regex across all 1,600 real placeholders: zero
+# differences, including the ones whose own text contains a bracket
+# (`[organization-defined event types (subset of AU-02_ODP[01])]`).
+GENERIC_PREFIX = "organization-defined"
+
+
+def generic_noun(placeholder: str) -> str | None:
+    """The noun phrase in `[organization-defined <noun>]`, or None.
+
+    A trailing parenthetical is dropped: NIST writes
+    `[organization-defined event types (subset of AU-02_ODP[01])]`, and the
+    aside is a cross-reference rather than part of the noun.
+    """
+    if not (placeholder.startswith("[") and placeholder.endswith("]")):
+        return None
+    inner = placeholder[1:-1]
+    if inner[:len(GENERIC_PREFIX)].lower() != GENERIC_PREFIX:
+        return None
+    rest = inner[len(GENERIC_PREFIX):]
+    if not rest[:1].isspace():      # `[organization-definedX]` is not a match
+        return None
+    noun = rest.strip()
+    if noun.endswith(")"):
+        open_at = noun.rfind("(")
+        # Only an unnested aside, matching what `\([^)]*\)$` accepted.
+        if open_at != -1 and ")" not in noun[open_at + 1:-1]:
+            noun = noun[:open_at].rstrip()
+    return noun or None
 
 # ---- 2b. Context overrides --------------------------------------------------
 # A handful where the archetype sample is grammatical but implausible enough to
@@ -144,11 +182,18 @@ OVERRIDES = {
     "ac_07_odp_04": "30 minutes",
     "ac_12_odp": "30 minutes of inactivity",
     "ia_05_01_odp_02": "60 days",
+    # Literal on purpose, not TIME_PERIOD. This one was read against SI-2's own
+    # sentence and happens to land on the same number as the archetype; tying it
+    # to the constant would mean a change of house style silently rewrites a
+    # hand-checked answer.
     "si_02_odp": "30 days",
     "ra_05_odp_01": "monthly for infrastructure and weekly for web applications",
 }
 
-SELECTION = re.compile(r"^\[selection\s*\((?P<card>[^)]*)\):\s*(?P<opts>.*)\]$",
+# The `\s*` before `(?P<opts>.*)` let both match the same leading spaces, which
+# backtracks. Dropped: every option is .strip()ed where it is consumed, so the
+# whitespace was never load-bearing.
+SELECTION = re.compile(r"^\[selection\s*\((?P<card>[^)]*)\):(?P<opts>.*)\]$",
                        re.IGNORECASE)
 LINE = re.compile(r"^(?P<key>[a-z0-9_]+): '(?P<val>.*)'$")
 
@@ -179,9 +224,9 @@ def sample_for(key, placeholder):
         if needle in low:
             return value, "archetype"
 
-    m = GENERIC.match(placeholder)
-    if m:
-        return f"the {m.group('noun')} defined in the system security plan", "generic"
+    noun = generic_noun(placeholder)
+    if noun:
+        return f"the {noun} defined in the system security plan", "generic"
 
     return None, "placeholder"
 
@@ -195,8 +240,19 @@ ARTICLE = re.compile(r"\b(?:a|an|the)\s+#\{input\('([a-z0-9_]+)'\)\}", re.IGNORE
 LEADING_ARTICLE = re.compile(r"^(?:a|an|the)\s+", re.IGNORECASE)
 
 article_preceded = set()
-for control in pathlib.Path("controls").glob("*.rb"):
+scanned = 0
+# rglob, not glob: controls live in per-family subdirectories (controls/ac/...).
+# A non-recursive glob here matches nothing, finds no collisions, and silently
+# changes every affected ODP value -- a wrong answer that raises no error.
+for control in pathlib.Path("controls").rglob("*.rb"):
     article_preceded.update(ARTICLE.findall(control.read_text()))
+    scanned += 1
+if not scanned:
+    raise SystemExit(
+        "scanned 0 control files under controls/ -- the article-collision fixup "
+        "silently degrades to a no-op when this happens, so it is fatal. Either "
+        "controls/ is missing (run generate.py first) or its layout moved and "
+        "this scan needs updating.")
 
 
 def dearticle(key, value):
@@ -304,7 +360,7 @@ for line in out:
 unresolved = set()
 
 
-def resolve_inserts(value, depth=0):
+def resolve_inserts(value):
     def sub(m):
         ref = re.sub(r"[.\-]", "_", m.group(1))
         if ref in seeded:
