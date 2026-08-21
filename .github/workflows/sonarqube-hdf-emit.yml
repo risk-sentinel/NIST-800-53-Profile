@@ -7,8 +7,17 @@ name: SonarQube HDF emit
 # (alongside InSpec/cinc, checkov, SCA).
 #
 # SonarCloud analysis itself runs via the SonarCloud GitHub App (automatic
-# analysis). This workflow only FETCHES the results post-analysis, so it is
-# inert until the App is enabled for this repository — see sonar-project.properties.
+# analysis). This workflow only FETCHES the results post-analysis.
+#
+# KNOWN STATE, until the App is enabled for this repository: the project exists
+# but has never been analysed, and SonarCloud's issues API cannot distinguish
+# that from a clean project — it answers 200 with {"total": 0, "issues": []}
+# either way. So these runs SUCCEED and produce a schema-valid but EMPTY HDF,
+# which the reusable accepts by design ("a clean project is valid evidence").
+# A green run here is therefore not yet evidence of a clean scan; it is evidence
+# of no scan. Enabling automatic analysis in the SonarCloud console is what
+# makes the output mean what it appears to mean. See sonar-project.properties
+# for what the analysis is scoped to once it runs.
 #
 # Consumes the SHARED reusable directly rather than a vendored copy, matching
 # sparc-validate and advancing the single container-build-sign-owned converter.
@@ -56,11 +65,15 @@ jobs:
       # Read-scoped SonarCloud token (org secret, visibility ALL; hdf-cli reads
       # it as SONARQUBE_TOKEN, saf via --auth — the reusable wires both).
       SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-      # Dedicated per-repo evidence-emit role, following the *_SONAR_EMIT_ARN
-      # convention (cf. SPARC_SONAR_EMIT_ARN, VALIDATE_SONAR_EMIT_ARN).
-      # NOT YET PROVISIONED: sparc-iac needs to create it, OIDC-assumable by
-      # this repo with s3:PutObject scoped to <boundary>/*/NIST-800-53-Profile/*.
+      # This repository's single evidence-emit role. The profile-emit fleet is
+      # ONE role per repository covering ALL of that repository's emissions, not
+      # one per source (AWS/IAM/profile_emit.tf) — so the same ARN carries the
+      # secret-scan and InSpec emissions when those land, and there is no
+      # sonar-specific role to wait for.
+      #
+      # NOT YET PROVISIONED: tracked at sparc-iac#684, which adds this repo to
+      # var.profile_emit_repos and sets the secret under exactly this name.
       # Until then it resolves empty and the reusable converts + validates but
       # skips the upload — gated, not a failure.
-      S3_EMIT_ROLE_ARN: ${{ secrets.NIST_800_53_SONAR_EMIT_ARN }}
+      S3_EMIT_ROLE_ARN: ${{ secrets.NIST_800_53_PROFILE_EMIT_ARN }}
       AWS_REGION: ${{ secrets.AWS_REGION }}
