@@ -2,18 +2,24 @@
 
 [![Quality gate](https://sonarcloud.io/api/project_badges/quality_gate?project=risk-sentinel_NIST-800-53-Profile)](https://sonarcloud.io/summary/new_code?id=risk-sentinel_NIST-800-53-Profile)
 
-Every NIST SP 800-53 Revision 5 control as an InSpec (cinc-auditor) profile.
-**1,014 controls, 1,600 organization-defined parameters, and no checks.**
+Every NIST SP 800-53 Revision 5 assessment objective as an InSpec
+(cinc-auditor) control.
+**2,776 objectives across 1,014 controls, 1,600 organization-defined parameters,
+and no checks.**
 
-Each control carries the NIST control statement, the SP 800-53A assessment
-procedure, and the discussion text — then skips. A run reports the whole catalog
-as *Not Reviewed* rather than as passing, because a profile that asserts nothing
-and reports green is worse than no profile at all.
+The unit here is the SP 800-53A **assessment objective** — the atomic
+determination an assessor makes, such as *"an access control policy is developed
+and documented"* — not the control. That is what one check can satisfy, so it is
+what gets its own file. Each objective carries its parent control's statement,
+the assessment methods, and the discussion text — then skips. A run reports the
+whole catalog as *Not Reviewed* rather than as passing, because a profile that
+asserts nothing and reports green is worse than no profile at all.
 
 ## What this is for
 
-- **A shell to attach real checks to,** one control at a time, without anyone
-  retyping control language out of the publication.
+- **A shell to attach real checks to,** one assessment objective at a time,
+  without anyone retyping control language out of the publication. Automating
+  one determination no longer means touching its sixteen siblings.
 - **A denominator.** An HDF artifact showing the full control set and how much
   of it is still unassessed, next to whatever scanning profiles actually cover.
 - **An ODP worksheet.** 1,600 organization-defined parameters in one file
@@ -78,8 +84,13 @@ cinc-auditor exec . --input-file inputs.yml --reporter cli
 # Just one baseline.
 cinc-auditor exec . --input-file inputs.yml --tags baseline_moderate
 
-# One control, to see what the prose looks like once ODPs interpolate.
-cinc-auditor exec . --input-file inputs.yml --controls AC-1
+# One control's objectives, to see what the prose looks like once ODPs
+# interpolate. --controls is an EXACT match on the 800-53A objective label
+# (`AC-01a.[01]`), so selecting a whole control is a tag.
+cinc-auditor exec . --input-file inputs.yml --tags control_ac_1
+
+# One specific objective.
+cinc-auditor exec . --input-file inputs.yml --controls 'AC-01a.[01]'
 ```
 
 No dependencies to vendor: the profile has no `depends:` and no custom
@@ -90,10 +101,14 @@ resources, so a clone runs as-is.
 Every control reports **skipped**, with the rationale attached:
 
 ```
-  ↺  AC-1: Policy and Procedures
+  ↺  AC-01a.[01]: an access control policy is developed and documented;
      ↺  Not automated. This control is a skeleton: it carries the NIST control
         language and the SP 800-53A assessment procedure but performs no check.
 ```
+
+The title is the determination itself, with ODPs already interpolated, so a
+report reads as the assessment procedure rather than as a list of control
+numbers.
 
 That is the expected result. In HDF terms the profile renders as *Not Reviewed*
 across the board — an honest starting position, and the thing you measure
@@ -151,12 +166,50 @@ NIST republish shows up as a reviewable diff rather than as churn.
 
 | Path | What |
 | --- | --- |
-| `controls/*.rb` | 1,014 controls, one file each (`AC-2.rb`, `AC-2.1.rb`) |
+| `controls/<family>/*.rb` | 2,776 objectives, one file each, grouped by family (`controls/ac/AC-02a.rb`) |
 | `inspec.yml` | Profile metadata, plus all 1,600 ODPs declared as inputs |
 | `inputs.yml` | The ODP worksheet, pre-filled with samples |
 | `inputs.template.yml` | Pristine placeholders, rewritten on every regeneration |
 | `tools/nist_catalog_to_inspec/` | The OSCAL → InSpec generator and the ODP seeder |
 | `tools/nist_catalog_to_inspec/fedramp_odp_values.yml` | FedRAMP's own parameter assignments, committed rather than fetched |
+
+## How controls are laid out
+
+```
+controls/ac/AC-01a_01.rb        control 'AC-01a.[01]'
+controls/ac/AC-01a.01.a_07.rb   control 'AC-01a.01(a)[07]'
+controls/ac/AC-02.01.rb         control 'AC-02(01)'      # the AC-2(1) enhancement
+controls/ca/CA-07_01.rb         control 'CA-07[01]'
+```
+
+The **control id is the published SP 800-53A objective label, verbatim**, so an
+id here is greppable against the publication and against Heimdall output.
+
+The **filename** is that label with parens flattened to `.` and brackets to `_`.
+Those two are not interchangeable: `(01)` is control enhancement one and `[01]`
+is determination one, and the catalog really does contain both `CA-07(01)` and
+`CA-07[01]`. Flattening both to a dot silently loses one.
+
+Ordering comes free. NIST's own labels are zero-padded — `AC-01`, `AC-02(01)`,
+`AU-09(04)` — so keying filenames off them sorts `AC-02` before `AC-10` without
+inventing a padding scheme. Sorting matches the publication's own order.
+
+Two objectives (`si-2.7`) ship with prose but no label. They fall back to the
+nearest labelled ancestor plus an index — `SI-02(07)c.[01]` — which is stable
+across regenerations because catalog order is.
+
+### Selecting things
+
+`--controls` is an **exact match**, so `--controls AC-01a` selects nothing.
+
+```bash
+cinc-auditor exec . --input-file inputs.yml --controls 'AC-01a.[01]'  # one objective
+cinc-auditor exec . --input-file inputs.yml --tags control_ac_1       # one control
+cinc-auditor exec . --input-file inputs.yml --tags baseline_moderate  # one baseline
+```
+
+Every objective also carries `tag control:` and `tag objective:` for grouping
+downstream.
 
 ## Naming
 

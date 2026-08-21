@@ -222,14 +222,75 @@ def display_id(oscal_id: str) -> str:
     return f"{base} ({enh})" if enh else base
 
 
-def file_id(oscal_id: str) -> str:
-    """Control filename stem. Uppercased source id: AC-2.rb, AC-2.1.rb."""
-    return oscal_id.upper()
-
-
 def input_name(param_id: str) -> str:
     """ac-02_odp.01 -> ac_02_odp_01. Must be a legal InSpec input name."""
     return re.sub(r"[^0-9a-z]+", "_", param_id.lower()).strip("_")
+
+
+def family_dir(oscal_id: str) -> str:
+    """Directory a control's objectives live under. ac-2.1 -> 'ac'.
+
+    2,776 files in one flat directory is unreadable; the family is the only
+    grouping the publication itself uses.
+    """
+    m = CONTROL_ID.match(oscal_id)
+    if not m:
+        raise SourceShapeError(f"unrecognized control id shape: {oscal_id!r}")
+    return m.group(1)
+
+
+def objective_stem(label: str) -> str:
+    """Filename stem from an SP 800-53A objective label.
+
+    'AC-01a.[01]'      -> 'AC-01a_01'
+    'AC-01a.01(a)[07]' -> 'AC-01a.01.a_07'
+    'AC-02(01)'        -> 'AC-02.01'
+    'CA-07[01]'        -> 'CA-07_01'
+
+    Parens and brackets denote DIFFERENT things in the publication -- (01) is
+    control enhancement one, [01] is determination one -- so they cannot share a
+    separator. Flattening both to a dot collides CA-07(01) with CA-07[01], which
+    the build guard catches as a real pair in the catalog. Parens become dots,
+    brackets become underscores, and a dot immediately before an underscore is
+    dropped as redundant.
+
+    NIST's own labels are already zero-padded -- AC-01, AC-02(01), AU-09(04) --
+    so stems sort in control order without us inventing a padding scheme.
+    """
+    flat = (label.replace("(", ".").replace(")", "")
+                 .replace("[", "_").replace("]", ""))
+    flat = re.sub(r"\.+", ".", flat)
+    flat = re.sub(r"\._", "_", flat)
+    return flat.strip("._ ")
+
+
+def objective_leaves(ctrl: dict) -> list:
+    """Every assessment-objective LEAF, depth-first, as (label, part).
+
+    The leaf is SP 800-53A's atomic determination -- "an access control policy
+    is developed and documented" -- and is what an assessor marks satisfied.
+    Splitting here is what lets one determination be automated without touching
+    its sixteen siblings.
+
+    Two leaves in the catalog (si-2.7) carry prose but no label. They fall back
+    to the nearest labelled ancestor plus a positional index, which is stable
+    across regenerations because catalog order is.
+    """
+    out: list = []
+
+    def walk(part: dict, inherited: str, idx: int) -> None:
+        label = prop(part, "label")
+        kids = parts_named(part, "assessment-objective")
+        if not kids:
+            out.append((label or f"{inherited}[{idx:02d}]", part))
+            return
+        base = label or inherited
+        for i, kid in enumerate(kids, 1):
+            walk(kid, base, i)
+
+    for i, top in enumerate(parts_named(ctrl, "assessment-objective"), 1):
+        walk(top, display_id(ctrl["id"]), i)
+    return out
 
 
 # --------------------------------------------------------------------------
@@ -275,6 +336,31 @@ def rb_single(value: str) -> str:
 def esc_heredoc(text: str) -> str:
     """Escape literal prose for an interpolating (<<~) heredoc."""
     return text.replace("\\", "\\\\").replace("#{", "\\#{")
+
+
+def esc_double(text: str) -> str:
+    """Escape literal prose for a double-quoted Ruby string."""
+    return (text.replace("\\", "\\\\").replace('"', '\\"')
+                .replace("#{", "\\#{"))
+
+
+def rb_double(text: str, used: set) -> str:
+    """Double-quoted Ruby literal that still interpolates ODP inputs.
+
+    An objective's title IS its determination, and determinations carry ODP
+    references. rb_single would render `#{input('ac_01_odp_03')}` literally in
+    the title, so the one place a title needs interpolation gets a double-quoted
+    string instead. Whitespace is flattened: a title is one line.
+    """
+    flat = " ".join(text.split())
+    out, pos = [], 0
+    for m in INSERT.finditer(flat):
+        out.append(esc_double(flat[pos:m.start()]))
+        used.add(m.group(1))
+        out.append("#{input('%s')}" % input_name(m.group(1)))
+        pos = m.end()
+    out.append(esc_double(flat[pos:]))
+    return '"' + "".join(out) + '"'
 
 
 def render_prose(text: str, used: set) -> str:
@@ -349,44 +435,49 @@ def render_methods(ctrl: dict, used: set) -> list:
     return lines
 
 
-def render_check(ctrl: dict, used: set) -> str:
-    """SP 800-53A assessment procedure: determine-statements + methods."""
-    blocks = []
-    # The outermost objective is a bare wrapper labeled with the control id
-    # itself (e.g. "AC-02"); rendering it would repeat the control id and indent
-    # everything under it. Descend past a prose-less wrapper, keep inner
-    # grouping labels ("AC-02d.") -- they carry the statement structure.
-    tops = parts_named(ctrl, "assessment-objective")
-    if len(tops) == 1 and not (tops[0].get("prose") or "").strip():
-        tops = [p for p in tops[0].get("parts") or []
-                if p.get("name") == "assessment-objective"]
-    objectives = render_items(tops, used, keep=("assessment-objective",))
-    if objectives:
-        blocks.append("Determine if:\n" + "\n".join("  " + o for o in objectives))
-    methods = render_methods(ctrl, used)
-    if methods:
-        blocks.append("Assessment methods and objects:\n" + "\n".join(methods))
-    if not blocks:
-        return ("No SP 800-53A assessment procedure is published for this "
-                "control. Assess against the control statement.")
-    return "\n\n".join(blocks)
 
+def render_objective(ctrl: dict, label: str, part: dict,
+                     family_title: str, baselines: dict) -> tuple[str, set]:
+    """One InSpec control per SP 800-53A assessment objective.
 
-def render_control(ctrl: dict, family_title: str, baselines: dict) -> tuple[str, set]:
+    The objective is the unit an assessor determines and the unit a check can
+    satisfy, so it is the unit that gets a file. Each one stands alone: it
+    repeats its parent's control statement, assessment methods and discussion
+    rather than referring to a sibling file, because whoever automates this
+    objective needs the requirement in front of them and InSpec controls do not
+    share state.
+    """
     used: set = set()
     cid = display_id(ctrl["id"])
+    determination = (part.get("prose") or "").strip()
     statement = render_statement(ctrl, used)
-    check = render_check(ctrl, used)
+    methods = render_methods(ctrl, used)
     guidance = render_guidance(ctrl, used)
     in_baselines = [b for b in BASELINES if ctrl["id"] in baselines.get(b, set())]
 
+    check_blocks = []
+    if determination:
+        check_blocks.append("Determine if:\n  " + render_prose(determination, used))
+    if methods:
+        check_blocks.append("Assessment methods and objects:\n" + "\n".join(methods))
+    check = "\n\n".join(check_blocks) or (
+        "No SP 800-53A assessment procedure is published for this objective. "
+        "Assess against the control statement.")
+
+    # The title is the determination itself, so a report line reads
+    # "AC-01a.[01]: an access control policy is developed and documented"
+    # rather than repeating the parent control's title 17 times. Determinations
+    # carry ODP references, hence the interpolating literal.
+    title = (rb_double(determination, used) if determination
+             else rb_single(f"{ctrl['title']} — {label}"))
+
     body = [
-        f"control {rb_single(cid)} do",
-        # Every control is in scope; a skipped test at impact > 0 reports as
+        f"control {rb_single(label)} do",
+        # Every objective is in scope; a skipped test at impact > 0 reports as
         # "Not Reviewed" in HDF/Heimdall. impact 0.0 would report "Not
         # Applicable", which is a different -- and wrong -- assertion.
         "  impact 0.5",
-        f"  title {rb_single(ctrl['title'])}",
+        f"  title {title}",
         "  desc " + heredoc("DESC", statement),
         "  desc 'check', " + heredoc("CHECK", check),
         "  desc 'fix', " + heredoc("FIX", FIX_TEXT),
@@ -394,7 +485,12 @@ def render_control(ctrl: dict, family_title: str, baselines: dict) -> tuple[str,
     if guidance:
         body.append("  desc 'guidance', " + heredoc("GUIDANCE", guidance))
     body += [
+        # The parent control id, so every objective of a control rolls up on
+        # one tag -- this is what replaces the old one-file-per-control shape
+        # for anyone counting or grouping by control.
         f"  tag nist: [{rb_single(cid)}]",
+        f"  tag control: {rb_single(cid)}",
+        f"  tag objective: {rb_single(label)}",
         "  tag rev: 'Rev_5'",
         f"  tag family: {rb_single(family_title)}",
         "  tag baseline: %w{" + " ".join(in_baselines) + "}",
@@ -403,11 +499,17 @@ def render_control(ctrl: dict, family_title: str, baselines: dict) -> tuple[str,
     # array cannot be selected on. The per-baseline marker tags below are what
     # makes `cinc-auditor exec --tags baseline_moderate` select a baseline.
     body += [f"  tag baseline_{b.lower()}: true" for b in in_baselines]
+    # Same trick, for the control an objective belongs to. `--controls` is an
+    # EXACT match -- `--controls AC-01a` selects nothing, because the id is
+    # `AC-01a.[01]` -- so with objectives split out there would otherwise be no
+    # way to run one control's work, which the one-file-per-control shape gave
+    # for free. `--tags control_ac_2` restores it.
+    body.append(f"  tag control_{input_name(ctrl['id'])}: true")
     if used:
         body.append("  tag odp: %w{" + " ".join(input_name(p) for p in sorted(used)) + "}")
     body += [
         "",
-        f"  describe {rb_single('NIST SP 800-53 Rev 5 control ' + cid)} do",
+        f"  describe {rb_single('NIST SP 800-53A Rev 5 objective ' + label)} do",
         f"    skip {rb_single(SKIP_TEXT)}",
         "  end",
         "end",
@@ -445,7 +547,7 @@ def build(catalog: dict, baselines: dict, outdir: str, include_withdrawn: bool) 
         for ctrl in iter_controls(group):
             family_of[ctrl["id"]] = group.get("title", group["id"].upper())
 
-    emitted, withdrawn, seen_files = 0, 0, {}
+    emitted, withdrawn, controls_seen, seen_files = 0, 0, 0, {}
     all_params: list = []          # [(ctrl_display, param dict)] in catalog order
     referenced: set = set()
 
@@ -453,26 +555,44 @@ def build(catalog: dict, baselines: dict, outdir: str, include_withdrawn: bool) 
         if is_withdrawn(ctrl) and not include_withdrawn:
             withdrawn += 1
             continue
-        text, used = render_control(ctrl, family_of.get(ctrl["id"], ""), baselines)
-        referenced |= used
-        stem = file_id(ctrl["id"])
-        # Guard case-insensitive filesystems: two ids differing only by case
-        # would silently overwrite each other on macOS.
-        key = stem.lower()
-        if key in seen_files:
+        controls_seen += 1
+        family = family_dir(ctrl["id"])
+        fam_dir = resolved_under(controls_dir, family)
+        os.makedirs(fam_dir, exist_ok=True)
+
+        leaves = objective_leaves(ctrl)
+        if not leaves:
             raise SourceShapeError(
-                f"control filename collision: {ctrl['id']} vs {seen_files[key]}")
-        seen_files[key] = ctrl["id"]
-        with open(resolved_under(controls_dir, stem + ".rb"), "w") as fh:
-            fh.write(text)
-        emitted += 1
+                f"{ctrl['id']} publishes no assessment objective; the catalog "
+                "shape changed and one control would emit no file")
+
+        for label, part in leaves:
+            text, used = render_objective(
+                ctrl, label, part, family_of.get(ctrl["id"], ""), baselines)
+            referenced |= used
+            stem = objective_stem(label)
+            # Guard case-insensitive filesystems: two labels differing only by
+            # case would silently overwrite each other on macOS. Flattening
+            # brackets to dots could also collide two distinct labels, and that
+            # must be loud rather than a lost objective.
+            key = (family, stem.lower())
+            if key in seen_files:
+                raise SourceShapeError(
+                    f"objective filename collision in {family}/: "
+                    f"{label!r} vs {seen_files[key]!r} both -> {stem}.rb")
+            seen_files[key] = label
+            with open(resolved_under(fam_dir, stem + ".rb"), "w") as fh:
+                fh.write(text)
+            emitted += 1
+
         for param in ctrl.get("params") or []:
             all_params.append((display_id(ctrl["id"]), param))
 
     write_inspec_yml(outdir, cat, all_params)
     seeded = write_odp_worksheet(outdir, cat, all_params)
     return {
-        "controls": emitted,
+        "objectives": emitted,          # emitted files == InSpec controls
+        "controls": controls_seen,      # catalog controls they decompose
         "withdrawn_skipped": withdrawn,
         "params": len(all_params),
         "params_referenced": len(referenced),
@@ -483,12 +603,20 @@ def build(catalog: dict, baselines: dict, outdir: str, include_withdrawn: bool) 
 def write_inspec_yml(outdir: str, cat: dict, all_params: list) -> None:
     meta = cat.get("metadata", {})
     summary = (
-        "Every NIST SP 800-53 Rev 5 control, carrying its control language and\n"
-        "its SP 800-53A assessment procedure. No control is automated: each test\n"
-        "skips, so a run reports the catalog as Not Reviewed rather than passing.\n"
+        "Every NIST SP 800-53A Rev 5 assessment objective as its own InSpec\n"
+        "control, grouped by family under controls/<family>/. The objective is\n"
+        "the atomic determination an assessor makes, so it is the unit that can\n"
+        "be automated or attested independently; each carries its parent\n"
+        "control's statement, assessment methods and discussion.\n"
+        "\n"
+        "Nothing is automated: every test skips, so a run reports the catalog as\n"
+        "Not Reviewed rather than passing.\n"
         "\n"
         "Organization-defined parameters are declared as inputs and interpolate\n"
-        "into the control prose; supply them with --input-file inputs.yml.\n"
+        "into the objective prose; supply them with --input-file inputs.yml.\n"
+        "\n"
+        "Select one control's objectives with --tags control_ac_2; --controls is\n"
+        "an exact match on the 800-53A objective label.\n"
         "\n"
         f"Generated from the NIST OSCAL catalog ({meta.get('version', 'unknown')})\n"
         "by tools/nist_catalog_to_inspec/generate.py -- do not hand-edit."

@@ -195,8 +195,19 @@ ARTICLE = re.compile(r"\b(?:a|an|the)\s+#\{input\('([a-z0-9_]+)'\)\}", re.IGNORE
 LEADING_ARTICLE = re.compile(r"^(?:a|an|the)\s+", re.IGNORECASE)
 
 article_preceded = set()
-for control in pathlib.Path("controls").glob("*.rb"):
+scanned = 0
+# rglob, not glob: controls live in per-family subdirectories (controls/ac/...).
+# A non-recursive glob here matches nothing, finds no collisions, and silently
+# changes every affected ODP value -- a wrong answer that raises no error.
+for control in pathlib.Path("controls").rglob("*.rb"):
     article_preceded.update(ARTICLE.findall(control.read_text()))
+    scanned += 1
+if not scanned:
+    raise SystemExit(
+        "scanned 0 control files under controls/ -- the article-collision fixup "
+        "silently degrades to a no-op when this happens, so it is fatal. Either "
+        "controls/ is missing (run generate.py first) or its layout moved and "
+        "this scan needs updating.")
 
 
 def dearticle(key, value):
