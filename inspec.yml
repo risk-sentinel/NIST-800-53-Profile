@@ -7,12 +7,20 @@ license: Apache-2.0
 version: 0.1.0
 inspec_version: '>= 5.0'
 summary: |
-  Every NIST SP 800-53 Rev 5 control, carrying its control language and
-  its SP 800-53A assessment procedure. No control is automated: each test
-  skips, so a run reports the catalog as Not Reviewed rather than passing.
+  Every NIST SP 800-53A Rev 5 assessment objective as its own InSpec
+  control, grouped by family under controls/<family>/. The objective is
+  the atomic determination an assessor makes, so it is the unit that can
+  be automated or attested independently; each carries its parent
+  control's statement, assessment methods and discussion.
+
+  Nothing is automated: every test skips, so a run reports the catalog as
+  Not Reviewed rather than passing.
 
   Organization-defined parameters are declared as inputs and interpolate
-  into the control prose; supply them with --input-file inputs.yml.
+  into the objective prose; supply them with --input-file inputs.yml.
+
+  Select one control's objectives with --tags control_ac_2; --controls is
+  an exact match on the 800-53A objective label.
 
   Generated from the NIST OSCAL catalog (5.2.0)
   by tools/nist_catalog_to_inspec/generate.py -- do not hand-edit.

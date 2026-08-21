@@ -1,8 +1,9 @@
 # nist_catalog_to_inspec — NIST 800-53 catalog → InSpec skeleton
 
 Generates this repository from NIST's published OSCAL: every
-SP 800-53 Rev 5 control as an InSpec control carrying the control language, the
-SP 800-53A assessment procedure as `check` text, and a stub that skips.
+SP 800-53A Rev 5 **assessment objective** as an InSpec control carrying its
+parent control's language, the assessment methods as `check` text, and a stub
+that skips. 1,014 catalog controls decompose into 2,776 objectives.
 
 **Why this exists:** the sibling scaffolder (`tools/xccdf_to_inspec/`) starts
 from an XCCDF benchmark, which gives it check *and* fix text per rule. There is
@@ -21,9 +22,27 @@ different enough to warrant its own tool rather than a mode flag.
   only part names in the catalog are `statement`, `item`, `guidance`,
   `assessment-objective`, `assessment-method`, `assessment-objects`. `desc 'fix'`
   is a stated placeholder rather than an empty field an assessor has to interpret.
+- **The assessment objective is the unit, not the control.** SP 800-53A's leaf
+  objective is the atomic determination an assessor makes and the smallest thing
+  one check can satisfy, so it gets the file. The old one-file-per-control shape
+  meant automating a single determination required editing a file that held
+  sixteen others, and a hand-split was lost on the next regeneration.
+- **Filenames come from NIST's labels, which are already zero-padded.** `AC-01`,
+  `AC-02(01)`, `AU-09(04)`. Keying off them fixes ordering (`AC-10` no longer
+  sorts before `AC-2`) without inventing a padding scheme, and keeps our
+  identifiers identical to the publication's. Parens flatten to `.` and brackets
+  to `_` — they are different things, and the catalog contains both `CA-07(01)`
+  and `CA-07[01]`.
+- **Objectives are grouped by family** under `controls/<family>/`. Verified that
+  cinc-auditor loads controls from nested subdirectories.
 - **ODPs become inputs.** All 1,600 organization-defined parameters are declared
   in `inspec.yml` and interpolated into the control prose, so a filled-in
   `inputs.yml` rewrites the control language the way the organization defined it.
+- **The title is the determination.** A report line reads
+  `AC-01a.[01]: an access control policy is developed and documented` rather
+  than repeating one control title seventeen times. Determinations carry ODP
+  references, so the title is an interpolating double-quoted literal — the one
+  place `rb_single` would print the marker verbatim.
 - **`impact 0.5` with a skipping test.** That reports **Not Reviewed** in HDF.
   `impact 0.0` would report *Not Applicable* — a different and unearned claim,
   and the suppression pattern `docs/dev/issue_rules.md` calls out.
@@ -66,6 +85,10 @@ rewritten every run — diff the two to see what is unfilled or what NIST change
 `controls/` **is** cleared and rewritten; see the profile README for how to
 automate a control without losing it.
 
+Every non-withdrawn control must publish at least one assessment objective, and
+the generator fails loudly if one does not — a control that emits no file at all
+is exactly the silent gap this repository exists to make visible.
+
 ## Source pin
 
 | | |
@@ -90,8 +113,9 @@ python3 -m pytest tools/nist_catalog_to_inspec/tests/
 
 The suite asserts on emitted text, not on the generator exiting zero: prose that
 could break out of a Ruby heredoc, ODP markers left unsubstituted, withdrawn
-controls emitted as if in force, two controls colliding on one filename, and
-YAML quoting. Every emitted control file is handed to `ruby -c`, so a quoting
+controls emitted as if in force, two objectives colliding on one filename, the
+paren-versus-bracket distinction that collision turns on, the unlabelled-objective
+fallback, a control publishing no objectives at all, and YAML quoting. Every emitted control file is handed to `ruby -c`, so a quoting
 regression fails there rather than at `cinc-auditor exec`.
 
 
@@ -133,6 +157,12 @@ Precedence order, and every value is attributable to exactly one source:
    inventing content would read like a decision nobody made.
 
 ### Two things it fixes that are easy to miss
+
+**The scan is recursive, and fatal if it finds nothing.** Objectives live in
+`controls/<family>/`, so the collision scan uses `rglob`. A non-recursive glob
+there matches nothing, silently finds no collisions, and changes every affected
+ODP value without raising — a wrong answer with no error. Scanning zero files is
+therefore fatal rather than a quiet no-op.
 
 **Article collisions.** Some control prose supplies the article itself —
 "Designate an `#{input('ac_01_odp_04')}`" — so a value beginning "the ..."

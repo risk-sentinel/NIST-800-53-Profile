@@ -32,6 +32,8 @@ from generate import (  # noqa: E402
     esc_heredoc,
     heredoc,
     input_name,
+    objective_leaves,
+    objective_stem,
     param_placeholder,
     readable_file,
     render_prose,
@@ -93,6 +95,16 @@ def _catalog():
                                  {"id": "ac-2_obj.a", "name": "assessment-objective",
                                   "props": [{"name": "label", "value": "AC-02a."}],
                                   "prose": "account managers are assigned;"},
+                                 {"id": "ac-2_obj.b", "name": "assessment-objective",
+                                  "props": [{"name": "label", "value": "AC-02b."}],
+                                  "parts": [
+                                      {"id": "ac-2_obj.b1", "name": "assessment-objective",
+                                       "props": [{"name": "label", "value": "AC-02b.[01]"}],
+                                       "prose": "accounts to {{ insert: param, ac-02_odp.02 }} are defined;"},
+                                      # No label: NIST ships two of these (si-2.7).
+                                      {"id": "ac-2_obj.b2", "name": "assessment-objective",
+                                       "prose": "the unlabelled determination holds."},
+                                  ]},
                              ]},
                             {"id": "ac-2_asm-examine", "name": "assessment-method",
                              "props": [{"name": "method", "value": "EXAMINE"}],
@@ -102,8 +114,13 @@ def _catalog():
                         ],
                         "controls": [
                             {"id": "ac-2.1", "title": "Automated Account Management",
-                             "parts": [{"id": "ac-2.1_smt", "name": "statement",
-                                        "prose": "Support account management."}]},
+                             "parts": [
+                                 {"id": "ac-2.1_smt", "name": "statement",
+                                  "prose": "Support account management."},
+                                 {"id": "ac-2.1_obj", "name": "assessment-objective",
+                                  "props": [{"name": "label", "value": "AC-02(01)"}],
+                                  "prose": "account management is supported."},
+                             ]},
                             {"id": "ac-2.10", "title": "Withdrawn",
                              "props": [{"name": "status", "value": "withdrawn"}]},
                         ],
@@ -236,37 +253,104 @@ def test_yaml_scalar_output_round_trips():
 
 
 # -- emitted profile -------------------------------------------------------
-def test_withdrawn_controls_are_not_emitted(generated):
+def objfiles(out):
+    """Every emitted objective as 'family/stem.rb', sorted."""
+    root = out / "controls"
+    return sorted(str(p.relative_to(root)) for p in root.rglob("*.rb"))
+
+
+def test_objectives_are_split_per_leaf_and_grouped_by_family(generated):
     out, stats = generated
-    names = sorted(p.name for p in (out / "controls").iterdir())
-    assert names == ["AC-2.1.rb", "AC-2.rb"]
-    assert stats["controls"] == 2
+    # One file per assessment-objective LEAF, under the control's family.
+    # AC-02b. is a grouping node and gets no file of its own; its two leaves do.
+    assert objfiles(out) == [
+        "ac/AC-02.01.rb",       # the enhancement's objective: parens -> dot
+        "ac/AC-02a.rb",
+        "ac/AC-02b_01.rb",      # brackets -> underscore, so it cannot collide
+        "ac/AC-02b_02.rb",      # unlabelled leaf, fallback label from its parent
+    ]
+    assert stats["objectives"] == 4      # emitted files == InSpec controls
+    assert stats["controls"] == 2        # catalog controls they decompose
     assert stats["withdrawn_skipped"] == 1
 
 
-def test_control_carries_statement_check_fix_and_tags(generated):
+def test_unlabelled_objective_falls_back_to_parent_plus_index(generated):
     out, _ = generated
-    text = (out / "controls" / "AC-2.rb").read_text()
-    assert text.startswith("control 'AC-2' do")
+    # NIST ships two objectives with prose but no label (si-2.7). A blank id
+    # would collide with its sibling and a crash would drop the determination.
+    text = (out / "controls" / "ac" / "AC-02b_02.rb").read_text()
+    assert text.startswith("control 'AC-02b.[02]' do")
+    assert "the unlabelled determination holds." in text
+
+
+def test_objective_carries_statement_methods_fix_and_tags(generated):
+    out, _ = generated
+    text = (out / "controls" / "ac" / "AC-02a.rb").read_text()
+    assert text.startswith("control 'AC-02a.' do")
     assert "impact 0.5" in text                    # not 0.0: Not Reviewed, not N/A
+    # The determination is the title, so a report line names what to determine.
+    assert 'title "account managers are assigned;"' in text
+    # It still carries its parent's statement, methods and discussion, because
+    # whoever automates this objective needs the requirement in front of them.
     assert "a. Assign account managers;" in text
     assert "  1. Accounts to #{input('ac_02_odp_02')}." in text   # nesting preserved
-    assert "AC-02a. account managers are assigned;" in text
+    assert "Determine if:\n      account managers are assigned;" in text
     assert "EXAMINE: Access control policy; system design documentation" in text
     assert "no remediation text" in text           # the fix-text gap is stated
     assert "tag baseline: %w{MODERATE}" in text
     # --tags filters on tag names, so baseline selection needs a marker tag
     assert "tag baseline_moderate: true" in text
     assert "baseline_low" not in text
-    assert "skip '" in text                        # every control is a stub
+    assert "skip '" in text                        # every objective is a stub
 
 
-def test_check_drops_the_redundant_outer_objective_label(generated):
+def test_objective_tags_roll_up_to_its_control(generated):
     out, _ = generated
-    check = (out / "controls" / "AC-2.rb").read_text().split("desc 'check'")[1]
-    body = check.split("CHECK")[1]
-    assert "AC-02a." in body
-    assert "\n      AC-02\n" not in body
+    text = (out / "controls" / "ac" / "AC-02a.rb").read_text()
+    # --controls is an EXACT match on the objective label, so selecting one
+    # control's objectives needs a marker tag the same way baselines do.
+    assert "tag control: 'AC-2'" in text
+    assert "tag objective: 'AC-02a.'" in text
+    assert "tag control_ac_2: true" in text
+
+
+def test_objective_title_interpolates_odps(generated):
+    out, _ = generated
+    text = (out / "controls" / "ac" / "AC-02b_01.rb").read_text()
+    # A determination carrying an ODP must interpolate in the TITLE too -- a
+    # single-quoted Ruby literal would print the marker verbatim in reports.
+    assert 'title "accounts to #{input(\'ac_02_odp_02\')} are defined;"' in text
+
+
+def test_filenames_sort_in_control_order(generated):
+    out, _ = generated
+    # The bug this replaces: AC-10 sorted before AC-2 because the number was
+    # unpadded. NIST's own 800-53A labels are zero-padded, so keying the
+    # filename off the label fixes ordering without inventing a scheme.
+    names = [n.split("/")[1] for n in objfiles(out)]
+    assert names == sorted(names)
+    assert all(n.startswith("AC-02") for n in names)
+
+
+def test_paren_and_bracket_labels_do_not_collide():
+    # Real pair in the catalog: CA-7(1) the enhancement vs CA-07[01] the
+    # determination. Flattening both to a dot silently loses one.
+    assert objective_stem("CA-07(01)") == "CA-07.01"
+    assert objective_stem("CA-07[01]") == "CA-07_01"
+    assert objective_stem("AC-01a.[01]") == "AC-01a_01"
+    assert objective_stem("AC-01a.01(a)[07]") == "AC-01a.01.a_07"
+
+
+def test_control_with_no_objectives_is_fatal(tmp_path):
+    # Every non-withdrawn control in the real catalog publishes at least one
+    # objective. If that stops being true the control would emit no file at
+    # all, and a silently-missing control is the failure this repo exists to
+    # avoid.
+    cat = _catalog()
+    cat["catalog"]["groups"][0]["controls"][0]["parts"] = [
+        {"id": "ac-2_smt", "name": "statement", "prose": "Assign managers."}]
+    with pytest.raises(SourceShapeError, match="no assessment objective"):
+        build(cat, {}, str(tmp_path / "profile"), False)
 
 
 def test_every_odp_is_declared_as_an_input(generated):
@@ -305,7 +389,7 @@ def test_regeneration_preserves_filled_in_odp_values(tmp_path):
 def test_stale_controls_are_cleared_on_regeneration(tmp_path):
     out = tmp_path / "profile"
     build(_catalog(), {}, str(out), False)
-    stale = out / "controls" / "XX-9.rb"
+    stale = out / "controls" / "ac" / "XX-9.rb"
     stale.write_text("control 'XX-9' do\nend\n")
     build(_catalog(), {}, str(out), False)
     assert not stale.exists()
@@ -317,7 +401,11 @@ def test_filename_collision_is_fatal(tmp_path):
     # -- the generator would still report a full emit. Duplicate ids are the
     # reachable case; the guard compares case-folded so a macOS run cannot
     # collide two ids that a Linux run keeps apart either.
-    cat["catalog"]["groups"][0]["controls"].append({"id": "ac-2", "title": "Duplicate"})
+    cat["catalog"]["groups"][0]["controls"].append({
+        "id": "ac-2", "title": "Duplicate",
+        "parts": [{"id": "dup_obj", "name": "assessment-objective",
+                   "props": [{"name": "label", "value": "AC-02a."}],
+                   "prose": "a second objective claiming the same label."}]})
     with pytest.raises(SourceShapeError, match="collision"):
         build(cat, {}, str(tmp_path / "profile"), False)
 
@@ -325,7 +413,7 @@ def test_filename_collision_is_fatal(tmp_path):
 @pytest.mark.skipif(shutil.which("ruby") is None, reason="ruby not installed")
 def test_emitted_ruby_parses(generated):
     out, _ = generated
-    for path in sorted((out / "controls").iterdir()):
+    for path in sorted((out / "controls").rglob("*.rb")):
         proc = subprocess.run(["ruby", "-c", str(path)],
                               capture_output=True, text=True)
         assert proc.returncode == 0, f"{path.name}: {proc.stderr}"
