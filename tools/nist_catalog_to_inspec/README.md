@@ -29,8 +29,10 @@ different enough to warrant its own tool rather than a mode flag.
   and the suppression pattern `docs/dev/issue_rules.md` calls out.
 - **The source ref is pinned.** NIST republishes the catalog in place on `main`;
   an unpinned regeneration produces an unreviewable diff.
-- **Python stdlib only** — no pip install, no virtualenv, matching the other
-  tools here. YAML is emitted directly (see `yaml_scalar`), not via PyYAML.
+- **`generate.py` is Python stdlib only** — no pip install, no virtualenv,
+  matching the other tools here. YAML is emitted directly (see `yaml_scalar`),
+  not via PyYAML. This holds for the generator alone: `seed_sample_odps.py`
+  imports PyYAML to read `fedramp_odp_values.yml`, and the tests need pytest.
 - **Deterministic output** — no timestamps, no clock reads, stable ordering. Two
   runs at the same ref are byte-identical, so a NIST republish reviews as a diff.
 
@@ -103,8 +105,10 @@ prose interpolates them, so an unfilled profile renders sentences full of square
 brackets.
 
 `seed_sample_odps.py` produces `inputs.yml` from that template, filling every one
-of the 1,600 ODPs. It is pure, offline and deterministic, so CI gates it for
-drift.
+of the 1,600 ODPs. It is offline and deterministic, so CI gates it for drift.
+
+Unlike `generate.py` it needs PyYAML — `pip install pyyaml` — to read
+`fedramp_odp_values.yml`.
 
 ```bash
 python3 tools/nist_catalog_to_inspec/seed_sample_odps.py

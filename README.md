@@ -25,6 +25,47 @@ only a minority of these controls will ever carry an executable check. The ones
 that stay manual get assessed and attested; this skeleton is where that shows up
 rather than being quietly absent.
 
+## Prerequisites
+
+[cinc-auditor](https://cinc.sh/start/auditor/) 5 or later — or `inspec`, which takes
+the same arguments. The profile has no `depends:` and no custom resources, so there
+is nothing to vendor.
+
+### If you have a Ruby version manager installed, read this first
+
+cinc-auditor ships its own Ruby inside `/opt/cinc-auditor/embedded`. RVM, rbenv,
+chruby and a `gem install chef` all export `GEM_HOME` and `GEM_PATH` into the
+shell, and the omnibus launcher honours them — so it loads *your* gems, built
+against *your* Ruby's ABI, into its embedded Ruby. Native extensions then fail to
+load:
+
+```
+`require': incompatible library version -
+  ~/.rvm/gems/ruby-3.4.9/gems/openssl-3.3.0/lib/openssl.bundle (LoadError)
+```
+
+The version numbers vary; `openssl` is usually the first to break because the
+launcher requires it before anything else. Clear the two variables for the call:
+
+```bash
+env -u GEM_HOME -u GEM_PATH cinc-auditor exec . --input-file inputs.yml --reporter cli
+```
+
+Make it permanent with a shell function in your `~/.zshrc` or `~/.bashrc`:
+
+```bash
+cinc-auditor() { env -u GEM_HOME -u GEM_PATH -u RUBYOPT -u RUBYLIB \
+  /usr/local/bin/cinc-auditor "$@"; }
+```
+
+`rvm use system` before the run works too. Do **not** fix this by installing gems
+into the embedded Ruby or by pointing `GEM_HOME` at it — that mixes two gem sets
+that were never resolved together, and the next `cinc-auditor` upgrade discards
+whatever you put there.
+
+CI runs the profile inside `risksentinel/sparc-auditor`, where no version manager
+is present, so this is a workstation problem only.
+
 ## Quick start
 
 ```bash
@@ -82,11 +123,22 @@ survive.
 Content is generated from NIST's published OSCAL — nothing here is hand-written,
 and hand-edits are lost on the next run.
 
+Python 3.10 or later. `generate.py` uses the standard library only; the seeder
+needs PyYAML, and the tests need pytest:
+
+```bash
+python3 -m pip install pyyaml pytest
+```
+
 ```bash
 # The catalog: controls/, inspec.yml, inputs.template.yml (~16MB download).
-python3 tools/nist_catalog_to_inspec/generate.py --output . --cache .oscal-cache
+# Pin the ref — the default is `main`, which NIST republishes in place, so an
+# unpinned run produces a diff nobody can review. The current pin lives in
+# tools/nist_catalog_to_inspec/README.md; bump it in the same commit.
+python3 tools/nist_catalog_to_inspec/generate.py --output . --cache .oscal-cache \
+  --ref 78650f02ad9321bb7b817846f8fbd4f2bcd620de
 
-# The sample ODP worksheet. Pure, offline, deterministic.
+# The sample ODP worksheet. Offline and deterministic.
 python3 tools/nist_catalog_to_inspec/seed_sample_odps.py
 
 python3 -m pytest tools/nist_catalog_to_inspec/tests/
@@ -117,7 +169,7 @@ tags and the release tag. The repository name never churns.
 | | |
 | --- | --- |
 | Catalog | [usnistgov/oscal-content](https://github.com/usnistgov/oscal-content) — SP 800-53 Rev 5 catalog and the LOW/MODERATE/HIGH/PRIVACY resolved baselines |
-| FedRAMP ODP values | [FedRAMP/rules](https://github.com/FedRAMP/rules) — Consolidated Rules for 2026, `2026.07.14.01` |
+| FedRAMP ODP values | [FedRAMP/rules](https://github.com/FedRAMP/rules) — Consolidated Rules `2026.07.14.01`, released 2026-07-14, retrieved 2026-08-20 |
 | Assessment procedures | SP 800-53A Rev 5, from the same OSCAL content |
 
 Baseline membership is a tag (`baseline_low`, `baseline_moderate`,

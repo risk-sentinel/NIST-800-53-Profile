@@ -70,3 +70,8 @@ vendor/
 *.hdf.json
 hdf.json
 inspec.lock
+
+# Agent working notes. Kept out of the repository deliberately: they describe
+# how a coding assistant should navigate this profile, which is a property of
+# how someone works rather than of the profile itself.
+CLAUDE.md
