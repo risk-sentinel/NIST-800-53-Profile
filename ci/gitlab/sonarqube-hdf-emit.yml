@@ -1,0 +1,151 @@
+# GitLab template — fetch this project's SonarQube findings and produce
+# audit-ready HDF evidence.
+#
+# Include it (nothing else needs to be copied into your repository):
+#
+#   include:
+#     - project: risk-sentinel/NIST-800-53-Profile
+#       ref: main
+#       file: /ci/gitlab/sonarqube-hdf-emit.yml
+#       inputs:
+#         sonar_project_key: my-group_my-project
+#
+# Or clone this repo in your own job and paste the script below. Both work,
+# which is the point: the logic lives in YAML, so `include:` carries all of it.
+#
+# Deliberately the same script as .github/workflows/sonarqube-hdf-emit.yml.
+# Duplicating across forges is preferable to a dependency a consumer cannot
+# satisfy — and on GitHub that is not a preference but a hard limit, since a
+# public repository cannot use a workflow from a private or internal one.
+#
+# ---- Scope: artifact, not S3 ------------------------------------------------
+#
+# This produces the HDF and publishes it as a job artifact. It does NOT push to
+# an S3 evidence bucket, matching ci/gitlab/exec-evidence.yml in this repo.
+#
+# That is a deliberate omission rather than an oversight. The GitHub job emits
+# via OIDC using an AWS-provided action; the GitLab equivalent needs `id_tokens`
+# plus `aws sts assume-role-with-web-identity`, and the trust policy has to
+# accept a GitLab issuer. There is no GitLab instance here to validate that
+# against, and shipping an untested credential flow that fails open is worse
+# than shipping none. To add it, take the emit step from the GitHub workflow and
+# swap the credential configuration.
+#
+# ---- Adopting this outside risk-sentinel ------------------------------------
+#
+# You need SONAR_TOKEN as a masked CI/CD variable and a SonarQube/SonarCloud
+# project. Nothing else.
+
+spec:
+  inputs:
+    sonar_project_key:
+      description: >-
+        SonarQube/SonarCloud project key. Defaults to the GitLab project path
+        with slashes replaced, which is what SonarCloud assigns at onboarding —
+        but a project RENAMED after onboarding keeps its old key, so check.
+      default: ""
+    sonar_host_url:
+      default: "https://sonarcloud.io"
+    sonar_organization:
+      description: SonarCloud organization. Leave empty for self-hosted SonarQube.
+      default: "risk-sentinel"
+    image:
+      description: Image carrying the hdf CLI. Bakes hdf 3.4.1.
+      default: risksentinel/sparc-auditor:v0.5.0
+    job_name:
+      default: sonarqube-hdf-emit
+---
+
+"$[[ inputs.job_name ]]":
+  image: "$[[ inputs.image ]]"
+  variables:
+    SONAR_HOST_URL: "$[[ inputs.sonar_host_url ]]"
+    SONAR_ORGANIZATION: "$[[ inputs.sonar_organization ]]"
+    SONAR_PROJECT_KEY_INPUT: "$[[ inputs.sonar_project_key ]]"
+  script:
+    # 1 — resolve and VERIFY the project key before fetching anything.
+    #
+    # A wrong key is not an error: the API returns nothing for an unknown
+    # project, and that converts into a valid, EMPTY, clean-looking report.
+    # Verifying first is the difference between "no findings" and "we asked the
+    # wrong question".
+    - |
+      set -euo pipefail
+      if [ -z "${SONAR_TOKEN:-}" ]; then
+        echo "ERROR: SONAR_TOKEN is not set. Without it there is nothing to fetch, and an empty result converts into a clean-looking report."
+        exit 1
+      fi
+      KEY="${SONAR_PROJECT_KEY_INPUT}"
+      if [ -z "$KEY" ]; then
+        KEY="$(printf '%s' "$CI_PROJECT_PATH" | tr '/' '_')"
+      fi
+      code=$(curl -sS -o /tmp/sonar-project.json -w '%{http_code}' \
+        --proto '=https' --proto-redir '=https' --tlsv1.2 \
+        -u "${SONAR_TOKEN}:" \
+        "${SONAR_HOST_URL}/api/components/show?component=${KEY}")
+      if [ "$code" = "404" ]; then
+        echo "ERROR: no SonarQube project with key '${KEY}'."
+        echo "ERROR: SonarCloud does not rename a project key when the repository is renamed, so a project renamed after onboarding keeps its OLD key. Pass sonar_project_key explicitly, or rename the key to match."
+        exit 1
+      fi
+      if [ "$code" != "200" ]; then
+        echo "ERROR: could not verify the SonarQube project (HTTP ${code}). Refusing to fetch: an unverified key can return an empty result that looks clean."
+        cat /tmp/sonar-project.json || true
+        exit 1
+      fi
+      echo "$KEY" > .sonar-key
+      echo "Verified SonarQube project: ${KEY}"
+
+    # 2 — fetch and convert. The image already carries the hdf CLI, so there is
+    #     no download to verify here.
+    - |
+      set -euo pipefail
+      KEY="$(cat .sonar-key)"
+      OUT="${CI_PROJECT_NAME}-sonarqube-hdf.json"
+      export SONARQUBE_TOKEN="$SONAR_TOKEN"
+      args="fetch sonarqube $OUT --url $SONAR_HOST_URL --project-key $KEY --format hdf"
+      if [ -n "${SONAR_ORGANIZATION:-}" ]; then
+        args="$args --organization $SONAR_ORGANIZATION"
+      fi
+      # shellcheck disable=SC2086
+      hdf $args
+      echo "HDF_FILE=$OUT" > .hdf-env
+
+    # 3 — stamp scan provenance. LOCKED label vocabulary: keep these key names
+    #     identical across forges and scanners, or cross-repo aggregation stops
+    #     grouping on the same keys.
+    - |
+      set -euo pipefail
+      . ./.hdf-env
+      KEY="$(cat .sonar-key)"
+      hdf label set "$HDF_FILE" \
+        repo="$CI_PROJECT_PATH" \
+        commit="$CI_COMMIT_SHA" \
+        ref="$CI_COMMIT_REF_NAME" \
+        scanner=sonarqube \
+        run_id="$CI_PIPELINE_ID" \
+        sonar_project_key="$KEY" \
+        -o "$HDF_FILE.labeled"
+      mv "$HDF_FILE.labeled" "$HDF_FILE"
+      hdf label show "$HDF_FILE"
+
+    # 4 — validate. A clean project (zero open issues) is valid evidence and
+    #     schema validation correctly accepts it; that is the point, because a
+    #     clean repo and a broken pipeline must not leave identical traces.
+    - |
+      set -euo pipefail
+      . ./.hdf-env
+      test -s "$HDF_FILE"
+      hdf validate "$HDF_FILE" -q
+      echo "OHDF schema-valid: $HDF_FILE"
+
+    - |
+      set -euo pipefail
+      . ./.hdf-env
+      echo "===== HDF rollup ====="
+      hdf list "$HDF_FILE" || true
+  artifacts:
+    when: always
+    expire_in: 90 days
+    paths:
+      - "*-sonarqube-hdf.json"
