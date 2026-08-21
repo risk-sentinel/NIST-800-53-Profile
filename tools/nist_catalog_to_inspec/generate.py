@@ -259,8 +259,8 @@ def objective_stem(label: str) -> str:
     """
     flat = (label.replace("(", ".").replace(")", "")
                  .replace("[", "_").replace("]", ""))
-    flat = re.sub(r"\.+", ".", flat)
-    flat = re.sub(r"\._", "_", flat)
+    flat = re.sub(r"\.+", ".", flat)      # genuinely a pattern: one or more
+    flat = flat.replace("._", "_")        # fixed string: no regex needed
     return flat.strip("._ ")
 
 
@@ -535,6 +535,49 @@ def yaml_block(value: str, indent: str = "  ") -> str:
     return "|\n" + "\n".join(lines)
 
 
+def write_objectives(ctrl: dict, family_title: str, baselines: dict,
+                     controls_dir: str, seen_files: dict) -> tuple[int, set]:
+    """Write one control's assessment objectives, one file each.
+
+    Split out of build() rather than nested inside it: the per-objective loop
+    carries its own collision guard, which put build() three levels deep for
+    what is a self-contained unit of work.
+
+    `seen_files` is shared across controls on purpose -- a collision between two
+    different controls' objectives is exactly the case worth catching.
+
+    Returns (files written, ODP ids referenced).
+    """
+    family = family_dir(ctrl["id"])
+    fam_dir = resolved_under(controls_dir, family)
+    os.makedirs(fam_dir, exist_ok=True)
+
+    leaves = objective_leaves(ctrl)
+    if not leaves:
+        raise SourceShapeError(
+            f"{ctrl['id']} publishes no assessment objective; the catalog "
+            "shape changed and one control would emit no file")
+
+    referenced: set = set()
+    for label, part in leaves:
+        text, used = render_objective(ctrl, label, part, family_title, baselines)
+        referenced |= used
+        stem = objective_stem(label)
+        # Guard case-insensitive filesystems: two labels differing only by case
+        # would silently overwrite each other on macOS. Flattening brackets and
+        # parens can also collide two distinct labels -- CA-07(01) against
+        # CA-07[01] -- and that must be loud rather than a lost objective.
+        key = (family, stem.lower())
+        if key in seen_files:
+            raise SourceShapeError(
+                f"objective filename collision in {family}/: "
+                f"{label!r} vs {seen_files[key]!r} both -> {stem}.rb")
+        seen_files[key] = label
+        with open(resolved_under(fam_dir, stem + ".rb"), "w") as fh:
+            fh.write(text)
+    return len(leaves), referenced
+
+
 def build(catalog: dict, baselines: dict, outdir: str, include_withdrawn: bool) -> dict:
     cat = catalog["catalog"]
     controls_dir = resolved_under(outdir, "controls")
@@ -556,34 +599,11 @@ def build(catalog: dict, baselines: dict, outdir: str, include_withdrawn: bool) 
             withdrawn += 1
             continue
         controls_seen += 1
-        family = family_dir(ctrl["id"])
-        fam_dir = resolved_under(controls_dir, family)
-        os.makedirs(fam_dir, exist_ok=True)
-
-        leaves = objective_leaves(ctrl)
-        if not leaves:
-            raise SourceShapeError(
-                f"{ctrl['id']} publishes no assessment objective; the catalog "
-                "shape changed and one control would emit no file")
-
-        for label, part in leaves:
-            text, used = render_objective(
-                ctrl, label, part, family_of.get(ctrl["id"], ""), baselines)
-            referenced |= used
-            stem = objective_stem(label)
-            # Guard case-insensitive filesystems: two labels differing only by
-            # case would silently overwrite each other on macOS. Flattening
-            # brackets to dots could also collide two distinct labels, and that
-            # must be loud rather than a lost objective.
-            key = (family, stem.lower())
-            if key in seen_files:
-                raise SourceShapeError(
-                    f"objective filename collision in {family}/: "
-                    f"{label!r} vs {seen_files[key]!r} both -> {stem}.rb")
-            seen_files[key] = label
-            with open(resolved_under(fam_dir, stem + ".rb"), "w") as fh:
-                fh.write(text)
-            emitted += 1
+        count, used = write_objectives(
+            ctrl, family_of.get(ctrl["id"], ""), baselines,
+            controls_dir, seen_files)
+        emitted += count
+        referenced |= used
 
         for param in ctrl.get("params") or []:
             all_params.append((display_id(ctrl["id"]), param))
