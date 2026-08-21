@@ -1,0 +1,34 @@
+control 'CM-7 (8)' do
+  impact 0.5
+  title 'Binary or Machine Executable Code'
+  desc <<~DESC
+    (a) Prohibit the use of binary or machine-executable code from sources with limited or no warranty or without the provision of source code; and
+    (b) Allow exceptions only for compelling mission or operational requirements and with the approval of the authorizing official.
+  DESC
+  desc 'check', <<~CHECK
+    Determine if:
+      CM-07(08)(a) the use of binary or machine-executable code is prohibited when it originates from sources with limited or no warranty or without the provision of source code;
+      CM-07(08)(b)
+        CM-07(08)(b)[01] exceptions to the prohibition of binary or machine-executable code from sources with limited or no warranty or without the provision of source code are allowed only for compelling mission or operational requirements;
+        CM-07(08)(b)[02] exceptions to the prohibition of binary or machine-executable code from sources with limited or no warranty or without the provision of source code are allowed only with the approval of the authorizing official.
+
+    Assessment methods and objects:
+      EXAMINE: Configuration management policy; procedures addressing least functionality in the system; configuration management plan; system security plan; system design documentation; system configuration settings and associated documentation; list or record of binary or machine-executable code; system component inventory; common secure configuration checklists; system audit records; system security plan; other relevant documents or records
+      INTERVIEW: Organizational personnel with responsibilities for determining mission and operational requirements; authorizing official for the system; organizational personnel with information security responsibilities; organizational personnel with software management responsibilities; system/network administrators
+      TEST: Organizational process for approving execution of binary or machine-executable code; mechanisms supporting and/or implementing the prohibition of binary or machine-executable code
+  CHECK
+  desc 'fix', <<~FIX
+    NIST SP 800-53 Rev 5 and SP 800-53A Rev 5 publish no remediation text for this control. Implement the control statement above, record the implementation statement in the SSP, and replace this text with the system-specific remediation once the control is automated.
+  FIX
+  desc 'guidance', <<~GUIDANCE
+    Binary or machine executable code applies to all sources of binary or machine-executable code, including commercial software and firmware and open-source software. Organizations assess software products without accompanying source code or from sources with limited or no warranty for potential security impacts. The assessments address the fact that software products without the provision of source code may be difficult to review, repair, or extend. In addition, there may be no owners to make such repairs on behalf of organizations. If open-source software is used, the assessments address the fact that there is no warranty, the open-source software could contain back doors or malware, and there may be no support available.
+  GUIDANCE
+  tag nist: ['CM-7 (8)']
+  tag rev: 'Rev_5'
+  tag family: 'Configuration Management'
+  tag baseline: %w{}
+
+  describe 'NIST SP 800-53 Rev 5 control CM-7 (8)' do
+    skip 'Not automated. This control is a skeleton: it carries the NIST control language and the SP 800-53A assessment procedure but performs no check. Replace this stub with InSpec resource tests to automate it, or assess it manually and record the result as an attestation.'
+  end
+end

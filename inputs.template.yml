@@ -1,0 +1,4571 @@
+# Organization-defined parameters (ODPs) for NIST SP 800-53 Rev 5.
+#
+# Every value below is a placeholder. Replace the bracketed text with the
+# value the organization has defined, then run:
+#
+#   cinc-auditor exec . --input-file inputs.yml
+#
+# Values interpolate into the control language, so a filled-in worksheet
+# makes each control read the way this system actually implements it.
+#
+# inputs.template.yml is regenerated every run. inputs.yml is seeded from
+# it once and never overwritten -- fill that one in.
+
+
+# AC-1 Policy and Procedures
+# ac-1_prm_1
+ac_1_prm_1: '[organization-defined personnel or roles]'
+# AC-01_ODP[01]
+ac_01_odp_01: '[organization-defined personnel or roles]'
+# AC-01_ODP[02]
+ac_01_odp_02: '[organization-defined personnel or roles]'
+# AC-01_ODP[03]
+ac_01_odp_03: '[selection (one or more): organization-level; mission/business process-level; system-level]'
+# AC-01_ODP[04]
+ac_01_odp_04: '[organization-defined official]'
+# AC-01_ODP[05]
+ac_01_odp_05: '[organization-defined frequency]'
+# AC-01_ODP[06]
+ac_01_odp_06: '[organization-defined events]'
+# AC-01_ODP[07]
+ac_01_odp_07: '[organization-defined frequency]'
+# AC-01_ODP[08]
+ac_01_odp_08: '[organization-defined events]'
+
+# AC-2 Account Management
+# AC-02_ODP[01]
+ac_02_odp_01: '[organization-defined prerequisites and criteria]'
+# AC-02_ODP[02]
+ac_02_odp_02: '[organization-defined attributes (as required)]'
+# AC-02_ODP[03]
+ac_02_odp_03: '[organization-defined personnel or roles]'
+# AC-02_ODP[04]
+ac_02_odp_04: '[organization-defined policy, procedures, prerequisites, and criteria]'
+# AC-02_ODP[05]
+ac_02_odp_05: '[organization-defined personnel or roles]'
+# AC-02_ODP[06]
+ac_02_odp_06: '[organization-defined time period]'
+# AC-02_ODP[07]
+ac_02_odp_07: '[organization-defined time period]'
+# AC-02_ODP[08]
+ac_02_odp_08: '[organization-defined time period]'
+# AC-02_ODP[09]
+ac_02_odp_09: '[organization-defined attributes (as required)]'
+# AC-02_ODP[10]
+ac_02_odp_10: '[organization-defined frequency]'
+
+# AC-2 (1) Automated System Account Management
+# AC-02(01)_ODP
+ac_02_01_odp: '[organization-defined automated mechanisms]'
+
+# AC-2 (2) Automated Temporary and Emergency Account Management
+# AC-02(02)_ODP[01]
+ac_02_02_odp_01: '[selection (one): remove; disable]'
+# AC-02(02)_ODP[02]
+ac_02_02_odp_02: '[organization-defined time period]'
+
+# AC-2 (3) Disable Accounts
+# AC-02(03)_ODP[01]
+ac_02_03_odp_01: '[organization-defined time period]'
+# AC-02(03)_ODP[02]
+ac_02_03_odp_02: '[organization-defined time period]'
+
+# AC-2 (5) Inactivity Logout
+# AC-02(05)_ODP
+ac_02_05_odp: '[organization-defined time period of expected inactivity or description of when to log out]'
+
+# AC-2 (6) Dynamic Privilege Management
+# AC-02(06)_ODP
+ac_02_06_odp: '[organization-defined dynamic privilege management capabilities]'
+
+# AC-2 (7) Privileged User Accounts
+# AC-02(07)_ODP
+ac_02_07_odp: '[selection (one): a role-based access scheme; an attribute-based access scheme]'
+
+# AC-2 (8) Dynamic Account Management
+# AC-02(08)_ODP
+ac_02_08_odp: '[organization-defined system accounts]'
+
+# AC-2 (9) Restrictions on Use of Shared and Group Accounts
+# AC-02(09)_ODP
+ac_02_09_odp: '[organization-defined conditions]'
+
+# AC-2 (11) Usage Conditions
+# AC-02(11)_ODP[01]
+ac_02_11_odp_01: '[organization-defined circumstances and/or usage conditions]'
+# AC-02(11)_ODP[02]
+ac_02_11_odp_02: '[organization-defined system accounts]'
+
+# AC-2 (12) Account Monitoring for Atypical Usage
+# AC-02(12)_ODP[01]
+ac_02_12_odp_01: '[organization-defined atypical usage]'
+# AC-02(12)_ODP[02]
+ac_02_12_odp_02: '[organization-defined personnel or roles]'
+
+# AC-2 (13) Disable Accounts for High-risk Individuals
+# AC-02(13)_ODP[01]
+ac_02_13_odp_01: '[organization-defined time period]'
+# AC-02(13)_ODP[02]
+ac_02_13_odp_02: '[organization-defined significant risks]'
+
+# AC-3 (2) Dual Authorization
+# AC-03(02)_ODP
+ac_03_02_odp: '[organization-defined privileged commands and/or other actions]'
+
+# AC-3 (3) Mandatory Access Control
+# ac-3.3_prm_1
+ac_3_3_prm_1: '[organization-defined mandatory access control policy]'
+# AC-03(03)_ODP[01]
+ac_03_03_odp_01: '[organization-defined mandatory access control policy]'
+# AC-03(03)_ODP[02]
+ac_03_03_odp_02: '[organization-defined mandatory access control policy]'
+# AC-03(03)_ODP[03]
+ac_03_03_odp_03: '[organization-defined subjects]'
+# AC-03(03)_ODP[04]
+ac_03_03_odp_04: '[organization-defined privileges]'
+
+# AC-3 (4) Discretionary Access Control
+# ac-3.4_prm_1
+ac_3_4_prm_1: '[organization-defined discretionary access control policy]'
+# AC-03(04)_ODP[01]
+ac_03_04_odp_01: '[organization-defined discretionary access control policy]'
+# AC-03(04)_ODP[02]
+ac_03_04_odp_02: '[organization-defined discretionary access control policy]'
+
+# AC-3 (5) Security-relevant Information
+# AC-03(05)_ODP
+ac_03_05_odp: '[organization-defined security-relevant information]'
+
+# AC-3 (7) Role-based Access Control
+# ac-3.7_prm_1
+ac_3_7_prm_1: '[organization-defined roles and users authorized to assume such roles]'
+# AC-03(07)_ODP[01]
+ac_03_07_odp_01: '[organization-defined roles]'
+# AC-03(07)_ODP[02]
+ac_03_07_odp_02: '[organization-defined users authorized to assume such roles]'
+
+# AC-3 (8) Revocation of Access Authorizations
+# AC-03(08)_ODP
+ac_03_08_odp: '[organization-defined rules]'
+
+# AC-3 (9) Controlled Release
+# AC-03(09)_ODP[01]
+ac_03_09_odp_01: '[organization-defined system or system component]'
+# AC-03(09)_ODP[02]
+ac_03_09_odp_02: '[organization-defined controls]'
+# AC-03(09)_ODP[03]
+ac_03_09_odp_03: '[organization-defined controls]'
+
+# AC-3 (10) Audited Override of Access Control Mechanisms
+# AC-03(10)_ODP[01]
+ac_03_10_odp_01: '[organization-defined conditions]'
+# AC-03(10)_ODP[02]
+ac_03_10_odp_02: '[organization-defined roles]'
+
+# AC-3 (11) Restrict Access to Specific Information Types
+# AC-03(11)_ODP
+ac_03_11_odp: '[organization-defined information types]'
+
+# AC-3 (12) Assert and Enforce Application Access
+# AC-03(12)_ODP
+ac_03_12_odp: '[organization-defined system applications and functions]'
+
+# AC-3 (13) Attribute-based Access Control
+# AC-03(13)_ODP
+ac_03_13_odp: '[organization-defined attributes]'
+
+# AC-3 (14) Individual Access
+# AC-03(14)_ODP[01]
+ac_03_14_odp_01: '[organization-defined mechanisms]'
+# AC-03(14)_ODP[02]
+ac_03_14_odp_02: '[organization-defined elements]'
+
+# AC-3 (15) Discretionary and Mandatory Access Control
+# ac-3.15_prm_1
+ac_3_15_prm_1: '[organization-defined mandatory access control policy]'
+# ac-3.15_prm_2
+ac_3_15_prm_2: '[organization-defined discretionary access control policy]'
+# AC-03(15)_ODP[01]
+ac_03_15_odp_01: '[organization-defined mandatory access control policy]'
+# AC-03(15)_ODP[02]
+ac_03_15_odp_02: '[organization-defined mandatory access control policy]'
+# AC-03(15)_ODP[03]
+ac_03_15_odp_03: '[organization-defined discretionary access control policy]'
+# AC-03(15)_ODP[04]
+ac_03_15_odp_04: '[organization-defined discretionary access control policy]'
+
+# AC-4 Information Flow Enforcement
+# AC-04_ODP
+ac_04_odp: '[organization-defined information flow control policies]'
+
+# AC-4 (1) Object Security and Privacy Attributes
+# ac-4.1_prm_1
+ac_4_1_prm_1: '[organization-defined security and privacy attributes]'
+# ac-4.1_prm_2
+ac_4_1_prm_2: '[organization-defined information, source, and destination objects]'
+# AC-04(01)_ODP[01]
+ac_04_01_odp_01: '[organization-defined security attributes]'
+# AC-04(01)_ODP[02]
+ac_04_01_odp_02: '[organization-defined privacy attributes]'
+# AC-04(01)_ODP[03]
+ac_04_01_odp_03: '[organization-defined information objects]'
+# AC-04(01)_ODP[04]
+ac_04_01_odp_04: '[organization-defined information objects]'
+# AC-04(01)_ODP[05]
+ac_04_01_odp_05: '[organization-defined source objects]'
+# AC-04(01)_ODP[06]
+ac_04_01_odp_06: '[organization-defined source objects]'
+# AC-04(01)_ODP[07]
+ac_04_01_odp_07: '[organization-defined destination objects]'
+# AC-04(01)_ODP[08]
+ac_04_01_odp_08: '[organization-defined destination objects]'
+# AC-04(01)_ODP[09]
+ac_04_01_odp_09: '[organization-defined information flow control policies]'
+
+# AC-4 (2) Processing Domains
+# AC-04(02)_ODP
+ac_04_02_odp: '[organization-defined information flow control policies]'
+
+# AC-4 (3) Dynamic Information Flow Control
+# AC-04(03)_ODP
+ac_04_03_odp: '[organization-defined information flow control policies]'
+
+# AC-4 (4) Flow Control of Encrypted Information
+# AC-04(04)_ODP[01]
+ac_04_04_odp_01: '[organization-defined information flow control mechanisms]'
+# AC-04(04)_ODP[02]
+ac_04_04_odp_02: '[selection (one or more): decrypting the information; blocking the flow of the encrypted information; terminating communications sessions attempting to pass encrypted information; {{ insert: param, ac-04.04_odp.03 }} ]'
+# AC-04(04)_ODP[03]
+ac_04_04_odp_03: '[organization-defined procedure or method]'
+
+# AC-4 (5) Embedded Data Types
+# AC-04(05)_ODP
+ac_04_05_odp: '[organization-defined limitations]'
+
+# AC-4 (6) Metadata
+# AC-04(06)_ODP
+ac_04_06_odp: '[organization-defined metadata]'
+
+# AC-4 (8) Security and Privacy Policy Filters
+# ac-4.8_prm_1
+ac_4_8_prm_1: '[organization-defined security or privacy policy filters]'
+# ac-4.8_prm_2
+ac_4_8_prm_2: '[organization-defined information flows]'
+# ac-4.8_prm_4
+ac_4_8_prm_4: '[organization-defined security or privacy policy]'
+# AC-04(08)_ODP[01]
+ac_04_08_odp_01: '[organization-defined security policy filter]'
+# AC-04(08)_ODP[02]
+ac_04_08_odp_02: '[organization-defined privacy policy filter]'
+# AC-04(08)_ODP[03]
+ac_04_08_odp_03: '[organization-defined information flows]'
+# AC-04(08)_ODP[04]
+ac_04_08_odp_04: '[organization-defined information flows]'
+# AC-04(08)_ODP[05]
+ac_04_08_odp_05: '[selection (one or more): block; strip; modify; quarantine]'
+# AC-04(08)_ODP[06]
+ac_04_08_odp_06: '[organization-defined security policy]'
+# AC-04(08)_ODP[07]
+ac_04_08_odp_07: '[organization-defined privacy policy]'
+
+# AC-4 (9) Human Reviews
+# AC-04(09)_ODP[01]
+ac_04_09_odp_01: '[organization-defined information flows]'
+# AC-04(09)_ODP[02]
+ac_04_09_odp_02: '[organization-defined conditions]'
+
+# AC-4 (10) Enable and Disable Security or Privacy Policy Filters
+# ac-4.10_prm_1
+ac_4_10_prm_1: '[organization-defined security or privacy policy filters]'
+# ac-4.10_prm_2
+ac_4_10_prm_2: '[organization-defined conditions]'
+# AC-04(10)_ODP[01]
+ac_04_10_odp_01: '[organization-defined security filters]'
+# AC-04(10)_ODP[02]
+ac_04_10_odp_02: '[organization-defined privacy filters]'
+# AC-04(10)_ODP[03]
+ac_04_10_odp_03: '[organization-defined conditions]'
+# AC-04(10)_ODP[04]
+ac_04_10_odp_04: '[organization-defined conditions]'
+
+# AC-4 (11) Configuration of Security or Privacy Policy Filters
+# ac-4.11_prm_1
+ac_4_11_prm_1: '[organization-defined security or privacy policy filters]'
+# AC-04(11)_ODP[01]
+ac_04_11_odp_01: '[organization-defined security policy filters]'
+# AC-04(11)_ODP[02]
+ac_04_11_odp_02: '[organization-defined privacy policy filters]'
+
+# AC-4 (12) Data Type Identifiers
+# AC-04(12)_ODP
+ac_04_12_odp: '[organization-defined data type identifiers]'
+
+# AC-4 (13) Decomposition into Policy-relevant Subcomponents
+# AC-04(13)_ODP
+ac_04_13_odp: '[organization-defined policy-relevant subcomponents]'
+
+# AC-4 (14) Security or Privacy Policy Filter Constraints
+# ac-4.14_prm_1
+ac_4_14_prm_1: '[organization-defined security or privacy policy filters]'
+# AC-04(14)_ODP[01]
+ac_04_14_odp_01: '[organization-defined security policy filters]'
+# AC-04(14)_ODP[02]
+ac_04_14_odp_02: '[organization-defined privacy policy filters]'
+
+# AC-4 (15) Detection of Unsanctioned Information
+# ac-4.15_prm_2
+ac_4_15_prm_2: '[organization-defined security or privacy policy]'
+# AC-04(15)_ODP[01]
+ac_04_15_odp_01: '[organization-defined unsanctioned information]'
+# AC-04(15)_ODP[02]
+ac_04_15_odp_02: '[organization-defined security policy]'
+# AC-04(15)_ODP[03]
+ac_04_15_odp_03: '[organization-defined privacy policy]'
+
+# AC-4 (17) Domain Authentication
+# AC-04(17)_ODP
+ac_04_17_odp: '[selection (one or more): organization, system, application, service, individual]'
+
+# AC-4 (19) Validation of Metadata
+# ac-4.19_prm_1
+ac_4_19_prm_1: '[organization-defined security or privacy policy filters]'
+# AC-04(19)_ODP[01]
+ac_04_19_odp_01: '[organization-defined security policy filters]'
+# AC-04(19)_ODP[02]
+ac_04_19_odp_02: '[organization-defined privacy policy filters]'
+
+# AC-4 (20) Approved Solutions
+# AC-04(20)_ODP[01]
+ac_04_20_odp_01: '[organization-defined solutions in approved configurations]'
+# AC-04(20)_ODP[02]
+ac_04_20_odp_02: '[organization-defined information]'
+
+# AC-4 (21) Physical or Logical Separation of Information Flows
+# ac-4.21_prm_1
+ac_4_21_prm_1: '[organization-defined mechanisms and/or techniques]'
+# AC-04(21)_ODP[01]
+ac_04_21_odp_01: '[organization-defined mechanisms and/or techniques]'
+# AC-04(21)_ODP[02]
+ac_04_21_odp_02: '[organization-defined mechanisms and/or techniques]'
+# AC-04(21)_ODP[03]
+ac_04_21_odp_03: '[organization-defined required separations]'
+
+# AC-4 (23) Modify Non-releasable Information
+# AC-04(23)_ODP
+ac_04_23_odp: '[organization-defined modification action]'
+
+# AC-4 (25) Data Sanitization
+# AC-04(25)_ODP[01]
+ac_04_25_odp_01: '[selection (one or more): delivery of malicious content, command and control of malicious code, malicious code augmentation, and steganography-encoded data; spillage of sensitive information]'
+# AC-04(25)_ODP[02]
+ac_04_25_odp_02: '[organization-defined policy]'
+
+# AC-4 (29) Filter Orchestration Engines
+# AC-04(29)_ODP
+ac_04_29_odp: '[organization-defined policy]'
+
+# AC-5 Separation of Duties
+# AC-05_ODP
+ac_05_odp: '[organization-defined duties of individuals]'
+
+# AC-6 (1) Authorize Access to Security Functions
+# ac-6.1_prm_2
+ac_6_1_prm_2: '[organization-defined security functions (deployed in hardware, software, and firmware)]'
+# AC-06(01)_ODP[01]
+ac_06_01_odp_01: '[organization-defined individuals and roles]'
+# AC-06(01)_ODP[02]
+ac_06_01_odp_02: '[organization-defined security functions (deployed in hardware)]'
+# AC-06(01)_ODP[03]
+ac_06_01_odp_03: '[organization-defined security functions (deployed in software)]'
+# AC-06(01)_ODP[04]
+ac_06_01_odp_04: '[organization-defined security functions (deployed in firmware)]'
+# AC-06(01)_ODP[05]
+ac_06_01_odp_05: '[organization-defined security-relevant information]'
+
+# AC-6 (2) Non-privileged Access for Nonsecurity Functions
+# AC-06(02)_ODP
+ac_06_02_odp: '[organization-defined security functions or security-relevant information]'
+
+# AC-6 (3) Network Access to Privileged Commands
+# AC-06(03)_ODP[01]
+ac_06_03_odp_01: '[organization-defined privileged commands]'
+# AC-06(03)_ODP[02]
+ac_06_03_odp_02: '[organization-defined compelling operational needs]'
+
+# AC-6 (5) Privileged Accounts
+# AC-06(05)_ODP
+ac_06_05_odp: '[organization-defined personnel or roles]'
+
+# AC-6 (7) Review of User Privileges
+# AC-06(07)_ODP[01]
+ac_06_07_odp_01: '[organization-defined frequency]'
+# AC-06(07)_ODP[02]
+ac_06_07_odp_02: '[organization-defined roles and classes]'
+
+# AC-6 (8) Privilege Levels for Code Execution
+# AC-06(08)_ODP
+ac_06_08_odp: '[organization-defined software]'
+
+# AC-7 Unsuccessful Logon Attempts
+# AC-07_ODP[01]
+ac_07_odp_01: '[organization-defined number]'
+# AC-07_ODP[02]
+ac_07_odp_02: '[organization-defined time period]'
+# AC-07_ODP[03]
+ac_07_odp_03: '[selection (one or more): lock the account or node for {{ insert: param, ac-07_odp.04 }} ; lock the account or node until released by an administrator; delay next logon prompt per {{ insert: param, ac-07_odp.05 }} ; notify system administrator; take other {{ insert: param, ac-07_odp.06 }} ]'
+# AC-07_ODP[04]
+ac_07_odp_04: '[organization-defined time period]'
+# AC-07_ODP[05]
+ac_07_odp_05: '[organization-defined delay algorithm]'
+# AC-07_ODP[06]
+ac_07_odp_06: '[organization-defined action]'
+
+# AC-7 (2) Purge or Wipe Mobile Device
+# AC-07(02)_ODP[01]
+ac_07_02_odp_01: '[organization-defined mobile devices]'
+# AC-07(02)_ODP[02]
+ac_07_02_odp_02: '[organization-defined purging or wiping requirements and techniques]'
+# AC-07(02)_ODP[03]
+ac_07_02_odp_03: '[organization-defined number]'
+
+# AC-7 (3) Biometric Attempt Limiting
+# AC-07(03)_ODP
+ac_07_03_odp: '[organization-defined number]'
+
+# AC-7 (4) Use of Alternate Authentication Factor
+# AC-07(04)_ODP[01]
+ac_07_04_odp_01: '[organization-defined authentication factors]'
+# AC-07(04)_ODP[02]
+ac_07_04_odp_02: '[organization-defined number]'
+# AC-07(04)_ODP[03]
+ac_07_04_odp_03: '[organization-defined time period]'
+
+# AC-8 System Use Notification
+# AC-08_ODP[01]
+ac_08_odp_01: '[organization-defined system use notification]'
+# AC-08_ODP[02]
+ac_08_odp_02: '[organization-defined conditions]'
+
+# AC-9 (2) Successful and Unsuccessful Logons
+# AC-09(02)_ODP[01]
+ac_09_02_odp_01: '[selection (one): successful logons; unsuccessful logon attempts; both]'
+# AC-09(02)_ODP[02]
+ac_09_02_odp_02: '[organization-defined time period]'
+
+# AC-9 (3) Notification of Account Changes
+# AC-09(03)_ODP[01]
+ac_09_03_odp_01: '[organization-defined security-related characteristics or parameters]'
+# AC-09(03)_ODP[02]
+ac_09_03_odp_02: '[organization-defined time period]'
+
+# AC-9 (4) Additional Logon Information
+# AC-09(04)_ODP
+ac_09_04_odp: '[organization-defined additional information]'
+
+# AC-10 Concurrent Session Control
+# AC-10_ODP[01]
+ac_10_odp_01: '[organization-defined account and/or account types]'
+# AC-10_ODP[02]
+ac_10_odp_02: '[organization-defined number]'
+
+# AC-11 Device Lock
+# AC-11_ODP[01]
+ac_11_odp_01: '[selection (one or more): initiating a device lock after {{ insert: param, ac-11_odp.02 }} of inactivity; requiring the user to initiate a device lock before leaving the system unattended]'
+# AC-11_ODP[02]
+ac_11_odp_02: '[organization-defined time period]'
+
+# AC-12 Session Termination
+# AC-12_ODP
+ac_12_odp: '[organization-defined conditions or trigger events]'
+
+# AC-12 (1) User-initiated Logouts
+# AC-12(01)_ODP
+ac_12_01_odp: '[organization-defined information resources]'
+
+# AC-12 (3) Timeout Warning Message
+# AC-12(03)_ODP
+ac_12_03_odp: '[organization-defined time]'
+
+# AC-14 Permitted Actions Without Identification or Authentication
+# AC-14_ODP
+ac_14_odp: '[organization-defined user actions]'
+
+# AC-16 Security and Privacy Attributes
+# ac-16_prm_1
+ac_16_prm_1: '[organization-defined types of security and privacy attributes]'
+# ac-16_prm_2
+ac_16_prm_2: '[organization-defined security and privacy attribute values]'
+# ac-16_prm_3
+ac_16_prm_3: '[organization-defined systems]'
+# ac-16_prm_4
+ac_16_prm_4: '[organization-defined security and privacy attributes]'
+# ac-16_prm_6
+ac_16_prm_6: '[organization-defined security and privacy attributes]'
+# ac-16_prm_7
+ac_16_prm_7: '[organization-defined frequency]'
+# AC-16_ODP[01]
+ac_16_odp_01: '[organization-defined types of security attributes]'
+# AC-16_ODP[02]
+ac_16_odp_02: '[organization-defined types of privacy attributes]'
+# AC-16_ODP[03]
+ac_16_odp_03: '[organization-defined security attribute values]'
+# AC-16_ODP[04]
+ac_16_odp_04: '[organization-defined privacy attribute values]'
+# AC-16_ODP[05]
+ac_16_odp_05: '[organization-defined systems]'
+# AC-16_ODP[06]
+ac_16_odp_06: '[organization-defined systems]'
+# AC-16_ODP[07]
+ac_16_odp_07: '[organization-defined security attributes]'
+# AC-16_ODP[08]
+ac_16_odp_08: '[organization-defined privacy attributes]'
+# AC-16_ODP[09]
+ac_16_odp_09: '[organization-defined attribute values or ranges]'
+# AC-16_ODP[10]
+ac_16_odp_10: '[organization-defined frequency]'
+# AC-16_ODP[11]
+ac_16_odp_11: '[organization-defined frequency]'
+
+# AC-16 (1) Dynamic Attribute Association
+# ac-16.1_prm_1
+ac_16_1_prm_1: '[organization-defined subjects and objects]'
+# ac-16.1_prm_2
+ac_16_1_prm_2: '[organization-defined security and privacy policies]'
+# AC-16(01)_ODP[01]
+ac_16_01_odp_01: '[organization-defined subjects]'
+# AC-16(01)_ODP[02]
+ac_16_01_odp_02: '[organization-defined objects]'
+# AC-16(01)_ODP[03]
+ac_16_01_odp_03: '[organization-defined subjects]'
+# AC-16(01)_ODP[04]
+ac_16_01_odp_04: '[organization-defined objects]'
+# AC-16(01)_ODP[05]
+ac_16_01_odp_05: '[organization-defined security policies]'
+# AC-16(01)_ODP[06]
+ac_16_01_odp_06: '[organization-defined privacy policies]'
+
+# AC-16 (3) Maintenance of Attribute Associations by System
+# ac-16.3_prm_1
+ac_16_3_prm_1: '[organization-defined security and privacy attributes]'
+# ac-16.3_prm_2
+ac_16_3_prm_2: '[organization-defined subjects and objects]'
+# AC-16(03)_ODP[01]
+ac_16_03_odp_01: '[organization-defined security attributes]'
+# AC-16(03)_ODP[02]
+ac_16_03_odp_02: '[organization-defined privacy attributes]'
+# AC-16(03)_ODP[03]
+ac_16_03_odp_03: '[organization-defined subjects]'
+# AC-16(03)_ODP[04]
+ac_16_03_odp_04: '[organization-defined objects]'
+# AC-16(03)_ODP[05]
+ac_16_03_odp_05: '[organization-defined subjects]'
+# AC-16(03)_ODP[06]
+ac_16_03_odp_06: '[organization-defined objects]'
+
+# AC-16 (4) Association of Attributes by Authorized Individuals
+# ac-16.4_prm_1
+ac_16_4_prm_1: '[organization-defined security and privacy attributes]'
+# ac-16.4_prm_2
+ac_16_4_prm_2: '[organization-defined subjects and objects]'
+# AC-16(04)_ODP[01]
+ac_16_04_odp_01: '[organization-defined security attributes]'
+# AC-16(04)_ODP[02]
+ac_16_04_odp_02: '[organization-defined security attributes]'
+# AC-16(04)_ODP[03]
+ac_16_04_odp_03: '[organization-defined privacy attributes]'
+# AC-16(04)_ODP[04]
+ac_16_04_odp_04: '[organization-defined privacy attributes]'
+# AC-16(04)_ODP[05]
+ac_16_04_odp_05: '[organization-defined subjects]'
+# AC-16(04)_ODP[06]
+ac_16_04_odp_06: '[organization-defined objects]'
+# AC-16(04)_ODP[07]
+ac_16_04_odp_07: '[organization-defined subjects]'
+# AC-16(04)_ODP[08]
+ac_16_04_odp_08: '[organization-defined objects]'
+
+# AC-16 (5) Attribute Displays on Objects to Be Output
+# AC-16(05)_ODP[01]
+ac_16_05_odp_01: '[organization-defined instructions]'
+# AC-16(05)_ODP[02]
+ac_16_05_odp_02: '[organization-defined naming conventions]'
+
+# AC-16 (6) Maintenance of Attribute Association
+# ac-16.6_prm_1
+ac_16_6_prm_1: '[organization-defined security and privacy attributes]'
+# ac-16.6_prm_2
+ac_16_6_prm_2: '[organization-defined subjects and objects]'
+# ac-16.6_prm_3
+ac_16_6_prm_3: '[organization-defined security and privacy policies]'
+# AC-16(06)_ODP[01]
+ac_16_06_odp_01: '[organization-defined security attributes]'
+# AC-16(06)_ODP[02]
+ac_16_06_odp_02: '[organization-defined security attributes]'
+# AC-16(06)_ODP[03]
+ac_16_06_odp_03: '[organization-defined privacy attributes]'
+# AC-16(06)_ODP[04]
+ac_16_06_odp_04: '[organization-defined privacy attributes]'
+# AC-16(06)_ODP[05]
+ac_16_06_odp_05: '[organization-defined subjects]'
+# AC-16(06)_ODP[06]
+ac_16_06_odp_06: '[organization-defined objects]'
+# AC-16(06)_ODP[07]
+ac_16_06_odp_07: '[organization-defined subjects]'
+# AC-16(06)_ODP[08]
+ac_16_06_odp_08: '[organization-defined objects]'
+# AC-16(06)_ODP[09]
+ac_16_06_odp_09: '[organization-defined security policies]'
+# AC-16(06)_ODP[10]
+ac_16_06_odp_10: '[organization-defined privacy policies]'
+
+# AC-16 (8) Association Techniques and Technologies
+# ac-16.8_prm_1
+ac_16_8_prm_1: '[organization-defined techniques and technologies]'
+# AC-16(08)_ODP[01]
+ac_16_08_odp_01: '[organization-defined techniques and technologies]'
+# AC-16(08)_ODP[02]
+ac_16_08_odp_02: '[organization-defined techniques and technologies]'
+
+# AC-16 (9) Attribute Reassignment — Regrading Mechanisms
+# ac-16.9_prm_1
+ac_16_9_prm_1: '[organization-defined techniques or procedures]'
+# AC-16(09)_ODP[01]
+ac_16_09_odp_01: '[organization-defined techniques or procedures]'
+# AC-16(09)_ODP[02]
+ac_16_09_odp_02: '[organization-defined techniques or procedures]'
+
+# AC-17 (4) Privileged Commands and Access
+# ac-17.4_prm_1
+ac_17_4_prm_1: '[organization-defined needs]'
+# AC-17(04)_ODP[01]
+ac_17_04_odp_01: '[organization-defined needs requiring remote access]'
+# AC-17(04)_ODP[02]
+ac_17_04_odp_02: '[organization-defined needs requiring remote access]'
+
+# AC-17 (9) Disconnect or Disable Access
+# AC-17(09)_ODP
+ac_17_09_odp: '[organization-defined time period]'
+
+# AC-17 (10) Authenticate Remote Commands
+# AC-17(10)_ODP[01]
+ac_17_10_odp_01: '[organization-defined mechanisms]'
+# AC-17(10)_ODP[02]
+ac_17_10_odp_02: '[organization-defined remote commands]'
+
+# AC-18 (1) Authentication and Encryption
+# AC-18(01)_ODP
+ac_18_01_odp: '[selection (one or more): users; devices]'
+
+# AC-19 (4) Restrictions for Classified Information
+# AC-19(04)_ODP[01]
+ac_19_04_odp_01: '[organization-defined security officials]'
+# AC-19(04)_ODP[02]
+ac_19_04_odp_02: '[organization-defined security policies]'
+
+# AC-19 (5) Full Device or Container-based Encryption
+# AC-19(05)_ODP[01]
+ac_19_05_odp_01: '[selection (one): full-device encryption; container-based encryption]'
+# AC-19(05)_ODP[02]
+ac_19_05_odp_02: '[organization-defined mobile devices]'
+
+# AC-20 Use of External Systems
+# AC-20_ODP[01]
+ac_20_odp_01: '[selection (one or more): establish {{ insert: param, ac-20_odp.02 }} ; identify {{ insert: param, ac-20_odp.03 }} ]'
+# AC-20_ODP[02]
+ac_20_odp_02: '[organization-defined terms and conditions]'
+# AC-20_ODP[03]
+ac_20_odp_03: '[organization-defined controls asserted]'
+# AC-20_ODP[04]
+ac_20_odp_04: '[organization-defined prohibited types of external systems]'
+
+# AC-20 (2) Portable Storage Devices — Restricted Use
+# AC-20(02)_ODP
+ac_20_02_odp: '[organization-defined restrictions]'
+
+# AC-20 (3) Non-organizationally Owned Systems — Restricted Use
+# AC-20(03)_ODP
+ac_20_03_odp: '[organization-defined restrictions]'
+
+# AC-20 (4) Network Accessible Storage Devices — Prohibited Use
+# AC-20(04)_ODP
+ac_20_04_odp: '[organization-defined network-accessible storage devices]'
+
+# AC-21 Information Sharing
+# AC-21_ODP[01]
+ac_21_odp_01: '[organization-defined information-sharing circumstances]'
+# AC-21_ODP[02]
+ac_21_odp_02: '[organization-defined automated mechanisms]'
+
+# AC-21 (1) Automated Decision Support
+# AC-21(01)_ODP
+ac_21_01_odp: '[organization-defined automated mechanisms]'
+
+# AC-21 (2) Information Search and Retrieval
+# AC-21(02)_ODP
+ac_21_02_odp: '[organization-defined information-sharing restrictions]'
+
+# AC-22 Publicly Accessible Content
+# AC-22_ODP
+ac_22_odp: '[organization-defined frequency]'
+
+# AC-23 Data Mining Protection
+# AC-23_ODP[01]
+ac_23_odp_01: '[organization-defined techniques]'
+# AC-23_ODP[02]
+ac_23_odp_02: '[organization-defined data storage objects]'
+
+# AC-24 Access Control Decisions
+# AC-24_ODP[01]
+ac_24_odp_01: '[selection (one or more): establish procedures; implement mechanisms]'
+# AC-24_ODP[02]
+ac_24_odp_02: '[organization-defined access control decisions]'
+
+# AC-24 (1) Transmit Access Authorization Information
+# AC-24(01)_ODP[01]
+ac_24_01_odp_01: '[organization-defined access authorization information]'
+# AC-24(01)_ODP[02]
+ac_24_01_odp_02: '[organization-defined controls]'
+# AC-24(01)_ODP[03]
+ac_24_01_odp_03: '[organization-defined systems]'
+
+# AC-24 (2) No User or Process Identity
+# ac-24.2_prm_1
+ac_24_2_prm_1: '[organization-defined security or privacy attributes]'
+# AC-24(02)_ODP[01]
+ac_24_02_odp_01: '[organization-defined security attributes]'
+# AC-24(02)_ODP[02]
+ac_24_02_odp_02: '[organization-defined privacy attributes]'
+
+# AC-25 Reference Monitor
+# AC-25_ODP
+ac_25_odp: '[organization-defined access control policies]'
+
+# AT-1 Policy and Procedures
+# at-1_prm_1
+at_1_prm_1: '[organization-defined personnel or roles]'
+# AT-01_ODP[01]
+at_01_odp_01: '[organization-defined personnel or roles]'
+# AT-01_ODP[02]
+at_01_odp_02: '[organization-defined personnel or roles]'
+# AT-01_ODP[03]
+at_01_odp_03: '[selection (one or more): organization-level; mission/business process-level; system-level]'
+# AT-01_ODP[04]
+at_01_odp_04: '[organization-defined official]'
+# AT-01_ODP[05]
+at_01_odp_05: '[organization-defined frequency]'
+# AT-01_ODP[06]
+at_01_odp_06: '[organization-defined events]'
+# AT-01_ODP[07]
+at_01_odp_07: '[organization-defined frequency]'
+# AT-01_ODP[08]
+at_01_odp_08: '[organization-defined events]'
+
+# AT-2 Literacy Training and Awareness
+# at-2_prm_1
+at_2_prm_1: '[organization-defined frequency]'
+# at-2_prm_2
+at_2_prm_2: '[organization-defined events]'
+# AT-02_ODP[01]
+at_02_odp_01: '[organization-defined frequency]'
+# AT-02_ODP[02]
+at_02_odp_02: '[organization-defined frequency]'
+# AT-02_ODP[03]
+at_02_odp_03: '[organization-defined events]'
+# AT-02_ODP[04]
+at_02_odp_04: '[organization-defined events]'
+# AT-02_ODP[05]
+at_02_odp_05: '[organization-defined awareness techniques]'
+# AT-02_ODP[06]
+at_02_odp_06: '[organization-defined frequency]'
+# AT-02_ODP[07]
+at_02_odp_07: '[organization-defined events]'
+
+# AT-2 (4) Suspicious Communications and Anomalous System Behavior
+# AT-02(04)_ODP
+at_02_04_odp: '[organization-defined indicators of malicious code]'
+
+# AT-3 Role-based Training
+# at-3_prm_1
+at_3_prm_1: '[organization-defined roles and responsibilities]'
+# AT-03_ODP[01]
+at_03_odp_01: '[organization-defined roles and responsibilities]'
+# AT-03_ODP[02]
+at_03_odp_02: '[organization-defined roles and responsibilities]'
+# AT-03_ODP[03]
+at_03_odp_03: '[organization-defined frequency]'
+# AT-03_ODP[04]
+at_03_odp_04: '[organization-defined frequency]'
+# AT-03_ODP[05]
+at_03_odp_05: '[organization-defined events]'
+
+# AT-3 (1) Environmental Controls
+# AT-03(01)_ODP[01]
+at_03_01_odp_01: '[organization-defined personnel or roles]'
+# AT-03(01)_ODP[02]
+at_03_01_odp_02: '[organization-defined frequency]'
+
+# AT-3 (2) Physical Security Controls
+# AT-03(02)_ODP[01]
+at_03_02_odp_01: '[organization-defined personnel or roles]'
+# AT-03(02)_ODP[02]
+at_03_02_odp_02: '[organization-defined frequency]'
+
+# AT-3 (5) Processing Personally Identifiable Information
+# AT-03(05)_ODP[01]
+at_03_05_odp_01: '[organization-defined personnel or roles]'
+# AT-03(05)_ODP[02]
+at_03_05_odp_02: '[organization-defined frequency]'
+
+# AT-4 Training Records
+# AT-04_ODP
+at_04_odp: '[organization-defined time period]'
+
+# AT-6 Training Feedback
+# AT-06_ODP[01]
+at_06_odp_01: '[organization-defined frequency]'
+# AT-06_ODP[02]
+at_06_odp_02: '[organization-defined personnel]'
+
+# AU-1 Policy and Procedures
+# au-1_prm_1
+au_1_prm_1: '[organization-defined personnel or roles]'
+# AU-01_ODP[01]
+au_01_odp_01: '[organization-defined personnel or roles]'
+# AU-01_ODP[02]
+au_01_odp_02: '[organization-defined personnel or roles]'
+# AU-01_ODP[03]
+au_01_odp_03: '[selection (one or more): organization-level; mission/business process-level; system-level]'
+# AU-01_ODP[04]
+au_01_odp_04: '[organization-defined official]'
+# AU-01_ODP[05]
+au_01_odp_05: '[organization-defined frequency]'
+# AU-01_ODP[06]
+au_01_odp_06: '[organization-defined events]'
+# AU-01_ODP[07]
+au_01_odp_07: '[organization-defined frequency]'
+# AU-01_ODP[08]
+au_01_odp_08: '[organization-defined events]'
+
+# AU-2 Event Logging
+# au-2_prm_2
+au_2_prm_2: '[organization-defined event types (subset of the event types defined in [AU-2a.](#au-2_smt.a)) along with the frequency of (or situation requiring) logging for each identified event type]'
+# AU-02_ODP[01]
+au_02_odp_01: '[organization-defined event types]'
+# AU-02_ODP[02]
+au_02_odp_02: '[organization-defined event types (subset of AU-02_ODP[01])]'
+# AU-02_ODP[03]
+au_02_odp_03: '[organization-defined frequency or situation]'
+# AU-02_ODP[04]
+au_02_odp_04: '[organization-defined frequency]'
+
+# AU-3 (1) Additional Audit Information
+# AU-03(01)_ODP
+au_03_01_odp: '[organization-defined additional information]'
+
+# AU-3 (3) Limit Personally Identifiable Information Elements
+# AU-03(03)_ODP
+au_03_03_odp: '[organization-defined elements]'
+
+# AU-4 Audit Log Storage Capacity
+# AU-04_ODP
+au_04_odp: '[organization-defined audit log retention requirements]'
+
+# AU-4 (1) Transfer to Alternate Storage
+# AU-04(01)_ODP
+au_04_01_odp: '[organization-defined frequency]'
+
+# AU-5 Response to Audit Logging Process Failures
+# AU-05_ODP[01]
+au_05_odp_01: '[organization-defined personnel or roles]'
+# AU-05_ODP[02]
+au_05_odp_02: '[organization-defined time period]'
+# AU-05_ODP[03]
+au_05_odp_03: '[organization-defined additional actions]'
+
+# AU-5 (1) Storage Capacity Warning
+# AU-05(01)_ODP[01]
+au_05_01_odp_01: '[organization-defined personnel, roles, and/or locations]'
+# AU-05(01)_ODP[02]
+au_05_01_odp_02: '[organization-defined time period]'
+# AU-05(01)_ODP[03]
+au_05_01_odp_03: '[organization-defined percentage]'
+
+# AU-5 (2) Real-time Alerts
+# AU-05(02)_ODP[01]
+au_05_02_odp_01: '[organization-defined real-time period]'
+# AU-05(02)_ODP[02]
+au_05_02_odp_02: '[organization-defined personnel, roles, and/or locations]'
+# AU-05(02)_ODP[03]
+au_05_02_odp_03: '[organization-defined audit logging failure events requiring real-time alerts]'
+
+# AU-5 (3) Configurable Traffic Volume Thresholds
+# AU-05(03)_ODP
+au_05_03_odp: '[selection (one or more): reject; delay]'
+
+# AU-5 (4) Shutdown on Failure
+# AU-05(04)_ODP[01]
+au_05_04_odp_01: '[selection (one or more): full system shutdown; partial system shutdown; degraded operational mode with limited mission or business functionality available]'
+# AU-05(04)_ODP[02]
+au_05_04_odp_02: '[organization-defined audit logging failures]'
+
+# AU-5 (5) Alternate Audit Logging Capability
+# AU-05(05)_ODP
+au_05_05_odp: '[organization-defined alternate audit logging functionality]'
+
+# AU-6 Audit Record Review, Analysis, and Reporting
+# AU-06_ODP[01]
+au_06_odp_01: '[organization-defined frequency]'
+# AU-06_ODP[02]
+au_06_odp_02: '[organization-defined inappropriate or unusual activity]'
+# AU-06_ODP[03]
+au_06_odp_03: '[organization-defined personnel or roles]'
+
+# AU-6 (1) Automated Process Integration
+# AU-06(01)_ODP
+au_06_01_odp: '[organization-defined automated mechanisms]'
+
+# AU-6 (5) Integrated Analysis of Audit Records
+# AU-06(05)_ODP[01]
+au_06_05_odp_01: '[selection (one or more): vulnerability scanning information; performance data; system monitoring information; {{ insert: param, au-06.05_odp.02 }} ]'
+# AU-06(05)_ODP[02]
+au_06_05_odp_02: '[organization-defined data/information collected from other sources]'
+
+# AU-6 (7) Permitted Actions
+# AU-06(07)_ODP
+au_06_07_odp: '[selection (one or more): system process; role; user]'
+
+# AU-7 (1) Automatic Processing
+# AU-07(01)_ODP
+au_07_01_odp: '[organization-defined fields within audit records]'
+
+# AU-8 Time Stamps
+# AU-08_ODP
+au_08_odp: '[organization-defined granularity of time measurement]'
+
+# AU-9 Protection of Audit Information
+# AU-09_ODP
+au_09_odp: '[organization-defined personnel or roles]'
+
+# AU-9 (2) Store on Separate Physical Systems or Components
+# AU-09(02)_ODP
+au_09_02_odp: '[organization-defined frequency]'
+
+# AU-9 (4) Access by Subset of Privileged Users
+# AU-09(04)_ODP
+au_09_04_odp: '[organization-defined subset of privileged users or roles]'
+
+# AU-9 (5) Dual Authorization
+# AU-09(05)_ODP[01]
+au_09_05_odp_01: '[selection (one or more): movement; deletion]'
+# AU-09(05)_ODP[02]
+au_09_05_odp_02: '[organization-defined audit information]'
+
+# AU-9 (6) Read-only Access
+# AU-09(06)_ODP
+au_09_06_odp: '[organization-defined subset of privileged users or roles]'
+
+# AU-10 Non-repudiation
+# AU-10_ODP
+au_10_odp: '[organization-defined actions]'
+
+# AU-10 (1) Association of Identities
+# AU-10(01)_ODP
+au_10_01_odp: '[organization-defined strength of binding]'
+
+# AU-10 (2) Validate Binding of Information Producer Identity
+# AU-10(02)_ODP[01]
+au_10_02_odp_01: '[organization-defined frequency]'
+# AU-10(02)_ODP[02]
+au_10_02_odp_02: '[organization-defined actions]'
+
+# AU-10 (4) Validate Binding of Information Reviewer Identity
+# AU-10(04)_ODP[01]
+au_10_04_odp_01: '[organization-defined security domains]'
+# AU-10(04)_ODP[02]
+au_10_04_odp_02: '[organization-defined actions]'
+
+# AU-11 Audit Record Retention
+# AU-11_ODP
+au_11_odp: '[organization-defined time period]'
+
+# AU-11 (1) Long-term Retrieval Capability
+# AU-11(01)_ODP
+au_11_01_odp: '[organization-defined measures]'
+
+# AU-12 Audit Record Generation
+# AU-12_ODP[01]
+au_12_odp_01: '[organization-defined system components]'
+# AU-12_ODP[02]
+au_12_odp_02: '[organization-defined personnel or roles]'
+
+# AU-12 (1) System-wide and Time-correlated Audit Trail
+# AU-12(01)_ODP[01]
+au_12_01_odp_01: '[organization-defined system components]'
+# AU-12(01)_ODP[02]
+au_12_01_odp_02: '[organization-defined level of tolerance]'
+
+# AU-12 (3) Changes by Authorized Individuals
+# AU-12(03)_ODP[01]
+au_12_03_odp_01: '[organization-defined individuals or roles]'
+# AU-12(03)_ODP[02]
+au_12_03_odp_02: '[organization-defined system components]'
+# AU-12(03)_ODP[03]
+au_12_03_odp_03: '[organization-defined selectable event criteria]'
+# AU-12(03)_ODP[04]
+au_12_03_odp_04: '[organization-defined time thresholds]'
+
+# AU-13 Monitoring for Information Disclosure
+# AU-13_ODP[01]
+au_13_odp_01: '[organization-defined open-source information and/or information sites]'
+# AU-13_ODP[02]
+au_13_odp_02: '[organization-defined frequency]'
+# AU-13_ODP[03]
+au_13_odp_03: '[organization-defined personnel or roles]'
+# AU-13_ODP[04]
+au_13_odp_04: '[organization-defined additional actions]'
+
+# AU-13 (1) Use of Automated Tools
+# AU-13(01)_ODP
+au_13_01_odp: '[organization-defined automated mechanisms]'
+
+# AU-13 (2) Review of Monitored Sites
+# AU-13(02)_ODP
+au_13_02_odp: '[organization-defined frequency]'
+
+# AU-14 Session Audit
+# AU-14_ODP[01]
+au_14_odp_01: '[organization-defined users or roles]'
+# AU-14_ODP[02]
+au_14_odp_02: '[selection (one or more): record; view; hear; log]'
+# AU-14_ODP[03]
+au_14_odp_03: '[organization-defined circumstances]'
+
+# AU-16 Cross-organizational Audit Logging
+# AU-16_ODP[01]
+au_16_odp_01: '[organization-defined methods]'
+# AU-16_ODP[02]
+au_16_odp_02: '[organization-defined audit information]'
+
+# AU-16 (2) Sharing of Audit Information
+# AU-16(02)_ODP[01]
+au_16_02_odp_01: '[organization-defined organizations]'
+# AU-16(02)_ODP[02]
+au_16_02_odp_02: '[organization-defined cross-organizational sharing agreements]'
+
+# AU-16 (3) Disassociability
+# AU-16(03)_ODP
+au_16_03_odp: '[organization-defined measures]'
+
+# CA-1 Policy and Procedures
+# ca-1_prm_1
+ca_1_prm_1: '[organization-defined personnel or roles]'
+# CA-01_ODP[01]
+ca_01_odp_01: '[organization-defined personnel or roles]'
+# CA-01_ODP[02]
+ca_01_odp_02: '[organization-defined personnel or roles]'
+# CA-01_ODP[03]
+ca_01_odp_03: '[selection (one or more): organization-level; mission/business process-level; system-level]'
+# CA-01_ODP[04]
+ca_01_odp_04: '[organization-defined official]'
+# CA-01_ODP[05]
+ca_01_odp_05: '[organization-defined frequency]'
+# CA-01_ODP[06]
+ca_01_odp_06: '[organization-defined events]'
+# CA-01_ODP[07]
+ca_01_odp_07: '[organization-defined frequency]'
+# CA-01_ODP[08]
+ca_01_odp_08: '[organization-defined events]'
+
+# CA-2 Control Assessments
+# CA-02_ODP[01]
+ca_02_odp_01: '[organization-defined assessment frequency]'
+# CA-02_ODP[02]
+ca_02_odp_02: '[organization-defined individuals or roles]'
+
+# CA-2 (2) Specialized Assessments
+# CA-02(02)_ODP[01]
+ca_02_02_odp_01: '[organization-defined specialized assessment frequency]'
+# CA-02(02)_ODP[02]
+ca_02_02_odp_02: '[selection (one): announced; unannounced]'
+# CA-02(02)_ODP[03]
+ca_02_02_odp_03: '[selection (one or more): in-depth monitoring; security instrumentation; automated security test cases; vulnerability scanning; malicious user testing; insider threat assessment; performance and load testing; data leakage or data loss assessment; {{ insert: param, ca-02.02_odp.04 }} ]'
+# CA-02(02)_ODP[04]
+ca_02_02_odp_04: '[organization-defined other forms of assessment]'
+
+# CA-2 (3) Leveraging Results from External Organizations
+# CA-02(03)_ODP[01]
+ca_02_03_odp_01: '[organization-defined external organization(s)]'
+# CA-02(03)_ODP[02]
+ca_02_03_odp_02: '[organization-defined system]'
+# CA-02(03)_ODP[03]
+ca_02_03_odp_03: '[organization-defined requirements]'
+
+# CA-3 Information Exchange
+# CA-03_ODP[01]
+ca_03_odp_01: '[selection (one or more): interconnection security agreements; information exchange security agreements; memoranda of understanding or agreement; service level agreements; user agreements; non-disclosure agreements; {{ insert: param, ca-03_odp.02 }} ]'
+# CA-03_ODP[02]
+ca_03_odp_02: '[organization-defined type of agreement]'
+# CA-03_ODP[03]
+ca_03_odp_03: '[organization-defined frequency]'
+
+# CA-5 Plan of Action and Milestones
+# CA-05_ODP
+ca_05_odp: '[organization-defined frequency]'
+
+# CA-5 (1) Automation Support for Accuracy and Currency
+# CA-05(01)_ODP
+ca_05_01_odp: '[organization-defined automated mechanisms]'
+
+# CA-6 Authorization
+# CA-06_ODP
+ca_06_odp: '[organization-defined frequency]'
+
+# CA-7 Continuous Monitoring
+# ca-7_prm_4
+ca_7_prm_4: '[organization-defined personnel or roles]'
+# ca-7_prm_5
+ca_7_prm_5: '[organization-defined frequency]'
+# CA-07_ODP[01]
+ca_07_odp_01: '[organization-defined system-level metrics]'
+# CA-07_ODP[02]
+ca_07_odp_02: '[organization-defined frequencies]'
+# CA-07_ODP[03]
+ca_07_odp_03: '[organization-defined frequencies]'
+# CA-07_ODP[04]
+ca_07_odp_04: '[organization-defined personnel or roles]'
+# CA-07_ODP[05]
+ca_07_odp_05: '[organization-defined frequency]'
+# CA-07_ODP[06]
+ca_07_odp_06: '[organization-defined personnel or roles]'
+# CA-07_ODP[07]
+ca_07_odp_07: '[organization-defined frequency]'
+
+# CA-7 (5) Consistency Analysis
+# ca-7.5_prm_1
+ca_7_5_prm_1: '[organization-defined actions]'
+# CA-07(05)_ODP[01]
+ca_07_05_odp_01: '[organization-defined actions]'
+# CA-07(05)_ODP[02]
+ca_07_05_odp_02: '[organization-defined actions]'
+
+# CA-7 (6) Automation Support for Monitoring
+# CA-07(06)_ODP
+ca_07_06_odp: '[organization-defined automated mechanisms]'
+
+# CA-8 Penetration Testing
+# CA-08_ODP[01]
+ca_08_odp_01: '[organization-defined frequency]'
+# CA-08_ODP[02]
+ca_08_odp_02: '[organization-defined system(s) or system components]'
+
+# CA-8 (2) Red Team Exercises
+# CA-08(02)_ODP
+ca_08_02_odp: '[organization-defined red team exercises]'
+
+# CA-8 (3) Facility Penetration Testing
+# CA-08(03)_ODP[01]
+ca_08_03_odp_01: '[organization-defined frequency]'
+# CA-08(03)_ODP[02]
+ca_08_03_odp_02: '[selection (one or more): announced; unannounced]'
+
+# CA-9 Internal System Connections
+# CA-09_ODP[01]
+ca_09_odp_01: '[organization-defined system components]'
+# CA-09_ODP[02]
+ca_09_odp_02: '[organization-defined conditions]'
+# CA-09_ODP[03]
+ca_09_odp_03: '[organization-defined frequency]'
+
+# CM-1 Policy and Procedures
+# cm-1_prm_1
+cm_1_prm_1: '[organization-defined personnel or roles]'
+# CM-01_ODP[01]
+cm_01_odp_01: '[organization-defined personnel or roles]'
+# CM-01_ODP[02]
+cm_01_odp_02: '[organization-defined personnel or roles]'
+# CM-01_ODP[03]
+cm_01_odp_03: '[selection (one or more): organization-level; mission/business process-level; system-level]'
+# CM-01_ODP[04]
+cm_01_odp_04: '[organization-defined official]'
+# CM-01_ODP[05]
+cm_01_odp_05: '[organization-defined frequency]'
+# CM-01_ODP[06]
+cm_01_odp_06: '[organization-defined events]'
+# CM-01_ODP[07]
+cm_01_odp_07: '[organization-defined frequency]'
+# CM-01_ODP[08]
+cm_01_odp_08: '[organization-defined events]'
+
+# CM-2 Baseline Configuration
+# CM-02_ODP[01]
+cm_02_odp_01: '[organization-defined frequency]'
+# CM-02_ODP[02]
+cm_02_odp_02: '[organization-defined circumstances]'
+
+# CM-2 (2) Automation Support for Accuracy and Currency
+# CM-02(02)_ODP
+cm_02_02_odp: '[organization-defined automated mechanisms]'
+
+# CM-2 (3) Retention of Previous Configurations
+# CM-02(03)_ODP
+cm_02_03_odp: '[organization-defined number]'
+
+# CM-2 (7) Configure Systems and Components for High-risk Areas
+# CM-02(07)_ODP[01]
+cm_02_07_odp_01: '[organization-defined systems or system components]'
+# CM-02(07)_ODP[02]
+cm_02_07_odp_02: '[organization-defined configurations]'
+# CM-02(07)_ODP[03]
+cm_02_07_odp_03: '[organization-defined controls]'
+
+# CM-3 Configuration Change Control
+# CM-03_ODP[01]
+cm_03_odp_01: '[organization-defined time period]'
+# CM-03_ODP[02]
+cm_03_odp_02: '[organization-defined configuration change control element]'
+# CM-03_ODP[03]
+cm_03_odp_03: '[selection (one or more): {{ insert: param, cm-03_odp.04 }} ; when {{ insert: param, cm-03_odp.05 }} ]'
+# CM-03_ODP[04]
+cm_03_odp_04: '[organization-defined frequency]'
+# CM-03_ODP[05]
+cm_03_odp_05: '[organization-defined configuration change conditions]'
+
+# CM-3 (1) Automated Documentation, Notification, and Prohibition of Changes
+# CM-03(01)_ODP[01]
+cm_03_01_odp_01: '[organization-defined automated mechanisms]'
+# CM-03(01)_ODP[02]
+cm_03_01_odp_02: '[organization-defined approval authorities]'
+# CM-03(01)_ODP[03]
+cm_03_01_odp_03: '[organization-defined time period]'
+# CM-03(01)_ODP[04]
+cm_03_01_odp_04: '[organization-defined personnel]'
+
+# CM-3 (3) Automated Change Implementation
+# CM-03(03)_ODP
+cm_03_03_odp: '[organization-defined automated mechanisms]'
+
+# CM-3 (4) Security and Privacy Representatives
+# cm-3.4_prm_1
+cm_3_4_prm_1: '[organization-defined security and privacy representatives]'
+# CM-03(04)_ODP[01]
+cm_03_04_odp_01: '[organization-defined security representatives]'
+# CM-03(04)_ODP[02]
+cm_03_04_odp_02: '[organization-defined privacy representatives]'
+# CM-03(04)_ODP[03]
+cm_03_04_odp_03: '[organization-defined configuration change control element]'
+
+# CM-3 (5) Automated Security Response
+# CM-03(05)_ODP
+cm_03_05_odp: '[organization-defined security responses]'
+
+# CM-3 (6) Cryptography Management
+# CM-03(06)_ODP
+cm_03_06_odp: '[organization-defined controls]'
+
+# CM-3 (7) Review System Changes
+# CM-03(07)_ODP[01]
+cm_03_07_odp_01: '[organization-defined frequency]'
+# CM-03(07)_ODP[02]
+cm_03_07_odp_02: '[organization-defined circumstances]'
+
+# CM-3 (8) Prevent or Restrict Configuration Changes
+# CM-03(08)_ODP
+cm_03_08_odp: '[organization-defined circumstances]'
+
+# CM-5 (1) Automated Access Enforcement and Audit Records
+# CM-05(01)_ODP
+cm_05_01_odp: '[organization-defined automated mechanisms]'
+
+# CM-5 (4) Dual Authorization
+# cm-5.4_prm_1
+cm_5_4_prm_1: '[organization-defined system components and system-level information]'
+# CM-05(04)_ODP[01]
+cm_05_04_odp_01: '[organization-defined system components]'
+# CM-05(04)_ODP[02]
+cm_05_04_odp_02: '[organization-defined system-level information]'
+
+# CM-5 (5) Privilege Limitation for Production and Operation
+# cm-5.5_prm_1
+cm_5_5_prm_1: '[organization-defined frequency]'
+# CM-05(05)_ODP[01]
+cm_05_05_odp_01: '[organization-defined frequency]'
+# CM-05(05)_ODP[02]
+cm_05_05_odp_02: '[organization-defined frequency]'
+
+# CM-6 Configuration Settings
+# CM-06_ODP[01]
+cm_06_odp_01: '[organization-defined common secure configurations]'
+# CM-06_ODP[02]
+cm_06_odp_02: '[organization-defined system components]'
+# CM-06_ODP[03]
+cm_06_odp_03: '[organization-defined operational requirements]'
+
+# CM-6 (1) Automated Management, Application, and Verification
+# cm-6.1_prm_2
+cm_6_1_prm_2: '[organization-defined automated mechanisms]'
+# CM-06(01)_ODP[01]
+cm_06_01_odp_01: '[organization-defined system components]'
+# CM-06(01)_ODP[02]
+cm_06_01_odp_02: '[organization-defined automated mechanisms]'
+# CM-06(01)_ODP[03]
+cm_06_01_odp_03: '[organization-defined automated mechanisms]'
+# CM-06(01)_ODP[04]
+cm_06_01_odp_04: '[organization-defined automated mechanisms]'
+
+# CM-6 (2) Respond to Unauthorized Changes
+# CM-06(02)_ODP[01]
+cm_06_02_odp_01: '[organization-defined actions]'
+# CM-06(02)_ODP[02]
+cm_06_02_odp_02: '[organization-defined configuration settings]'
+
+# CM-7 Least Functionality
+# cm-7_prm_2
+cm_7_prm_2: '[organization-defined prohibited or restricted functions, system ports, protocols, software, and/or services]'
+# CM-07_ODP[01]
+cm_07_odp_01: '[organization-defined mission-essential capabilities]'
+# CM-07_ODP[02]
+cm_07_odp_02: '[organization-defined functions]'
+# CM-07_ODP[03]
+cm_07_odp_03: '[organization-defined ports]'
+# CM-07_ODP[04]
+cm_07_odp_04: '[organization-defined protocols]'
+# CM-07_ODP[05]
+cm_07_odp_05: '[organization-defined software]'
+# CM-07_ODP[06]
+cm_07_odp_06: '[organization-defined services]'
+
+# CM-7 (1) Periodic Review
+# cm-7.1_prm_2
+cm_7_1_prm_2: '[organization-defined functions, ports, protocols, software, and services within the system deemed to be unnecessary and/or nonsecure]'
+# CM-07(01)_ODP[01]
+cm_07_01_odp_01: '[organization-defined frequency]'
+# CM-07(01)_ODP[02]
+cm_07_01_odp_02: '[organization-defined functions]'
+# CM-07(01)_ODP[03]
+cm_07_01_odp_03: '[organization-defined ports]'
+# CM-07(01)_ODP[04]
+cm_07_01_odp_04: '[organization-defined protocols]'
+# CM-07(01)_ODP[05]
+cm_07_01_odp_05: '[organization-defined software]'
+# CM-07(01)_ODP[06]
+cm_07_01_odp_06: '[organization-defined services]'
+
+# CM-7 (2) Prevent Program Execution
+# CM-07(02)_ODP[01]
+cm_07_02_odp_01: '[selection (one or more): {{ insert: param, cm-07.02_odp.02 }} ; rules authorizing the terms and conditions of software program usage]'
+# CM-07(02)_ODP[02]
+cm_07_02_odp_02: '[organization-defined policies, rules of behavior, and/or access agreements regarding software program usage and restrictions]'
+
+# CM-7 (3) Registration Compliance
+# CM-07(03)_ODP
+cm_07_03_odp: '[organization-defined registration requirements]'
+
+# CM-7 (4) Unauthorized Software — Deny-by-exception
+# CM-07(04)_ODP[01]
+cm_07_04_odp_01: '[organization-defined software programs]'
+# CM-07(04)_ODP[02]
+cm_07_04_odp_02: '[organization-defined frequency]'
+
+# CM-7 (5) Authorized Software — Allow-by-exception
+# CM-07(05)_ODP[01]
+cm_07_05_odp_01: '[organization-defined software programs]'
+# CM-07(05)_ODP[02]
+cm_07_05_odp_02: '[organization-defined frequency]'
+
+# CM-7 (6) Confined Environments with Limited Privileges
+# CM-07(06)_ODP
+cm_07_06_odp: '[organization-defined user-installed software]'
+
+# CM-7 (7) Code Execution in Protected Environments
+# CM-07(07)_ODP
+cm_07_07_odp: '[organization-defined personnel or roles]'
+
+# CM-7 (9) Prohibiting The Use of Unauthorized Hardware
+# CM-07(09)_ODP[01]
+cm_07_09_odp_01: '[organization-defined hardware components]'
+# CM-07(09)_ODP[02]
+cm_07_09_odp_02: '[organization-defined frequency]'
+
+# CM-8 System Component Inventory
+# CM-08_ODP[01]
+cm_08_odp_01: '[organization-defined information]'
+# CM-08_ODP[02]
+cm_08_odp_02: '[organization-defined frequency]'
+
+# CM-8 (2) Automated Maintenance
+# cm-8.2_prm_1
+cm_8_2_prm_1: '[organization-defined automated mechanisms]'
+# CM-08(02)_ODP[01]
+cm_08_02_odp_01: '[organization-defined automated mechanisms]'
+# CM-08(02)_ODP[02]
+cm_08_02_odp_02: '[organization-defined automated mechanisms]'
+# CM-08(02)_ODP[03]
+cm_08_02_odp_03: '[organization-defined automated mechanisms]'
+# CM-08(02)_ODP[04]
+cm_08_02_odp_04: '[organization-defined automated mechanisms]'
+
+# CM-8 (3) Automated Unauthorized Component Detection
+# cm-8.3_prm_1
+cm_8_3_prm_1: '[organization-defined automated mechanisms]'
+# CM-08(03)_ODP[01]
+cm_08_03_odp_01: '[organization-defined automated mechanisms]'
+# CM-08(03)_ODP[02]
+cm_08_03_odp_02: '[organization-defined automated mechanisms]'
+# CM-08(03)_ODP[03]
+cm_08_03_odp_03: '[organization-defined automated mechanisms]'
+# CM-08(03)_ODP[04]
+cm_08_03_odp_04: '[organization-defined frequency]'
+# CM-08(03)_ODP[05]
+cm_08_03_odp_05: '[selection (one or more): disable network access by unauthorized components; isolate unauthorized components; notify {{ insert: param, cm-08.03_odp.06 }} ]'
+# CM-08(03)_ODP[06]
+cm_08_03_odp_06: '[organization-defined personnel or roles]'
+
+# CM-8 (4) Accountability Information
+# CM-08(04)_ODP
+cm_08_04_odp: '[selection (one or more): name; position; role]'
+
+# CM-8 (8) Automated Location Tracking
+# CM-08(08)_ODP
+cm_08_08_odp: '[organization-defined automated mechanisms]'
+
+# CM-8 (9) Assignment of Components to Systems
+# CM-08(09)_ODP
+cm_08_09_odp: '[organization-defined personnel or roles]'
+
+# CM-9 Configuration Management Plan
+# CM-09_ODP
+cm_09_odp: '[organization-defined personnel or roles]'
+
+# CM-10 (1) Open-source Software
+# CM-10(01)_ODP
+cm_10_01_odp: '[organization-defined restrictions]'
+
+# CM-11 User-installed Software
+# CM-11_ODP[01]
+cm_11_odp_01: '[organization-defined policies]'
+# CM-11_ODP[02]
+cm_11_odp_02: '[organization-defined methods]'
+# CM-11_ODP[03]
+cm_11_odp_03: '[organization-defined frequency]'
+
+# CM-11 (3) Automated Enforcement and Monitoring
+# cm-11.3_prm_1
+cm_11_3_prm_1: '[organization-defined automated mechanisms]'
+# CM-11(03)_ODP[01]
+cm_11_03_odp_01: '[organization-defined automated mechanisms]'
+# CM-11(03)_ODP[02]
+cm_11_03_odp_02: '[organization-defined automated mechanisms]'
+
+# CM-12 Information Location
+# CM-12_ODP
+cm_12_odp: '[organization-defined information]'
+
+# CM-12 (1) Automated Tools to Support Information Location
+# CM-12(01)_ODP[01]
+cm_12_01_odp_01: '[organization-defined information by information type]'
+# CM-12(01)_ODP[02]
+cm_12_01_odp_02: '[organization-defined system components]'
+
+# CM-14 Signed Components
+# cm-14_prm_1
+cm_14_prm_1: '[organization-defined software and firmware components]'
+# CM-14_ODP[01]
+cm_14_odp_01: '[organization-defined software components]'
+# CM-14_ODP[02]
+cm_14_odp_02: '[organization-defined firmware components]'
+
+# CP-1 Policy and Procedures
+# cp-1_prm_1
+cp_1_prm_1: '[organization-defined personnel or roles]'
+# CP-01_ODP[01]
+cp_01_odp_01: '[organization-defined personnel or roles]'
+# CP-01_ODP[02]
+cp_01_odp_02: '[organization-defined personnel or roles]'
+# CP-01_ODP[03]
+cp_01_odp_03: '[selection (one or more): organization-level; mission/business process-level; system-level]'
+# CP-01_ODP[04]
+cp_01_odp_04: '[organization-defined official]'
+# CP-01_ODP[05]
+cp_01_odp_05: '[organization-defined frequency]'
+# CP-01_ODP[06]
+cp_01_odp_06: '[organization-defined events]'
+# CP-01_ODP[07]
+cp_01_odp_07: '[organization-defined frequency]'
+# CP-01_ODP[08]
+cp_01_odp_08: '[organization-defined events]'
+
+# CP-2 Contingency Plan
+# cp-2_prm_1
+cp_2_prm_1: '[organization-defined personnel or roles]'
+# cp-2_prm_2
+cp_2_prm_2: '[organization-defined key contingency personnel (identified by name and/or by role) and organizational elements]'
+# cp-2_prm_4
+cp_2_prm_4: '[organization-defined key contingency personnel (identified by name and/or by role) and organizational elements]'
+# CP-02_ODP[01]
+cp_02_odp_01: '[organization-defined personnel or roles]'
+# CP-02_ODP[02]
+cp_02_odp_02: '[organization-defined personnel or roles]'
+# CP-02_ODP[03]
+cp_02_odp_03: '[organization-defined key contingency personnel]'
+# CP-02_ODP[04]
+cp_02_odp_04: '[organization-defined organizational elements]'
+# CP-02_ODP[05]
+cp_02_odp_05: '[organization-defined frequency]'
+# CP-02_ODP[06]
+cp_02_odp_06: '[organization-defined key contingency personnel]'
+# CP-02_ODP[07]
+cp_02_odp_07: '[organization-defined organizational elements]'
+
+# CP-2 (3) Resume Mission and Business Functions
+# CP-02(03)_ODP[01]
+cp_02_03_odp_01: '[selection (one): all; essential]'
+# CP-02(03)_ODP[02]
+cp_02_03_odp_02: '[organization-defined time period]'
+
+# CP-2 (5) Continue Mission and Business Functions
+# CP-02(05)_ODP
+cp_02_05_odp: '[selection (one): all; essential]'
+
+# CP-2 (6) Alternate Processing and Storage Sites
+# CP-02(06)_ODP
+cp_02_06_odp: '[selection (one): all; essential]'
+
+# CP-2 (8) Identify Critical Assets
+# CP-02(08)_ODP
+cp_02_08_odp: '[selection (one): all; essential]'
+
+# CP-3 Contingency Training
+# CP-03_ODP[01]
+cp_03_odp_01: '[organization-defined time period]'
+# CP-03_ODP[02]
+cp_03_odp_02: '[organization-defined frequency]'
+# CP-03_ODP[03]
+cp_03_odp_03: '[organization-defined frequency]'
+# CP-03_ODP[04]
+cp_03_odp_04: '[organization-defined events]'
+
+# CP-4 Contingency Plan Testing
+# cp-4_prm_2
+cp_4_prm_2: '[organization-defined tests]'
+# CP-04_ODP[01]
+cp_04_odp_01: '[organization-defined frequency]'
+# CP-04_ODP[02]
+cp_04_odp_02: '[organization-defined tests]'
+# CP-04_ODP[03]
+cp_04_odp_03: '[organization-defined tests]'
+
+# CP-4 (3) Automated Testing
+# CP-04(03)_ODP
+cp_04_03_odp: '[organization-defined automated mechanisms]'
+
+# CP-4 (5) Self-challenge
+# CP-04(05)_ODP[01]
+cp_04_05_odp_01: '[organization-defined mechanisms]'
+# CP-04(05)_ODP[02]
+cp_04_05_odp_02: '[organization-defined system or system component]'
+
+# CP-7 Alternate Processing Site
+# CP-07_ODP[01]
+cp_07_odp_01: '[organization-defined system operations]'
+# CP-07_ODP[02]
+cp_07_odp_02: '[organization-defined time period]'
+
+# CP-8 Telecommunications Services
+# CP-08_ODP[01]
+cp_08_odp_01: '[organization-defined system operations]'
+# CP-08_ODP[02]
+cp_08_odp_02: '[organization-defined time period]'
+
+# CP-8 (4) Provider Contingency Plan
+# cp-8.4_prm_1
+cp_8_4_prm_1: '[organization-defined frequency]'
+# CP-08(04)_ODP[01]
+cp_08_04_odp_01: '[organization-defined frequency]'
+# CP-08(04)_ODP[02]
+cp_08_04_odp_02: '[organization-defined frequency]'
+
+# CP-8 (5) Alternate Telecommunication Service Testing
+# CP-08(05)_ODP
+cp_08_05_odp: '[organization-defined frequency]'
+
+# CP-9 System Backup
+# CP-09_ODP[01]
+cp_09_odp_01: '[organization-defined system components]'
+# CP-09_ODP[02]
+cp_09_odp_02: '[organization-defined frequency]'
+# CP-09_ODP[03]
+cp_09_odp_03: '[organization-defined frequency]'
+# CP-09_ODP[04]
+cp_09_odp_04: '[organization-defined frequency]'
+
+# CP-9 (1) Testing for Reliability and Integrity
+# cp-9.1_prm_1
+cp_9_1_prm_1: '[organization-defined frequency]'
+# CP-09(01)_ODP[01]
+cp_09_01_odp_01: '[organization-defined frequency]'
+# CP-09(01)_ODP[02]
+cp_09_01_odp_02: '[organization-defined frequency]'
+
+# CP-9 (3) Separate Storage for Critical Information
+# CP-09(03)_ODP
+cp_09_03_odp: '[organization-defined critical system software and other security-related information]'
+
+# CP-9 (5) Transfer to Alternate Storage Site
+# cp-9.5_prm_1
+cp_9_5_prm_1: '[organization-defined time period and transfer rate consistent with the recovery time and recovery point objectives]'
+# CP-09(05)_ODP[01]
+cp_09_05_odp_01: '[organization-defined time period]'
+# CP-09(05)_ODP[02]
+cp_09_05_odp_02: '[organization-defined transfer rate]'
+
+# CP-9 (7) Dual Authorization for Deletion or Destruction
+# CP-09(07)_ODP
+cp_09_07_odp: '[organization-defined backup information]'
+
+# CP-9 (8) Cryptographic Protection
+# CP-09(08)_ODP
+cp_09_08_odp: '[organization-defined backup information]'
+
+# CP-10 System Recovery and Reconstitution
+# cp-10_prm_1
+cp_10_prm_1: '[organization-defined time period consistent with recovery time and recovery point objectives]'
+# CP-10_ODP[01]
+cp_10_odp_01: '[organization-defined time period]'
+# CP-10_ODP[02]
+cp_10_odp_02: '[organization-defined time period]'
+
+# CP-10 (4) Restore Within Time Period
+# CP-10(04)_ODP
+cp_10_04_odp: '[organization-defined restoration time periods]'
+
+# CP-11 Alternate Communications Protocols
+# CP-11_ODP
+cp_11_odp: '[organization-defined alternative communications protocols]'
+
+# CP-12 Safe Mode
+# CP-12_ODP[01]
+cp_12_odp_01: '[organization-defined restrictions]'
+# CP-12_ODP[02]
+cp_12_odp_02: '[organization-defined conditions]'
+
+# CP-13 Alternative Security Mechanisms
+# CP-13_ODP[01]
+cp_13_odp_01: '[organization-defined alternative or supplemental security mechanisms]'
+# CP-13_ODP[02]
+cp_13_odp_02: '[organization-defined security functions]'
+
+# IA-1 Policy and Procedures
+# ia-1_prm_1
+ia_1_prm_1: '[organization-defined personnel or roles]'
+# IA-01_ODP[01]
+ia_01_odp_01: '[organization-defined personnel or roles]'
+# IA-01_ODP[02]
+ia_01_odp_02: '[organization-defined personnel or roles]'
+# IA-01_ODP[03]
+ia_01_odp_03: '[selection (one or more): organization-level; mission/business process-level; system-level]'
+# IA-01_ODP[04]
+ia_01_odp_04: '[organization-defined official]'
+# IA-01_ODP[05]
+ia_01_odp_05: '[organization-defined frequency]'
+# IA-01_ODP[06]
+ia_01_odp_06: '[organization-defined events]'
+# IA-01_ODP[07]
+ia_01_odp_07: '[organization-defined frequency]'
+# IA-01_ODP[08]
+ia_01_odp_08: '[organization-defined events]'
+
+# IA-2 (6) Access to Accounts —separate Device
+# IA-02(06)_ODP[01]
+ia_02_06_odp_01: '[selection (one or more): local; network; remote]'
+# IA-02(06)_ODP[02]
+ia_02_06_odp_02: '[selection (one or more): privileged accounts; non-privileged accounts]'
+# IA-02(06)_ODP[03]
+ia_02_06_odp_03: '[organization-defined strength of mechanism requirements]'
+
+# IA-2 (8) Access to Accounts — Replay Resistant
+# IA-02(08)_ODP
+ia_02_08_odp: '[selection (one or more): privileged accounts; non-privileged accounts]'
+
+# IA-2 (10) Single Sign-on
+# IA-02(10)_ODP
+ia_02_10_odp: '[organization-defined system accounts and services]'
+
+# IA-2 (13) Out-of-band Authentication
+# IA-02(13)_ODP[01]
+ia_02_13_odp_01: '[organization-defined out-of-band authentication]'
+# IA-02(13)_ODP[02]
+ia_02_13_odp_02: '[organization-defined conditions]'
+
+# IA-3 Device Identification and Authentication
+# IA-03_ODP[01]
+ia_03_odp_01: '[organization-defined devices and/or types of devices]'
+# IA-03_ODP[02]
+ia_03_odp_02: '[selection (one or more): local; remote; network]'
+
+# IA-3 (1) Cryptographic Bidirectional Authentication
+# IA-03(01)_ODP[01]
+ia_03_01_odp_01: '[organization-defined devices and/or types of devices]'
+# IA-03(01)_ODP[02]
+ia_03_01_odp_02: '[selection (one or more): local; remote; network]'
+
+# IA-3 (3) Dynamic Address Allocation
+# ia-3.3_prm_1
+ia_3_3_prm_1: '[organization-defined lease information and lease duration]'
+# IA-03(03)_ODP[01]
+ia_03_03_odp_01: '[organization-defined lease information]'
+# IA-03(03)_ODP[02]
+ia_03_03_odp_02: '[organization-defined lease duration]'
+
+# IA-3 (4) Device Attestation
+# IA-03(04)_ODP
+ia_03_04_odp: '[organization-defined configuration management process]'
+
+# IA-4 Identifier Management
+# IA-04_ODP[01]
+ia_04_odp_01: '[organization-defined personnel or roles]'
+# IA-04_ODP[02]
+ia_04_odp_02: '[organization-defined time period]'
+
+# IA-4 (4) Identify User Status
+# IA-04(04)_ODP
+ia_04_04_odp: '[organization-defined characteristics]'
+
+# IA-4 (5) Dynamic Management
+# IA-04(05)_ODP
+ia_04_05_odp: '[organization-defined dynamic identifier policy]'
+
+# IA-4 (6) Cross-organization Management
+# IA-04(06)_ODP
+ia_04_06_odp: '[organization-defined external organizations]'
+
+# IA-4 (9) Attribute Maintenance and Protection
+# IA-04(09)_ODP
+ia_04_09_odp: '[organization-defined protected central storage]'
+
+# IA-5 Authenticator Management
+# IA-05_ODP[01]
+ia_05_odp_01: '[organization-defined time period by authenticator type]'
+# IA-05_ODP[02]
+ia_05_odp_02: '[organization-defined events]'
+
+# IA-5 (1) Password-based Authentication
+# IA-05(01)_ODP[01]
+ia_05_01_odp_01: '[organization-defined frequency]'
+# IA-05(01)_ODP[02]
+ia_05_01_odp_02: '[organization-defined composition and complexity rules]'
+
+# IA-5 (8) Multiple System Accounts
+# IA-05(08)_ODP
+ia_05_08_odp: '[organization-defined security controls]'
+
+# IA-5 (9) Federated Credential Management
+# IA-05(09)_ODP
+ia_05_09_odp: '[organization-defined external organizations]'
+
+# IA-5 (10) Dynamic Credential Binding
+# IA-05(10)_ODP
+ia_05_10_odp: '[organization-defined binding rules]'
+
+# IA-5 (12) Biometric Authentication Performance
+# IA-05(12)_ODP
+ia_05_12_odp: '[organization-defined biometric quality requirements]'
+
+# IA-5 (13) Expiration of Cached Authenticators
+# IA-05(13)_ODP
+ia_05_13_odp: '[organization-defined time period]'
+
+# IA-5 (16) In-person or Trusted External Party Authenticator Issuance
+# IA-05(16)_ODP[01]
+ia_05_16_odp_01: '[organization-defined types of and/or specific authenticators]'
+# IA-05(16)_ODP[02]
+ia_05_16_odp_02: '[selection (one): in person; by a trusted external party]'
+# IA-05(16)_ODP[03]
+ia_05_16_odp_03: '[organization-defined registration authority]'
+# IA-05(16)_ODP[04]
+ia_05_16_odp_04: '[organization-defined personnel or roles]'
+
+# IA-5 (18) Password Managers
+# IA-05(18)_ODP[01]
+ia_05_18_odp_01: '[organization-defined password managers]'
+# IA-05(18)_ODP[02]
+ia_05_18_odp_02: '[organization-defined controls]'
+
+# IA-8 (4) Use of Defined Profiles
+# IA-08(04)_ODP
+ia_08_04_odp: '[organization-defined identity management profiles]'
+
+# IA-8 (5) Acceptance of PIV-I Credentials
+# IA-08(05)_ODP
+ia_08_05_odp: '[organization-defined policy]'
+
+# IA-8 (6) Disassociability
+# IA-08(06)_ODP
+ia_08_06_odp: '[organization-defined measures]'
+
+# IA-9 Service Identification and Authentication
+# IA-09_ODP
+ia_09_odp: '[organization-defined system services and applications]'
+
+# IA-10 Adaptive Authentication
+# IA-10_ODP[01]
+ia_10_odp_01: '[organization-defined supplemental authentication techniques or mechanisms]'
+# IA-10_ODP[02]
+ia_10_odp_02: '[organization-defined circumstances or situations]'
+
+# IA-11 Re-authentication
+# IA-11_ODP
+ia_11_odp: '[organization-defined circumstances or situations]'
+
+# IA-12 (3) Identity Evidence Validation and Verification
+# IA-12(03)_ODP
+ia_12_03_odp: '[organization-defined methods of validation and verification]'
+
+# IA-12 (5) Address Confirmation
+# IA-12(05)_ODP
+ia_12_05_odp: '[selection (one): registration code; notice of proofing]'
+
+# IA-12 (6) Accept Externally-proofed Identities
+# IA-12(06)_ODP
+ia_12_06_odp: '[organization-defined identity assurance level]'
+
+# IA-13 Identity Providers and Authorization Servers
+# IA-13_ODP[01]
+ia_13_odp_01: '[organization-defined policy]'
+# IA-13_ODP[02]
+ia_13_odp_02: '[organization-defined mechanisms]'
+
+# IR-1 Policy and Procedures
+# ir-1_prm_1
+ir_1_prm_1: '[organization-defined personnel or roles]'
+# IR-01_ODP[01]
+ir_01_odp_01: '[organization-defined personnel or roles]'
+# IR-01_ODP[02]
+ir_01_odp_02: '[organization-defined personnel or roles]'
+# IR-01_ODP[03]
+ir_01_odp_03: '[selection (one or more): organization-level; mission/business process-level; system-level]'
+# IR-01_ODP[04]
+ir_01_odp_04: '[organization-defined official]'
+# IR-01_ODP[05]
+ir_01_odp_05: '[organization-defined frequency]'
+# IR-01_ODP[06]
+ir_01_odp_06: '[organization-defined events]'
+# IR-01_ODP[07]
+ir_01_odp_07: '[organization-defined frequency]'
+# IR-01_ODP[08]
+ir_01_odp_08: '[organization-defined events]'
+
+# IR-2 Incident Response Training
+# IR-02_ODP[01]
+ir_02_odp_01: '[organization-defined time period]'
+# IR-02_ODP[02]
+ir_02_odp_02: '[organization-defined frequency]'
+# IR-02_ODP[03]
+ir_02_odp_03: '[organization-defined frequency]'
+# IR-02_ODP[04]
+ir_02_odp_04: '[organization-defined events]'
+
+# IR-2 (2) Automated Training Environments
+# IR-02(02)_ODP
+ir_02_02_odp: '[organization-defined automated mechanisms]'
+
+# IR-3 Incident Response Testing
+# IR-03_ODP[01]
+ir_03_odp_01: '[organization-defined frequency]'
+# IR-03_ODP[02]
+ir_03_odp_02: '[organization-defined tests]'
+
+# IR-3 (1) Automated Testing
+# IR-03(01)_ODP
+ir_03_01_odp: '[organization-defined automated mechanisms]'
+
+# IR-4 (1) Automated Incident Handling Processes
+# IR-04(01)_ODP
+ir_04_01_odp: '[organization-defined automated mechanisms]'
+
+# IR-4 (2) Dynamic Reconfiguration
+# IR-04(02)_ODP[01]
+ir_04_02_odp_01: '[organization-defined types of dynamic reconfiguration]'
+# IR-04(02)_ODP[02]
+ir_04_02_odp_02: '[organization-defined system components]'
+
+# IR-4 (3) Continuity of Operations
+# IR-04(03)_ODP[01]
+ir_04_03_odp_01: '[organization-defined classes of incidents]'
+# IR-04(03)_ODP[02]
+ir_04_03_odp_02: '[organization-defined actions]'
+
+# IR-4 (5) Automatic Disabling of System
+# IR-04(05)_ODP
+ir_04_05_odp: '[organization-defined security violations]'
+
+# IR-4 (7) Insider Threats — Intra-organization Coordination
+# IR-04(07)_ODP
+ir_04_07_odp: '[organization-defined entities]'
+
+# IR-4 (8) Correlation with External Organizations
+# IR-04(08)_ODP[01]
+ir_04_08_odp_01: '[organization-defined external organizations]'
+# IR-04(08)_ODP[02]
+ir_04_08_odp_02: '[organization-defined incident information]'
+
+# IR-4 (9) Dynamic Response Capability
+# IR-04(09)_ODP
+ir_04_09_odp: '[organization-defined dynamic response capabilities]'
+
+# IR-4 (11) Integrated Incident Response Team
+# IR-04(11)_ODP
+ir_04_11_odp: '[organization-defined time period]'
+
+# IR-4 (13) Behavior Analysis
+# IR-04(13)_ODP
+ir_04_13_odp: '[organization-defined environments or resources]'
+
+# IR-5 (1) Automated Tracking, Data Collection, and Analysis
+# ir-5.1_prm_1
+ir_5_1_prm_1: '[organization-defined automated mechanisms]'
+# IR-05(01)_ODP[01]
+ir_05_01_odp_01: '[organization-defined automated mechanisms]'
+# IR-05(01)_ODP[02]
+ir_05_01_odp_02: '[organization-defined automated mechanisms]'
+# IR-05(01)_ODP[03]
+ir_05_01_odp_03: '[organization-defined automated mechanisms]'
+
+# IR-6 Incident Reporting
+# IR-06_ODP[01]
+ir_06_odp_01: '[organization-defined time period]'
+# IR-06_ODP[02]
+ir_06_odp_02: '[organization-defined authorities]'
+
+# IR-6 (1) Automated Reporting
+# IR-06(01)_ODP
+ir_06_01_odp: '[organization-defined automated mechanisms]'
+
+# IR-6 (2) Vulnerabilities Related to Incidents
+# IR-06(02)_ODP
+ir_06_02_odp: '[organization-defined personnel or roles]'
+
+# IR-7 (1) Automation Support for Availability of Information and Support
+# IR-07(01)_ODP
+ir_07_01_odp: '[organization-defined automated mechanisms]'
+
+# IR-8 Incident Response Plan
+# ir-8_prm_5
+ir_8_prm_5: '[organization-defined incident response personnel (identified by name and/or by role) and organizational elements]'
+# IR-08_ODP[01]
+ir_08_odp_01: '[organization-defined personnel or roles]'
+# IR-08_ODP[02]
+ir_08_odp_02: '[organization-defined frequency]'
+# IR-08_ODP[03]
+ir_08_odp_03: '[organization-defined entities, personnel, or roles]'
+# IR-08_ODP[04]
+ir_08_odp_04: '[organization-defined incident response personnel]'
+# IR-08_ODP[05]
+ir_08_odp_05: '[organization-defined organizational elements]'
+# IR-08_ODP[06]
+ir_08_odp_06: '[organization-defined incident response personnel]'
+# IR-08_ODP[07]
+ir_08_odp_07: '[organization-defined organizational elements]'
+
+# IR-9 Information Spillage Response
+# IR-09_ODP[01]
+ir_09_odp_01: '[organization-defined personnel or roles]'
+# IR-09_ODP[02]
+ir_09_odp_02: '[organization-defined personnel or roles]'
+# IR-09_ODP[03]
+ir_09_odp_03: '[organization-defined actions]'
+
+# IR-9 (2) Training
+# IR-09(02)_ODP
+ir_09_02_odp: '[organization-defined frequency]'
+
+# IR-9 (3) Post-spill Operations
+# IR-09(03)_ODP
+ir_09_03_odp: '[organization-defined procedures]'
+
+# IR-9 (4) Exposure to Unauthorized Personnel
+# IR-09(04)_ODP
+ir_09_04_odp: '[organization-defined controls]'
+
+# MA-1 Policy and Procedures
+# ma-1_prm_1
+ma_1_prm_1: '[organization-defined personnel or roles]'
+# MA-01_ODP[01]
+ma_01_odp_01: '[organization-defined personnel or roles]'
+# MA-01_ODP[02]
+ma_01_odp_02: '[organization-defined personnel or roles]'
+# MA-01_ODP[03]
+ma_01_odp_03: '[selection (one or more): organization-level; mission/business process-level; system-level]'
+# MA-01_ODP[04]
+ma_01_odp_04: '[organization-defined official]'
+# MA-01_ODP[05]
+ma_01_odp_05: '[organization-defined frequency]'
+# MA-01_ODP[06]
+ma_01_odp_06: '[organization-defined events]'
+# MA-01_ODP[07]
+ma_01_odp_07: '[organization-defined frequency]'
+# MA-01_ODP[08]
+ma_01_odp_08: '[organization-defined events]'
+
+# MA-2 Controlled Maintenance
+# MA-02_ODP[01]
+ma_02_odp_01: '[organization-defined personnel or roles]'
+# MA-02_ODP[02]
+ma_02_odp_02: '[organization-defined information]'
+# MA-02_ODP[03]
+ma_02_odp_03: '[organization-defined information]'
+
+# MA-2 (2) Automated Maintenance Activities
+# ma-2.2_prm_1
+ma_2_2_prm_1: '[organization-defined automated mechanisms]'
+# MA-02(02)_ODP[01]
+ma_02_02_odp_01: '[organization-defined automated mechanisms]'
+# MA-02(02)_ODP[02]
+ma_02_02_odp_02: '[organization-defined automated mechanisms]'
+# MA-02(02)_ODP[03]
+ma_02_02_odp_03: '[organization-defined automated mechanisms]'
+
+# MA-3 Maintenance Tools
+# MA-03_ODP
+ma_03_odp: '[organization-defined frequency]'
+
+# MA-3 (3) Prevent Unauthorized Removal
+# MA-03(03)_ODP
+ma_03_03_odp: '[organization-defined personnel or roles]'
+
+# MA-4 (1) Logging and Review
+# ma-4.1_prm_1
+ma_4_1_prm_1: '[organization-defined audit events]'
+# MA-04(01)_ODP[01]
+ma_04_01_odp_01: '[organization-defined audit events]'
+# MA-04(01)_ODP[02]
+ma_04_01_odp_02: '[organization-defined audit events]'
+
+# MA-4 (4) Authentication and Separation of Maintenance Sessions
+# MA-04(04)_ODP
+ma_04_04_odp: '[organization-defined authenticators that are replay resistant]'
+
+# MA-4 (5) Approvals and Notifications
+# MA-04(05)_ODP[01]
+ma_04_05_odp_01: '[organization-defined personnel or roles]'
+# MA-04(05)_ODP[02]
+ma_04_05_odp_02: '[organization-defined personnel and roles]'
+
+# MA-4 (6) Cryptographic Protection
+# MA-04(06)_ODP
+ma_04_06_odp: '[organization-defined cryptographic mechanisms]'
+
+# MA-5 (1) Individuals Without Appropriate Access
+# MA-05(01)_ODP
+ma_05_01_odp: '[organization-defined alternate controls]'
+
+# MA-6 Timely Maintenance
+# MA-06_ODP[01]
+ma_06_odp_01: '[organization-defined system components]'
+# MA-06_ODP[02]
+ma_06_odp_02: '[organization-defined time period]'
+
+# MA-6 (1) Preventive Maintenance
+# MA-06(01)_ODP[01]
+ma_06_01_odp_01: '[organization-defined system components]'
+# MA-06(01)_ODP[02]
+ma_06_01_odp_02: '[organization-defined time intervals]'
+
+# MA-6 (2) Predictive Maintenance
+# MA-06(02)_ODP[01]
+ma_06_02_odp_01: '[organization-defined system components]'
+# MA-06(02)_ODP[02]
+ma_06_02_odp_02: '[organization-defined time intervals]'
+
+# MA-6 (3) Automated Support for Predictive Maintenance
+# MA-06(03)_ODP
+ma_06_03_odp: '[organization-defined automated mechanisms]'
+
+# MA-7 Field Maintenance
+# MA-07_ODP[01]
+ma_07_odp_01: '[organization-defined systems or system components]'
+# MA-07_ODP[02]
+ma_07_odp_02: '[organization-defined trusted maintenance facilities]'
+
+# MP-1 Policy and Procedures
+# mp-1_prm_1
+mp_1_prm_1: '[organization-defined personnel or roles]'
+# MP-01_ODP[01]
+mp_01_odp_01: '[organization-defined personnel or roles]'
+# MP-01_ODP[02]
+mp_01_odp_02: '[organization-defined personnel or roles]'
+# MP-01_ODP[03]
+mp_01_odp_03: '[selection (one or more): organization-level; mission/business process-level; system-level]'
+# MP-01_ODP[04]
+mp_01_odp_04: '[organization-defined official]'
+# MP-01_ODP[05]
+mp_01_odp_05: '[organization-defined frequency]'
+# MP-01_ODP[06]
+mp_01_odp_06: '[organization-defined events]'
+# MP-01_ODP[07]
+mp_01_odp_07: '[organization-defined frequency]'
+# MP-01_ODP[08]
+mp_01_odp_08: '[organization-defined events]'
+
+# MP-2 Media Access
+# mp-2_prm_1
+mp_2_prm_1: '[organization-defined types of digital and/or non-digital media]'
+# mp-2_prm_2
+mp_2_prm_2: '[organization-defined personnel or roles]'
+# MP-02_ODP[01]
+mp_02_odp_01: '[organization-defined types of digital media]'
+# MP-02_ODP[02]
+mp_02_odp_02: '[organization-defined personnel or roles]'
+# MP-02_ODP[03]
+mp_02_odp_03: '[organization-defined types of non-digital media]'
+# MP-02_ODP[04]
+mp_02_odp_04: '[organization-defined personnel or roles]'
+
+# MP-3 Media Marking
+# MP-03_ODP[01]
+mp_03_odp_01: '[organization-defined types of media exempted from marking]'
+# MP-03_ODP[02]
+mp_03_odp_02: '[organization-defined controlled areas]'
+
+# MP-4 Media Storage
+# mp-4_prm_1
+mp_4_prm_1: '[organization-defined types of digital and/or non-digital media]'
+# mp-4_prm_2
+mp_4_prm_2: '[organization-defined controlled areas]'
+# MP-04_ODP[01]
+mp_04_odp_01: '[organization-defined types of digital media]'
+# MP-04_ODP[02]
+mp_04_odp_02: '[organization-defined types of non-digital media]'
+# MP-04_ODP[03]
+mp_04_odp_03: '[organization-defined types of digital media]'
+# MP-04_ODP[04]
+mp_04_odp_04: '[organization-defined types of non-digital media]'
+# MP-04_ODP[05]
+mp_04_odp_05: '[organization-defined controlled areas]'
+# MP-04_ODP[06]
+mp_04_odp_06: '[organization-defined controlled areas]'
+
+# MP-4 (2) Automated Restricted Access
+# mp-4.2_prm_1
+mp_4_2_prm_1: '[organization-defined automated mechanisms]'
+# MP-04(02)_ODP[01]
+mp_04_02_odp_01: '[organization-defined automated mechanisms]'
+# MP-04(02)_ODP[02]
+mp_04_02_odp_02: '[organization-defined automated mechanisms]'
+# MP-04(02)_ODP[03]
+mp_04_02_odp_03: '[organization-defined automated mechanisms]'
+
+# MP-5 Media Transport
+# mp-5_prm_2
+mp_5_prm_2: '[organization-defined controls]'
+# MP-05_ODP[01]
+mp_05_odp_01: '[organization-defined types of system media]'
+# MP-05_ODP[02]
+mp_05_odp_02: '[organization-defined controls]'
+# MP-05_ODP[03]
+mp_05_odp_03: '[organization-defined controls]'
+
+# MP-6 Media Sanitization
+# mp-6_prm_1
+mp_6_prm_1: '[organization-defined system media]'
+# mp-6_prm_2
+mp_6_prm_2: '[organization-defined sanitization techniques and procedures]'
+# MP-06_ODP[01]
+mp_06_odp_01: '[organization-defined system media]'
+# MP-06_ODP[02]
+mp_06_odp_02: '[organization-defined system media]'
+# MP-06_ODP[03]
+mp_06_odp_03: '[organization-defined system media]'
+# MP-06_ODP[04]
+mp_06_odp_04: '[organization-defined sanitization techniques and procedures]'
+# MP-06_ODP[05]
+mp_06_odp_05: '[organization-defined sanitization techniques and procedures]'
+# MP-06_ODP[06]
+mp_06_odp_06: '[organization-defined sanitization techniques and procedures]'
+
+# MP-6 (2) Equipment Testing
+# mp-6.2_prm_1
+mp_6_2_prm_1: '[organization-defined frequency]'
+# MP-06(02)_ODP[01]
+mp_06_02_odp_01: '[organization-defined frequency]'
+# MP-06(02)_ODP[02]
+mp_06_02_odp_02: '[organization-defined frequency]'
+
+# MP-6 (3) Nondestructive Techniques
+# MP-06(03)_ODP
+mp_06_03_odp: '[organization-defined circumstances]'
+
+# MP-6 (7) Dual Authorization
+# MP-06(07)_ODP
+mp_06_07_odp: '[organization-defined system media]'
+
+# MP-6 (8) Remote Purging or Wiping of Information
+# MP-06(08)_ODP[01]
+mp_06_08_odp_01: '[organization-defined systems or system components]'
+# MP-06(08)_ODP[02]
+mp_06_08_odp_02: '[selection (one): remotely; under {{ insert: param, mp-06.08_odp.03 }} ]'
+# MP-06(08)_ODP[03]
+mp_06_08_odp_03: '[organization-defined conditions]'
+
+# MP-7 Media Use
+# MP-07_ODP[01]
+mp_07_odp_01: '[organization-defined types of system media]'
+# MP-07_ODP[02]
+mp_07_odp_02: '[selection (one): restrict; prohibit]'
+# MP-07_ODP[03]
+mp_07_odp_03: '[organization-defined systems or system components]'
+# MP-07_ODP[04]
+mp_07_odp_04: '[organization-defined controls]'
+
+# MP-8 Media Downgrading
+# MP-08_ODP[01]
+mp_08_odp_01: '[organization-defined system media downgrading process]'
+# MP-08_ODP[02]
+mp_08_odp_02: '[organization-defined system media requiring downgrading]'
+
+# MP-8 (2) Equipment Testing
+# mp-8.2_prm_1
+mp_8_2_prm_1: '[organization-defined frequency]'
+# MP-08(02)_ODP[01]
+mp_08_02_odp_01: '[organization-defined frequency]'
+# MP-08(02)_ODP[02]
+mp_08_02_odp_02: '[organization-defined frequency]'
+
+# PE-1 Policy and Procedures
+# pe-1_prm_1
+pe_1_prm_1: '[organization-defined personnel or roles]'
+# PE-01_ODP[01]
+pe_01_odp_01: '[organization-defined personnel or roles]'
+# PE-01_ODP[02]
+pe_01_odp_02: '[organization-defined personnel or roles]'
+# PE-01_ODP[03]
+pe_01_odp_03: '[selection (one or more): organization-level; mission/business process-level; system-level]'
+# PE-01_ODP[04]
+pe_01_odp_04: '[organization-defined official]'
+# PE-01_ODP[05]
+pe_01_odp_05: '[organization-defined frequency]'
+# PE-01_ODP[06]
+pe_01_odp_06: '[organization-defined events]'
+# PE-01_ODP[07]
+pe_01_odp_07: '[organization-defined frequency]'
+# PE-01_ODP[08]
+pe_01_odp_08: '[organization-defined events]'
+
+# PE-2 Physical Access Authorizations
+# PE-02_ODP
+pe_02_odp: '[organization-defined frequency]'
+
+# PE-2 (2) Two Forms of Identification
+# PE-02(02)_ODP
+pe_02_02_odp: '[organization-defined list of acceptable forms of identification]'
+
+# PE-2 (3) Restrict Unescorted Access
+# PE-02(03)_ODP[01]
+pe_02_03_odp_01: '[selection (one or more): security clearances for all information contained within the system; formal access authorizations for all information contained within the system; need for access to all information contained within the system; {{ insert: param, pe-02.03_odp.02 }} ]'
+# PE-02(03)_ODP[02]
+pe_02_03_odp_02: '[organization-defined physical access authorizations]'
+
+# PE-3 Physical Access Control
+# pe-3_prm_9
+pe_3_prm_9: '[organization-defined frequency]'
+# PE-03_ODP[01]
+pe_03_odp_01: '[organization-defined entry and exit points]'
+# PE-03_ODP[02]
+pe_03_odp_02: '[selection (one or more): {{ insert: param, pe-03_odp.03 }} ; guards]'
+# PE-03_ODP[03]
+pe_03_odp_03: '[organization-defined systems or devices]'
+# PE-03_ODP[04]
+pe_03_odp_04: '[organization-defined entry or exit points]'
+# PE-03_ODP[05]
+pe_03_odp_05: '[organization-defined physical access controls]'
+# PE-03_ODP[06]
+pe_03_odp_06: '[organization-defined circumstances]'
+# PE-03_ODP[07]
+pe_03_odp_07: '[organization-defined physical access devices]'
+# PE-03_ODP[08]
+pe_03_odp_08: '[organization-defined frequency]'
+# PE-03_ODP[09]
+pe_03_odp_09: '[organization-defined frequency]'
+# PE-03_ODP[10]
+pe_03_odp_10: '[organization-defined frequency]'
+
+# PE-3 (1) System Access
+# PE-03(01)_ODP
+pe_03_01_odp: '[organization-defined physical spaces]'
+
+# PE-3 (2) Facility and Systems
+# PE-03(02)_ODP
+pe_03_02_odp: '[organization-defined frequency]'
+
+# PE-3 (3) Continuous Guards
+# PE-03(03)_ODP
+pe_03_03_odp: '[organization-defined physical access points]'
+
+# PE-3 (4) Lockable Casings
+# PE-03(04)_ODP
+pe_03_04_odp: '[organization-defined system components]'
+
+# PE-3 (5) Tamper Protection
+# PE-03(05)_ODP[01]
+pe_03_05_odp_01: '[organization-defined anti-tamper technologies]'
+# PE-03(05)_ODP[02]
+pe_03_05_odp_02: '[selection (one or more): detect; prevent]'
+# PE-03(05)_ODP[03]
+pe_03_05_odp_03: '[organization-defined hardware components]'
+
+# PE-3 (8) Access Control Vestibules
+# PE-03(08)_ODP
+pe_03_08_odp: '[organization-defined locations]'
+
+# PE-4 Access Control for Transmission
+# PE-04_ODP[01]
+pe_04_odp_01: '[organization-defined system distribution and transmission lines]'
+# PE-04_ODP[02]
+pe_04_odp_02: '[organization-defined security controls]'
+
+# PE-5 Access Control for Output Devices
+# PE-05_ODP
+pe_05_odp: '[organization-defined output devices]'
+
+# PE-6 Monitoring Physical Access
+# PE-06_ODP[01]
+pe_06_odp_01: '[organization-defined frequency]'
+# PE-06_ODP[02]
+pe_06_odp_02: '[organization-defined events]'
+
+# PE-6 (2) Automated Intrusion Recognition and Responses
+# PE-06(02)_ODP[01]
+pe_06_02_odp_01: '[organization-defined classes or types of intrusions]'
+# PE-06(02)_ODP[02]
+pe_06_02_odp_02: '[organization-defined response actions]'
+# PE-06(02)_ODP[03]
+pe_06_02_odp_03: '[organization-defined automated mechanisms]'
+
+# PE-6 (3) Video Surveillance
+# PE-06(03)_ODP[01]
+pe_06_03_odp_01: '[organization-defined operational areas]'
+# PE-06(03)_ODP[02]
+pe_06_03_odp_02: '[organization-defined frequency]'
+# PE-06(03)_ODP[03]
+pe_06_03_odp_03: '[organization-defined time period]'
+
+# PE-6 (4) Monitoring Physical Access to Systems
+# PE-06(04)_ODP
+pe_06_04_odp: '[organization-defined physical spaces]'
+
+# PE-8 Visitor Access Records
+# PE-08_ODP[01]
+pe_08_odp_01: '[organization-defined time period]'
+# PE-08_ODP[02]
+pe_08_odp_02: '[organization-defined frequency]'
+# PE-08_ODP[03]
+pe_08_odp_03: '[organization-defined personnel]'
+
+# PE-8 (1) Automated Records Maintenance and Review
+# pe-8.1_prm_1
+pe_8_1_prm_1: '[organization-defined automated mechanisms]'
+# PE-08(01)_ODP[01]
+pe_08_01_odp_01: '[organization-defined automated mechanisms]'
+# PE-08(01)_ODP[02]
+pe_08_01_odp_02: '[organization-defined automated mechanisms]'
+
+# PE-8 (3) Limit Personally Identifiable Information Elements
+# PE-08(03)_ODP
+pe_08_03_odp: '[organization-defined elements]'
+
+# PE-9 (1) Redundant Cabling
+# PE-09(01)_ODP
+pe_09_01_odp: '[organization-defined distance]'
+
+# PE-9 (2) Automatic Voltage Controls
+# PE-09(02)_ODP
+pe_09_02_odp: '[organization-defined critical system components]'
+
+# PE-10 Emergency Shutoff
+# PE-10_ODP[01]
+pe_10_odp_01: '[organization-defined system or individual system components]'
+# PE-10_ODP[02]
+pe_10_odp_02: '[organization-defined location]'
+
+# PE-11 Emergency Power
+# PE-11_ODP
+pe_11_odp: '[selection (one): an orderly shutdown of the system; transition of the system to long-term alternate power]'
+
+# PE-11 (1) Alternate Power Supply — Minimal Operational Capability
+# PE-11(01)_ODP
+pe_11_01_odp: '[selection (one): manually; automatically]'
+
+# PE-11 (2) Alternate Power Supply — Self-contained
+# PE-11(02)_ODP[01]
+pe_11_02_odp_01: '[selection (one): manually; automatically]'
+# PE-11(02)_ODP[02]
+pe_11_02_odp_02: '[selection (one): minimally required operational capability; full operational capability]'
+
+# PE-13 (1) Detection Systems — Automatic Activation and Notification
+# PE-13(01)_ODP[01]
+pe_13_01_odp_01: '[organization-defined personnel or roles]'
+# PE-13(01)_ODP[02]
+pe_13_01_odp_02: '[organization-defined emergency responders]'
+
+# PE-13 (2) Suppression Systems — Automatic Activation and Notification
+# PE-13(02)_ODP[01]
+pe_13_02_odp_01: '[organization-defined personnel or roles]'
+# PE-13(02)_ODP[02]
+pe_13_02_odp_02: '[organization-defined emergency responders]'
+
+# PE-13 (4) Inspections
+# PE-13(04)_ODP[01]
+pe_13_04_odp_01: '[organization-defined frequency]'
+# PE-13(04)_ODP[02]
+pe_13_04_odp_02: '[organization-defined time period]'
+
+# PE-14 Environmental Controls
+# PE-14_ODP[01]
+pe_14_odp_01: '[selection (one or more): temperature; humidity; pressure; radiation; {{ insert: param, pe-14_odp.02 }} ]'
+# PE-14_ODP[02]
+pe_14_odp_02: '[organization-defined environmental control]'
+# PE-14_ODP[03]
+pe_14_odp_03: '[organization-defined acceptable levels]'
+# PE-14_ODP[04]
+pe_14_odp_04: '[organization-defined frequency]'
+
+# PE-14 (1) Automatic Controls
+# PE-14(01)_ODP
+pe_14_01_odp: '[organization-defined automatic environmental controls]'
+
+# PE-14 (2) Monitoring with Alarms and Notifications
+# PE-14(02)_ODP
+pe_14_02_odp: '[organization-defined personnel or roles]'
+
+# PE-15 (1) Automation Support
+# PE-15(01)_ODP[01]
+pe_15_01_odp_01: '[organization-defined personnel or roles]'
+# PE-15(01)_ODP[02]
+pe_15_01_odp_02: '[organization-defined automated mechanisms]'
+
+# PE-16 Delivery and Removal
+# pe-16_prm_1
+pe_16_prm_1: '[organization-defined types of system components]'
+# PE-16_ODP[01]
+pe_16_odp_01: '[organization-defined types of system components]'
+# PE-16_ODP[02]
+pe_16_odp_02: '[organization-defined types of system components]'
+
+# PE-17 Alternate Work Site
+# PE-17_ODP[01]
+pe_17_odp_01: '[organization-defined alternate work sites]'
+# PE-17_ODP[02]
+pe_17_odp_02: '[organization-defined controls]'
+
+# PE-18 Location of System Components
+# PE-18_ODP
+pe_18_odp: '[organization-defined physical and environmental hazards]'
+
+# PE-20 Asset Monitoring and Tracking
+# PE-20_ODP[01]
+pe_20_odp_01: '[organization-defined asset location technologies]'
+# PE-20_ODP[02]
+pe_20_odp_02: '[organization-defined assets]'
+# PE-20_ODP[03]
+pe_20_odp_03: '[organization-defined controlled areas]'
+
+# PE-21 Electromagnetic Pulse Protection
+# PE-21_ODP[01]
+pe_21_odp_01: '[organization-defined protective measures]'
+# PE-21_ODP[02]
+pe_21_odp_02: '[organization-defined system and system components]'
+
+# PE-22 Component Marking
+# PE-22_ODP
+pe_22_odp: '[organization-defined system hardware components]'
+
+# PL-1 Policy and Procedures
+# pl-1_prm_1
+pl_1_prm_1: '[organization-defined personnel or roles]'
+# PL-01_ODP[01]
+pl_01_odp_01: '[organization-defined personnel or roles]'
+# PL-01_ODP[02]
+pl_01_odp_02: '[organization-defined personnel or roles]'
+# PL-01_ODP[03]
+pl_01_odp_03: '[selection (one or more): organization-level; mission/business process-level; system-level]'
+# PL-01_ODP[04]
+pl_01_odp_04: '[organization-defined official]'
+# PL-01_ODP[05]
+pl_01_odp_05: '[organization-defined frequency]'
+# PL-01_ODP[06]
+pl_01_odp_06: '[organization-defined events]'
+# PL-01_ODP[07]
+pl_01_odp_07: '[organization-defined frequency]'
+# PL-01_ODP[08]
+pl_01_odp_08: '[organization-defined events]'
+
+# PL-2 System Security and Privacy Plans
+# PL-02_ODP[01]
+pl_02_odp_01: '[organization-defined individuals or groups]'
+# PL-02_ODP[02]
+pl_02_odp_02: '[organization-defined personnel or roles]'
+# PL-02_ODP[03]
+pl_02_odp_03: '[organization-defined frequency]'
+
+# PL-4 Rules of Behavior
+# PL-04_ODP[01]
+pl_04_odp_01: '[organization-defined frequency]'
+# PL-04_ODP[02]
+pl_04_odp_02: '[selection (one or more): {{ insert: param, pl-04_odp.03 }} ; when the rules are revised or updated]'
+# PL-04_ODP[03]
+pl_04_odp_03: '[organization-defined frequency]'
+
+# PL-7 Concept of Operations
+# PL-07_ODP
+pl_07_odp: '[organization-defined frequency]'
+
+# PL-8 Security and Privacy Architectures
+# PL-08_ODP
+pl_08_odp: '[organization-defined frequency]'
+
+# PL-8 (1) Defense in Depth
+# PL-08(01)_ODP[01]
+pl_08_01_odp_01: '[organization-defined controls]'
+# PL-08(01)_ODP[02]
+pl_08_01_odp_02: '[organization-defined locations and architectural layers]'
+
+# PL-8 (2) Supplier Diversity
+# PL-08(02)_ODP[01]
+pl_08_02_odp_01: '[organization-defined controls]'
+# PL-08(02)_ODP[02]
+pl_08_02_odp_02: '[organization-defined locations and architectural layers]'
+
+# PL-9 Central Management
+# PL-09_ODP
+pl_09_odp: '[organization-defined controls and related processes]'
+
+# PM-1 Information Security Program Plan
+# PM-01_ODP[01]
+pm_01_odp_01: '[organization-defined frequency]'
+# PM-01_ODP[02]
+pm_01_odp_02: '[organization-defined events]'
+
+# PM-5 System Inventory
+# PM-05_ODP
+pm_05_odp: '[organization-defined frequency]'
+
+# PM-5 (1) Inventory of Personally Identifiable Information
+# PM-05(01)_ODP
+pm_05_01_odp: '[organization-defined frequency]'
+
+# PM-7 (1) Offloading
+# PM-07(01)_ODP
+pm_07_01_odp: '[organization-defined non-essential functions or services]'
+
+# PM-9 Risk Management Strategy
+# PM-09_ODP
+pm_09_odp: '[organization-defined frequency]'
+
+# PM-11 Mission and Business Process Definition
+# PM-11_ODP
+pm_11_odp: '[organization-defined frequency]'
+
+# PM-17 Protecting Controlled Unclassified Information on External Systems
+# pm-17_prm_1
+pm_17_prm_1: '[organization-defined frequency]'
+# PM-17_ODP[01]
+pm_17_odp_01: '[organization-defined frequency]'
+# PM-17_ODP[02]
+pm_17_odp_02: '[organization-defined frequency]'
+
+# PM-18 Privacy Program Plan
+# PM-18_ODP
+pm_18_odp: '[organization-defined frequency]'
+
+# PM-23 Data Governance Body
+# PM-23_ODP[01]
+pm_23_odp_01: '[organization-defined roles]'
+# PM-23_ODP[02]
+pm_23_odp_02: '[organization-defined responsibilities]'
+
+# PM-25 Minimization of Personally Identifiable Information Used in Testing, Training, and Research
+# pm-25_prm_1
+pm_25_prm_1: '[organization-defined frequency]'
+# PM-25_ODP[01]
+pm_25_odp_01: '[organization-defined frequency]'
+# PM-25_ODP[02]
+pm_25_odp_02: '[organization-defined frequency]'
+# PM-25_ODP[03]
+pm_25_odp_03: '[organization-defined frequency]'
+# PM-25_ODP[04]
+pm_25_odp_04: '[organization-defined frequency]'
+
+# PM-26 Complaint Management
+# pm-26_prm_1
+pm_26_prm_1: '[organization-defined time period]'
+# PM-26_ODP[01]
+pm_26_odp_01: '[organization-defined time period]'
+# PM-26_ODP[02]
+pm_26_odp_02: '[organization-defined time period]'
+# PM-26_ODP[03]
+pm_26_odp_03: '[organization-defined time period]'
+# PM-26_ODP[04]
+pm_26_odp_04: '[organization-defined time period]'
+
+# PM-27 Privacy Reporting
+# PM-27_ODP[01]
+pm_27_odp_01: '[organization-defined privacy reports]'
+# PM-27_ODP[02]
+pm_27_odp_02: '[organization-defined oversight bodies]'
+# PM-27_ODP[03]
+pm_27_odp_03: '[organization-defined officials]'
+# PM-27_ODP[04]
+pm_27_odp_04: '[organization-defined frequency]'
+
+# PM-28 Risk Framing
+# PM-28_ODP[01]
+pm_28_odp_01: '[organization-defined personnel]'
+# PM-28_ODP[02]
+pm_28_odp_02: '[organization-defined frequency]'
+
+# PM-30 Supply Chain Risk Management Strategy
+# PM-30_ODP
+pm_30_odp: '[organization-defined frequency]'
+
+# PM-31 Continuous Monitoring Strategy
+# pm-31_prm_4
+pm_31_prm_4: '[organization-defined personnel or roles]'
+# pm-31_prm_5
+pm_31_prm_5: '[organization-defined frequency]'
+# PM-31_ODP[01]
+pm_31_odp_01: '[organization-defined metrics]'
+# PM-31_ODP[02]
+pm_31_odp_02: '[organization-defined monitoring frequencies]'
+# PM-31_ODP[03]
+pm_31_odp_03: '[organization-defined assessment frequencies]'
+# PM-31_ODP[04]
+pm_31_odp_04: '[organization-defined personnel or roles]'
+# PM-31_ODP[05]
+pm_31_odp_05: '[organization-defined personnel or roles]'
+# PM-31_ODP[06]
+pm_31_odp_06: '[organization-defined frequency]'
+# PM-31_ODP[07]
+pm_31_odp_07: '[organization-defined frequency]'
+
+# PM-32 Purposing
+# PM-32_ODP
+pm_32_odp: '[organization-defined systems or system components]'
+
+# PS-1 Policy and Procedures
+# ps-1_prm_1
+ps_1_prm_1: '[organization-defined personnel or roles]'
+# PS-01_ODP[01]
+ps_01_odp_01: '[organization-defined personnel or roles]'
+# PS-01_ODP[02]
+ps_01_odp_02: '[organization-defined personnel or roles]'
+# PS-01_ODP[03]
+ps_01_odp_03: '[selection (one or more): organization-level; mission/business process-level; system-level]'
+# PS-01_ODP[04]
+ps_01_odp_04: '[organization-defined official]'
+# PS-01_ODP[05]
+ps_01_odp_05: '[organization-defined frequency]'
+# PS-01_ODP[06]
+ps_01_odp_06: '[organization-defined events]'
+# PS-01_ODP[07]
+ps_01_odp_07: '[organization-defined frequency]'
+# PS-01_ODP[08]
+ps_01_odp_08: '[organization-defined events]'
+
+# PS-2 Position Risk Designation
+# PS-02_ODP
+ps_02_odp: '[organization-defined frequency]'
+
+# PS-3 Personnel Screening
+# ps-3_prm_1
+ps_3_prm_1: '[organization-defined conditions requiring rescreening and, where rescreening is so indicated, the frequency of rescreening]'
+# PS-03_ODP[01]
+ps_03_odp_01: '[organization-defined conditions requiring rescreening]'
+# PS-03_ODP[02]
+ps_03_odp_02: '[organization-defined frequency]'
+
+# PS-3 (3) Information Requiring Special Protective Measures
+# PS-03(03)_ODP
+ps_03_03_odp: '[organization-defined additional personnel screening criteria]'
+
+# PS-3 (4) Citizenship Requirements
+# PS-03(04)_ODP[01]
+ps_03_04_odp_01: '[organization-defined information types]'
+# PS-03(04)_ODP[02]
+ps_03_04_odp_02: '[organization-defined citizenship requirements]'
+
+# PS-4 Personnel Termination
+# PS-04_ODP[01]
+ps_04_odp_01: '[organization-defined time period]'
+# PS-04_ODP[02]
+ps_04_odp_02: '[organization-defined information security topics]'
+
+# PS-4 (2) Automated Actions
+# PS-04(02)_ODP[01]
+ps_04_02_odp_01: '[organization-defined automated mechanisms]'
+# PS-04(02)_ODP[02]
+ps_04_02_odp_02: '[selection (one or more): notify {{ insert: param, ps-04.02_odp.03 }} of individual termination actions; disable access to system resources]'
+# PS-04(02)_ODP[03]
+ps_04_02_odp_03: '[organization-defined personnel or roles]'
+
+# PS-5 Personnel Transfer
+# PS-05_ODP[01]
+ps_05_odp_01: '[organization-defined transfer or reassignment actions]'
+# PS-05_ODP[02]
+ps_05_odp_02: '[organization-defined time period following the formal transfer action]'
+# PS-05_ODP[03]
+ps_05_odp_03: '[organization-defined personnel or roles]'
+# PS-05_ODP[04]
+ps_05_odp_04: '[organization-defined time period]'
+
+# PS-6 Access Agreements
+# PS-06_ODP[01]
+ps_06_odp_01: '[organization-defined frequency]'
+# PS-06_ODP[02]
+ps_06_odp_02: '[organization-defined frequency]'
+
+# PS-7 External Personnel Security
+# PS-07_ODP[01]
+ps_07_odp_01: '[organization-defined personnel or roles]'
+# PS-07_ODP[02]
+ps_07_odp_02: '[organization-defined time period]'
+
+# PS-8 Personnel Sanctions
+# PS-08_ODP[01]
+ps_08_odp_01: '[organization-defined personnel or roles]'
+# PS-08_ODP[02]
+ps_08_odp_02: '[organization-defined time period]'
+
+# PT-1 Policy and Procedures
+# pt-1_prm_1
+pt_1_prm_1: '[organization-defined personnel or roles]'
+# PT-01_ODP[01]
+pt_01_odp_01: '[organization-defined personnel or roles]'
+# PT-01_ODP[02]
+pt_01_odp_02: '[organization-defined personnel or roles]'
+# PT-01_ODP[03]
+pt_01_odp_03: '[selection (one or more): organization-level; mission/business process-level; system-level]'
+# PT-01_ODP[04]
+pt_01_odp_04: '[organization-defined official]'
+# PT-01_ODP[05]
+pt_01_odp_05: '[organization-defined frequency]'
+# PT-01_ODP[06]
+pt_01_odp_06: '[organization-defined events]'
+# PT-01_ODP[07]
+pt_01_odp_07: '[organization-defined frequency]'
+# PT-01_ODP[08]
+pt_01_odp_08: '[organization-defined events]'
+
+# PT-2 Authority to Process Personally Identifiable Information
+# PT-02_ODP[01]
+pt_02_odp_01: '[organization-defined authority]'
+# PT-02_ODP[02]
+pt_02_odp_02: '[organization-defined processing]'
+# PT-02_ODP[03]
+pt_02_odp_03: '[organization-defined processing]'
+
+# PT-2 (1) Data Tagging
+# PT-02(01)_ODP[01]
+pt_02_01_odp_01: '[organization-defined authorized processing]'
+# PT-02(01)_ODP[02]
+pt_02_01_odp_02: '[organization-defined elements of personally identifiable information]'
+
+# PT-2 (2) Automation
+# PT-02(02)_ODP
+pt_02_02_odp: '[organization-defined automated mechanisms]'
+
+# PT-3 Personally Identifiable Information Processing Purposes
+# PT-03_ODP[01]
+pt_03_odp_01: '[organization-defined purpose(s)]'
+# PT-03_ODP[02]
+pt_03_odp_02: '[organization-defined processing]'
+# PT-03_ODP[03]
+pt_03_odp_03: '[organization-defined mechanisms]'
+# PT-03_ODP[04]
+pt_03_odp_04: '[organization-defined requirements]'
+
+# PT-3 (1) Data Tagging
+# PT-03(01)_ODP[01]
+pt_03_01_odp_01: '[organization-defined processing purposes]'
+# PT-03(01)_ODP[02]
+pt_03_01_odp_02: '[organization-defined elements of personally identifiable information]'
+
+# PT-3 (2) Automation
+# PT-03(02)_ODP
+pt_03_02_odp: '[organization-defined automated mechanisms]'
+
+# PT-4 Consent
+# PT-04_ODP
+pt_04_odp: '[organization-defined tools or mechanisms]'
+
+# PT-4 (1) Tailored Consent
+# PT-04(01)_ODP
+pt_04_01_odp: '[organization-defined mechanisms]'
+
+# PT-4 (2) Just-in-time Consent
+# PT-04(02)_ODP[01]
+pt_04_02_odp_01: '[organization-defined consent mechanisms]'
+# PT-04(02)_ODP[02]
+pt_04_02_odp_02: '[organization-defined frequency]'
+# PT-04(02)_ODP[03]
+pt_04_02_odp_03: '[organization-defined personally identifiable information processing]'
+
+# PT-4 (3) Revocation
+# PT-04(03)_ODP
+pt_04_03_odp: '[organization-defined tools or mechanisms]'
+
+# PT-5 Privacy Notice
+# PT-05_ODP[01]
+pt_05_odp_01: '[organization-defined frequency]'
+# PT-05_ODP[02]
+pt_05_odp_02: '[organization-defined information]'
+
+# PT-5 (1) Just-in-time Notice
+# PT-05(01)_ODP
+pt_05_01_odp: '[organization-defined frequency]'
+
+# PT-6 (1) Routine Uses
+# PT-06(01)_ODP
+pt_06_01_odp: '[organization-defined frequency]'
+
+# PT-6 (2) Exemption Rules
+# PT-06(02)_ODP
+pt_06_02_odp: '[organization-defined frequency]'
+
+# PT-7 Specific Categories of Personally Identifiable Information
+# PT-07_ODP
+pt_07_odp: '[organization-defined processing conditions]'
+
+# RA-1 Policy and Procedures
+# ra-1_prm_1
+ra_1_prm_1: '[organization-defined personnel or roles]'
+# RA-01_ODP[01]
+ra_01_odp_01: '[organization-defined personnel or roles]'
+# RA-01_ODP[02]
+ra_01_odp_02: '[organization-defined personnel or roles]'
+# RA-01_ODP[03]
+ra_01_odp_03: '[selection (one or more): organization-level; mission/business process-level; system-level]'
+# RA-01_ODP[04]
+ra_01_odp_04: '[organization-defined official]'
+# RA-01_ODP[05]
+ra_01_odp_05: '[organization-defined frequency]'
+# RA-01_ODP[06]
+ra_01_odp_06: '[organization-defined events]'
+# RA-01_ODP[07]
+ra_01_odp_07: '[organization-defined frequency]'
+# RA-01_ODP[08]
+ra_01_odp_08: '[organization-defined events]'
+
+# RA-3 Risk Assessment
+# RA-03_ODP[01]
+ra_03_odp_01: '[selection (one): security and privacy plans; risk assessment report; {{ insert: param, ra-03_odp.02 }} ]'
+# RA-03_ODP[02]
+ra_03_odp_02: '[organization-defined document]'
+# RA-03_ODP[03]
+ra_03_odp_03: '[organization-defined frequency]'
+# RA-03_ODP[04]
+ra_03_odp_04: '[organization-defined personnel or roles]'
+# RA-03_ODP[05]
+ra_03_odp_05: '[organization-defined frequency]'
+
+# RA-3 (1) Supply Chain Risk Assessment
+# RA-03(01)_ODP[01]
+ra_03_01_odp_01: '[organization-defined systems, system components, and system services]'
+# RA-03(01)_ODP[02]
+ra_03_01_odp_02: '[organization-defined frequency]'
+
+# RA-3 (3) Dynamic Threat Awareness
+# RA-03(03)_ODP
+ra_03_03_odp: '[organization-defined means]'
+
+# RA-3 (4) Predictive Cyber Analytics
+# ra-3.4_prm_2
+ra_3_4_prm_2: '[organization-defined advanced automation and analytics capabilities]'
+# RA-03(04)_ODP[01]
+ra_03_04_odp_01: '[organization-defined advanced automation capabilities]'
+# RA-03(04)_ODP[02]
+ra_03_04_odp_02: '[organization-defined systems or system components]'
+# RA-03(04)_ODP[03]
+ra_03_04_odp_03: '[organization-defined advanced analytics capabilities]'
+
+# RA-5 Vulnerability Monitoring and Scanning
+# ra-5_prm_1
+ra_5_prm_1: '[organization-defined frequency and/or randomly in accordance with organization-defined process]'
+# RA-05_ODP[01]
+ra_05_odp_01: '[organization-defined frequency and/or randomly in accordance with organization-defined process]'
+# RA-05_ODP[02]
+ra_05_odp_02: '[organization-defined frequency and/or randomly in accordance with organization-defined process]'
+# RA-05_ODP[03]
+ra_05_odp_03: '[organization-defined response times]'
+# RA-05_ODP[04]
+ra_05_odp_04: '[organization-defined personnel or roles]'
+
+# RA-5 (2) Update Vulnerabilities to Be Scanned
+# RA-05(02)_ODP[01]
+ra_05_02_odp_01: '[selection (one or more): {{ insert: param, ra-05.02_odp.02 }} ; prior to a new scan; when new vulnerabilities are identified and reported]'
+# RA-05(02)_ODP[02]
+ra_05_02_odp_02: '[organization-defined frequency]'
+
+# RA-5 (4) Discoverable Information
+# RA-05(04)_ODP
+ra_05_04_odp: '[organization-defined corrective actions]'
+
+# RA-5 (5) Privileged Access
+# RA-05(05)_ODP[01]
+ra_05_05_odp_01: '[organization-defined system components]'
+# RA-05(05)_ODP[02]
+ra_05_05_odp_02: '[organization-defined vulnerability scanning activities]'
+
+# RA-5 (6) Automated Trend Analyses
+# RA-05(06)_ODP
+ra_05_06_odp: '[organization-defined automated mechanisms]'
+
+# RA-5 (8) Review Historic Audit Logs
+# RA-05(08)_ODP[01]
+ra_05_08_odp_01: '[organization-defined system]'
+# RA-05(08)_ODP[02]
+ra_05_08_odp_02: '[organization-defined time period]'
+
+# RA-6 Technical Surveillance Countermeasures Survey
+# RA-06_ODP[01]
+ra_06_odp_01: '[organization-defined locations]'
+# RA-06_ODP[02]
+ra_06_odp_02: '[selection (one or more): {{ insert: param, ra-06_odp.03 }} ; when {{ insert: param, ra-06_odp.04 }} ]'
+# RA-06_ODP[03]
+ra_06_odp_03: '[organization-defined frequency]'
+# RA-06_ODP[04]
+ra_06_odp_04: '[organization-defined events or indicators]'
+
+# RA-9 Criticality Analysis
+# RA-09_ODP[01]
+ra_09_odp_01: '[organization-defined systems, system components, or system services]'
+# RA-09_ODP[02]
+ra_09_odp_02: '[organization-defined decision points in the system development life cycle]'
+
+# RA-10 Threat Hunting
+# RA-10_ODP
+ra_10_odp: '[organization-defined frequency]'
+
+# SA-1 Policy and Procedures
+# sa-1_prm_1
+sa_1_prm_1: '[organization-defined personnel or roles]'
+# SA-01_ODP[01]
+sa_01_odp_01: '[organization-defined personnel or roles]'
+# SA-01_ODP[02]
+sa_01_odp_02: '[organization-defined personnel or roles]'
+# SA-01_ODP[03]
+sa_01_odp_03: '[selection (one or more): organization-level; mission/business process-level; system-level]'
+# SA-01_ODP[04]
+sa_01_odp_04: '[organization-defined official]'
+# SA-01_ODP[05]
+sa_01_odp_05: '[organization-defined frequency]'
+# SA-01_ODP[06]
+sa_01_odp_06: '[organization-defined events]'
+# SA-01_ODP[07]
+sa_01_odp_07: '[organization-defined frequency]'
+# SA-01_ODP[08]
+sa_01_odp_08: '[organization-defined events]'
+
+# SA-3 System Development Life Cycle
+# SA-03_ODP
+sa_03_odp: '[organization-defined system-development life cycle]'
+
+# SA-4 Acquisition Process
+# SA-04_ODP[01]
+sa_04_odp_01: '[selection (one or more): standardized contract language; {{ insert: param, sa-04_odp.02 }} ]'
+# SA-04_ODP[02]
+sa_04_odp_02: '[organization-defined contract language]'
+
+# SA-4 (2) Design and Implementation Information for Controls
+# SA-04(02)_ODP[01]
+sa_04_02_odp_01: '[selection (one or more): security-relevant external system interfaces; high-level design; low-level design; source code or hardware schematics; {{ insert: param, sa-04.02_odp.02 }} ]'
+# SA-04(02)_ODP[02]
+sa_04_02_odp_02: '[organization-defined design and implementation information]'
+# SA-04(02)_ODP[03]
+sa_04_02_odp_03: '[organization-defined level of detail]'
+
+# SA-4 (3) Development Methods, Techniques, and Practices
+# SA-04(03)_ODP[01]
+sa_04_03_odp_01: '[organization-defined systems engineering methods]'
+# SA-04(03)_ODP[02]
+sa_04_03_odp_02: '[selection (one or more): {{ insert: param, sa-04.03_odp.03 }} ; {{ insert: param, sa-04.03_odp.04 }} ]'
+# SA-04(03)_ODP[03]
+sa_04_03_odp_03: '[organization-defined system security engineering methods]'
+# SA-04(03)_ODP[04]
+sa_04_03_odp_04: '[organization-defined privacy engineering methods]'
+# SA-04(03)_ODP[05]
+sa_04_03_odp_05: '[selection (one or more): {{ insert: param, sa-04.03_odp.06 }} ; {{ insert: param, sa-04.03_odp.07 }} ; {{ insert: param, sa-04.03_odp.08 }} ]'
+# SA-04(03)_ODP[06]
+sa_04_03_odp_06: '[organization-defined software development methods]'
+# SA-04(03)_ODP[07]
+sa_04_03_odp_07: '[organization-defined testing, evaluation, assessment, verification, and validation methods]'
+# SA-04(03)_ODP[08]
+sa_04_03_odp_08: '[organization-defined quality control processes]'
+
+# SA-4 (5) System, Component, and Service Configurations
+# SA-04(05)_ODP
+sa_04_05_odp: '[organization-defined security configurations]'
+
+# SA-4 (11) System of Records
+# SA-04(11)_ODP
+sa_04_11_odp: '[organization-defined Privacy Act requirements]'
+
+# SA-4 (12) Data Ownership
+# SA-04(12)_ODP
+sa_04_12_odp: '[organization-defined time frame]'
+
+# SA-5 System Documentation
+# SA-05_ODP[01]
+sa_05_odp_01: '[organization-defined actions]'
+# SA-05_ODP[02]
+sa_05_odp_02: '[organization-defined personnel or roles]'
+
+# SA-8 Security and Privacy Engineering Principles
+# sa-8_prm_1
+sa_8_prm_1: '[organization-defined systems security and privacy engineering principles]'
+# SA-08_ODP[01]
+sa_08_odp_01: '[organization-defined systems security engineering principles]'
+# SA-08_ODP[02]
+sa_08_odp_02: '[organization-defined privacy engineering principles]'
+
+# SA-8 (2) Least Common Mechanism
+# SA-08(02)_ODP
+sa_08_02_odp: '[organization-defined systems or system components]'
+
+# SA-8 (3) Modularity and Layering
+# sa-8.3_prm_1
+sa_8_3_prm_1: '[organization-defined systems or system components]'
+# SA-08(03)_ODP[01]
+sa_08_03_odp_01: '[organization-defined systems or system components]'
+# SA-08(03)_ODP[02]
+sa_08_03_odp_02: '[organization-defined systems or system components]'
+
+# SA-8 (4) Partially Ordered Dependencies
+# SA-08(04)_ODP
+sa_08_04_odp: '[organization-defined systems or system components]'
+
+# SA-8 (5) Efficiently Mediated Access
+# SA-08(05)_ODP
+sa_08_05_odp: '[organization-defined systems or system components]'
+
+# SA-8 (6) Minimized Sharing
+# SA-08(06)_ODP
+sa_08_06_odp: '[organization-defined systems or system components]'
+
+# SA-8 (7) Reduced Complexity
+# SA-08(07)_ODP
+sa_08_07_odp: '[organization-defined systems or system components]'
+
+# SA-8 (8) Secure Evolvability
+# SA-08(08)_ODP
+sa_08_08_odp: '[organization-defined systems or system components]'
+
+# SA-8 (9) Trusted Components
+# SA-08(09)_ODP
+sa_08_09_odp: '[organization-defined systems or system components]'
+
+# SA-8 (10) Hierarchical Trust
+# SA-08(10)_ODP
+sa_08_10_odp: '[organization-defined systems or system components]'
+
+# SA-8 (11) Inverse Modification Threshold
+# SA-08(11)_ODP
+sa_08_11_odp: '[organization-defined systems or system components]'
+
+# SA-8 (12) Hierarchical Protection
+# SA-08(12)_ODP
+sa_08_12_odp: '[organization-defined systems or system components]'
+
+# SA-8 (13) Minimized Security Elements
+# SA-08(13)_ODP
+sa_08_13_odp: '[organization-defined systems or system components]'
+
+# SA-8 (14) Least Privilege
+# SA-08(14)_ODP
+sa_08_14_odp: '[organization-defined systems or system components]'
+
+# SA-8 (15) Predicate Permission
+# SA-08(15)_ODP
+sa_08_15_odp: '[organization-defined systems or system components]'
+
+# SA-8 (16) Self-reliant Trustworthiness
+# SA-08(16)_ODP
+sa_08_16_odp: '[organization-defined systems or system components]'
+
+# SA-8 (17) Secure Distributed Composition
+# SA-08(17)_ODP
+sa_08_17_odp: '[organization-defined systems or system components]'
+
+# SA-8 (18) Trusted Communications Channels
+# SA-08(18)_ODP
+sa_08_18_odp: '[organization-defined systems or system components]'
+
+# SA-8 (19) Continuous Protection
+# SA-08(19)_ODP
+sa_08_19_odp: '[organization-defined systems or system components]'
+
+# SA-8 (20) Secure Metadata Management
+# SA-08(20)_ODP
+sa_08_20_odp: '[organization-defined systems or system components]'
+
+# SA-8 (21) Self-analysis
+# SA-08(21)_ODP
+sa_08_21_odp: '[organization-defined systems or system components]'
+
+# SA-8 (22) Accountability and Traceability
+# sa-8.22_prm_1
+sa_8_22_prm_1: '[organization-defined systems or system components]'
+# SA-08(22)_ODP[01]
+sa_08_22_odp_01: '[organization-defined systems or system components]'
+# SA-08(22)_ODP[02]
+sa_08_22_odp_02: '[organization-defined systems or system components]'
+
+# SA-8 (23) Secure Defaults
+# SA-08(23)_ODP
+sa_08_23_odp: '[organization-defined systems or system components]'
+
+# SA-8 (24) Secure Failure and Recovery
+# sa-8.24_prm_1
+sa_8_24_prm_1: '[organization-defined systems or system components]'
+# SA-08(24)_ODP[01]
+sa_08_24_odp_01: '[organization-defined systems or system components]'
+# SA-08(24)_ODP[02]
+sa_08_24_odp_02: '[organization-defined systems or system components]'
+
+# SA-8 (25) Economic Security
+# SA-08(25)_ODP
+sa_08_25_odp: '[organization-defined systems or system components]'
+
+# SA-8 (26) Performance Security
+# SA-08(26)_ODP
+sa_08_26_odp: '[organization-defined systems or system components]'
+
+# SA-8 (27) Human Factored Security
+# SA-08(27)_ODP
+sa_08_27_odp: '[organization-defined systems or system components]'
+
+# SA-8 (28) Acceptable Security
+# SA-08(28)_ODP
+sa_08_28_odp: '[organization-defined systems or system components]'
+
+# SA-8 (29) Repeatable and Documented Procedures
+# SA-08(29)_ODP
+sa_08_29_odp: '[organization-defined systems or system components]'
+
+# SA-8 (30) Procedural Rigor
+# SA-08(30)_ODP
+sa_08_30_odp: '[organization-defined systems or system components]'
+
+# SA-8 (31) Secure System Modification
+# SA-08(31)_ODP
+sa_08_31_odp: '[organization-defined systems or system components]'
+
+# SA-8 (32) Sufficient Documentation
+# SA-08(32)_ODP
+sa_08_32_odp: '[organization-defined systems or system components]'
+
+# SA-8 (33) Minimization
+# SA-08(33)_ODP
+sa_08_33_odp: '[organization-defined processes]'
+
+# SA-9 External System Services
+# SA-09_ODP[01]
+sa_09_odp_01: '[organization-defined controls]'
+# SA-09_ODP[02]
+sa_09_odp_02: '[organization-defined processes, methods, and techniques]'
+
+# SA-9 (1) Risk Assessments and Organizational Approvals
+# SA-09(01)_ODP
+sa_09_01_odp: '[organization-defined personnel or roles]'
+
+# SA-9 (2) Identification of Functions, Ports, Protocols, and Services
+# SA-09(02)_ODP
+sa_09_02_odp: '[organization-defined external system services]'
+
+# SA-9 (3) Establish and Maintain Trust Relationship with Providers
+# sa-9.3_prm_1
+sa_9_3_prm_1: '[organization-defined security and privacy requirements, properties, factors, or conditions defining acceptable trust relationships]'
+# SA-09(03)_ODP[01]
+sa_09_03_odp_01: '[organization-defined security requirements, properties, factors, or conditions]'
+# SA-09(03)_ODP[02]
+sa_09_03_odp_02: '[organization-defined privacy requirements, properties, factors, or conditions]'
+
+# SA-9 (4) Consistent Interests of Consumers and Providers
+# SA-09(04)_ODP[01]
+sa_09_04_odp_01: '[organization-defined external service providers]'
+# SA-09(04)_ODP[02]
+sa_09_04_odp_02: '[organization-defined actions]'
+
+# SA-9 (5) Processing, Storage, and Service Location
+# SA-09(05)_ODP[01]
+sa_09_05_odp_01: '[selection (one or more): information processing; information or data; system services]'
+# SA-09(05)_ODP[02]
+sa_09_05_odp_02: '[organization-defined locations]'
+# SA-09(05)_ODP[03]
+sa_09_05_odp_03: '[organization-defined requirements]'
+
+# SA-10 Developer Configuration Management
+# SA-10_ODP[01]
+sa_10_odp_01: '[selection (one or more): design; development; implementation; operation; disposal]'
+# SA-10_ODP[02]
+sa_10_odp_02: '[organization-defined configuration items]'
+# SA-10_ODP[03]
+sa_10_odp_03: '[organization-defined personnel]'
+
+# SA-10 (7) Security and Privacy Representatives
+# sa-10.7_prm_1
+sa_10_7_prm_1: '[organization-defined security and privacy representatives]'
+# sa-10.7_prm_2
+sa_10_7_prm_2: '[organization-defined configuration change management and control process]'
+# SA-10(07)_ODP[01]
+sa_10_07_odp_01: '[organization-defined security representatives]'
+# SA-10(07)_ODP[02]
+sa_10_07_odp_02: '[organization-defined privacy representatives]'
+# SA-10(07)_ODP[03]
+sa_10_07_odp_03: '[organization-defined configuration change management and control processes]'
+# SA-10(07)_ODP[04]
+sa_10_07_odp_04: '[organization-defined configuration change management and control processes]'
+
+# SA-11 Developer Testing and Evaluation
+# SA-11_ODP[01]
+sa_11_odp_01: '[selection (one or more): unit; integration; system; regression]'
+# SA-11_ODP[02]
+sa_11_odp_02: '[organization-defined frequency to conduct]'
+# SA-11_ODP[03]
+sa_11_odp_03: '[organization-defined depth and coverage]'
+
+# SA-11 (2) Threat Modeling and Vulnerability Analyses
+# sa-11.2_prm_3
+sa_11_2_prm_3: '[organization-defined breadth and depth of modeling and analyses]'
+# sa-11.2_prm_4
+sa_11_2_prm_4: '[organization-defined acceptance criteria]'
+# SA-11(02)_ODP[01]
+sa_11_02_odp_01: '[organization-defined information]'
+# SA-11(02)_ODP[02]
+sa_11_02_odp_02: '[organization-defined tools and methods]'
+# SA-11(02)_ODP[03]
+sa_11_02_odp_03: '[organization-defined breadth and depth]'
+# SA-11(02)_ODP[04]
+sa_11_02_odp_04: '[organization-defined breadth and depth]'
+# SA-11(02)_ODP[05]
+sa_11_02_odp_05: '[organization-defined acceptance criteria]'
+# SA-11(02)_ODP[06]
+sa_11_02_odp_06: '[organization-defined acceptance criteria]'
+
+# SA-11 (3) Independent Verification of Assessment Plans and Evidence
+# SA-11(03)_ODP
+sa_11_03_odp: '[organization-defined independence criteria]'
+
+# SA-11 (4) Manual Code Reviews
+# SA-11(04)_ODP[01]
+sa_11_04_odp_01: '[organization-defined specific code]'
+# SA-11(04)_ODP[02]
+sa_11_04_odp_02: '[organization-defined processes, procedures, and/or techniques]'
+
+# SA-11 (5) Penetration Testing
+# sa-11.5_prm_1
+sa_11_5_prm_1: '[organization-defined breadth and depth of testing]'
+# SA-11(05)_ODP[01]
+sa_11_05_odp_01: '[organization-defined breadth]'
+# SA-11(05)_ODP[02]
+sa_11_05_odp_02: '[organization-defined depth]'
+# SA-11(05)_ODP[03]
+sa_11_05_odp_03: '[organization-defined constraints]'
+
+# SA-11 (7) Verify Scope of Testing and Evaluation
+# sa-11.7_prm_1
+sa_11_7_prm_1: '[organization-defined breadth and depth of testing and evaluation]'
+# SA-11(07)_ODP[01]
+sa_11_07_odp_01: '[organization-defined breadth]'
+# SA-11(07)_ODP[02]
+sa_11_07_odp_02: '[organization-defined depth]'
+
+# SA-15 Development Process, Standards, and Tools
+# sa-15_prm_2
+sa_15_prm_2: '[organization-defined security and privacy requirements]'
+# SA-15_ODP[01]
+sa_15_odp_01: '[organization-defined frequency]'
+# SA-15_ODP[02]
+sa_15_odp_02: '[organization-defined security requirements]'
+# SA-15_ODP[03]
+sa_15_odp_03: '[organization-defined privacy requirements]'
+
+# SA-15 (1) Quality Metrics
+# SA-15(01)_ODP[01]
+sa_15_01_odp_01: '[selection (one or more): {{ insert: param, sa-15.01_odp.02 }} ; {{ insert: param, sa-15.01_odp.03 }} ; upon delivery]'
+# SA-15(01)_ODP[02]
+sa_15_01_odp_02: '[organization-defined frequency]'
+# SA-15(01)_ODP[03]
+sa_15_01_odp_03: '[organization-defined program review]'
+
+# SA-15 (3) Criticality Analysis
+# sa-15.3_prm_2
+sa_15_3_prm_2: '[organization-defined breadth and depth of criticality analysis]'
+# SA-15(03)_ODP[01]
+sa_15_03_odp_01: '[organization-defined decision points]'
+# SA-15(03)_ODP[02]
+sa_15_03_odp_02: '[organization-defined breadth]'
+# SA-15(03)_ODP[03]
+sa_15_03_odp_03: '[organization-defined depth]'
+
+# SA-15 (5) Attack Surface Reduction
+# SA-15(05)_ODP
+sa_15_05_odp: '[organization-defined thresholds]'
+
+# SA-15 (7) Automated Vulnerability Analysis
+# SA-15(07)_ODP[01]
+sa_15_07_odp_01: '[organization-defined frequency]'
+# SA-15(07)_ODP[02]
+sa_15_07_odp_02: '[organization-defined tools]'
+# SA-15(07)_ODP[03]
+sa_15_07_odp_03: '[organization-defined personnel or roles]'
+
+# SA-15 (13) Logging Syntax
+# SA-15.13_ODP[01]
+sa_15_13_odp_01: '[organization-defined secure logging format(s)]'
+# SA-15.13_ODP[02]
+sa_15_13_odp_02: '[organization-defined events types to log]'
+# SA-15.13_ODP[03]
+sa_15_13_odp_03: '[organization-defined level of detail to log]'
+
+# SA-16 Developer-provided Training
+# SA-16_ODP
+sa_16_odp: '[organization-defined training]'
+
+# SA-17 (1) Formal Policy Model
+# sa-17.1_prm_1
+sa_17_1_prm_1: '[organization-defined elements of organizational security and privacy policy]'
+# SA-17(01)_ODP[01]
+sa_17_01_odp_01: '[organization-defined organizational security policy]'
+# SA-17(01)_ODP[02]
+sa_17_01_odp_02: '[organization-defined organizational privacy policy]'
+
+# SA-17 (4) Informal Correspondence
+# SA-17(04)_ODP
+sa_17_04_odp: '[selection (one): informal demonstration, convincing argument with formal methods as feasible]'
+
+# SA-17 (8) Orchestration
+# SA-17(08)_ODP[01]
+sa_17_08_odp_01: '[organization-defined critical systems]'
+# SA-17(08)_ODP[02]
+sa_17_08_odp_02: '[organization-defined capabilities]'
+
+# SA-17 (9) Design Diversity
+# SA-17(09)_ODP
+sa_17_09_odp: '[organization-defined critical systems]'
+
+# SA-20 Customized Development of Critical Components
+# SA-20_ODP
+sa_20_odp: '[organization-defined critical system]'
+
+# SA-21 Developer Screening
+# SA-21_ODP[01]
+sa_21_odp_01: '[organization-defined system, systems component, or system service]'
+# SA-21_ODP[02]
+sa_21_odp_02: '[organization-defined official government duties]'
+# SA-21_ODP[03]
+sa_21_odp_03: '[organization-defined additional personnel screening criteria]'
+
+# SA-22 Unsupported System Components
+# SA-22_ODP[01]
+sa_22_odp_01: '[selection (one or more): in-house support; {{ insert: param, sa-22_odp.02 }} ]'
+# SA-22_ODP[02]
+sa_22_odp_02: '[organization-defined support from external providers]'
+
+# SA-23 Specialization
+# SA-23_ODP[01]
+sa_23_odp_01: '[selection (one or more): design modification; augmentation; reconfiguration]'
+# SA-23_ODP[02]
+sa_23_odp_02: '[organization-defined systems or system components]'
+
+# SA-24 Design For Cyber Resiliency
+# SA-24_ODP[01]
+sa_24_odp_01: '[organization-defined cyber resiliency goals]'
+# SA-24_ODP[02]
+sa_24_odp_02: '[organization-defined cyber resiliency objectives]'
+# SA-24_ODP[03]
+sa_24_odp_03: '[organization-defined cyber resiliency techniques]'
+# SA-24_ODP[04]
+sa_24_odp_04: '[organization-defined cyber resiliency implementation approaches]'
+# SA-24_ODP[05]
+sa_24_odp_05: '[organization-defined cyber resiliency design principles]'
+
+# SC-1 Policy and Procedures
+# sc-1_prm_1
+sc_1_prm_1: '[organization-defined personnel or roles]'
+# SC-01_ODP[01]
+sc_01_odp_01: '[organization-defined personnel or roles]'
+# SC-01_ODP[02]
+sc_01_odp_02: '[organization-defined personnel or roles]'
+# SC-01_ODP[03]
+sc_01_odp_03: '[selection (one or more): organization-level; mission/business-process-level; system-level]'
+# SC-01_ODP[04]
+sc_01_odp_04: '[organization-defined official]'
+# SC-01_ODP[05]
+sc_01_odp_05: '[organization-defined frequency]'
+# SC-01_ODP[06]
+sc_01_odp_06: '[organization-defined events]'
+# SC-01_ODP[07]
+sc_01_odp_07: '[organization-defined frequency]'
+# SC-01_ODP[08]
+sc_01_odp_08: '[organization-defined events]'
+
+# SC-4 (2) Multilevel or Periods Processing
+# SC-04(02)_ODP
+sc_04_02_odp: '[organization-defined procedures]'
+
+# SC-5 Denial-of-service Protection
+# SC-05_ODP[01]
+sc_05_odp_01: '[organization-defined types of denial-of-service events]'
+# SC-05_ODP[02]
+sc_05_odp_02: '[selection (one): protect against; limit]'
+# SC-05_ODP[03]
+sc_05_odp_03: '[organization-defined controls by type of denial-of-service event]'
+
+# SC-5 (1) Restrict Ability to Attack Other Systems
+# SC-05(01)_ODP
+sc_05_01_odp: '[organization-defined denial-of-service attacks]'
+
+# SC-5 (3) Detection and Monitoring
+# SC-05(03)_ODP[01]
+sc_05_03_odp_01: '[organization-defined monitoring tools]'
+# SC-05(03)_ODP[02]
+sc_05_03_odp_02: '[organization-defined system resources]'
+
+# SC-6 Resource Availability
+# SC-06_ODP[01]
+sc_06_odp_01: '[organization-defined resources]'
+# SC-06_ODP[02]
+sc_06_odp_02: '[selection (one or more): priority; quota; {{ insert: param, sc-06_odp.03 }} ]'
+# SC-06_ODP[03]
+sc_06_odp_03: '[organization-defined controls]'
+
+# SC-7 Boundary Protection
+# SC-07_ODP
+sc_07_odp: '[selection (one): physically; logically]'
+
+# SC-7 (4) External Telecommunications Services
+# SC-07(04)_ODP
+sc_07_04_odp: '[organization-defined frequency]'
+
+# SC-7 (5) Deny by Default — Allow by Exception
+# SC-07(05)_ODP[01]
+sc_07_05_odp_01: '[selection (one or more): at managed interfaces; for {{ insert: param, sc-07.05_odp.02 }} ]'
+# SC-07(05)_ODP[02]
+sc_07_05_odp_02: '[organization-defined systems]'
+
+# SC-7 (7) Split Tunneling for Remote Devices
+# SC-07(07)_ODP
+sc_07_07_odp: '[organization-defined safeguards]'
+
+# SC-7 (8) Route Traffic to Authenticated Proxy Servers
+# SC-07(08)_ODP[01]
+sc_07_08_odp_01: '[organization-defined internal communications traffic]'
+# SC-07(08)_ODP[02]
+sc_07_08_odp_02: '[organization-defined external networks]'
+
+# SC-7 (10) Prevent Exfiltration
+# SC-07(10)_ODP
+sc_07_10_odp: '[organization-defined frequency]'
+
+# SC-7 (11) Restrict Incoming Communications Traffic
+# SC-07(11)_ODP[01]
+sc_07_11_odp_01: '[organization-defined authorized sources]'
+# SC-07(11)_ODP[02]
+sc_07_11_odp_02: '[organization-defined authorized destinations]'
+
+# SC-7 (12) Host-based Protection
+# SC-07(12)_ODP[01]
+sc_07_12_odp_01: '[organization-defined host-based boundary protection mechanisms]'
+# SC-07(12)_ODP[02]
+sc_07_12_odp_02: '[organization-defined system components]'
+
+# SC-7 (13) Isolation of Security Tools, Mechanisms, and Support Components
+# SC-07(13)_ODP
+sc_07_13_odp: '[organization-defined information security tools, mechanisms, and support components]'
+
+# SC-7 (14) Protect Against Unauthorized Physical Connections
+# SC-07(14)_ODP
+sc_07_14_odp: '[organization-defined managed interfaces]'
+
+# SC-7 (19) Block Communication from Non-organizationally Configured Hosts
+# SC-07(19)_ODP
+sc_07_19_odp: '[organization-defined communication clients]'
+
+# SC-7 (20) Dynamic Isolation and Segregation
+# SC-07(20)_ODP
+sc_07_20_odp: '[organization-defined system components]'
+
+# SC-7 (21) Isolation of System Components
+# SC-07(21)_ODP[01]
+sc_07_21_odp_01: '[organization-defined system components]'
+# SC-07(21)_ODP[02]
+sc_07_21_odp_02: '[organization-defined missions and/or business functions]'
+
+# SC-7 (24) Personally Identifiable Information
+# SC-07(24)_ODP
+sc_07_24_odp: '[organization-defined processing rules]'
+
+# SC-7 (25) Unclassified National Security System Connections
+# SC-07(25)_ODP[01]
+sc_07_25_odp_01: '[organization-defined unclassified national security system]'
+# SC-07(25)_ODP[02]
+sc_07_25_odp_02: '[organization-defined boundary protection device]'
+
+# SC-7 (26) Classified National Security System Connections
+# SC-07(26)_ODP
+sc_07_26_odp: '[organization-defined boundary protection device]'
+
+# SC-7 (27) Unclassified Non-national Security System Connections
+# SC-07(27)_ODP[01]
+sc_07_27_odp_01: '[organization-defined unclassified, non-national security system]'
+# SC-07(27)_ODP[02]
+sc_07_27_odp_02: '[organization-defined boundary protection device]'
+
+# SC-7 (28) Connections to Public Networks
+# SC-07(28)_ODP
+sc_07_28_odp: '[organization-defined system]'
+
+# SC-7 (29) Separate Subnets to Isolate Functions
+# SC-07(29)_ODP[01]
+sc_07_29_odp_01: '[selection (one): physically; logically]'
+# SC-07(29)_ODP[02]
+sc_07_29_odp_02: '[organization-defined critical system components and functions]'
+
+# SC-8 Transmission Confidentiality and Integrity
+# SC-08_ODP
+sc_08_odp: '[selection (one or more): confidentiality; integrity]'
+
+# SC-8 (1) Cryptographic Protection
+# SC-08(01)_ODP
+sc_08_01_odp: '[selection (one or more): prevent unauthorized disclosure of information; detect changes to information]'
+
+# SC-8 (2) Pre- and Post-transmission Handling
+# SC-08(02)_ODP
+sc_08_02_odp: '[selection (one or more): confidentiality; integrity]'
+
+# SC-8 (3) Cryptographic Protection for Message Externals
+# SC-08(03)_ODP
+sc_08_03_odp: '[organization-defined alternative physical controls]'
+
+# SC-8 (4) Conceal or Randomize Communications
+# SC-08(04)_ODP
+sc_08_04_odp: '[organization-defined alternative physical controls]'
+
+# SC-8 (5) Protected Distribution System
+# SC-08(05)_ODP[01]
+sc_08_05_odp_01: '[organization-defined protected distribution system]'
+# SC-08(05)_ODP[02]
+sc_08_05_odp_02: '[selection (one or more): prevent unauthorized disclosure of information; detect changes to information]'
+
+# SC-10 Network Disconnect
+# SC-10_ODP
+sc_10_odp: '[organization-defined time period]'
+
+# SC-11 Trusted Path
+# SC-11_ODP[01]
+sc_11_odp_01: '[selection (one): physically; logically]'
+# SC-11_ODP[02]
+sc_11_odp_02: '[organization-defined security functions]'
+
+# SC-11 (1) Irrefutable Communications Path
+# SC-11(01)_ODP
+sc_11_01_odp: '[organization-defined security functions]'
+
+# SC-12 Cryptographic Key Establishment and Management
+# SC-12_ODP
+sc_12_odp: '[organization-defined requirements]'
+
+# SC-12 (2) Symmetric Keys
+# SC-12(02)_ODP
+sc_12_02_odp: '[selection (one): NIST FIPS-validated; NSA-approved]'
+
+# SC-12 (3) Asymmetric Keys
+# SC-12(03)_ODP
+sc_12_03_odp: '[selection (one): NSA-approved key management technology and processes; prepositioned keying material; DoD-approved or DoD-issued Medium Assurance PKI certificates; DoD-approved or DoD-issued Medium Hardware Assurance PKI certificates and hardware security tokens that protect the user’s private key; certificates issued in accordance with organization-defined requirements]'
+
+# SC-13 Cryptographic Protection
+# SC-13_ODP[01]
+sc_13_odp_01: '[organization-defined cryptographic uses]'
+# SC-13_ODP[02]
+sc_13_odp_02: '[organization-defined types of cryptography]'
+
+# SC-15 Collaborative Computing Devices and Applications
+# SC-15_ODP
+sc_15_odp: '[organization-defined exceptions where remote activation is to be allowed]'
+
+# SC-15 (1) Physical or Logical Disconnect
+# SC-15(01)_ODP
+sc_15_01_odp: '[selection (one or more): physical; logical]'
+
+# SC-15 (3) Disabling and Removal in Secure Work Areas
+# SC-15(03)_ODP[01]
+sc_15_03_odp_01: '[organization-defined systems or system components]'
+# SC-15(03)_ODP[02]
+sc_15_03_odp_02: '[organization-defined secure work areas]'
+
+# SC-15 (4) Explicitly Indicate Current Participants
+# SC-15(04)_ODP
+sc_15_04_odp: '[organization-defined online meetings and teleconferences]'
+
+# SC-16 Transmission of Security and Privacy Attributes
+# sc-16_prm_1
+sc_16_prm_1: '[organization-defined security and privacy attributes]'
+# SC-16_ODP[01]
+sc_16_odp_01: '[organization-defined security attributes]'
+# SC-16_ODP[02]
+sc_16_odp_02: '[organization-defined privacy attributes]'
+
+# SC-16 (3) Cryptographic Binding
+# SC-16(03)_ODP
+sc_16_03_odp: '[organization-defined mechanisms or techniques]'
+
+# SC-17 Public Key Infrastructure Certificates
+# SC-17_ODP
+sc_17_odp: '[organization-defined certificate policy]'
+
+# SC-18 (1) Identify Unacceptable Code and Take Corrective Actions
+# SC-18(01)_ODP[01]
+sc_18_01_odp_01: '[organization-defined unacceptable mobile code]'
+# SC-18(01)_ODP[02]
+sc_18_01_odp_02: '[organization-defined corrective actions]'
+
+# SC-18 (2) Acquisition, Development, and Use
+# SC-18(02)_ODP
+sc_18_02_odp: '[organization-defined mobile code requirements]'
+
+# SC-18 (3) Prevent Downloading and Execution
+# SC-18(03)_ODP
+sc_18_03_odp: '[organization-defined unacceptable mobile code]'
+
+# SC-18 (4) Prevent Automatic Execution
+# SC-18(04)_ODP[01]
+sc_18_04_odp_01: '[organization-defined software applications]'
+# SC-18(04)_ODP[02]
+sc_18_04_odp_02: '[organization-defined actions]'
+
+# SC-23 (3) Unique System-generated Session Identifiers
+# SC-23(03)_ODP
+sc_23_03_odp: '[organization-defined randomness requirements]'
+
+# SC-23 (5) Allowed Certificate Authorities
+# SC-23(05)_ODP
+sc_23_05_odp: '[organization-defined certificated authorities]'
+
+# SC-24 Fail in Known State
+# SC-24_ODP[01]
+sc_24_odp_01: '[organization-defined types of system failures on system components]'
+# SC-24_ODP[02]
+sc_24_odp_02: '[organization-defined known system state]'
+# SC-24_ODP[03]
+sc_24_odp_03: '[organization-defined system state information]'
+
+# SC-25 Thin Nodes
+# SC-25_ODP
+sc_25_odp: '[organization-defined system components]'
+
+# SC-27 Platform-independent Applications
+# SC-27_ODP
+sc_27_odp: '[organization-defined platform-independent applications]'
+
+# SC-28 Protection of Information at Rest
+# SC-28_ODP[01]
+sc_28_odp_01: '[selection (one or more): confidentiality; integrity]'
+# SC-28_ODP[02]
+sc_28_odp_02: '[organization-defined information at rest]'
+
+# SC-28 (1) Cryptographic Protection
+# SC-28(01)_ODP[01]
+sc_28_01_odp_01: '[organization-defined information]'
+# SC-28(01)_ODP[02]
+sc_28_01_odp_02: '[organization-defined system components or media]'
+
+# SC-28 (2) Offline Storage
+# SC-28(02)_ODP
+sc_28_02_odp: '[organization-defined information]'
+
+# SC-28 (3) Cryptographic Keys
+# SC-28(03)_ODP[01]
+sc_28_03_odp_01: '[selection (one): {{ insert: param, sc-28.03_odp.02 }} ; hardware-protected key store]'
+# SC-28(03)_ODP[02]
+sc_28_03_odp_02: '[organization-defined safeguards]'
+
+# SC-29 Heterogeneity
+# SC-29_ODP
+sc_29_odp: '[organization-defined system components]'
+
+# SC-29 (1) Virtualization Techniques
+# SC-29(01)_ODP
+sc_29_01_odp: '[organization-defined frequency]'
+
+# SC-30 Concealment and Misdirection
+# SC-30_ODP[01]
+sc_30_odp_01: '[organization-defined concealment and misdirection techniques]'
+# SC-30_ODP[02]
+sc_30_odp_02: '[organization-defined systems]'
+# SC-30_ODP[03]
+sc_30_odp_03: '[organization-defined time periods]'
+
+# SC-30 (2) Randomness
+# SC-30(02)_ODP
+sc_30_02_odp: '[organization-defined techniques]'
+
+# SC-30 (3) Change Processing and Storage Locations
+# SC-30(03)_ODP[01]
+sc_30_03_odp_01: '[organization-defined processing and/or storage]'
+# SC-30(03)_ODP[02]
+sc_30_03_odp_02: '[selection (one): {{ insert: param, sc-30.03_odp.03 }} ; random time intervals]'
+# SC-30(03)_ODP[03]
+sc_30_03_odp_03: '[organization-defined time frequency]'
+
+# SC-30 (4) Misleading Information
+# SC-30(04)_ODP
+sc_30_04_odp: '[organization-defined system components]'
+
+# SC-30 (5) Concealment of System Components
+# SC-30(05)_ODP[01]
+sc_30_05_odp_01: '[organization-defined techniques]'
+# SC-30(05)_ODP[02]
+sc_30_05_odp_02: '[organization-defined system components]'
+
+# SC-31 Covert Channel Analysis
+# SC-31_ODP
+sc_31_odp: '[selection (one or more): storage; timing]'
+
+# SC-31 (2) Maximum Bandwidth
+# SC-31(02)_ODP[01]
+sc_31_02_odp_01: '[selection (one or more): storage; timing]'
+# SC-31(02)_ODP[02]
+sc_31_02_odp_02: '[organization-defined values]'
+
+# SC-31 (3) Measure Bandwidth in Operational Environments
+# SC-31(03)_ODP
+sc_31_03_odp: '[organization-defined subset of identified covert channels]'
+
+# SC-32 System Partitioning
+# SC-32_ODP[01]
+sc_32_odp_01: '[organization-defined system components]'
+# SC-32_ODP[02]
+sc_32_odp_02: '[selection (one): physical; logical]'
+# SC-32_ODP[03]
+sc_32_odp_03: '[organization-defined circumstances for the physical or logical separation of components]'
+
+# SC-34 Non-modifiable Executable Programs
+# SC-34_ODP[01]
+sc_34_odp_01: '[organization-defined system components]'
+# SC-34_ODP[02]
+sc_34_odp_02: '[organization-defined applications]'
+
+# SC-34 (1) No Writable Storage
+# SC-34(01)_ODP
+sc_34_01_odp: '[organization-defined system components]'
+
+# SC-36 Distributed Processing and Storage
+# sc-36_prm_1
+sc_36_prm_1: '[selection (one): physical locations; logical domains]'
+# sc-36_prm_2
+sc_36_prm_2: '[organization-defined processing and storage components]'
+# SC-36_ODP[01]
+sc_36_odp_01: '[organization-defined processing components]'
+# SC-36_ODP[02]
+sc_36_odp_02: '[selection (one): physical locations; logical domains]'
+# SC-36_ODP[03]
+sc_36_odp_03: '[organization-defined storage components]'
+# SC-36_ODP[04]
+sc_36_odp_04: '[selection (one): physical locations; logical domains]'
+
+# SC-36 (1) Polling Techniques
+# SC-36(01)_ODP[01]
+sc_36_01_odp_01: '[organization-defined distributed processing and storage components]'
+# SC-36(01)_ODP[02]
+sc_36_01_odp_02: '[organization-defined actions]'
+
+# SC-36 (2) Synchronization
+# SC-36(02)_ODP
+sc_36_02_odp: '[organization-defined duplicate systems or system components]'
+
+# SC-37 Out-of-band Channels
+# SC-37_ODP[01]
+sc_37_odp_01: '[organization-defined out-of-band channels]'
+# SC-37_ODP[02]
+sc_37_odp_02: '[organization-defined information, system components, or devices]'
+# SC-37_ODP[03]
+sc_37_odp_03: '[organization-defined individuals or systems]'
+
+# SC-37 (1) Ensure Delivery and Transmission
+# SC-37(01)_ODP[01]
+sc_37_01_odp_01: '[organization-defined controls]'
+# SC-37(01)_ODP[02]
+sc_37_01_odp_02: '[organization-defined individuals or systems]'
+# SC-37(01)_ODP[03]
+sc_37_01_odp_03: '[organization-defined information, system components, or devices]'
+
+# SC-38 Operations Security
+# SC-38_ODP
+sc_38_odp: '[organization-defined operations security controls]'
+
+# SC-39 (2) Separate Execution Domain Per Thread
+# SC-39(02)_ODP
+sc_39_02_odp: '[organization-defined multi-threaded processing]'
+
+# SC-40 Wireless Link Protection
+# sc-40_prm_1
+sc_40_prm_1: '[organization-defined wireless links]'
+# sc-40_prm_2
+sc_40_prm_2: '[organization-defined types of signal parameter attacks or references to sources for such attacks]'
+# SC-40_ODP[01]
+sc_40_odp_01: '[organization-defined wireless links]'
+# SC-40_ODP[02]
+sc_40_odp_02: '[organization-defined types of signal parameter attacks or references to sources for such attacks]'
+# SC-40_ODP[03]
+sc_40_odp_03: '[organization-defined wireless links]'
+# SC-40_ODP[04]
+sc_40_odp_04: '[organization-defined types of signal parameter attacks or references to sources for such attacks]'
+
+# SC-40 (1) Electromagnetic Interference
+# SC-40(01)_ODP
+sc_40_01_odp: '[organization-defined level of protection]'
+
+# SC-40 (2) Reduce Detection Potential
+# SC-40(02)_ODP
+sc_40_02_odp: '[organization-defined level of reduction]'
+
+# SC-40 (4) Signal Parameter Identification
+# SC-40(04)_ODP
+sc_40_04_odp: '[organization-defined wireless transmitters]'
+
+# SC-41 Port and I/O Device Access
+# SC-41_ODP[01]
+sc_41_odp_01: '[organization-defined connection ports or input/output devices]'
+# SC-41_ODP[02]
+sc_41_odp_02: '[selection (one): physically; logically]'
+# SC-41_ODP[03]
+sc_41_odp_03: '[organization-defined systems or system components]'
+
+# SC-42 Sensor Capability and Data
+# SC-42_ODP[01]
+sc_42_odp_01: '[selection (one or more): the use of devices possessing {{ insert: param, sc-42_odp.02 }} in {{ insert: param, sc-42_odp.03 }} ; the remote activation of environmental sensing capabilities on organizational systems or system components with the following exceptions: {{ insert: param, sc-42_odp.04 }} ]'
+# SC-42_ODP[02]
+sc_42_odp_02: '[organization-defined environmental sensing capabilities]'
+# SC-42_ODP[03]
+sc_42_odp_03: '[organization-defined facilities, areas, or systems]'
+# SC-42_ODP[04]
+sc_42_odp_04: '[organization-defined exceptions where remote activation of sensors is allowed]'
+# SC-42_ODP[05]
+sc_42_odp_05: '[organization-defined group of users]'
+
+# SC-42 (1) Reporting to Authorized Individuals or Roles
+# SC-42(01)_ODP
+sc_42_01_odp: '[organization-defined sensors]'
+
+# SC-42 (2) Authorized Use
+# SC-42(02)_ODP
+sc_42_02_odp: '[organization-defined measures]'
+
+# SC-42 (4) Notice of Collection
+# SC-42(04)_ODP[01]
+sc_42_04_odp_01: '[organization-defined measures]'
+# SC-42(04)_ODP[02]
+sc_42_04_odp_02: '[organization-defined sensors]'
+
+# SC-42 (5) Collection Minimization
+# SC-42(05)_ODP
+sc_42_05_odp: '[organization-defined sensors]'
+
+# SC-43 Usage Restrictions
+# SC-43_ODP
+sc_43_odp: '[organization-defined components]'
+
+# SC-44 Detonation Chambers
+# SC-44_ODP
+sc_44_odp: '[organization-defined system, system component, or location]'
+
+# SC-45 (1) Synchronization with Authoritative Time Source
+# SC-45(01)_ODP[01]
+sc_45_01_odp_01: '[organization-defined frequency]'
+# SC-45(01)_ODP[02]
+sc_45_01_odp_02: '[organization-defined authoritative time source]'
+# SC-45(01)_ODP[03]
+sc_45_01_odp_03: '[organization-defined time period]'
+
+# SC-46 Cross Domain Policy Enforcement
+# SC-46_ODP
+sc_46_odp: '[selection (one): physically; logically]'
+
+# SC-47 Alternate Communications Paths
+# SC-47_ODP
+sc_47_odp: '[organization-defined alternate communication paths]'
+
+# SC-48 Sensor Relocation
+# SC-48_ODP[01]
+sc_48_odp_01: '[organization-defined sensors and monitoring capabilities]'
+# SC-48_ODP[02]
+sc_48_odp_02: '[organization-defined locations]'
+# SC-48_ODP[03]
+sc_48_odp_03: '[organization-defined conditions or circumstances]'
+
+# SC-48 (1) Dynamic Relocation of Sensors or Monitoring Capabilities
+# SC-48(01)_ODP[01]
+sc_48_01_odp_01: '[organization-defined sensors and monitoring capabilities]'
+# SC-48(01)_ODP[02]
+sc_48_01_odp_02: '[organization-defined locations]'
+# SC-48(01)_ODP[03]
+sc_48_01_odp_03: '[organization-defined conditions or circumstances]'
+
+# SC-49 Hardware-enforced Separation and Policy Enforcement
+# SC-49_ODP
+sc_49_odp: '[organization-defined security domains]'
+
+# SC-50 Software-enforced Separation and Policy Enforcement
+# SC-50_ODP
+sc_50_odp: '[organization-defined security domains]'
+
+# SC-51 Hardware-based Protection
+# SC-51_ODP[01]
+sc_51_odp_01: '[organization-defined system firmware components]'
+# SC-51_ODP[02]
+sc_51_odp_02: '[organization-defined authorized individuals]'
+
+# SI-1 Policy and Procedures
+# si-1_prm_1
+si_1_prm_1: '[organization-defined personnel or roles]'
+# SI-01_ODP[01]
+si_01_odp_01: '[organization-defined personnel or roles]'
+# SI-01_ODP[02]
+si_01_odp_02: '[organization-defined personnel or roles]'
+# SI-01_ODP[03]
+si_01_odp_03: '[selection (one or more): organization-level; mission/business process-level; system-level]'
+# SI-01_ODP[04]
+si_01_odp_04: '[organization-defined official]'
+# SI-01_ODP[05]
+si_01_odp_05: '[organization-defined frequency]'
+# SI-01_ODP[06]
+si_01_odp_06: '[organization-defined events]'
+# SI-01_ODP[07]
+si_01_odp_07: '[organization-defined frequency]'
+# SI-01_ODP[08]
+si_01_odp_08: '[organization-defined events]'
+
+# SI-2 Flaw Remediation
+# SI-02_ODP
+si_02_odp: '[organization-defined time period]'
+
+# SI-2 (2) Automated Flaw Remediation Status
+# SI-02(02)_ODP[01]
+si_02_02_odp_01: '[organization-defined automated mechanisms]'
+# SI-02(02)_ODP[02]
+si_02_02_odp_02: '[organization-defined frequency]'
+
+# SI-2 (3) Time to Remediate Flaws and Benchmarks for Corrective Actions
+# SI-02(03)_ODP
+si_02_03_odp: '[organization-defined benchmarks]'
+
+# SI-2 (4) Automated Patch Management Tools
+# SI-02(04)_ODP
+si_02_04_odp: '[organization-defined components]'
+
+# SI-2 (5) Automatic Software and Firmware Updates
+# SI-02(05)_ODP[01]
+si_02_05_odp_01: '[organization-defined security-relevant software and firmware updates]'
+# SI-02(05)_ODP[02]
+si_02_05_odp_02: '[organization-defined system components]'
+
+# SI-2 (6) Removal of Previous Versions of Software and Firmware
+# SI-02(06)_ODP
+si_02_06_odp: '[organization-defined software and firmware components]'
+
+# SI-3 Malicious Code Protection
+# SI-03_ODP[01]
+si_03_odp_01: '[selection (one or more): signature-based; non-signature-based]'
+# SI-03_ODP[02]
+si_03_odp_02: '[organization-defined frequency]'
+# SI-03_ODP[03]
+si_03_odp_03: '[selection (one or more): endpoint; network entry and exit points]'
+# SI-03_ODP[04]
+si_03_odp_04: '[selection (one or more): block malicious code; quarantine malicious code; take {{ insert: param, si-03_odp.05 }} ]'
+# SI-03_ODP[05]
+si_03_odp_05: '[organization-defined action]'
+# SI-03_ODP[06]
+si_03_odp_06: '[organization-defined personnel or roles]'
+
+# SI-3 (6) Testing and Verification
+# SI-03(06)_ODP
+si_03_06_odp: '[organization-defined frequency]'
+
+# SI-3 (8) Detect Unauthorized Commands
+# SI-03(08)_ODP[01]
+si_03_08_odp_01: '[organization-defined unauthorized operating system commands]'
+# SI-03(08)_ODP[02]
+si_03_08_odp_02: '[organization-defined system hardware components]'
+# SI-03(08)_ODP[03]
+si_03_08_odp_03: '[selection (one or more): issue a warning; audit the command execution; prevent the execution of the command]'
+
+# SI-3 (10) Malicious Code Analysis
+# SI-03(10)_ODP
+si_03_10_odp: '[organization-defined tools and techniques]'
+
+# SI-4 System Monitoring
+# SI-04_ODP[01]
+si_04_odp_01: '[organization-defined monitoring objectives]'
+# SI-04_ODP[02]
+si_04_odp_02: '[organization-defined techniques and methods]'
+# SI-04_ODP[03]
+si_04_odp_03: '[organization-defined system monitoring information]'
+# SI-04_ODP[04]
+si_04_odp_04: '[organization-defined personnel or roles]'
+# SI-04_ODP[05]
+si_04_odp_05: '[selection (one or more): as needed; {{ insert: param, si-04_odp.06 }} ]'
+# SI-04_ODP[06]
+si_04_odp_06: '[organization-defined frequency]'
+
+# SI-4 (4) Inbound and Outbound Communications Traffic
+# si-4.4_prm_1
+si_4_4_prm_1: '[organization-defined frequency]'
+# si-4.4_prm_2
+si_4_4_prm_2: '[organization-defined unusual or unauthorized activities or conditions]'
+# SI-04(04)_ODP[01]
+si_04_04_odp_01: '[organization-defined frequency]'
+# SI-04(04)_ODP[02]
+si_04_04_odp_02: '[organization-defined unusual or unauthorized activities or conditions]'
+# SI-04(04)_ODP[03]
+si_04_04_odp_03: '[organization-defined frequency]'
+# SI-04(04)_ODP[04]
+si_04_04_odp_04: '[organization-defined unusual or unauthorized activities or conditions]'
+
+# SI-4 (5) System-generated Alerts
+# SI-04(05)_ODP[01]
+si_04_05_odp_01: '[organization-defined personnel or roles]'
+# SI-04(05)_ODP[02]
+si_04_05_odp_02: '[organization-defined compromise indicators]'
+
+# SI-4 (7) Automated Response to Suspicious Events
+# SI-04(07)_ODP[01]
+si_04_07_odp_01: '[organization-defined incident response personnel]'
+# SI-04(07)_ODP[02]
+si_04_07_odp_02: '[organization-defined least-disruptive actions]'
+
+# SI-4 (9) Testing of Monitoring Tools and Mechanisms
+# SI-04(09)_ODP
+si_04_09_odp: '[organization-defined frequency]'
+
+# SI-4 (10) Visibility of Encrypted Communications
+# SI-04(10)_ODP[01]
+si_04_10_odp_01: '[organization-defined encrypted communications traffic]'
+# SI-04(10)_ODP[02]
+si_04_10_odp_02: '[organization-defined system monitoring tools and mechanisms]'
+
+# SI-4 (11) Analyze Communications Traffic Anomalies
+# SI-04(11)_ODP
+si_04_11_odp: '[organization-defined interior points]'
+
+# SI-4 (12) Automated Organization-generated Alerts
+# SI-04(12)_ODP[01]
+si_04_12_odp_01: '[organization-defined personnel or roles]'
+# SI-04(12)_ODP[02]
+si_04_12_odp_02: '[organization-defined automated mechanisms]'
+# SI-04(12)_ODP[03]
+si_04_12_odp_03: '[organization-defined activities that trigger alerts]'
+
+# SI-4 (18) Analyze Traffic and Covert Exfiltration
+# SI-04(18)_ODP
+si_04_18_odp: '[organization-defined interior points]'
+
+# SI-4 (19) Risk for Individuals
+# SI-04(19)_ODP[01]
+si_04_19_odp_01: '[organization-defined additional monitoring]'
+# SI-04(19)_ODP[02]
+si_04_19_odp_02: '[organization-defined sources]'
+
+# SI-4 (20) Privileged Users
+# SI-04(20)_ODP
+si_04_20_odp: '[organization-defined additional monitoring]'
+
+# SI-4 (21) Probationary Periods
+# SI-04(21)_ODP[01]
+si_04_21_odp_01: '[organization-defined additional monitoring]'
+# SI-04(21)_ODP[02]
+si_04_21_odp_02: '[organization-defined probationary period]'
+
+# SI-4 (22) Unauthorized Network Services
+# SI-04(22)_ODP[01]
+si_04_22_odp_01: '[organization-defined authorization or approval processes]'
+# SI-04(22)_ODP[02]
+si_04_22_odp_02: '[selection (one or more): audit; alert {{ insert: param, si-04.22_odp.03 }} ]'
+# SI-04(22)_ODP[03]
+si_04_22_odp_03: '[organization-defined personnel or roles]'
+
+# SI-4 (23) Host-based Devices
+# SI-04(23)_ODP[01]
+si_04_23_odp_01: '[organization-defined host-based monitoring mechanisms]'
+# SI-04(23)_ODP[02]
+si_04_23_odp_02: '[organization-defined system components]'
+
+# SI-4 (24) Indicators of Compromise
+# SI-04(24)_ODP[01]
+si_04_24_odp_01: '[organization-defined sources]'
+# SI-04(24)_ODP[02]
+si_04_24_odp_02: '[organization-defined personnel or roles]'
+
+# SI-5 Security Alerts, Advisories, and Directives
+# SI-05_ODP[01]
+si_05_odp_01: '[organization-defined external organizations]'
+# SI-05_ODP[02]
+si_05_odp_02: '[selection (one or more): {{ insert: param, si-05_odp.03 }} ; {{ insert: param, si-05_odp.04 }} ; {{ insert: param, si-05_odp.05 }} ]'
+# SI-05_ODP[03]
+si_05_odp_03: '[organization-defined personnel or roles]'
+# SI-05_ODP[04]
+si_05_odp_04: '[organization-defined elements]'
+# SI-05_ODP[05]
+si_05_odp_05: '[organization-defined external organizations]'
+
+# SI-5 (1) Automated Alerts and Advisories
+# SI-05(01)_ODP
+si_05_01_odp: '[organization-defined automated mechanisms]'
+
+# SI-6 Security and Privacy Function Verification
+# si-6_prm_1
+si_6_prm_1: '[organization-defined security and privacy functions]'
+# SI-06_ODP[01]
+si_06_odp_01: '[organization-defined security functions]'
+# SI-06_ODP[02]
+si_06_odp_02: '[organization-defined privacy functions]'
+# SI-06_ODP[03]
+si_06_odp_03: '[selection (one or more): {{ insert: param, si-06_odp.04 }} ; upon command by user with appropriate privilege; {{ insert: param, si-06_odp.05 }} ]'
+# SI-06_ODP[04]
+si_06_odp_04: '[organization-defined system transitional states]'
+# SI-06_ODP[05]
+si_06_odp_05: '[organization-defined frequency]'
+# SI-06_ODP[06]
+si_06_odp_06: '[organization-defined personnel or roles]'
+# SI-06_ODP[07]
+si_06_odp_07: '[selection (one or more): shut the system down; restart the system; {{ insert: param, si-06_odp.08 }} ]'
+# SI-06_ODP[08]
+si_06_odp_08: '[organization-defined alternative action(s)]'
+
+# SI-6 (3) Report Verification Results
+# SI-06(03)_ODP
+si_06_03_odp: '[organization-defined personnel or roles]'
+
+# SI-7 Software, Firmware, and Information Integrity
+# si-7_prm_1
+si_7_prm_1: '[organization-defined software, firmware, and information]'
+# si-7_prm_2
+si_7_prm_2: '[organization-defined actions]'
+# SI-07_ODP[01]
+si_07_odp_01: '[organization-defined software]'
+# SI-07_ODP[02]
+si_07_odp_02: '[organization-defined firmware]'
+# SI-07_ODP[03]
+si_07_odp_03: '[organization-defined information]'
+# SI-07_ODP[04]
+si_07_odp_04: '[organization-defined actions]'
+# SI-07_ODP[05]
+si_07_odp_05: '[organization-defined actions]'
+# SI-07_ODP[06]
+si_07_odp_06: '[organization-defined actions]'
+
+# SI-7 (1) Integrity Checks
+# si-7.1_prm_1
+si_7_1_prm_1: '[organization-defined software, firmware, and information]'
+# si-7.1_prm_2
+si_7_1_prm_2: '[selection (one or more): at startup; at {{ insert: param, si-7.1_prm_3 }} ; {{ insert: param, si-7.1_prm_4 }} ]'
+# si-7.1_prm_3
+si_7_1_prm_3: '[organization-defined transitional states or security-relevant events]'
+# si-7.1_prm_4
+si_7_1_prm_4: '[organization-defined frequency]'
+# SI-07(01)_ODP[01]
+si_07_01_odp_01: '[organization-defined software]'
+# SI-07(01)_ODP[02]
+si_07_01_odp_02: '[selection (one or more): at startup; at {{ insert: param, si-07.01_odp.03 }} ; {{ insert: param, si-07.01_odp.04 }} ]'
+# SI-07(01)_ODP[03]
+si_07_01_odp_03: '[organization-defined transitional states or security-relevant events]'
+# SI-07(01)_ODP[04]
+si_07_01_odp_04: '[organization-defined frequency]'
+# SI-07(01)_ODP[05]
+si_07_01_odp_05: '[organization-defined firmware]'
+# SI-07(01)_ODP[06]
+si_07_01_odp_06: '[selection (one or more): at startup; at {{ insert: param, si-07.01_odp.07 }} ; {{ insert: param, si-07.01_odp.08 }} ]'
+# SI-07(01)_ODP[07]
+si_07_01_odp_07: '[organization-defined transitional states or security-relevant events]'
+# SI-07(01)_ODP[08]
+si_07_01_odp_08: '[organization-defined frequency]'
+# SI-07(01)_ODP[09]
+si_07_01_odp_09: '[organization-defined information]'
+# SI-07(01)_ODP[10]
+si_07_01_odp_10: '[selection (one or more): at startup; at {{ insert: param, si-07.01_odp.11 }} ; {{ insert: param, si-07.01_odp.12 }} ]'
+# SI-07(01)_ODP[11]
+si_07_01_odp_11: '[organization-defined transitional states or security-relevant events]'
+# SI-07(01)_ODP[12]
+si_07_01_odp_12: '[organization-defined frequency]'
+
+# SI-7 (2) Automated Notifications of Integrity Violations
+# SI-07(02)_ODP
+si_07_02_odp: '[organization-defined personnel or roles]'
+
+# SI-7 (5) Automated Response to Integrity Violations
+# SI-07(05)_ODP[01]
+si_07_05_odp_01: '[selection (one or more): shut down the system; restart the system; implement {{ insert: param, si-07.05_odp.02 }} ]'
+# SI-07(05)_ODP[02]
+si_07_05_odp_02: '[organization-defined controls]'
+
+# SI-7 (7) Integration of Detection and Response
+# SI-07(07)_ODP
+si_07_07_odp: '[organization-defined changes]'
+
+# SI-7 (8) Auditing Capability for Significant Events
+# SI-07(08)_ODP[01]
+si_07_08_odp_01: '[selection (one or more): generate an audit record; alert current user; alert {{ insert: param, si-07.08_odp.02 }} ; {{ insert: param, si-07.08_odp.03 }} ]'
+# SI-07(08)_ODP[02]
+si_07_08_odp_02: '[organization-defined personnel or roles]'
+# SI-07(08)_ODP[03]
+si_07_08_odp_03: '[organization-defined other actions]'
+
+# SI-7 (9) Verify Boot Process
+# SI-07(09)_ODP
+si_07_09_odp: '[organization-defined system components]'
+
+# SI-7 (10) Protection of Boot Firmware
+# SI-07(10)_ODP[01]
+si_07_10_odp_01: '[organization-defined mechanisms]'
+# SI-07(10)_ODP[02]
+si_07_10_odp_02: '[organization-defined system components]'
+
+# SI-7 (12) Integrity Verification
+# SI-07(12)_ODP
+si_07_12_odp: '[organization-defined user-installed software]'
+
+# SI-7 (15) Code Authentication
+# SI-07(15)_ODP
+si_07_15_odp: '[organization-defined software or firmware components]'
+
+# SI-7 (16) Time Limit on Process Execution Without Supervision
+# SI-07(16)_ODP
+si_07_16_odp: '[organization-defined time period]'
+
+# SI-7 (17) Runtime Application Self-protection
+# SI-07(17)_ODP
+si_07_17_odp: '[organization-defined controls]'
+
+# SI-8 (2) Automatic Updates
+# SI-08(02)_ODP
+si_08_02_odp: '[organization-defined frequency]'
+
+# SI-10 Information Input Validation
+# SI-10_ODP
+si_10_odp: '[organization-defined information inputs]'
+
+# SI-10 (1) Manual Override Capability
+# SI-10(01)_ODP
+si_10_01_odp: '[organization-defined authorized individuals]'
+
+# SI-10 (2) Review and Resolve Errors
+# si-10.2_prm_1
+si_10_2_prm_1: '[organization-defined time period]'
+# SI-10(02)_ODP[01]
+si_10_02_odp_01: '[organization-defined time period]'
+# SI-10(02)_ODP[02]
+si_10_02_odp_02: '[organization-defined time period]'
+
+# SI-10 (5) Restrict Inputs to Trusted Sources and Approved Formats
+# SI-10(05)_ODP[01]
+si_10_05_odp_01: '[organization-defined trusted sources]'
+# SI-10(05)_ODP[02]
+si_10_05_odp_02: '[organization-defined formats]'
+
+# SI-11 Error Handling
+# SI-11_ODP
+si_11_odp: '[organization-defined personnel or roles]'
+
+# SI-12 (1) Limit Personally Identifiable Information Elements
+# SI-12(01)_ODP
+si_12_01_odp: '[organization-defined elements of personally identifiable information]'
+
+# SI-12 (2) Minimize Personally Identifiable Information in Testing, Training, and Research
+# si-12.2_prm_1
+si_12_2_prm_1: '[organization-defined techniques]'
+# SI-12(02)_ODP[01]
+si_12_02_odp_01: '[organization-defined techniques]'
+# SI-12(02)_ODP[02]
+si_12_02_odp_02: '[organization-defined techniques]'
+# SI-12(02)_ODP[03]
+si_12_02_odp_03: '[organization-defined techniques]'
+
+# SI-12 (3) Information Disposal
+# si-12.3_prm_1
+si_12_3_prm_1: '[organization-defined techniques]'
+# SI-12(03)_ODP[01]
+si_12_03_odp_01: '[organization-defined techniques]'
+# SI-12(03)_ODP[02]
+si_12_03_odp_02: '[organization-defined techniques]'
+# SI-12(03)_ODP[03]
+si_12_03_odp_03: '[organization-defined techniques]'
+
+# SI-13 Predictable Failure Prevention
+# SI-13_ODP[01]
+si_13_odp_01: '[organization-defined system components]'
+# SI-13_ODP[02]
+si_13_odp_02: '[organization-defined mean time to failure (MTTF) substitution criteria]'
+
+# SI-13 (1) Transferring Component Responsibilities
+# SI-13(01)_ODP
+si_13_01_odp: '[organization-defined fraction or percentage]'
+
+# SI-13 (3) Manual Transfer Between Components
+# SI-13(03)_ODP
+si_13_03_odp: '[organization-defined percentage]'
+
+# SI-13 (4) Standby Component Installation and Notification
+# SI-13(04)_ODP[01]
+si_13_04_odp_01: '[organization-defined time period]'
+# SI-13(04)_ODP[02]
+si_13_04_odp_02: '[selection (one or more): activate {{ insert: param, si-13.04_odp.03 }} ; automatically shut down the system; {{ insert: param, si-13.04_odp.04 }} ]'
+# SI-13(04)_ODP[03]
+si_13_04_odp_03: '[organization-defined alarm]'
+# SI-13(04)_ODP[04]
+si_13_04_odp_04: '[organization-defined action]'
+
+# SI-13 (5) Failover Capability
+# SI-13(05)_ODP[01]
+si_13_05_odp_01: '[selection (one): real-time; near real-time]'
+# SI-13(05)_ODP[02]
+si_13_05_odp_02: '[organization-defined failover capability]'
+
+# SI-14 Non-persistence
+# SI-14_ODP[01]
+si_14_odp_01: '[organization-defined system components and services]'
+# SI-14_ODP[02]
+si_14_odp_02: '[selection (one or more): upon end of session of use; {{ insert: param, si-14_odp.03 }} ]'
+# SI-14_ODP[03]
+si_14_odp_03: '[organization-defined frequency]'
+
+# SI-14 (1) Refresh from Trusted Sources
+# SI-14(01)_ODP
+si_14_01_odp: '[organization-defined trusted sources]'
+
+# SI-14 (2) Non-persistent Information
+# SI-14(02)_ODP[01]
+si_14_02_odp_01: '[selection (one): refresh {{ insert: param, si-14.02_odp.02 }} {{ insert: param, si-14.02_odp.03 }} ; generate {{ insert: param, si-14.02_odp.04 }} on demand]'
+# SI-14(02)_ODP[02]
+si_14_02_odp_02: '[organization-defined information]'
+# SI-14(02)_ODP[03]
+si_14_02_odp_03: '[organization-defined frequency]'
+# SI-14(02)_ODP[04]
+si_14_02_odp_04: '[organization-defined information]'
+
+# SI-14 (3) Non-persistent Connectivity
+# SI-14(03)_ODP
+si_14_03_odp: '[selection (one): completion of a request; a period of non-use]'
+
+# SI-15 Information Output Filtering
+# SI-15_ODP
+si_15_odp: '[organization-defined software programs and/or applications]'
+
+# SI-16 Memory Protection
+# SI-16_ODP
+si_16_odp: '[organization-defined controls]'
+
+# SI-17 Fail-safe Procedures
+# si-17_prm_1
+si_17_prm_1: '[organization-defined list of failure conditions and associated fail-safe procedures]'
+# SI-17_ODP[01]
+si_17_odp_01: '[organization-defined fail-safe procedures]'
+# SI-17_ODP[02]
+si_17_odp_02: '[organization-defined list of failure conditions]'
+
+# SI-18 Personally Identifiable Information Quality Operations
+# si-18_prm_1
+si_18_prm_1: '[organization-defined frequency]'
+# SI-18_ODP[01]
+si_18_odp_01: '[organization-defined frequency]'
+# SI-18_ODP[02]
+si_18_odp_02: '[organization-defined frequency]'
+# SI-18_ODP[03]
+si_18_odp_03: '[organization-defined frequency]'
+# SI-18_ODP[04]
+si_18_odp_04: '[organization-defined frequency]'
+
+# SI-18 (1) Automation Support
+# SI-18(01)_ODP
+si_18_01_odp: '[organization-defined automated mechanisms]'
+
+# SI-18 (5) Notice of Correction or Deletion
+# SI-18(05)_ODP
+si_18_05_odp: '[organization-defined recipients]'
+
+# SI-19 De-identification
+# SI-19_ODP[01]
+si_19_odp_01: '[organization-defined elements]'
+# SI-19_ODP[02]
+si_19_odp_02: '[organization-defined frequency]'
+
+# SI-20 Tainting
+# SI-20_ODP
+si_20_odp: '[organization-defined systems or system components]'
+
+# SI-21 Information Refresh
+# SI-21_ODP[01]
+si_21_odp_01: '[organization-defined information]'
+# SI-21_ODP[02]
+si_21_odp_02: '[organization-defined frequencies]'
+
+# SI-22 Information Diversity
+# SI-22_ODP[01]
+si_22_odp_01: '[organization-defined alternative information sources]'
+# SI-22_ODP[02]
+si_22_odp_02: '[organization-defined essential functions and services]'
+# SI-22_ODP[03]
+si_22_odp_03: '[organization-defined systems or system components]'
+
+# SI-23 Information Fragmentation
+# SI-23_ODP[01]
+si_23_odp_01: '[organization-defined circumstances]'
+# SI-23_ODP[02]
+si_23_odp_02: '[organization-defined information]'
+# SI-23_ODP[03]
+si_23_odp_03: '[organization-defined systems or system components]'
+
+# SR-1 Policy and Procedures
+# sr-1_prm_1
+sr_1_prm_1: '[organization-defined personnel or roles]'
+# SR-01_ODP[01]
+sr_01_odp_01: '[organization-defined personnel or roles]'
+# SR-01_ODP[02]
+sr_01_odp_02: '[organization-defined personnel or roles]'
+# SR-01_ODP[03]
+sr_01_odp_03: '[selection (one or more): organization-level; mission/business process-level; system-level]'
+# SR-01_ODP[04]
+sr_01_odp_04: '[organization-defined official]'
+# SR-01_ODP[05]
+sr_01_odp_05: '[organization-defined frequency]'
+# SR-01_ODP[06]
+sr_01_odp_06: '[organization-defined events]'
+# SR-01_ODP[07]
+sr_01_odp_07: '[organization-defined frequency]'
+# SR-01_ODP[08]
+sr_01_odp_08: '[organization-defined events]'
+
+# SR-2 Supply Chain Risk Management Plan
+# SR-02_ODP[01]
+sr_02_odp_01: '[organization-defined systems, system components, or system services]'
+# SR-02_ODP[02]
+sr_02_odp_02: '[organization-defined frequency]'
+
+# SR-2 (1) Establish SCRM Team
+# SR-02(01)_ODP[01]
+sr_02_01_odp_01: '[organization-defined personnel, roles and responsibilities]'
+# SR-02(01)_ODP[02]
+sr_02_01_odp_02: '[organization-defined supply chain risk management activities]'
+
+# SR-3 Supply Chain Controls and Processes
+# SR-03_ODP[01]
+sr_03_odp_01: '[organization-defined system or system component]'
+# SR-03_ODP[02]
+sr_03_odp_02: '[organization-defined supply chain personnel]'
+# SR-03_ODP[03]
+sr_03_odp_03: '[organization-defined supply chain controls]'
+# SR-03_ODP[04]
+sr_03_odp_04: '[selection (one or more): security and privacy plans; supply chain risk management plan; {{ insert: param, sr-03_odp.05 }} ]'
+# SR-03_ODP[05]
+sr_03_odp_05: '[organization-defined document]'
+
+# SR-3 (1) Diverse Supply Base
+# sr-3.1_prm_1
+sr_3_1_prm_1: '[organization-defined system components and services]'
+# SR-03(01)_ODP[01]
+sr_03_01_odp_01: '[organization-defined system components]'
+# SR-03(01)_ODP[02]
+sr_03_01_odp_02: '[organization-defined services]'
+
+# SR-3 (2) Limitation of Harm
+# SR-03(02)_ODP
+sr_03_02_odp: '[organization-defined controls]'
+
+# SR-4 Provenance
+# SR-04_ODP
+sr_04_odp: '[organization-defined systems, system components, and associated data]'
+
+# SR-4 (1) Identity
+# SR-04(01)_ODP
+sr_04_01_odp: '[organization-defined supply chain elements, processes, and personnel]'
+
+# SR-4 (2) Track and Trace
+# SR-04(02)_ODP
+sr_04_02_odp: '[organization-defined systems and critical system components]'
+
+# SR-4 (3) Validate as Genuine and Not Altered
+# sr-4.3_prm_1
+sr_4_3_prm_1: '[organization-defined controls]'
+# SR-04(03)_ODP[01]
+sr_04_03_odp_01: '[organization-defined controls]'
+# SR-04(03)_ODP[02]
+sr_04_03_odp_02: '[organization-defined controls]'
+
+# SR-4 (4) Supply Chain Integrity — Pedigree
+# SR-04(04)_ODP[01]
+sr_04_04_odp_01: '[organization-defined controls]'
+# SR-04(04)_ODP[02]
+sr_04_04_odp_02: '[organization-defined analysis method]'
+
+# SR-5 Acquisition Strategies, Tools, and Methods
+# SR-05_ODP
+sr_05_odp: '[organization-defined strategies, tools, and methods]'
+
+# SR-5 (1) Adequate Supply
+# SR-05(01)_ODP[01]
+sr_05_01_odp_01: '[organization-defined controls]'
+# SR-05(01)_ODP[02]
+sr_05_01_odp_02: '[organization-defined critical system components]'
+
+# SR-6 Supplier Assessments and Reviews
+# SR-06_ODP
+sr_06_odp: '[organization-defined frequency]'
+
+# SR-6 (1) Testing and Analysis
+# SR-06(01)_ODP[01]
+sr_06_01_odp_01: '[selection (one or more): organizational analysis; independent third-party analysis; organizational testing; independent third-party testing]'
+# SR-06(01)_ODP[02]
+sr_06_01_odp_02: '[organization-defined supply chain elements, processes, and actors]'
+
+# SR-7 Supply Chain Operations Security
+# SR-07_ODP
+sr_07_odp: '[organization-defined OPSEC controls]'
+
+# SR-8 Notification Agreements
+# SR-08_ODP[01]
+sr_08_odp_01: '[selection (one or more): notification of supply chain compromises; {{ insert: param, sr-08_odp.02 }} ]'
+# SR-08_ODP[02]
+sr_08_odp_02: '[organization-defined results of assessments or audits]'
+
+# SR-10 Inspection of Systems or Components
+# SR-10_ODP[01]
+sr_10_odp_01: '[organization-defined systems or system components]'
+# SR-10_ODP[02]
+sr_10_odp_02: '[selection (one or more): at random; at {{ insert: param, sr-10_odp.03 }} ; upon {{ insert: param, sr-10_odp.04 }} ]'
+# SR-10_ODP[03]
+sr_10_odp_03: '[organization-defined frequency]'
+# SR-10_ODP[04]
+sr_10_odp_04: '[organization-defined indications of need for inspection]'
+
+# SR-11 Component Authenticity
+# SR-11_ODP[01]
+sr_11_odp_01: '[selection (one or more): source of counterfeit component; {{ insert: param, sr-11_odp.02 }} ; {{ insert: param, sr-11_odp.03 }} ]'
+# SR-11_ODP[02]
+sr_11_odp_02: '[organization-defined external reporting organizations]'
+# SR-11_ODP[03]
+sr_11_odp_03: '[organization-defined personnel or roles]'
+
+# SR-11 (1) Anti-counterfeit Training
+# SR-11(01)_ODP
+sr_11_01_odp: '[organization-defined personnel or roles]'
+
+# SR-11 (2) Configuration Control for Component Service and Repair
+# SR-11(02)_ODP
+sr_11_02_odp: '[organization-defined system components]'
+
+# SR-11 (3) Anti-counterfeit Scanning
+# SR-11(03)_ODP
+sr_11_03_odp: '[organization-defined frequency]'
+
+# SR-12 Component Disposal
+# SR-12_ODP[01]
+sr_12_odp_01: '[organization-defined data, documentation, tools, or system components]'
+# SR-12_ODP[02]
+sr_12_odp_02: '[organization-defined techniques and methods]'
