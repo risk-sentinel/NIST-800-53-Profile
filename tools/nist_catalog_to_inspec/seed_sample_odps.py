@@ -131,13 +131,41 @@ SUBSTRING = [
 # fallback answers in the one way that is true regardless of system: it points
 # at where the real definition lives. That reads grammatically in the control
 # prose AND tells a reader this is a pointer, not a decision someone made.
-# `.+?\s*(?:\(...\))?` made three quantifiers compete for the same characters,
-# which backtracks super-linearly on a long placeholder. Anchoring a greedy
-# `.+` to the closing bracket is unambiguous and linear; the trailing
-# parenthetical it used to absorb is stripped afterwards instead. Verified to
-# produce identical nouns across all 1,600 placeholders.
-GENERIC = re.compile(r"^\[organization-defined\s+(?P<noun>.+)\]$", re.IGNORECASE)
-TRAILING_PAREN = re.compile(r"\s*\([^)]*\)$")
+# Deliberately not a regex. Two attempts at one were both super-linear, for two
+# different reasons: `\s+` next to `.+` lets both claim the same whitespace, and
+# an unanchored trailing-parenthetical pattern is retried at every position.
+# What this actually does -- strip the brackets, check a prefix, strip a
+# suffix -- is prefix/suffix work, and saying so in string operations is linear
+# by construction and leaves nothing to reason about.
+#
+# Verified against the original regex across all 1,600 real placeholders: zero
+# differences, including the ones whose own text contains a bracket
+# (`[organization-defined event types (subset of AU-02_ODP[01])]`).
+GENERIC_PREFIX = "organization-defined"
+
+
+def generic_noun(placeholder: str) -> str | None:
+    """The noun phrase in `[organization-defined <noun>]`, or None.
+
+    A trailing parenthetical is dropped: NIST writes
+    `[organization-defined event types (subset of AU-02_ODP[01])]`, and the
+    aside is a cross-reference rather than part of the noun.
+    """
+    if not (placeholder.startswith("[") and placeholder.endswith("]")):
+        return None
+    inner = placeholder[1:-1]
+    if inner[:len(GENERIC_PREFIX)].lower() != GENERIC_PREFIX:
+        return None
+    rest = inner[len(GENERIC_PREFIX):]
+    if not rest[:1].isspace():      # `[organization-definedX]` is not a match
+        return None
+    noun = rest.strip()
+    if noun.endswith(")"):
+        open_at = noun.rfind("(")
+        # Only an unnested aside, matching what `\([^)]*\)$` accepted.
+        if open_at != -1 and ")" not in noun[open_at + 1:-1]:
+            noun = noun[:open_at].rstrip()
+    return noun or None
 
 # ---- 2b. Context overrides --------------------------------------------------
 # A handful where the archetype sample is grammatical but implausible enough to
@@ -196,9 +224,8 @@ def sample_for(key, placeholder):
         if needle in low:
             return value, "archetype"
 
-    m = GENERIC.match(placeholder)
-    if m:
-        noun = TRAILING_PAREN.sub("", m.group("noun"))
+    noun = generic_noun(placeholder)
+    if noun:
         return f"the {noun} defined in the system security plan", "generic"
 
     return None, "placeholder"
