@@ -45,10 +45,16 @@ spec:
         but a project RENAMED after onboarding keeps its old key, so check.
       default: ""
     sonar_host_url:
-      default: "https://sonarcloud.io"
+      description: >-
+        Overrides the SONAR_HOST_URL CI/CD variable. Empty means "use the
+        variable, or sonarcloud.io" -- the default must stay empty or an
+        include input would always beat a variable the adopter set.
+      default: ""
     sonar_organization:
-      description: SonarCloud organization. Leave empty for self-hosted SonarQube.
-      default: "risk-sentinel"
+      description: >-
+        Overrides the SONAR_ORGANIZATION CI/CD variable. Empty for self-hosted
+        SonarQube, or to let the variable supply it.
+      default: ""
     image:
       description: Image carrying the hdf CLI. Bakes hdf 3.4.1.
       default: risksentinel/sparc-auditor:v0.5.0
@@ -59,8 +65,15 @@ spec:
 "$[[ inputs.job_name ]]":
   image: "$[[ inputs.image ]]"
   variables:
-    SONAR_HOST_URL: "$[[ inputs.sonar_host_url ]]"
-    SONAR_ORGANIZATION: "$[[ inputs.sonar_organization ]]"
+    # Suffixed _INPUT and resolved in the script, NOT assigned to the names the
+    # job actually uses. A job-level `variables:` entry OVERRIDES a global one,
+    # so writing SONAR_HOST_URL here would silently clobber whatever the adopter
+    # set in .gitlab-variables.yml -- which is how the first cut of this file
+    # shipped a variables pattern where nothing the adopter set did anything.
+    #
+    # Precedence, high to low: include input -> CI/CD variable -> built-in.
+    SONAR_HOST_URL_INPUT: "$[[ inputs.sonar_host_url ]]"
+    SONAR_ORGANIZATION_INPUT: "$[[ inputs.sonar_organization ]]"
     SONAR_PROJECT_KEY_INPUT: "$[[ inputs.sonar_project_key ]]"
   script:
     # 1 — resolve and VERIFY the project key before fetching anything.
@@ -75,10 +88,17 @@ spec:
         echo "ERROR: SONAR_TOKEN is not set. Without it there is nothing to fetch, and an empty result converts into a clean-looking report."
         exit 1
       fi
-      KEY="${SONAR_PROJECT_KEY_INPUT}"
+      # include input -> CI/CD variable -> derived/built-in.
+      SONAR_HOST_URL="${SONAR_HOST_URL_INPUT:-${SONAR_HOST_URL:-https://sonarcloud.io}}"
+      SONAR_ORGANIZATION="${SONAR_ORGANIZATION_INPUT:-${SONAR_ORGANIZATION:-}}"
+      KEY="${SONAR_PROJECT_KEY_INPUT:-${SONAR_PROJECT_KEY:-}}"
       if [ -z "$KEY" ]; then
         KEY="$(printf '%s' "$CI_PROJECT_PATH" | tr '/' '_')"
       fi
+      # Carry the resolved values to the later script blocks; each `- |` block
+      # is its own shell, so a plain assignment would not survive.
+      printf '%s\n' "$SONAR_HOST_URL" > .sonar-host
+      printf '%s\n' "$SONAR_ORGANIZATION" > .sonar-org
       code=$(curl -sS -o /tmp/sonar-project.json -w '%{http_code}' \
         --proto '=https' --proto-redir '=https' --tlsv1.2 \
         -u "${SONAR_TOKEN}:" \
@@ -101,6 +121,8 @@ spec:
     - |
       set -euo pipefail
       KEY="$(cat .sonar-key)"
+      SONAR_HOST_URL="$(cat .sonar-host)"
+      SONAR_ORGANIZATION="$(cat .sonar-org)"
       OUT="${CI_PROJECT_NAME}-sonarqube-hdf.json"
       export SONARQUBE_TOKEN="$SONAR_TOKEN"
       args="fetch sonarqube $OUT --url $SONAR_HOST_URL --project-key $KEY --format hdf"
@@ -144,6 +166,19 @@ spec:
       . ./.hdf-env
       echo "===== HDF rollup ====="
       hdf list "$HDF_FILE" || true
+  # Gated on SONAR_TOKEN existing. Without it this job does not run at all,
+  # rather than running and failing, so a fresh clone has a green pipeline
+  # before anything is configured.
+  #
+  # A skipped job is invisible, and a green pipeline that assessed nothing is
+  # the failure this estate keeps finding elsewhere -- so the `pipeline-coverage`
+  # job in the root .gitlab-ci.yml always runs and states what was skipped.
+  #
+  # The in-script SONAR_TOKEN check stays too: this rule fires on the variable
+  # being DEFINED, and a defined-but-empty one would otherwise reach the fetch
+  # and convert into a clean-looking empty report.
+  rules:
+    - if: '$SONAR_TOKEN'
   artifacts:
     when: always
     expire_in: 90 days
