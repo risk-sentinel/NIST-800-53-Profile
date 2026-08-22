@@ -1,0 +1,80 @@
+# Clone-and-go pipeline for GitLab.
+#
+# Mirror or import this repository into GitLab and you get a pipeline on the
+# first push, with no configuration at all. Jobs that need credentials activate
+# as you supply them; nothing here fails because you have not set something up
+# yet.
+#
+# On GitHub this file is inert — GitHub Actions reads only .github/workflows/,
+# so a root .gitlab-ci.yml is just a text file to it. The two forges do not
+# interact.
+#
+# ---- What runs with no configuration ---------------------------------------
+#
+# GitLab's own scanners, included from the platform templates. They need no
+# tokens and give a real result on the first pipeline:
+#
+#   Secret Detection    all tiers
+#   SAST                all tiers
+#   Dependency Scanning Ultimate — the jobs are skipped on other tiers
+#
+# ---- What activates when you configure it ----------------------------------
+#
+#   SonarQube -> HDF    needs SONAR_TOKEN (masked CI/CD variable)
+#   Profile exec        needs a target; see the commented block at the bottom
+#
+# The `pipeline-coverage` job below always runs and states which of these did
+# and did not, so a green pipeline never quietly means "assessed nothing".
+
+include:
+  # ---- GitLab's built-in scanners -------------------------------------------
+  - template: Jobs/Secret-Detection.gitlab-ci.yml
+  - template: Jobs/SAST.gitlab-ci.yml
+  - template: Jobs/Dependency-Scanning.gitlab-ci.yml
+
+  # ---- Your non-secret configuration ----------------------------------------
+  # Committed with empty values and included unconditionally, the same split as
+  # inputs.yml / inputs.template.yml elsewhere here. A conditional include would
+  # need `include:rules:exists`, which ties this file to a GitLab version for no
+  # benefit — an empty variables file is harmless.
+  - local: /.gitlab-variables.yml
+
+  # ---- This repository's evidence jobs --------------------------------------
+  - local: /ci/gitlab/sonarqube-hdf-emit.yml
+
+  # ---- Profile execution ----------------------------------------------------
+  # This repository ships no ci/gitlab/exec-evidence.yml, so there is no profile
+  # to execute here. That is a property of the repository, not an omission.
+
+stages:
+  - test
+  - report
+
+# Always runs. Option-2 gating keeps a fresh clone green, which is the right
+# first impression — but green must never be mistaken for "everything ran".
+# This states plainly what did and did not.
+pipeline-coverage:
+  stage: report
+  image: alpine:3.20
+  needs: []
+  script:
+    - |
+      set -eu
+      echo "=============================================="
+      echo " Pipeline coverage"
+      echo "=============================================="
+      echo "GitLab Secret Detection   : enabled (no configuration required)"
+      echo "GitLab SAST               : enabled (no configuration required)"
+      echo "GitLab Dependency Scanning: enabled on Ultimate; skipped on other tiers"
+      if [ -n "${SONAR_TOKEN:-}" ]; then
+        echo "SonarQube -> HDF          : ENABLED"
+      else
+        echo "SonarQube -> HDF          : SKIPPED - SONAR_TOKEN is not set."
+        echo "                            Settings > CI/CD > Variables, masked."
+      fi
+      echo "Profile exec evidence     : N/A - this repository has no profile to exec"
+      echo "----------------------------------------------"
+      echo "A green pipeline means the jobs above that say ENABLED ran."
+      echo "It does not mean everything was assessed."
+  rules:
+    - when: always
