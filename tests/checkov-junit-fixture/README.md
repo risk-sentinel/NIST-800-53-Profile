@@ -24,6 +24,12 @@ without disclosing anything: passes and failures in one suite, a resource inside
 a module (for the `classname` path), a description containing escaped quotes
 (for XML escaping), and an inline `# checkov:skip=` (see below).
 
+Nothing here is deployed or referenced by any module, and the directory is
+excluded from Sonar analysis in `.sonarcloud.properties` — Sonar is correct
+about every finding it would raise here, and acting on any of them would delete
+the reason the fixture exists. Same treatment, and the same rationale, as
+`tests/trufflehog-fixture/`.
+
 ## Two things that will bite a converter
 
 **1. Suppressions are invisible by default.** `skipped="0"` in the default file
