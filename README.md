@@ -232,11 +232,10 @@ rather than asserted here.
 
 ## History
 
-This profile and its generator were built in
-[`risk-sentinel/sparc-validate`](https://github.com/risk-sentinel/sparc-validate)
-(PR #340) and moved here so the catalog stands on its own. It is a
-general-purpose artifact with no SPARC-specific content, and it does not belong
-inside a consumer overlay repository.
+This profile and its generator were extracted from a consumer overlay
+repository so the catalog stands on its own. It is a general-purpose artifact
+with no consumer-specific content, and it does not belong inside an overlay
+repository.
 
 ## Licence
 

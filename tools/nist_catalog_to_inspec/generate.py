@@ -62,7 +62,7 @@ DEFAULT_REF = "main"
 BASELINES = ("LOW", "MODERATE", "HIGH", "PRIVACY")
 SECURE_SCHEME = "https"
 
-# Per sparc-validate#265: the directory carries no revision, the revision lives
+# By convention: the directory carries no revision, the revision lives
 # in inspec.yml `name:`. A Rev 5 -> Rev 6 uplift bumps the name and the tag; the
 # directory never churns.
 PROFILE_NAME = "nist-800-53-rev5"

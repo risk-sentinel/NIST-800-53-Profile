@@ -19,7 +19,7 @@ name: SonarQube HDF emit
 # them in an evidence bucket so they join the same stream as InSpec, SCA and
 # secret-scanning results.
 #
-# ---- Adopting this outside risk-sentinel ------------------------------------
+# ---- Adopting this in your own organization ---------------------------------
 #
 # You need SONAR_TOKEN and a SonarCloud project. Everything AWS is optional: with
 # no emit role the workflow still converts and validates, and the HDF is uploaded
