@@ -1,6 +1,6 @@
 name: Profile lint
 
-# Adapted from the profile-lint that every risk-sentinel profile repository
+# Adapted from the profile-lint that every profile repository here
 # carries, and deliberately NOT a straight copy: this profile has no
 # `libraries/` and no InSpec resources at all, so two of the standard steps
 # would check nothing and pass. Steps that assess nothing while reporting green
