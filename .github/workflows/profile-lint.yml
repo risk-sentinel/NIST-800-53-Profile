@@ -41,7 +41,16 @@ jobs:
         env:
           DOCKERHUB_TOKEN: ${{ secrets.DOCKERHUB_TOKEN }}
           DOCKERHUB_USERNAME: ${{ secrets.DOCKERHUB_USERNAME }}
-        run: echo "$DOCKERHUB_TOKEN" | docker login -u "$DOCKERHUB_USERNAME" --password-stdin
+        run: |
+          set -euo pipefail
+          # Optional. The auditor image is public, so an anonymous pull works;
+          # signing in only raises the shared rate limit. Without this guard an
+          # adopter with no Docker Hub secrets fails here, before anything runs.
+          if [ -z "${DOCKERHUB_USERNAME:-}" ] || [ -z "${DOCKERHUB_TOKEN:-}" ]; then
+            echo "::notice::No Docker Hub credentials set; pulling anonymously."
+            exit 0
+          fi
+          echo "$DOCKERHUB_TOKEN" | docker login -u "$DOCKERHUB_USERNAME" --password-stdin
 
       - name: Ruby syntax (every control)
         # ONE container for all 1,014 files, not one per file. The profile-lint
