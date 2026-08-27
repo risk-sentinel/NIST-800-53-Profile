@@ -10,26 +10,10 @@
 #       inputs:
 #         sonar_project_key: my-group_my-project
 #
-# Or clone this repo in your own job and paste the script below. Both work,
-# which is the point: the logic lives in YAML, so `include:` carries all of it.
+# Or clone this repo in your own job and paste the script below; both work.
 #
-# Deliberately the same script as .github/workflows/sonarqube-hdf-emit.yml.
-# Duplicating across forges is preferable to a dependency a consumer cannot
-# satisfy — and on GitHub that is not a preference but a hard limit, since a
-# public repository cannot use a workflow from a private or internal one.
-#
-# ---- Scope: artifact, not S3 ------------------------------------------------
-#
-# This produces the HDF and publishes it as a job artifact. It does NOT push to
-# an S3 evidence bucket, matching ci/gitlab/exec-evidence.yml in this repo.
-#
-# That is a deliberate omission rather than an oversight. The GitHub job emits
-# via OIDC using an AWS-provided action; the GitLab equivalent needs `id_tokens`
-# plus `aws sts assume-role-with-web-identity`, and the trust policy has to
-# accept a GitLab issuer. There is no GitLab instance here to validate that
-# against, and shipping an untested credential flow that fails open is worse
-# than shipping none. To add it, take the emit step from the GitHub workflow and
-# swap the credential configuration.
+# This publishes the HDF as a job artifact and does not push to S3. See
+# docs/ci-templates.md for why, and for how to add the emit step.
 #
 # ---- Adopting this in your own organization ---------------------------------
 #

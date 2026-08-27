@@ -1,17 +1,8 @@
 name: SonarQube HDF emit
 
-# Self-contained. This workflow calls NO other repository.
-#
-# It used to be a thin caller of a shared reusable in another repo. That cannot
-# work here and should not anywhere: GitHub does not let a PUBLIC repository use
-# a workflow from a PRIVATE or INTERNAL one, so every public consumer failed at
-# validation -- a 0-second, 0-job run with no logs and nothing to read. It also
-# made the pattern unadoptable by anyone outside this org.
-#
-# So the logic lives here, in full, in every repo that needs it. That is not DRY
-# and is not meant to be: a team cloning this repository gets a working evidence
-# pipeline with no dependency they cannot satisfy. Copy this file, change the
-# CONFIGURATION block below, done.
+# Self-contained: this workflow calls NO other repository. Copy the file, change
+# the CONFIGURATION block below, done. See docs/ci-templates.md for why each repo
+# carries its own copy.
 #
 # What it does: SonarCloud's GitHub App runs the analysis; this FETCHES the
 # results afterwards, converts them to OASIS Heimdall Data Format, stamps scan
