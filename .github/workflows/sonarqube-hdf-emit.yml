@@ -74,6 +74,8 @@ jobs:
       # and an empty bucket would send it nowhere -- neither surfaces later as an
       # error, so both are checked before any work is done.
       - name: Verify required configuration
+        env:
+          AWS_REGION: ${{ secrets.AWS_REGION }}
         run: |
           set -euo pipefail
           missing=0
@@ -83,6 +85,12 @@ jobs:
           fi
           if [ "${HAS_EMIT_ROLE}" = "true" ] && [ -z "${BUCKET:-}" ]; then
             echo "::error::EVIDENCE_BUCKET is not set but an emit role is configured. Set the variable, or remove the emit role to run in artifact-only mode."
+            missing=1
+          fi
+          # The credential step is continue-on-error, so an empty region there
+          # skips the emit silently rather than failing. Caught here instead.
+          if [ "${HAS_EMIT_ROLE}" = "true" ] && [ -z "${AWS_REGION:-}" ]; then
+            echo "::error::AWS_REGION is not set but an emit role is configured. Set it as a secret; there is no default, because a wrong region reads an empty account and reports a clean result."
             missing=1
           fi
           [ "$missing" -eq 0 ] || exit 1
@@ -226,7 +234,7 @@ jobs:
         uses: aws-actions/configure-aws-credentials@517a711dbcd0e402f90c77e7e2f81e849156e31d # v6.2.2
         with:
           role-to-assume: ${{ secrets.NIST_800_53_PROFILE_EMIT_ARN }}
-          aws-region: ${{ secrets.AWS_REGION || 'us-east-1' }}
+          aws-region: ${{ secrets.AWS_REGION }}
 
       - name: Emit OHDF to the evidence bucket
         if: steps.aws.outcome == 'success'

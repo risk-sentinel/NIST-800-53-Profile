@@ -33,7 +33,7 @@ come from.
 | `profile_name` | **yes** | — | Must match `name:` in the profile's `inspec.yml` |
 | `profile_version` | **yes** | — | Must match `version:` in the profile's `inspec.yml` |
 | `inputs_file` | no | `inputs/example.yml` | **Set this.** The default runs with example values, which is rarely what you want. The template fails if the path does not exist |
-| `aws_region` | no | `us-east-1` | Region for `aws://` scans and cloud-evidence reads |
+| `aws_region` | **yes** | — | Region for `aws://` scans and cloud-evidence reads. A wrong region reads an empty account and reports a clean result, so there is no safe default |
 | `target_uri` | no | per profile | `aws://` for cloud APIs, `local://` on the host being assessed, `ssh://user@host` for a remote one |
 | `target_type` | no | `cloudAccount` | Recorded in the audit record |
 | `scan_type`, `scan_mode` | no | per profile | Recorded in the audit record; self-asserted |
@@ -56,6 +56,7 @@ Settings -> Secrets and variables -> Actions -> Variables:
 | Secret | Required | Notes |
 |---|---|---|
 | `SONAR_TOKEN` | for the SonarQube job | Read-scoped; without it there is nothing to fetch |
+| `AWS_REGION` | when emitting to S3 | No default. The credential step is `continue-on-error`, so an empty region would skip the emit silently; the preflight fails instead |
 | `<REPO>_EMIT_ARN` | to emit to S3 | Assumed via OIDC, write-scoped to this repository's prefix |
 | `DOCKERHUB_USERNAME` / `DOCKERHUB_TOKEN` | **no** | The auditor image is public and pulls anonymously. These only raise the shared rate limit, and the login step is skipped when they are absent |
 
@@ -67,6 +68,8 @@ Settings -> Secrets and variables -> Actions -> Variables:
   the variable to set.
 - A missing **`inputs_file`** fails before the scan, naming the path it looked
   for — rather than surfacing later as an empty result.
+- A missing **region** is rejected with the other required inputs, and checked
+  again at the preflight when an emit role is configured.
 - Missing **Docker Hub credentials** are not an error; the pull goes anonymous.
 - With no **emit role**, the workflows still convert, validate, and upload the
   HDF as a build artifact. `EVIDENCE_BOUNDARY` is still required in that mode,
