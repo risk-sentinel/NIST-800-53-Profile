@@ -1,0 +1,57 @@
+# Non-secret CI/CD configuration for GitLab — PRISTINE REFERENCE.
+#
+# Copy over .gitlab-variables.yml if you want to start again. That file is the
+# one the pipeline reads; this one is regenerated when the pattern changes, so
+# edits here are lost.
+#
+# .gitlab-variables-example.yml is the pristine reference and is rewritten when
+# the pattern changes; this file is yours and is never overwritten. The same
+# split as inputs.template.yml and inputs.yml elsewhere in this repository.
+#
+# ############################################################################
+# #  NEVER PUT A SECRET IN HERE. This file is committed, so a token written   #
+# #  to it is a token published to everyone who can clone the repository.     #
+# ############################################################################
+#
+# Secrets go in Settings -> CI/CD -> Variables, MASKED and PROTECTED:
+#
+#   SONAR_TOKEN   Read-scoped SonarQube/SonarCloud token. REQUIRED for the
+#                 SonarQube job — without it the job does not run at all, and
+#                 `pipeline-coverage` says so on every pipeline.
+#
+# Precedence for everything below: an `inputs:` value in .gitlab-ci.yml beats
+# this file, which beats the built-in default.
+
+variables:
+  # ---- SonarQube ------------------------------------------------------------
+  # The project key. LEAVE EMPTY to derive <group>_<project>, which is the key
+  # SonarCloud assigns at onboarding.
+  #
+  # Set it explicitly if the project was RENAMED after onboarding: SonarCloud
+  # keeps the old key, and a wrong key is not an error — the API returns nothing
+  # and that converts into a valid, EMPTY, clean-looking report. The job verifies
+  # the key exists before fetching, so a mismatch fails loudly instead.
+  SONAR_PROJECT_KEY: ""
+
+  # Empty means https://sonarcloud.io. Set for a self-hosted SonarQube.
+  SONAR_HOST_URL: ""
+
+  # SonarCloud organization. Empty for self-hosted SonarQube.
+  SONAR_ORGANIZATION: ""
+
+# ---- Not variables, and deliberately so --------------------------------------
+#
+# The profile execution job takes its settings as `inputs:` on the include in
+# .gitlab-ci.yml, not from here:
+#
+#   target             what is being assessed. No default anywhere in this
+#                      estate — defaulting it would run the profile against
+#                      something that is not your system and report the result
+#                      as though it were.
+#   profile_name       already filled in for you.
+#   profile_version    already filled in for you.
+#   inputs_file        defaults to inputs/example.yml.
+#
+# There is no EVIDENCE_BOUNDARY here either: the GitLab jobs publish artifacts
+# and do not push to an S3 evidence bucket, so it would be read by nothing. It
+# belongs here on the day that changes, and not before.
