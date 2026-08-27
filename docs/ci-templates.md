@@ -4,6 +4,52 @@ Each profile repository carries its own copy of the CI templates under
 `.github/workflows/` and `ci/gitlab/`. This page holds the design reasoning, so
 the templates themselves can stay short enough to read before using them.
 
+## Required configuration
+
+Values that identify *your* evidence have no defaults, and the templates stop
+immediately when they are unset. A default would be worse than a failure: an
+unset boundary does not error, it files your results under somebody else's label
+while the pipeline reports success.
+
+### GitHub
+
+Set as repository or organization **variables**
+(Settings -> Secrets and variables -> Actions -> Variables):
+
+| Variable | Required | Purpose |
+|---|---|---|
+| `EVIDENCE_BOUNDARY` | always | Labels the evidence and decides where it lands in the evidence store |
+| `EVIDENCE_BUCKET` | when emitting to S3 | Destination bucket; only read when an emit role is configured |
+| `SONAR_ORGANIZATION` | optional | Defaults to the repository owner, which is correct for most SonarCloud setups |
+
+Secrets (Settings -> Secrets and variables -> Actions -> Secrets):
+
+| Secret | Required | Purpose |
+|---|---|---|
+| `SONAR_TOKEN` | for the SonarQube job | Read-scoped token; without it there is nothing to fetch |
+| `<REPO>_EMIT_ARN` | to emit to S3 | Role assumed via OIDC, write-scoped to this repository's prefix |
+| `DOCKERHUB_USERNAME` / `DOCKERHUB_TOKEN` | optional | Authenticated image pulls |
+
+With no emit role the workflows still convert, validate and upload the HDF as a
+build artifact. `EVIDENCE_BOUNDARY` is still required in that mode, because the
+boundary is part of the evidence rather than part of the destination.
+
+### GitLab
+
+`boundary` is a required `spec:inputs:` value on the exec template, so GitLab
+refuses the `include` when it is missing — the failure arrives at pipeline
+creation rather than mid-run. Non-secret configuration lives in
+`.gitlab-variables.yml`; `SONAR_TOKEN` goes in Settings -> CI/CD -> Variables,
+masked and protected.
+
+### Orchestrated runs
+
+When these templates are driven from an orchestration pipeline rather than by a
+repository's own push, pass the same values as inputs — `boundary` on the
+reusable workflow, `boundary` on the GitLab include — rather than relying on
+repository variables. The requirement is the same either way: supplied
+explicitly, or the run stops.
+
 ## Why every repository has its own copy
 
 The obvious design is one shared reusable workflow that every repository calls.
