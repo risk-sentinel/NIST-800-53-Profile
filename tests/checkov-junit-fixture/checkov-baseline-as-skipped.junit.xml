@@ -1,0 +1,93 @@
+<?xml version="1.0" ?>
+<testsuites disabled="0" errors="0" failures="0" tests="17" time="0.0">
+	<testsuite disabled="0" errors="0" failures="0" name="terraform scan" skipped="17" tests="17" time="0">
+		<properties>
+			<property name="directory" value="['.']"/>
+			<property name="add_check" value="False"/>
+			<property name="list" value="False"/>
+			<property name="output" value="['junitxml']"/>
+			<property name="output_file_path" value="/private/tmp/claude-501/-Users-brandonfield-risk-sentinel-sparc-iac/ab4fe8dc-25cc-4a18-95e2-ce1da3c5676c/scratchpad/fixture-baseline-out/"/>
+			<property name="output_bc_ids" value="False"/>
+			<property name="include_all_checkov_policies" value="True"/>
+			<property name="quiet" value="True"/>
+			<property name="compact" value="False"/>
+			<property name="framework" value="['terraform']"/>
+			<property name="skip_framework" value="[]"/>
+			<property name="run_all_external_checks" value="False"/>
+			<property name="soft_fail" value="False"/>
+			<property name="skip_results_upload" value="False"/>
+			<property name="repo_id" value="cli_repo/fixture"/>
+			<property name="branch" value="master"/>
+			<property name="skip_download" value="False"/>
+			<property name="use_enforcement_rules" value="False"/>
+			<property name="external_modules_download_path" value=".external_modules"/>
+			<property name="evaluate_variables" value="True"/>
+			<property name="no_cert_verify" value="False"/>
+			<property name="create_baseline" value="False"/>
+			<property name="baseline" value=".checkov.baseline"/>
+			<property name="output_baseline_as_skipped" value="True"/>
+			<property name="secrets_scan_file_type" value="[]"/>
+			<property name="enable_secret_scan_all_files" value="False"/>
+			<property name="block_list_secret_scan" value="[]"/>
+			<property name="summary_position" value="top"/>
+			<property name="skip_resources_without_violations" value="False"/>
+			<property name="deep_analysis" value="False"/>
+			<property name="no_fail_on_crash" value="False"/>
+			<property name="mask" value="defaultdict(&lt;class 'set'&gt;, {})"/>
+			<property name="scan_secrets_history" value="False"/>
+			<property name="secrets_history_timeout" value="12h"/>
+			<property name="custom_tool_name" value="Checkov"/>
+		</properties>
+		<testcase name="[NONE][CKV_AWS_24] Ensure no security groups allow ingress from 0.0.0.0:0 to port 22" classname="/main.tf.aws_security_group.wide_open" file="/main.tf">
+			<skipped type="skipped" message="baseline-skipped"/>
+		</testcase>
+		<testcase name="[NONE][CKV_AWS_23] Ensure every security group and rule has a description" classname="/main.tf.aws_security_group.wide_open" file="/main.tf">
+			<skipped type="skipped" message="baseline-skipped"/>
+		</testcase>
+		<testcase name="[NONE][CKV_AWS_23] Ensure every security group and rule has a description" classname="/main.tf.aws_security_group_rule.documented_skip" file="/main.tf">
+			<skipped type="skipped" message="baseline-skipped"/>
+		</testcase>
+		<testcase name="[NONE][CKV2_AWS_5] Ensure that Security Groups are attached to another resource" classname="/main.tf.aws_security_group.wide_open" file="/main.tf">
+			<skipped type="skipped" message="baseline-skipped"/>
+		</testcase>
+		<testcase name="[NONE][CKV2_AWS_62] Ensure S3 buckets should have event notifications enabled" classname="/main.tf.aws_s3_bucket.unencrypted" file="/main.tf">
+			<skipped type="skipped" message="baseline-skipped"/>
+		</testcase>
+		<testcase name="[NONE][CKV2_AWS_62] Ensure S3 buckets should have event notifications enabled" classname="/modules/storage/main.tf.module.storage.aws_s3_bucket.module_bucket" file="/modules/storage/main.tf">
+			<skipped type="skipped" message="baseline-skipped"/>
+		</testcase>
+		<testcase name="[NONE][CKV2_AWS_6] Ensure that S3 bucket has a Public Access block" classname="/main.tf.aws_s3_bucket.unencrypted" file="/main.tf">
+			<skipped type="skipped" message="baseline-skipped"/>
+		</testcase>
+		<testcase name="[NONE][CKV2_AWS_6] Ensure that S3 bucket has a Public Access block" classname="/modules/storage/main.tf.module.storage.aws_s3_bucket.module_bucket" file="/modules/storage/main.tf">
+			<skipped type="skipped" message="baseline-skipped"/>
+		</testcase>
+		<testcase name="[NONE][CKV_AWS_18] Ensure the S3 bucket has access logging enabled" classname="/main.tf.aws_s3_bucket.unencrypted" file="/main.tf">
+			<skipped type="skipped" message="baseline-skipped"/>
+		</testcase>
+		<testcase name="[NONE][CKV_AWS_18] Ensure the S3 bucket has access logging enabled" classname="/modules/storage/main.tf.module.storage.aws_s3_bucket.module_bucket" file="/modules/storage/main.tf">
+			<skipped type="skipped" message="baseline-skipped"/>
+		</testcase>
+		<testcase name="[NONE][CKV2_AWS_61] Ensure that an S3 bucket has a lifecycle configuration" classname="/main.tf.aws_s3_bucket.unencrypted" file="/main.tf">
+			<skipped type="skipped" message="baseline-skipped"/>
+		</testcase>
+		<testcase name="[NONE][CKV2_AWS_61] Ensure that an S3 bucket has a lifecycle configuration" classname="/modules/storage/main.tf.module.storage.aws_s3_bucket.module_bucket" file="/modules/storage/main.tf">
+			<skipped type="skipped" message="baseline-skipped"/>
+		</testcase>
+		<testcase name="[NONE][CKV_AWS_144] Ensure that S3 bucket has cross-region replication enabled" classname="/main.tf.aws_s3_bucket.unencrypted" file="/main.tf">
+			<skipped type="skipped" message="baseline-skipped"/>
+		</testcase>
+		<testcase name="[NONE][CKV_AWS_144] Ensure that S3 bucket has cross-region replication enabled" classname="/modules/storage/main.tf.module.storage.aws_s3_bucket.module_bucket" file="/modules/storage/main.tf">
+			<skipped type="skipped" message="baseline-skipped"/>
+		</testcase>
+		<testcase name="[NONE][CKV_AWS_21] Ensure all data stored in the S3 bucket have versioning enabled" classname="/main.tf.aws_s3_bucket.unencrypted" file="/main.tf">
+			<skipped type="skipped" message="baseline-skipped"/>
+		</testcase>
+		<testcase name="[NONE][CKV_AWS_145] Ensure that S3 buckets are encrypted with KMS by default" classname="/main.tf.aws_s3_bucket.unencrypted" file="/main.tf">
+			<skipped type="skipped" message="baseline-skipped"/>
+		</testcase>
+		<testcase name="[NONE][CKV_AWS_145] Ensure that S3 buckets are encrypted with KMS by default" classname="/modules/storage/main.tf.module.storage.aws_s3_bucket.module_bucket" file="/modules/storage/main.tf">
+			<skipped type="skipped" message="baseline-skipped"/>
+		</testcase>
+	</testsuite>
+</testsuites>
