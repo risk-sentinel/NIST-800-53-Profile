@@ -6,49 +6,72 @@ the templates themselves can stay short enough to read before using them.
 
 ## Required configuration
 
-Values that identify *your* evidence have no defaults, and the templates stop
-immediately when they are unset. A default would be worse than a failure: an
+Values that identify *your* environment have no defaults, and the templates stop
+immediately when one is missing. A default would be worse than a failure: an
 unset boundary does not error, it files your results under somebody else's label
 while the pipeline reports success.
 
-### GitHub
+### The two ways to run this
 
-Set as repository or organization **variables**
-(Settings -> Secrets and variables -> Actions -> Variables):
+**Clone on the fly.** Your pipeline clones the profile and runs it. Everything
+comes from the calling pipeline's inputs or variables; nothing in the profile is
+edited.
 
-| Variable | Required | Purpose |
+**Clone and keep.** You fork or clone the profile, edit `inputs/mine.yml` for
+your environment, commit it, and point `inputs_file` at it. Values that are
+stable for you live in your copy; the rest still come from the pipeline.
+
+Both paths use the same contract below. The only difference is where the values
+come from.
+
+### Inputs
+
+| Input | Required | Default | Notes |
+|---|---|---|---|
+| `target` | **yes** | — | What is being assessed: account alias, host, resource. Not an ARN |
+| `boundary` | **yes** | — | Labels the evidence and decides where it lands in the evidence store |
+| `profile_name` | **yes** | — | Must match `name:` in the profile's `inspec.yml` |
+| `profile_version` | **yes** | — | Must match `version:` in the profile's `inspec.yml` |
+| `inputs_file` | no | `inputs/example.yml` | **Set this.** The default runs with example values, which is rarely what you want. The template fails if the path does not exist |
+| `aws_region` | no | `us-east-1` | Region for `aws://` scans and cloud-evidence reads |
+| `target_uri` | no | per profile | `aws://` for cloud APIs, `local://` on the host being assessed, `ssh://user@host` for a remote one |
+| `target_type` | no | `cloudAccount` | Recorded in the audit record |
+| `scan_type`, `scan_mode` | no | per profile | Recorded in the audit record; self-asserted |
+| `benchmark`, `benchmark_version` | no | empty | Recorded when the profile implements a published benchmark |
+| `image` | no | the pinned auditor image | Public on Docker Hub; override to pin your own build |
+| `job_name` | no | per template | Rename to include a template more than once |
+
+### Variables (GitHub, push-triggered workflows)
+
+Settings -> Secrets and variables -> Actions -> Variables:
+
+| Variable | Required | Notes |
 |---|---|---|
-| `EVIDENCE_BOUNDARY` | always | Labels the evidence and decides where it lands in the evidence store |
-| `EVIDENCE_BUCKET` | when emitting to S3 | Destination bucket; only read when an emit role is configured |
-| `SONAR_ORGANIZATION` | optional | Defaults to the repository owner, which is correct for most SonarCloud setups |
+| `EVIDENCE_BOUNDARY` | **yes** | Same meaning as the `boundary` input |
+| `EVIDENCE_BUCKET` | when emitting to S3 | Only read when an emit role is configured |
+| `SONAR_ORGANIZATION` | no | Defaults to the repository owner |
 
-Secrets (Settings -> Secrets and variables -> Actions -> Secrets):
+### Secrets
 
-| Secret | Required | Purpose |
+| Secret | Required | Notes |
 |---|---|---|
-| `SONAR_TOKEN` | for the SonarQube job | Read-scoped token; without it there is nothing to fetch |
-| `<REPO>_EMIT_ARN` | to emit to S3 | Role assumed via OIDC, write-scoped to this repository's prefix |
-| `DOCKERHUB_USERNAME` / `DOCKERHUB_TOKEN` | optional | Authenticated image pulls |
+| `SONAR_TOKEN` | for the SonarQube job | Read-scoped; without it there is nothing to fetch |
+| `<REPO>_EMIT_ARN` | to emit to S3 | Assumed via OIDC, write-scoped to this repository's prefix |
+| `DOCKERHUB_USERNAME` / `DOCKERHUB_TOKEN` | **no** | The auditor image is public and pulls anonymously. These only raise the shared rate limit, and the login step is skipped when they are absent |
 
-With no emit role the workflows still convert, validate and upload the HDF as a
-build artifact. `EVIDENCE_BOUNDARY` is still required in that mode, because the
-boundary is part of the evidence rather than part of the destination.
+### What happens when something is missing
 
-### GitLab
-
-`boundary` is a required `spec:inputs:` value on the exec template, so GitLab
-refuses the `include` when it is missing — the failure arrives at pipeline
-creation rather than mid-run. Non-secret configuration lives in
-`.gitlab-variables.yml`; `SONAR_TOKEN` goes in Settings -> CI/CD -> Variables,
-masked and protected.
-
-### Orchestrated runs
-
-When these templates are driven from an orchestration pipeline rather than by a
-repository's own push, pass the same values as inputs — `boundary` on the
-reusable workflow, `boundary` on the GitLab include — rather than relying on
-repository variables. The requirement is the same either way: supplied
-explicitly, or the run stops.
+- A missing **required input** is rejected before the job starts: GitHub refuses
+  the `workflow_call`, GitLab refuses the `include` at pipeline creation.
+- A missing **`EVIDENCE_BOUNDARY`** fails at the first step of the job, naming
+  the variable to set.
+- A missing **`inputs_file`** fails before the scan, naming the path it looked
+  for — rather than surfacing later as an empty result.
+- Missing **Docker Hub credentials** are not an error; the pull goes anonymous.
+- With no **emit role**, the workflows still convert, validate, and upload the
+  HDF as a build artifact. `EVIDENCE_BOUNDARY` is still required in that mode,
+  because the boundary is part of the evidence rather than part of the
+  destination.
 
 ## Why every repository has its own copy
 
