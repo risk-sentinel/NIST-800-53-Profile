@@ -41,7 +41,7 @@ spec:
       default: ""
     image:
       description: Image carrying the hdf CLI. Bakes hdf 3.4.1.
-      default: risksentinel/sparc-auditor:v0.5.0
+      default: risksentinel/sparc-auditor:v0.5.2
     job_name:
       default: sonarqube-hdf-emit
 ---
