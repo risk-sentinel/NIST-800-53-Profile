@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="580" viewBox="0 0 960 580" role="img" aria-label="Venn diagram of 300 active NIST SP 800-53 Rev 5 base controls. HDF automates 108, OSCAL 34, both 9; together 133. 167 remain outside both.">
+<style>text{font-family:"IBM Plex Sans",system-ui,-apple-system,"Segoe UI",sans-serif;fill:#17212a}
+.ttl{font-family:"IBM Plex Sans Condensed","Arial Narrow",system-ui,sans-serif;font-size:26px;font-weight:600}
+.sub{font-size:12.5px;fill:#56636f}
+.strong{font-weight:600;fill:#17212a}
+.it{font-size:12.5px}
+.num{font-variant-numeric:tabular-nums}
+.id{font-family:"IBM Plex Mono",ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:12px;font-weight:600}
+.sm{font-size:11px;fill:#56636f}
+.c-h{fill:#009683;fill-opacity:.12;stroke:#009683;stroke-width:2}
+.c-o{fill:#b4541a;fill-opacity:.12;stroke:#b4541a;stroke-width:2}
+.t-h{fill:#009683}
+.t-o{fill:#b4541a}
+.frame{fill:none;stroke:#cdd5db;stroke-width:1.2}
+.grid{stroke:#e3e8eb;stroke-width:1}
+.b-h{fill:#009683}
+.hit{fill:transparent}
+.bar:hover .b-h, svg .bar:focus .b-h{fill-opacity:.8}
+.bar:focus{outline:none}
+.bar:focus .hit{stroke:#17212a;stroke-width:1;stroke-dasharray:3 3}
+.box-h{fill:#e0f2ef;stroke:#009683;stroke-width:1.5}
+.box-o{fill:#f8e9df;stroke:#b4541a;stroke-width:1.5}
+.box-n{fill:#ffffff;stroke:#cdd5db;stroke-width:1.2}
+.t{font-size:13px;font-weight:600}
+.f{font-size:11px;font-family:"IBM Plex Mono",ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;fill:#56636f}
+.edge{fill:none;stroke:#17212a;stroke-width:1.4}
+.edge-d{fill:none;stroke:#56636f;stroke-width:1.4;stroke-dasharray:5 4}
+.ah{fill:#17212a}
+.ah-m{fill:#56636f}
+text{font-family:"IBM Plex Sans",Arial,Helvetica,sans-serif}</style>
+<rect width="100%" height="100%" fill="#ffffff"/>
+<rect x="20" y="20" width="920" height="540" rx="8" class="frame"/>
+<text x="40" y="46" class="sm">300 active NIST SP 800-53 Rev 5 base controls · circles not to scale</text>
+<circle cx="345" cy="285" r="225" class="c-h"/>
+<circle cx="615" cy="285" r="225" class="c-o"/>
+<text x="262" y="132" class="ttl t-h" text-anchor="middle">HDF</text>
+<text x="262" y="154" class="sub" text-anchor="middle">108 controls · <tspan class="strong">99 only here</tspan></text>
+<text x="262" y="190" class="sm" text-anchor="middle">tested, by family</text>
+<text x="160" y="222" class="it"><tspan class="id">SC</tspan> <tspan class="num">20</tspan></text>
+<text x="160" y="246" class="it"><tspan class="id">AC</tspan> <tspan class="num">16</tspan></text>
+<text x="160" y="270" class="it"><tspan class="id">AU</tspan> <tspan class="num">12</tspan></text>
+<text x="160" y="294" class="it"><tspan class="id">SI</tspan> <tspan class="num">10</tspan></text>
+<text x="160" y="318" class="it"><tspan class="id">CM</tspan> <tspan class="num">8</tspan></text>
+<text x="160" y="342" class="it"><tspan class="id">IA</tspan> <tspan class="num">8</tspan></text>
+<text x="160" y="366" class="it"><tspan class="id">SA</tspan> <tspan class="num">6</tspan></text>
+<text x="260" y="222" class="it"><tspan class="id">CP</tspan> <tspan class="num">5</tspan></text>
+<text x="260" y="246" class="it"><tspan class="id">IR</tspan> <tspan class="num">4</tspan></text>
+<text x="260" y="270" class="it"><tspan class="id">SR</tspan> <tspan class="num">4</tspan></text>
+<text x="260" y="294" class="it"><tspan class="id">MA</tspan> <tspan class="num">2</tspan></text>
+<text x="260" y="318" class="it"><tspan class="id">MP</tspan> <tspan class="num">2</tspan></text>
+<text x="260" y="342" class="it"><tspan class="id">CA</tspan> <tspan class="num">1</tspan></text>
+<text x="260" y="366" class="it"><tspan class="id">RA</tspan> <tspan class="num">1</tspan></text>
+
+<text x="290" y="420" class="sm" text-anchor="middle">Profiles and scanner mappings</text>
+<text x="290" y="436" class="sm" text-anchor="middle">prove how the system is configured</text>
+<text x="698" y="132" class="ttl t-o" text-anchor="middle">OSCAL</text>
+<text x="698" y="154" class="sub" text-anchor="middle">34 controls · <tspan class="strong">25 only here</tspan></text>
+<text x="698" y="190" class="sm" text-anchor="middle">documented and tracked</text>
+<text x="590" y="222" class="it"><tspan class="id">xx-1 ×19</tspan> Policy and procedures</text>
+<text x="590" y="248" class="it"><tspan class="id">PL-2</tspan> System security plan</text>
+<text x="590" y="274" class="it"><tspan class="id">PL-10 · PL-11</tspan> Baselines</text>
+<text x="590" y="300" class="it"><tspan class="id">CA-6</tspan> Authorization</text>
+<text x="590" y="326" class="it"><tspan class="id">SA-9</tspan> External services</text>
+<text x="590" y="352" class="it"><tspan class="id">PM-4</tspan> POA&amp;M process</text>
+
+<text x="676" y="420" class="sm" text-anchor="middle">The model itself is the evidence:</text>
+<text x="676" y="436" class="sm" text-anchor="middle">plans, approvals, policies, POA&amp;M</text>
+<text x="480" y="160" class="id" text-anchor="middle" style="font-size:14px">Both · 9</text>
+<text x="480" y="178" class="sub" text-anchor="middle">test + track</text>
+<text x="480" y="214" class="it" text-anchor="middle" style="font-size:11.5px"><tspan class="id" style="font-size:11px">CA-2</tspan> Assessment plan</text>
+<text x="480" y="234" class="it" text-anchor="middle" style="font-size:11.5px"><tspan class="id" style="font-size:11px">CA-3</tspan> Interconnections</text>
+<text x="480" y="254" class="it" text-anchor="middle" style="font-size:11.5px"><tspan class="id" style="font-size:11px">CA-5</tspan> POA&amp;M</text>
+<text x="480" y="274" class="it" text-anchor="middle" style="font-size:11.5px"><tspan class="id" style="font-size:11px">CA-7</tspan> Continuous monitoring</text>
+<text x="480" y="294" class="it" text-anchor="middle" style="font-size:11.5px"><tspan class="id" style="font-size:11px">CM-8</tspan> Inventory</text>
+<text x="480" y="314" class="it" text-anchor="middle" style="font-size:11.5px"><tspan class="id" style="font-size:11px">RA-5</tspan> Vuln scanning</text>
+<text x="480" y="334" class="it" text-anchor="middle" style="font-size:11.5px"><tspan class="id" style="font-size:11px">RA-7</tspan> Risk response</text>
+<text x="480" y="354" class="it" text-anchor="middle" style="font-size:11.5px"><tspan class="id" style="font-size:11px">SI-1</tspan> Policy*</text>
+<text x="480" y="374" class="it" text-anchor="middle" style="font-size:11.5px"><tspan class="id" style="font-size:11px">SI-2</tspan> Flaw remediation</text>
+
+<text x="40" y="530" class="sm"><tspan class="strong">167 outside both</tspan>, evidence stays human or attested. By family:</text>
+<text x="40" y="547" class="sm">PM 30 · SC 26 · PE 21 · SI 10 · SA 9 · PS 8 · PT 7 · SR 7 · AC 6 · CP 6 · MP 5 · RA 5 · AT 4 · CM 4 · IA 4 · IR 4 · MA 4 · PL 4 · AU 2 · CA 1</text>
+</svg>

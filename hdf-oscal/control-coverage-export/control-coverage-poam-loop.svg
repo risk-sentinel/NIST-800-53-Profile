@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="340" viewBox="0 0 960 340" role="img" aria-label="Remediation loop: an HDF failed result becomes a SAR finding, then a POA&amp;M item and risk with a deadline, then risk-log status changes, then a rescan passes and closes the risk. Below, HDF Amendments manage POA&amp;Ms and waivers without OSCAL.">
+<style>text{font-family:"IBM Plex Sans",system-ui,-apple-system,"Segoe UI",sans-serif;fill:#17212a}
+.ttl{font-family:"IBM Plex Sans Condensed","Arial Narrow",system-ui,sans-serif;font-size:26px;font-weight:600}
+.sub{font-size:12.5px;fill:#56636f}
+.strong{font-weight:600;fill:#17212a}
+.it{font-size:12.5px}
+.num{font-variant-numeric:tabular-nums}
+.id{font-family:"IBM Plex Mono",ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:12px;font-weight:600}
+.sm{font-size:11px;fill:#56636f}
+.c-h{fill:#009683;fill-opacity:.12;stroke:#009683;stroke-width:2}
+.c-o{fill:#b4541a;fill-opacity:.12;stroke:#b4541a;stroke-width:2}
+.t-h{fill:#009683}
+.t-o{fill:#b4541a}
+.frame{fill:none;stroke:#cdd5db;stroke-width:1.2}
+.grid{stroke:#e3e8eb;stroke-width:1}
+.b-h{fill:#009683}
+.hit{fill:transparent}
+.bar:hover .b-h, svg .bar:focus .b-h{fill-opacity:.8}
+.bar:focus{outline:none}
+.bar:focus .hit{stroke:#17212a;stroke-width:1;stroke-dasharray:3 3}
+.box-h{fill:#e0f2ef;stroke:#009683;stroke-width:1.5}
+.box-o{fill:#f8e9df;stroke:#b4541a;stroke-width:1.5}
+.box-n{fill:#ffffff;stroke:#cdd5db;stroke-width:1.2}
+.t{font-size:13px;font-weight:600}
+.f{font-size:11px;font-family:"IBM Plex Mono",ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;fill:#56636f}
+.edge{fill:none;stroke:#17212a;stroke-width:1.4}
+.edge-d{fill:none;stroke:#56636f;stroke-width:1.4;stroke-dasharray:5 4}
+.ah{fill:#17212a}
+.ah-m{fill:#56636f}
+text{font-family:"IBM Plex Sans",Arial,Helvetica,sans-serif}</style>
+<rect width="100%" height="100%" fill="#ffffff"/>
+      <defs>
+        <marker id="a" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="8" markerHeight="8" orient="auto"><path d="M0,0 L8,4 L0,8 z" class="ah"/></marker>
+        <marker id="am" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="8" markerHeight="8" orient="auto"><path d="M0,0 L8,4 L0,8 z" class="ah-m"/></marker>
+      </defs>
+      <rect x="20" y="40" width="168" height="112" rx="5" class="box-h"/>
+      <text x="34" y="64" class="t">HDF result</text>
+      <text x="34" y="86" class="f">check tagged RA-5</text>
+      <text x="34" y="104" class="f">or SI-2</text>
+      <text x="34" y="122" class="f">status: failed</text>
+      <rect x="208" y="40" width="168" height="112" rx="5" class="box-o"/>
+      <text x="222" y="64" class="t">SAR finding</text>
+      <text x="222" y="86" class="f">hdf convert</text>
+      <text x="222" y="104" class="f">--to oscal-sar</text>
+      <text x="222" y="122" class="f">state: not-satisfied</text>
+      <rect x="396" y="40" width="168" height="112" rx="5" class="box-o"/>
+      <text x="410" y="64" class="t">POA&amp;M item + risk</text>
+      <text x="410" y="86" class="f">status: open</text>
+      <text x="410" y="104" class="f">deadline</text>
+      <text x="410" y="122" class="f">remediations[].tasks</text>
+      <text x="410" y="140" class="f">type: milestone</text>
+      <rect x="584" y="40" width="168" height="112" rx="5" class="box-o"/>
+      <text x="598" y="64" class="t">risk-log entries</text>
+      <text x="598" y="86" class="f">status-change:</text>
+      <text x="598" y="104" class="f">remediating, or</text>
+      <text x="598" y="122" class="f">deviation-requested</text>
+      <text x="598" y="140" class="f">→ deviation-approved</text>
+      <rect x="772" y="40" width="168" height="112" rx="5" class="box-h"/>
+      <text x="786" y="64" class="t">Rescan</text>
+      <text x="786" y="86" class="f">HDF result: passed</text>
+      <text x="786" y="104" class="f">risk status: closed</text>
+      <text x="786" y="122" class="f">history kept in log</text>
+      <line x1="188" y1="96" x2="204" y2="96" class="edge" marker-end="url(#a)"/>
+      <line x1="376" y1="96" x2="392" y2="96" class="edge" marker-end="url(#a)"/>
+      <line x1="564" y1="96" x2="580" y2="96" class="edge" marker-end="url(#a)"/>
+      <line x1="752" y1="96" x2="768" y2="96" class="edge" marker-end="url(#a)"/>
+      <path d="M856,152 V184 H104 V156" class="edge-d" marker-end="url(#am)"/>
+      <text x="480" y="178" class="sm" text-anchor="middle">every pipeline run</text>
+
+      <text x="20" y="226" class="sub">HDF on its own, without OSCAL · Amendments</text>
+      <rect x="20" y="238" width="290" height="80" rx="5" class="box-n"/>
+      <text x="34" y="262" class="t">type: poam</text>
+      <text x="34" y="284" class="f">milestones[] · expiresAt required</text>
+      <text x="34" y="302" class="f">tracks work, leaves status alone</text>
+      <rect x="335" y="238" width="290" height="80" rx="5" class="box-n"/>
+      <text x="349" y="262" class="t">waiver · riskAdjustment</text>
+      <text x="349" y="284" class="f">appliedBy · approvedBy · reason</text>
+      <text x="349" y="302" class="f">sets effectiveStatus / impact</text>
+      <rect x="650" y="238" width="290" height="80" rx="5" class="box-n"/>
+      <text x="664" y="262" class="t">Tamper evidence</text>
+      <text x="664" y="284" class="f">previousChecksum chain</text>
+      <text x="664" y="302" class="f">hdf amend verify · signature</text>
+    </svg>
